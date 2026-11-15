@@ -1,0 +1,455 @@
+{
+  "$schema": "https://sdaiaacademy.github.io/engine/schemas/course.schema.json",
+  "engine": "1",
+  "id": "ds-408",
+  "code": "DS-408",
+  "version": "2027.1.0",
+  "lang": "en",
+  "title": {
+    "en": "Analytics Products: Semantic Layers and Conversational Analytics",
+    "ar": "منتجات التحليلات: الطبقات الدلالية والتحليلات الحوارية"
+  },
+  "tagline": "REPLACE: one line under the title: what participants can do after the course",
+  "description": "Participants build the analytics product of the fictional Qamar Telecom, whose 300 managers want to ask questions in Arabic and English about usage, billing, collections and complaints. They define metrics once as tested code with owners, design a semantic layer with conformed time, tariff history and access rules by region and classification, expose it to tools and agents, and evaluate a conversational assistant on certified questions, ending with a policy on which questions the assistant may answer. DS-307 covers single-area metrics, dashboards and a first agent test; this course designs the layer across business areas and governs the assistant.",
+  "track": "data-science",
+  "level": 400,
+  "badge": {
+    "name": "Data Science",
+    "level": "Expert"
+  },
+  "audience": "Specialists. Data scientists who have completed the level 300 core and practicum, or can show equivalent work: an analysis they led from question to recommendation and defended.",
+  "prerequisites": [
+    "DS-307 Metrics, Semantic Models and Dashboards",
+    "Writes SQL over a star schema, including window functions",
+    "Has defined metrics in a semantic layer or a BI calculation language"
+  ],
+  "site": {
+    "url": "https://sdaiaacademy.github.io/ds-408/",
+    "repo": "SDAIAAcademy/ds-408"
+  },
+  "outcomes": [
+    {
+      "id": "LO1",
+      "text": "Design a semantic layer with entities, grain, conformed time and governed metrics for several business areas, given the company's marts, a tariff history and Hijri and fiscal calendars",
+      "level": "Performance",
+      "evidence": "model files whose reconciliation tests pass against source totals"
+    },
+    {
+      "id": "LO2",
+      "text": "Implement metric definitions as code with owners, tests and change control, given three conflicting definitions of the collection rate",
+      "level": "Applied",
+      "evidence": "metric files and one change taken through review in continuous integration"
+    },
+    {
+      "id": "LO3",
+      "text": "Configure row-level access and field masking in the semantic layer according to data classification, given three user roles and the national classification levels",
+      "level": "Applied",
+      "evidence": "access tests that pass for each role and catch a seeded leak"
+    },
+    {
+      "id": "LO4",
+      "text": "Evaluate a conversational assistant on certified questions, measuring accuracy, stability, wrong but plausible answers and the contribution of each kind of semantic context, given 60 bilingual questions with certified answers and a fixed model",
+      "level": "Performance",
+      "evidence": "a report from a harness a reviewer can re-run"
+    },
+    {
+      "id": "LO5",
+      "text": "Decide which question types the assistant may answer and under which safeguards, given the evaluation results and a stated tolerance for wrong figures",
+      "level": "Performance",
+      "evidence": "a routing policy with a decision record"
+    },
+    {
+      "id": "LO6",
+      "text": "Review the design of a peer's analytics product for correctness, portability and governance, given a peer's semantic model and evaluation",
+      "level": "Performance",
+      "evidence": "design review notes with findings ranked by risk"
+    }
+  ],
+  "case_study": {
+    "name": "REPLACE: the name of the fictional organisation every lab works on",
+    "summary": "REPLACE: two sentences on the case study and its synthetic data"
+  },
+  "format": "intensive",
+  "format_note": "Intensive: 4 teaching days of four sessions and a capstone day, with guided pre-work and a tracked follow-up task",
+  "hours": {
+    "instruction": 6,
+    "lab": 7,
+    "guided_self_study": 6,
+    "assessment": 1,
+    "capstone": 6
+  },
+  "unit": "day",
+  "days": [
+    {
+      "id": "day1",
+      "kind": "day",
+      "title": "Metrics as products",
+      "deck": "slides/day1.html",
+      "sessions": [
+        {
+          "title": "One metric, three owners",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO1"
+          ],
+          "lab": {
+            "id": "1.1",
+            "title": "Reconcile the collection rate as finance, collections and customer care define it and agree one certified definition",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D1_1_reconcile_collection_rate.ipynb"
+          }
+        },
+        {
+          "title": "Metrics as code with tests",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO2"
+          ],
+          "lab": {
+            "id": "1.2",
+            "title": "Implement five metrics, including a ratio and a cumulative metric, with reconciliation tests",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D1_2_implement_five_metrics.ipynb"
+          }
+        },
+        {
+          "title": "Ownership and change control",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO2"
+          ],
+          "lab": {
+            "id": "1.3",
+            "title": "Write the change process for a metric and take one change through review",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D1_3_write_change_process.ipynb"
+          }
+        },
+        {
+          "title": "Certification and deprecation",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO2"
+          ],
+          "lab": {
+            "id": "1.4",
+            "title": "Version and deprecate metrics in a 40-metric catalogue and list the reports that still use a deprecated one",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D1_4_version_deprecate_metrics.ipynb"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day2",
+      "kind": "day",
+      "title": "Design the semantic layer",
+      "deck": "slides/day2.html",
+      "sessions": [
+        {
+          "title": "Conformed dimensions across areas",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO1"
+          ],
+          "lab": {
+            "id": "2.1",
+            "title": "Model subscribers, lines, bills and complaints with conformed customer and time dimensions and fix a cross-area fan-out",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D2_1_model_subscribers_lines.ipynb"
+          }
+        },
+        {
+          "title": "Performance and cost",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO1"
+          ],
+          "lab": {
+            "id": "2.2",
+            "title": "Add pre-aggregations for the ten most-asked metrics and measure query latency before and after",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D2_2_add_pre_aggregations.ipynb"
+          }
+        },
+        {
+          "title": "Access rules",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO3"
+          ],
+          "lab": {
+            "id": "2.3",
+            "title": "Add row-level rules by region, mask Restricted fields and test with three roles",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D2_3_add_row_level.ipynb"
+          }
+        },
+        {
+          "title": "Portability",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO1"
+          ],
+          "lab": {
+            "id": "2.4",
+            "title": "Export the model to an open interchange format and query it from a second engine",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D2_4_export_model_open.ipynb"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day3",
+      "kind": "day",
+      "title": "Test the assistant",
+      "deck": "slides/day3.html",
+      "sessions": [
+        {
+          "title": "A certified set for a platform",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO4"
+          ],
+          "lab": {
+            "id": "3.1",
+            "title": "Extend the supplied certified set to cover each business area and difficulty level, including questions the assistant must refuse",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D3_1_extend_supplied_certified.ipynb"
+          }
+        },
+        {
+          "title": "Which context helps",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO4"
+          ],
+          "lab": {
+            "id": "3.2",
+            "title": "Remove synonyms, descriptions and examples one at a time from the supplied configuration and re-score each variant with the supplied scorer",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D3_2_remove_synonyms_descriptions.ipynb"
+          }
+        },
+        {
+          "title": "A scoring harness",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO4"
+          ],
+          "lab": {
+            "id": "3.3",
+            "title": "Build a harness that reports execution accuracy and the rate of wrong but plausible answers",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D3_3_build_harness_that.ipynb"
+          }
+        },
+        {
+          "title": "Ask it again",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO4"
+          ],
+          "lab": {
+            "id": "3.4",
+            "title": "Run each question three times and measure how often the answers agree",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D3_4_run_each_question.ipynb"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day4",
+      "kind": "day",
+      "title": "Ship and govern",
+      "deck": "slides/day4.html",
+      "sessions": [
+        {
+          "title": "Serving metrics to tools and agents",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO3"
+          ],
+          "lab": {
+            "id": "4.1",
+            "title": "Expose the semantic layer through an API or protocol server with role-scoped credentials",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D4_1_expose_semantic_layer.ipynb"
+          }
+        },
+        {
+          "title": "Safeguards that show their work",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO5"
+          ],
+          "lab": {
+            "id": "4.2",
+            "title": "Make the assistant cite the metric and filters used and refuse uncertified metrics",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D4_2_make_assistant_cite.ipynb"
+          }
+        },
+        {
+          "title": "Which questions may go to the assistant",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO5"
+          ],
+          "lab": {
+            "id": "4.3",
+            "title": "Set a routing policy from the evaluation and a stated tolerance for wrong figures",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D4_3_set_routing_policy.ipynb"
+          }
+        },
+        {
+          "title": "Design review",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO6"
+          ],
+          "lab": {
+            "id": "4.4",
+            "title": "Present the product design to a peer panel and log the decisions taken",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D4_4_present_product_design.ipynb"
+          }
+        }
+      ]
+    },
+    {
+      "id": "capstone",
+      "kind": "capstone",
+      "title": "Capstone project presentations",
+      "deck": "slides/capstone.html",
+      "subtitle": "REPLACE: the catalog gives no length for the presentations; set capstone.talk_minutes and capstone.qa_minutes in course.json, write them on the format slide, add a timer for each to the now-presenting slide, and remove this line"
+    }
+  ],
+  "capstone": {
+    "summary": "A governed analytics product for two business areas (metrics as code, a semantic layer with tested access rules, an assistant evaluation on at least 40 certified questions, a routing policy) in a public repository whose README reports measured accuracy and stability, defended in a design review",
+    "submission": "REPLACE: what participants submit and how: a public repository link, or a shared folder for a course without code",
+    "rubric": [
+      {
+        "criterion": "Semantic model and metrics",
+        "weight": 30
+      },
+      {
+        "criterion": "Access rules",
+        "weight": 15
+      },
+      {
+        "criterion": "Assistant evaluation",
+        "weight": 30
+      },
+      {
+        "criterion": "Routing policy",
+        "weight": 15
+      },
+      {
+        "criterion": "Reproducibility",
+        "weight": 10
+      }
+    ]
+  },
+  "labs": {
+    "kind": "notebooks",
+    "base": "labs/"
+  },
+  "tools": [
+    {
+      "slot": "Transformation framework",
+      "examples": [
+        "SQLMesh",
+        "dbt"
+      ]
+    },
+    {
+      "slot": "Semantic layer and metric definitions",
+      "examples": [
+        "MetricFlow",
+        "Cube Core",
+        "Apache Ossie (Open Semantic Interchange) files"
+      ]
+    },
+    {
+      "slot": "Analytical engine",
+      "examples": [
+        "DuckDB",
+        "PostgreSQL"
+      ]
+    },
+    {
+      "slot": "Access for tools and agents",
+      "examples": [
+        "a Model Context Protocol server",
+        "a REST API over the semantic layer"
+      ]
+    },
+    {
+      "slot": "Language model through a chat-completions style endpoint",
+      "examples": [
+        "a locally served open-weight model",
+        "a free hosted model"
+      ]
+    },
+    {
+      "slot": "Evaluation harness",
+      "examples": [
+        "pytest with custom assertions",
+        "promptfoo",
+        "Inspect"
+      ]
+    }
+  ]
+}
