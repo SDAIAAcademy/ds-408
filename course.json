@@ -9,7 +9,7 @@
     "en": "Analytics Products: Semantic Layers and Conversational Analytics",
     "ar": "منتجات التحليلات: الطبقات الدلالية والتحليلات الحوارية"
   },
-  "tagline": "REPLACE: one line under the title: what participants can do after the course",
+  "tagline": "Define metrics once as tested code, serve them through a governed semantic layer, and let an assistant answer only the questions it has proved it can answer",
   "description": "Participants build the analytics product of the fictional Qamar Telecom, whose 300 managers want to ask questions in Arabic and English about usage, billing, collections and complaints. They define metrics once as tested code with owners, design a semantic layer with conformed time, tariff history and access rules by region and classification, expose it to tools and agents, and evaluate a conversational assistant on certified questions, ending with a policy on which questions the assistant may answer. DS-307 covers single-area metrics, dashboards and a first agent test; this course designs the layer across business areas and governs the assistant.",
   "track": "data-science",
   "level": 400,
@@ -21,7 +21,8 @@
   "prerequisites": [
     "DS-307 Metrics, Semantic Models and Dashboards",
     "Writes SQL over a star schema, including window functions",
-    "Has defined metrics in a semantic layer or a BI calculation language"
+    "Has defined metrics in a semantic layer or a BI calculation language",
+    "Setup: a laptop CPU with uv, or Google Colab. Nothing downloads a model; the assistant labs replay recorded replies of a scripted stand-in model, and a free hosted model is optional. Run 00_setup_check before Day 1; see labs/README.md."
   ],
   "site": {
     "url": "https://sdaiaacademy.github.io/ds-408/",
@@ -66,8 +67,8 @@
     }
   ],
   "case_study": {
-    "name": "REPLACE: the name of the fictional organisation every lab works on",
-    "summary": "REPLACE: two sentences on the case study and its synthetic data"
+    "name": "Qamar Telecom",
+    "summary": "Qamar Telecom is a fictional Saudi telecom operator whose 300 managers want to ask, in Arabic and English, about usage, billing, collections and complaints, while finance, collections and customer care each report a different collection rate. Participants certify one collection rate, write the metrics as tested code with owners and change control, build a conformed semantic layer with tariff history, fiscal and Hijri calendars and access rules by region and classification, export it to an open format, serve it to tools and agents, and evaluate Daleel, the bilingual assistant, on 60 certified questions before deciding which questions it may answer. All data is synthetic and generated with a fixed seed."
   },
   "format": "intensive",
   "format_note": "Intensive: 4 teaching days of four sessions and a capstone day, with guided pre-work and a tracked follow-up task",
@@ -88,69 +89,167 @@
       "sessions": [
         {
           "title": "One metric, three owners",
+          "summary": "Why three collection rates disagree, and how a walk turns the disagreement into decisions",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Compute one metric as each of its owners defines it",
+            "Separate a data error from a definition choice with a walk",
+            "Write a certified definition with an owner and its choices"
           ],
           "lo": [
+            "LO2",
             "LO1"
           ],
           "lab": {
             "id": "1.1",
-            "title": "Reconcile the collection rate as finance, collections and customer care define it and agree one certified definition",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Three collection rates, one certified",
+            "summary": "Reconcile the collection rate as finance, collections and customer care define it, find the payment batch loaded twice, walk from one figure to another and agree one certified definition. Done without AI assistance.",
             "minutes": 25,
-            "href": "D1_1_reconcile_collection_rate.ipynb"
+            "href": "D1_1_collection_rate.ipynb",
+            "steps": [
+              {
+                "text": "Three rates for March 2026",
+                "minutes": 8
+              },
+              {
+                "text": "The payment batch loaded twice",
+                "minutes": 5
+              },
+              {
+                "text": "Walk from the finance figure to the collections figure",
+                "minutes": 7
+              },
+              {
+                "text": "The certified definition",
+                "minutes": 5
+              }
+            ],
+            "stretch": "The government segment under each definition"
           }
         },
         {
           "title": "Metrics as code with tests",
+          "summary": "A metric as a file with an owner, a version, a status and reconciliation tests",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Write simple, ratio, cumulative and derived metrics as code",
+            "Explain why a ratio is computed after aggregation",
+            "Prove a metric against an independent total from the marts"
           ],
           "lo": [
             "LO2"
           ],
           "lab": {
             "id": "1.2",
-            "title": "Implement five metrics, including a ratio and a cumulative metric, with reconciliation tests",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Five metrics as code",
+            "summary": "Implement five metrics, including the certified collection rate as a ratio and cash collected fiscal year to date, with reconciliation tests against the marts; then break one and watch its test fail.",
             "minutes": 25,
-            "href": "D1_2_implement_five_metrics.ipynb"
+            "href": "D1_2_metrics_as_code.ipynb",
+            "steps": [
+              {
+                "text": "Read one metric file",
+                "minutes": 3
+              },
+              {
+                "text": "Three simple metrics",
+                "minutes": 7
+              },
+              {
+                "text": "The ratio: a ratio of sums",
+                "minutes": 6
+              },
+              {
+                "text": "The cumulative metric",
+                "minutes": 4
+              },
+              {
+                "text": "Run the tests, then break one",
+                "minutes": 5
+              }
+            ],
+            "stretch": "A derived metric for the collection gap, with its test"
           }
         },
         {
           "title": "Ownership and change control",
+          "summary": "Who may change a metric, how its version moves, and review rules that run in continuous integration",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Distinguish the owner, the steward and the approver of a metric",
+            "Version a metric change as major, minor or patch",
+            "Take a change through review rules that run in continuous integration"
           ],
           "lo": [
             "LO2"
           ],
           "lab": {
             "id": "1.3",
-            "title": "Write the change process for a metric and take one change through review",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "A change taken through review",
+            "summary": "Write the change process for a metric and take one change, the billed amount without VAT, through a local git repository whose review rules stop it until the version, the changelog and the owner's approval are right.",
             "minutes": 25,
-            "href": "D1_3_write_change_process.ipynb"
+            "href": "D1_3_change_control.ipynb",
+            "steps": [
+              {
+                "text": "Read the review rules",
+                "minutes": 4
+              },
+              {
+                "text": "Write the change process",
+                "minutes": 6
+              },
+              {
+                "text": "Make the change on a branch",
+                "minutes": 5
+              },
+              {
+                "text": "Run the check and read why it fails",
+                "minutes": 4
+              },
+              {
+                "text": "Fix, pass and merge",
+                "minutes": 6
+              }
+            ],
+            "stretch": "A words-only change: which bump does it need?"
           }
         },
         {
           "title": "Certification and deprecation",
+          "summary": "The life of a metric in a catalogue: certified, deprecated with a successor, followed through lineage to the reports",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Check a metric catalogue for owners and tests",
+            "Deprecate a metric with a successor and a sunset date",
+            "Find every report that depends on a deprecated metric, directly or through lineage"
           ],
           "lo": [
             "LO2"
           ],
           "lab": {
             "id": "1.4",
-            "title": "Version and deprecate metrics in a 40-metric catalogue and list the reports that still use a deprecated one",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Deprecate in a 40-metric catalogue",
+            "summary": "Version and deprecate metrics in a 40-metric catalogue, follow the lineage to the metrics built on them, and list the reports that still use a deprecated one, by name, by alias or through another metric.",
             "minutes": 25,
-            "href": "D1_4_version_deprecate_metrics.ipynb"
+            "href": "D1_4_catalogue_lifecycle.ipynb",
+            "steps": [
+              {
+                "text": "The catalogue's health",
+                "minutes": 5
+              },
+              {
+                "text": "Deprecate three metrics",
+                "minutes": 6
+              },
+              {
+                "text": "Everything built on a deprecated metric",
+                "minutes": 6
+              },
+              {
+                "text": "Reports that still use one",
+                "minutes": 8
+              }
+            ],
+            "stretch": "One notice per report owner"
           }
         }
-      ]
+      ],
+      "subtitle": "Define a metric once, as code, with an owner"
     },
     {
       "id": "day2",
@@ -160,69 +259,170 @@
       "sessions": [
         {
           "title": "Conformed dimensions across areas",
+          "summary": "One customer, one region and one calendar shared by four business areas, joined without multiplying a figure",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Model several business areas on conformed customer and time dimensions",
+            "Detect and remove a cross-area fan-out by drilling across",
+            "Join a type 2 tariff history as of the fact's date"
           ],
           "lo": [
             "LO1"
           ],
           "lab": {
             "id": "2.1",
-            "title": "Model subscribers, lines, bills and complaints with conformed customer and time dimensions and fix a cross-area fan-out",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Four areas, one customer, one calendar",
+            "summary": "Model subscribers, lines, bills and complaints with conformed customer and time dimensions, fix a cross-area fan-out and a tariff join without validity dates, and prove the model with reconciliation tests against source totals.",
             "minutes": 25,
-            "href": "D2_1_model_subscribers_lines.ipynb"
+            "steps": [
+              {
+                "text": "Read the starter model",
+                "minutes": 4
+              },
+              {
+                "text": "The wide query and its fan-out",
+                "minutes": 6
+              },
+              {
+                "text": "Drill across instead",
+                "minutes": 6
+              },
+              {
+                "text": "Tariff history as of the month",
+                "minutes": 5
+              },
+              {
+                "text": "Reconcile four areas to the source",
+                "minutes": 4
+              }
+            ],
+            "stretch": "The same figure by Hijri month and by fiscal quarter"
           }
         },
         {
           "title": "Performance and cost",
+          "summary": "Pre-aggregations for the questions people actually ask, measured before and after",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Choose pre-aggregations from a query log",
+            "Measure latency and rows scanned before and after",
+            "Explain which metrics cannot roll up from a pre-aggregation"
           ],
           "lo": [
             "LO1"
           ],
           "lab": {
             "id": "2.2",
-            "title": "Add pre-aggregations for the ten most-asked metrics and measure query latency before and after",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Ten pre-aggregations, measured",
+            "summary": "Add pre-aggregations for the ten most-asked metric patterns of the query log, measure query latency and rows scanned before and after, and check that every answer stayed the same.",
             "minutes": 25,
-            "href": "D2_2_add_pre_aggregations.ipynb"
+            "steps": [
+              {
+                "text": "The ten most-asked patterns",
+                "minutes": 5
+              },
+              {
+                "text": "Baseline latency and rows scanned",
+                "minutes": 5
+              },
+              {
+                "text": "Define the pre-aggregations",
+                "minutes": 7
+              },
+              {
+                "text": "Measure again, compare the answers",
+                "minutes": 5
+              },
+              {
+                "text": "The metric that cannot roll up",
+                "minutes": 3
+              }
+            ],
+            "stretch": "Which pre-aggregations to rebuild when late payments arrive"
           }
         },
         {
           "title": "Access rules",
+          "summary": "Row rules by region and masking by classification, written in the layer and tested for each role",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Map the national classification levels to fields of the model",
+            "Write row rules and masking in the semantic layer",
+            "Test access for each role and catch a seeded leak"
           ],
           "lo": [
             "LO3"
           ],
           "lab": {
             "id": "2.3",
-            "title": "Add row-level rules by region, mask Restricted fields and test with three roles",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Three roles and a seeded leak",
+            "summary": "Add row-level rules by region, mask Restricted fields and test with three roles; the tests find a dataset without a rule and a field that copies a Restricted column without its label.",
             "minutes": 25,
-            "href": "D2_3_add_row_level.ipynb"
+            "steps": [
+              {
+                "text": "The roles and the classification register",
+                "minutes": 4
+              },
+              {
+                "text": "Access tests for each role",
+                "minutes": 7
+              },
+              {
+                "text": "Find the two leaks",
+                "minutes": 5
+              },
+              {
+                "text": "Fix the policy and the layer",
+                "minutes": 6
+              },
+              {
+                "text": "Run the tests again",
+                "minutes": 3
+              }
+            ],
+            "stretch": "An audit line for every query"
           }
         },
         {
           "title": "Portability",
+          "summary": "What an open interchange format carries between tools, and what stays behind",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Export a semantic model to an open interchange format",
+            "Run the exported model on a second engine and compare",
+            "Name what does not port: access rules, cumulative metrics, dialects"
           ],
           "lo": [
             "LO1"
           ],
           "lab": {
             "id": "2.4",
-            "title": "Export the model to an open interchange format and query it from a second engine",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Export to Ossie, query from SQLite",
+            "summary": "Export the model to an Apache Ossie document, compile three metrics from it for a second engine (SQLite), compare the results with DuckDB and fix the expression that did not port.",
             "minutes": 25,
-            "href": "D2_4_export_model_open.ipynb"
+            "steps": [
+              {
+                "text": "Export the model",
+                "minutes": 6
+              },
+              {
+                "text": "Check the document",
+                "minutes": 4
+              },
+              {
+                "text": "Compile three metrics for SQLite",
+                "minutes": 6
+              },
+              {
+                "text": "Compare and fix the expression that did not port",
+                "minutes": 6
+              },
+              {
+                "text": "What did not travel",
+                "minutes": 3
+              }
+            ],
+            "stretch": "Round-trip: read the Ossie document back into the layer"
           }
         }
-      ]
+      ],
+      "subtitle": "Conformed, fast, governed and portable"
     },
     {
       "id": "day3",
@@ -232,69 +432,162 @@
       "sessions": [
         {
           "title": "A certified set for a platform",
+          "summary": "Questions with certified answers, covering every area, difficulty and language, including those the assistant must refuse",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Write a certified answer as value, metric, filters and grain",
+            "Cover areas, difficulty levels and both languages",
+            "Include questions the assistant must refuse"
           ],
           "lo": [
             "LO4"
           ],
           "lab": {
             "id": "3.1",
-            "title": "Extend the supplied certified set to cover each business area and difficulty level, including questions the assistant must refuse",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "From 44 to 60 certified questions",
+            "summary": "Extend the supplied certified set to cover each business area and difficulty level in Arabic and English, including questions the assistant must refuse, certifying each new answer through the semantic layer.",
             "minutes": 25,
-            "href": "D3_1_extend_supplied_certified.ipynb"
+            "steps": [
+              {
+                "text": "Coverage of the supplied set",
+                "minutes": 5
+              },
+              {
+                "text": "Screen the candidate questions",
+                "minutes": 7
+              },
+              {
+                "text": "Certify the answers",
+                "minutes": 7
+              },
+              {
+                "text": "Check coverage, languages and refusals",
+                "minutes": 6
+              }
+            ],
+            "stretch": "Three paraphrases of one question"
           }
         },
         {
           "title": "Which context helps",
+          "summary": "Synonyms, descriptions and examples removed one at a time, with everything else fixed",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Design an ablation that changes one kind of context at a time",
+            "Score each variant with a fixed model and question set",
+            "Read the contribution of each kind of context by language and area"
           ],
           "lo": [
             "LO4"
           ],
           "lab": {
             "id": "3.2",
-            "title": "Remove synonyms, descriptions and examples one at a time from the supplied configuration and re-score each variant with the supplied scorer",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Remove one kind of context at a time",
+            "summary": "Remove synonyms, descriptions and examples one at a time from the supplied configuration of Daleel and re-score each variant with the supplied scorer, by language and by area.",
             "minutes": 25,
-            "href": "D3_2_remove_synonyms_descriptions.ipynb"
+            "steps": [
+              {
+                "text": "The full configuration and its score",
+                "minutes": 4
+              },
+              {
+                "text": "Without synonyms",
+                "minutes": 5
+              },
+              {
+                "text": "Without descriptions",
+                "minutes": 5
+              },
+              {
+                "text": "Without examples",
+                "minutes": 5
+              },
+              {
+                "text": "The contribution table",
+                "minutes": 6
+              }
+            ],
+            "stretch": "Ten questions on a free hosted model"
           }
         },
         {
           "title": "A scoring harness",
+          "summary": "Execution accuracy, wrong but plausible answers and refusals, in a report a reviewer can re-run",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Score an answer by executing it and comparing with the certified value",
+            "Separate wrong but plausible answers from obvious failures",
+            "Write an evaluation report that a reviewer can re-run"
           ],
           "lo": [
             "LO4"
           ],
           "lab": {
             "id": "3.3",
-            "title": "Build a harness that reports execution accuracy and the rate of wrong but plausible answers",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Accuracy and wrong but plausible",
+            "summary": "Build a harness that executes each reply, reports execution accuracy and the rate of wrong but plausible answers, and writes a report a reviewer can re-run.",
             "minutes": 25,
-            "href": "D3_3_build_harness_that.ipynb"
+            "steps": [
+              {
+                "text": "Execute a reply and compare",
+                "minutes": 6
+              },
+              {
+                "text": "Classify every outcome",
+                "minutes": 7
+              },
+              {
+                "text": "The report a reviewer can re-run",
+                "minutes": 7
+              },
+              {
+                "text": "Read the wrong but plausible answers",
+                "minutes": 5
+              }
+            ],
+            "stretch": "A tolerance for rounding: where does it stop being right?"
           }
         },
         {
           "title": "Ask it again",
+          "summary": "The same question three times: agreement, and the cell that matters most, stable and wrong",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Measure answer agreement across repeated runs",
+            "Separate stable right, stable wrong and unstable answers",
+            "Explain what a response cache hides from a stability test"
           ],
           "lo": [
             "LO4"
           ],
           "lab": {
             "id": "3.4",
-            "title": "Run each question three times and measure how often the answers agree",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Three runs per question",
+            "summary": "Run each certified question three times and measure how often the answers agree, which questions are stable but wrong, and how stability differs by area, difficulty and language.",
             "minutes": 25,
-            "href": "D3_4_run_each_question.ipynb"
+            "steps": [
+              {
+                "text": "Load the three runs",
+                "minutes": 3
+              },
+              {
+                "text": "Agreement per question",
+                "minutes": 6
+              },
+              {
+                "text": "Stable right, stable wrong, unstable",
+                "minutes": 7
+              },
+              {
+                "text": "Stability by area, difficulty and language",
+                "minutes": 6
+              },
+              {
+                "text": "What a cache would hide",
+                "minutes": 3
+              }
+            ],
+            "stretch": "Does a majority vote of three fix the unstable questions?"
           }
         }
-      ]
+      ],
+      "subtitle": "Certified questions, context, accuracy and stability"
     },
     {
       "id": "day4",
@@ -304,81 +597,171 @@
       "sessions": [
         {
           "title": "Serving metrics to tools and agents",
+          "summary": "One governed layer behind an API or a protocol server, with the role taken from the credential",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Expose semantic-layer queries as tools of a protocol server",
+            "Take the caller's role from the credential, never from the request",
+            "Test the server for each role"
           ],
           "lo": [
-            "LO3"
+            "LO3",
+            "LO1"
           ],
           "lab": {
             "id": "4.1",
-            "title": "Expose the semantic layer through an API or protocol server with role-scoped credentials",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "A protocol server with role-scoped credentials",
+            "summary": "Expose the semantic layer through a Model Context Protocol server over standard input and output, with the role taken from the credential, and test it for three roles and for a request that claims another role.",
             "minutes": 25,
-            "href": "D4_1_expose_semantic_layer.ipynb"
+            "steps": [
+              {
+                "text": "Start the server and list its tools",
+                "minutes": 4
+              },
+              {
+                "text": "Resolve the role from the credential",
+                "minutes": 7
+              },
+              {
+                "text": "Query as three roles",
+                "minutes": 6
+              },
+              {
+                "text": "Try to raise the role from the request",
+                "minutes": 4
+              },
+              {
+                "text": "Tests for the server",
+                "minutes": 4
+              }
+            ],
+            "stretch": "The same tools as a REST endpoint"
           }
         },
         {
           "title": "Safeguards that show their work",
+          "summary": "An answer that names its metric, filters, grain and version, and a refusal when the metric is not certified",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Show the metric, filters, grain and version behind each figure",
+            "Refuse uncertified metrics, Restricted fields and questions without a period",
+            "Measure the effect of the safeguards on the certified set"
           ],
           "lo": [
+            "LO4",
             "LO5"
           ],
           "lab": {
             "id": "4.2",
-            "title": "Make the assistant cite the metric and filters used and refuse uncertified metrics",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Cite the metric, refuse the uncertified",
+            "summary": "Make Daleel cite the metric, filters, grain and version behind every figure and refuse uncertified metrics, Restricted fields and questions without a period, then re-score the certified set with the safeguards on.",
             "minutes": 25,
-            "href": "D4_2_make_assistant_cite.ipynb"
+            "steps": [
+              {
+                "text": "The answer card",
+                "minutes": 7
+              },
+              {
+                "text": "The guard",
+                "minutes": 8
+              },
+              {
+                "text": "Re-score with the guard on",
+                "minutes": 6
+              },
+              {
+                "text": "Read three refusals",
+                "minutes": 4
+              }
+            ],
+            "stretch": "The answer card in Arabic"
           }
         },
         {
           "title": "Which questions may go to the assistant",
+          "summary": "A routing policy from measured risk and a stated tolerance for wrong figures, recorded as a decision",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Estimate the wrong-figure rate by question type with an upper bound",
+            "Route each question type under a stated tolerance",
+            "Record the decision with its evidence and its review date"
           ],
           "lo": [
             "LO5"
           ],
           "lab": {
             "id": "4.3",
-            "title": "Set a routing policy from the evaluation and a stated tolerance for wrong figures",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "A routing policy from the evaluation",
+            "summary": "Set a routing policy from the evaluation and a stated tolerance for wrong figures: the wrong-figure rate by question type with an upper bound, a route for each type, and a decision record.",
             "minutes": 25,
-            "href": "D4_3_set_routing_policy.ipynb"
+            "steps": [
+              {
+                "text": "Wrong-figure rate by question type",
+                "minutes": 6
+              },
+              {
+                "text": "An upper bound, not a point",
+                "minutes": 6
+              },
+              {
+                "text": "The routes under the tolerance",
+                "minutes": 6
+              },
+              {
+                "text": "The decision record",
+                "minutes": 7
+              }
+            ],
+            "stretch": "How the routes move when the tolerance halves"
           }
         },
         {
           "title": "Design review",
+          "summary": "Reviewing a peer's analytics product for correctness, portability and governance, findings ranked by risk",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Review a semantic model and an evaluation with a checklist",
+            "Rank findings by likelihood and impact",
+            "Log the decisions a review panel takes"
           ],
           "lo": [
             "LO6"
           ],
           "lab": {
             "id": "4.4",
-            "title": "Present the product design to a peer panel and log the decisions taken",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Review a peer's product",
+            "summary": "Present the product design to a peer panel: run the review checks on a peer's package, add what the checks cannot see, rank the findings by risk and log the decisions taken.",
             "minutes": 25,
-            "href": "D4_4_present_product_design.ipynb"
+            "steps": [
+              {
+                "text": "Run the review checks",
+                "minutes": 6
+              },
+              {
+                "text": "What the checks cannot see",
+                "minutes": 6
+              },
+              {
+                "text": "Rank the findings by risk",
+                "minutes": 7
+              },
+              {
+                "text": "Log the panel's decisions",
+                "minutes": 6
+              }
+            ],
+            "stretch": "The same checklist on your own capstone plan"
           }
         }
-      ]
+      ],
+      "subtitle": "Serve, safeguard, route and review"
     },
     {
       "id": "capstone",
       "kind": "capstone",
-      "title": "Capstone project presentations",
-      "deck": "slides/capstone.html",
-      "subtitle": "REPLACE: the catalog gives no length for the presentations; set capstone.talk_minutes and capstone.qa_minutes in course.json, write them on the format slide, add a timer for each to the now-presenting slide, and remove this line"
+      "title": "Capstone: a governed analytics product and its design review",
+      "deck": "slides/capstone.html"
     }
   ],
   "capstone": {
     "summary": "A governed analytics product for two business areas (metrics as code, a semantic layer with tested access rules, an assistant evaluation on at least 40 certified questions, a routing policy) in a public repository whose README reports measured accuracy and stability, defended in a design review",
-    "submission": "REPLACE: what participants submit and how: a public repository link, or a shared folder for a course without code",
+    "submission": "A public GitHub repository for two business areas of Qamar Telecom: metric files with tests and the review rules in continuous integration, the semantic model with access rules and their tests, an evaluation of the assistant on at least 40 certified questions (accuracy, wrong but plausible answers, stability over three runs) from a harness a reviewer can re-run, and a routing policy with its decision record; the README reports the measured accuracy and stability. Then a live design review in which the participant re-runs the evaluation on five questions the assessor adds.",
     "rubric": [
       {
         "criterion": "Semantic model and metrics",
@@ -400,7 +783,9 @@
         "criterion": "Reproducibility",
         "weight": 10
       }
-    ]
+    ],
+    "talk_minutes": 12,
+    "qa_minutes": 8
   },
   "labs": {
     "kind": "notebooks",
@@ -449,6 +834,149 @@
         "pytest with custom assertions",
         "promptfoo",
         "Inspect"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "group": "National references",
+      "items": [
+        {
+          "title": "NDMO Data Management and Personal Data Protection Standards (Business Intelligence and Analytics domain)",
+          "url": "https://sdaia.gov.sa/en/SDAIA/about/Documents/DataManagementPersonalDataProtectionStandards.pdf"
+        },
+        {
+          "title": "NDMO Data Classification Policy",
+          "url": "https://sdaia.gov.sa/en/SDAIA/about/Documents/DataClassificationPolicy.pdf"
+        },
+        {
+          "title": "Personal Data Protection Law",
+          "url": "https://sdaia.gov.sa/en/SDAIA/about/Documents/PersonalDataProtectionLaw.pdf"
+        },
+        {
+          "title": "Implementing Regulation of the Personal Data Protection Law",
+          "url": "https://sdaia.gov.sa/en/SDAIA/about/Documents/ImplementingRegulationPersonalDataProtectionLaw.pdf"
+        },
+        {
+          "title": "SDAIA Generative AI Guidelines for Government",
+          "url": "https://sdaia.gov.sa/en/SDAIA/about/Files/GenAIGuidelinesForGovernmentENCompressed.pdf"
+        },
+        {
+          "title": "National AI Risk Management Framework, English executive summary (SDAIA, April 2026)",
+          "url": "https://sdaia.gov.sa/en/MediaCenter/KnowledgeCenter/ResearchLibrary/ExecutiveSummaryEn.pdf"
+        }
+      ]
+    },
+    {
+      "group": "Semantic layers and metrics as code",
+      "items": [
+        {
+          "title": "Apache Ossie (Incubating): the new name for Open Semantic Interchange",
+          "url": "https://ossie.apache.org/updates/ossie-enters-apache-incubator/"
+        },
+        {
+          "title": "Apache Ossie core metadata specification (draft 0.3.0.dev0)",
+          "url": "https://github.com/apache/ossie/blob/main/core-spec/spec.md"
+        },
+        {
+          "title": "Apache Ossie converters",
+          "url": "https://github.com/apache/ossie-converters"
+        },
+        {
+          "title": "MetricFlow",
+          "url": "https://github.com/dbt-labs/metricflow"
+        },
+        {
+          "title": "dbt documentation: about MetricFlow",
+          "url": "https://docs.getdbt.com/docs/build/about-metricflow"
+        },
+        {
+          "title": "Cube documentation: data modeling concepts",
+          "url": "https://cube.dev/docs/product/data-modeling/concepts"
+        },
+        {
+          "title": "Cube Core",
+          "url": "https://github.com/cube-js/cube"
+        },
+        {
+          "title": "SQLMesh documentation",
+          "url": "https://sqlmesh.readthedocs.io/en/stable/"
+        },
+        {
+          "title": "dbt Core",
+          "url": "https://github.com/dbt-labs/dbt-core"
+        }
+      ]
+    },
+    {
+      "group": "Engines and libraries",
+      "items": [
+        {
+          "title": "DuckDB documentation",
+          "url": "https://duckdb.org/docs/stable/"
+        },
+        {
+          "title": "DuckDB on PyPI",
+          "url": "https://pypi.org/project/duckdb/"
+        },
+        {
+          "title": "SQLite: date and time functions",
+          "url": "https://www.sqlite.org/lang_datefunc.html"
+        },
+        {
+          "title": "hijridate: Hijri and Gregorian dates on the Umm al-Qura calendar",
+          "url": "https://pypi.org/project/hijridate/"
+        },
+        {
+          "title": "uv: running scripts with inline dependencies",
+          "url": "https://docs.astral.sh/uv/guides/scripts/"
+        }
+      ]
+    },
+    {
+      "group": "Serving to tools and agents",
+      "items": [
+        {
+          "title": "Model Context Protocol specification, revision 2025-11-25",
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25"
+        },
+        {
+          "title": "Model Context Protocol specification: tools",
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools"
+        },
+        {
+          "title": "Model Context Protocol Python SDK",
+          "url": "https://github.com/modelcontextprotocol/python-sdk"
+        }
+      ]
+    },
+    {
+      "group": "Evaluating conversational analytics",
+      "items": [
+        {
+          "title": "Lei et al., Spider 2.0: Evaluating Language Models on Real-World Enterprise Text-to-SQL Workflows (ICLR 2025)",
+          "url": "https://arxiv.org/abs/2411.07763"
+        },
+        {
+          "title": "BIRD: a big bench for large-scale database grounded text-to-SQL evaluation",
+          "url": "https://bird-bench.github.io/"
+        },
+        {
+          "title": "promptfoo documentation",
+          "url": "https://www.promptfoo.dev/docs/intro/"
+        },
+        {
+          "title": "Inspect, an evaluation framework from the UK AI Security Institute",
+          "url": "https://inspect.aisi.org.uk/"
+        },
+        {
+          "title": "OpenRouter: free models",
+          "url": "https://openrouter.ai/models?max_price=0"
+        },
+        {
+          "title": "OpenRouter API: limits",
+          "url": "https://openrouter.ai/docs/api/reference/limits"
+        }
       ]
     }
   ]
