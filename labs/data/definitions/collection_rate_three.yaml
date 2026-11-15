@@ -1,0 +1,30 @@
+# Three definitions of "the collection rate" at Qamar Telecom, as each owner wrote them (synthetic).
+# All three are reported for the service month of March 2026 at the same management meeting.
+finance:
+  owner: Jood Al-Muhaisen (finance controller)
+  report: Monthly finance pack
+  definition: Cash received in the calendar month, from the payments table as loaded, divided by the amount billed for that service month.
+  basis: value
+  numerator: all payments with a paid date in the month, whatever bill they settle
+  denominator: amount due on bills for the service month
+collections:
+  owner: Majdi Bawazir (collections director)
+  report: Collections weekly
+  definition: For bills of the service month, the amount paid within 60 days after the due date, divided by the amount due net of disputed amounts.
+  basis: value
+  numerator: payments against the month's bills, paid up to 60 days after the due date
+  denominator: amount due minus disputed amount on the month's bills
+care:
+  owner: Ebtihal Al-Ghanim (head of customer care)
+  report: Customer care scorecard
+  definition: Share of the month's bills, by count, whose net amount was paid in full by the due date.
+  basis: count
+  numerator: bills paid in full by the due date
+  denominator: bills issued for the service month
+council:
+  # What the metrics council asked of the certified definition (the criteria, not the answer)
+  - It is comparable month to month, so every month is measured on the same bills (a cohort), not on whatever cash arrived.
+  - Its window closes before the second month-end close after the due date.
+  - It counts only what the customer owes now; amounts under dispute are excluded until the dispute is decided.
+  - It counts value, because the board manages cash, not bill counts.
+  - A data error (a payment loaded twice) is fixed in the data, never argued about in a meeting.

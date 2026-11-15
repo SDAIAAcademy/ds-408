@@ -1,0 +1,40 @@
+report,report_owner,metric_ref
+Monthly finance pack,Jood Al-Muhaisen,billed_amount
+Monthly finance pack,Jood Al-Muhaisen,collection %
+Monthly finance pack,Jood Al-Muhaisen,cash_collected_fytd
+Monthly finance pack,Jood Al-Muhaisen,arpa
+Board pack,Jood Al-Muhaisen,billed_amount
+Board pack,Jood Al-Muhaisen,collection_rate
+Board pack,Jood Al-Muhaisen,RHI
+Board pack,Jood Al-Muhaisen,active_lines
+Collections weekly,Majdi Bawazir,collections rate
+Collections weekly,Majdi Bawazir,arrears_over_90
+Collections weekly,Majdi Bawazir,collected_30
+Collections weekly,Majdi Bawazir,promise_to_pay_kept
+Collections region scorecard,Majdi Bawazir,collections_score
+Collections region scorecard,Majdi Bawazir,collection_rate
+Customer care scorecard,Ebtihal Al-Ghanim,complaints
+Customer care scorecard,Ebtihal Al-Ghanim,on-time payers %
+Customer care scorecard,Ebtihal Al-Ghanim,FCR
+Customer care scorecard,Ebtihal Al-Ghanim,median_resolution_days
+Care quality review,Ebtihal Al-Ghanim,complaint rate
+Care quality review,Ebtihal Al-Ghanim,repeat_complaints
+Care quality review,Ebtihal Al-Ghanim,billing_complaint_share
+Network monthly,Zeyad Al-Juraisy,traffic
+Network monthly,Zeyad Al-Juraisy,data_per_line
+Network monthly,Zeyad Al-Juraisy,roaming_mb
+Regional managers dashboard,Zeyad Al-Juraisy,region_health_index
+Regional managers dashboard,Zeyad Al-Juraisy,complaints
+Regional managers dashboard,Zeyad Al-Juraisy,billed_amount
+Regional managers dashboard,Zeyad Al-Juraisy,active subscriptions
+Retail targets,Jood Al-Muhaisen,ARPA
+Retail targets,Jood Al-Muhaisen,fibre_uptake
+Retail targets,Jood Al-Muhaisen,customer_value_index
+Data platform health,Zeyad Al-Juraisy,legacy_kpi_pack
+Data platform health,Zeyad Al-Juraisy,data_gb
+Executive daily,Jood Al-Muhaisen,cash collection rate
+Executive daily,Jood Al-Muhaisen,complaints
+Executive daily,Jood Al-Muhaisen,active_lines
+Disputes tracker,Jood Al-Muhaisen,disputed_amount
+Disputes tracker,Jood Al-Muhaisen,billing_complaints
+Disputes tracker,Jood Al-Muhaisen,credit_notes

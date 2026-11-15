@@ -1,0 +1,21 @@
+{
+ "no_owner": [
+  "region_health_index",
+  "revenue_per_line"
+ ],
+ "simple_untested": [
+  "paid_on_time_rate"
+ ],
+ "derived_untested": [
+  "arpa",
+  "billing_complaint_share",
+  "cash_collected_fytd",
+  "collections_score",
+  "complaints_per_1k_lines",
+  "data_per_line",
+  "fibre_uptake",
+  "region_health_index",
+  "repeat_complaints",
+  "revenue_per_line"
+ ]
+}

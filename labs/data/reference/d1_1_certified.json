@@ -1,0 +1,11 @@
+{
+ "name": "collection_rate",
+ "owner": "Majdi Bawazir",
+ "approver": "Jood Al-Muhaisen",
+ "basis": "value",
+ "population": "bills of the service month (cohort)",
+ "window_days_after_due": 30,
+ "disputes": "excluded from the denominator until decided",
+ "duplicates": "removed in the data",
+ "maturity": "reported once due date plus window has passed"
+}

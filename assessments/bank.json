@@ -3,38 +3,129 @@
   "version": 1,
   "questions": [
     {
-      "id": "q-example-1",
+      "id": "q-d1-walk-01",
       "type": "single",
-      "prompt": "REPLACE: a practice question on LO1, as a short scenario",
+      "prompt": "A walk from the finance collection rate to the collections rate has four steps. Which step should be fixed in the data rather than decided by the metrics council?",
       "options": [
-        "REPLACE: a wrong option that a common misconception makes tempting",
-        "REPLACE: the right answer",
-        "REPLACE: a wrong option that a common misconception makes tempting",
-        "REPLACE: a wrong option that a common misconception makes tempting"
+        "Shortening the window from 60 to 30 days after the due date",
+        "Taking disputed amounts out of the denominator",
+        "Removing a payment batch that was loaded twice",
+        "Measuring a cohort of the month's bills instead of the month's cash"
       ],
       "correct": [
-        1
+        2
       ],
-      "explanation": "REPLACE: why the right answer is right, in one sentence",
+      "explanation": "A payment loaded twice is a data error: it is wrong under every definition, so it is fixed once in the payment data.",
       "misconceptions": [
-        "REPLACE: the misconception behind this option",
+        "A window is a definition choice the council makes on criteria",
+        "Whether disputes count is a policy choice, not an error",
         "",
-        "REPLACE: the misconception behind this option",
-        "REPLACE: the misconception behind this option"
+        "The population measured is a definition choice"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day1",
+      "session": 1,
+      "slide": "walk",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d1-cash-02",
+      "type": "single",
+      "prompt": "Customers paid their March bills more slowly than usual, yet the finance rate (cash received in March over March's billing) went up. What explains it?",
+      "options": [
+        "Payments for earlier months' bills arrived in March and count in its cash",
+        "Disputed amounts were taken out of March's billing",
+        "The finance rate counts bills, not value",
+        "The 60-day window had not closed for March"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A cash basis counts every payment that arrived in the month, whatever bill it settles, so catch-up on old arrears lifts it.",
+      "misconceptions": [
+        "",
+        "The finance definition keeps disputes in the denominator",
+        "Finance measures value; the care figure counts bills",
+        "Finance has no window after the due date: it is the calendar month"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day1",
+      "session": 1,
+      "slide": "what-differs",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d1-maturity-03",
+      "type": "single",
+      "prompt": "On 1 July 2026 a manager asks for the certified collection rate of May 2026 bills, which were due on 24 June. What should the layer return?",
+      "options": [
+        "No figure yet: the cohort matures when due date plus 30 days has passed",
+        "The rate so far, since it is the most recent information",
+        "April's rate, as the latest complete month, under May's name",
+        "The finance cash rate for May, which is already complete"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A cohort metric whose window has not closed would show a false collapse; the layer reports it only after the window.",
+      "misconceptions": [
+        "",
+        "A partial window understates the rate and looks like a collapse",
+        "Labels another month's figure as May's",
+        "Substitutes a metric with another meaning"
       ],
       "lo": [
         "LO1"
       ],
       "day": "day1",
       "session": 1,
+      "slide": "maturity",
       "level": "apply",
       "pool": "practice",
       "weight": 1
     },
     {
-      "id": "q-example-2",
+      "id": "q-d1-ratio-04",
+      "type": "single",
+      "prompt": "Business accounts collect 85.6% of SAR 2.0 million, consumers 91.1% of SAR 3.5 million and government 50.6% of SAR 0.5 million. What is the company's collection rate?",
+      "options": [
+        "75.8%, the average of the three rates",
+        "91.1%, the rate of the largest segment",
+        "50.6%, the most cautious of the three",
+        "About 85.6%, the total collected over the total due"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "A ratio is computed after aggregation: total collected over total net due weights each segment by its money.",
+      "misconceptions": [
+        "Gives government, a tenth of the money, a third of the weight",
+        "Ignores the other two segments",
+        "Chooses a figure by caution, not by definition",
+        ""
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day1",
+      "session": 2,
+      "slide": "ratio-of-sums",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d1-test-05",
       "type": "tf",
-      "prompt": "REPLACE: a statement on LO2 that is true",
+      "prompt": "A reconciliation test compares a metric computed through the semantic layer with a total computed by SQL directly on the marts. It can catch a filter that was dropped from the metric.",
       "options": [
         "True",
         "False"
@@ -42,17 +133,138 @@
       "correct": [
         0
       ],
-      "explanation": "REPLACE: why the right answer is right, in one sentence",
+      "explanation": "The independent SQL keeps the filter, so the metric's total no longer matches it, as Lab 1.2 shows with the maturity filter.",
       "misconceptions": [
         "",
-        "REPLACE: the misconception behind this option"
+        "Assumes a test written by the same team cannot disagree with the metric"
       ],
       "lo": [
         "LO2"
       ],
       "day": "day1",
-      "session": 1,
+      "session": 2,
+      "slide": "reconcile-tests",
       "level": "understand",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d1-version-06",
+      "type": "single",
+      "prompt": "A steward adds an Arabic synonym to the certified metric billed_amount, version 2.0.0. Which version should the change carry?",
+      "options": [
+        "3.0.0, since every change to a certified metric is major",
+        "2.0.1, a patch: the words changed, the number did not",
+        "2.1.0, a minor change for a new field",
+        "2.0.0, since a synonym is not a change"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Words only (description, label, synonyms) is a patch: every reader's number stays the same.",
+      "misconceptions": [
+        "Treats every edit as a change of meaning",
+        "",
+        "A synonym is not a new field of the metric",
+        "Every change needs a version, or readers cannot tell what changed"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day1",
+      "session": 3,
+      "slide": "semver",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d1-approve-07",
+      "type": "single",
+      "prompt": "The steward who edited the billed amount also wrote the approval line naming himself. The tests pass. Should the change merge?",
+      "options": [
+        "Yes, the tests prove the new definition is right",
+        "Yes, if the steward is senior to the owner",
+        "No, the metric's owner must approve, and the author cannot",
+        "No, a passing test is never enough to merge anything"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "The owner answers for the meaning and the author for the edit; one person doing both is no review.",
+      "misconceptions": [
+        "Tests check the numbers, not that the owner agreed to the meaning",
+        "Seniority does not replace the owner's decision",
+        "",
+        "Overstates the rule: tests and the owner's approval together are enough"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day1",
+      "session": 3,
+      "slide": "three-roles",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d1-lineage-08",
+      "type": "single",
+      "prompt": "Three collection rates are deprecated. Which method finds every report that must move before the sunset?",
+      "options": [
+        "Search the report definitions for the deprecated metrics' names",
+        "Resolve each report's metric names and aliases, then follow depends_on to everything built on them",
+        "Ask each report owner whether they use a collection rate",
+        "List the reports that were changed in the last quarter"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Reports use aliases and metrics built on deprecated ones; in Lab 1.4 a text search found one report, lineage found nine.",
+      "misconceptions": [
+        "Misses aliases and metrics built on deprecated ones",
+        "",
+        "Relies on memory, and owners use aliases they do not recognise as deprecated",
+        "Recent change says nothing about which metrics a report reads"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day1",
+      "session": 4,
+      "slide": "lineage",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d1-rename-09",
+      "type": "single",
+      "prompt": "Customer care's paid_on_time_rate counts bills paid in full by the due date. The council certified a value-based collection rate. What should happen to the care metric?",
+      "options": [
+        "Replace it with the certified collection rate in the care scorecard",
+        "Delete it, since only one collection rate may exist",
+        "Keep it as it is, under the same name",
+        "Rename it for what it measures and keep it, with the old name deprecated"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "It answers another question (bills paid on time, by count); it keeps its own meaning under a name that does not claim to be the collection rate.",
+      "misconceptions": [
+        "Changes what the care scorecard measures without its owner deciding it",
+        "Loses a useful measure of customer behaviour",
+        "Leaves two different meanings under one familiar name",
+        ""
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day1",
+      "session": 4,
+      "slide": "deprecate-with-successor",
+      "level": "evaluate",
       "pool": "practice",
       "weight": 1
     },
@@ -79,7 +291,7 @@
       "lo": [
         "LO3"
       ],
-      "day": "day1",
+      "day": "day2",
       "session": 1,
       "level": "apply",
       "pool": "practice",
@@ -104,7 +316,7 @@
       "lo": [
         "LO4"
       ],
-      "day": "day1",
+      "day": "day3",
       "session": 1,
       "level": "understand",
       "pool": "practice",
@@ -133,7 +345,7 @@
       "lo": [
         "LO5"
       ],
-      "day": "day1",
+      "day": "day4",
       "session": 1,
       "level": "apply",
       "pool": "practice",
@@ -158,7 +370,7 @@
       "lo": [
         "LO6"
       ],
-      "day": "day1",
+      "day": "day4",
       "session": 1,
       "level": "understand",
       "pool": "practice",

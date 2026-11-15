@@ -1,0 +1,93 @@
+# Billing metrics of Qamar Telecom. Owner: Jood Al-Muhaisen (finance controller).
+- name: billed_amount
+  label: Billed amount
+  type: simple
+  dataset: bill
+  agg: sum
+  expr: amount_due
+  unit: SAR
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  description: Total amount on bills for the service month, VAT included, before disputes
+  ai:
+    synonyms:
+      en: [billed amount, billing, invoiced amount, total billed]
+      ar: [المبلغ المفوتر, إجمالي الفواتير, الفوترة]
+    examples:
+      - q: How much did we bill in the Eastern region in January 2026?
+        query: {metrics: [billed_amount], by: [], where: ["customer.region = 'EAS'", "time.month = DATE '2026-01-01'"]}
+  tests:
+    - reconcile: "SELECT SUM(amount_due) FROM fct_bill"
+
+- name: bills_issued
+  label: Bills issued
+  type: simple
+  dataset: bill
+  agg: count
+  expr: bill_id
+  unit: bills
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  description: Number of bills issued for the service month
+  ai:
+    synonyms:
+      en: [number of bills, bills issued, invoices]
+      ar: [عدد الفواتير, الفواتير الصادرة]
+  tests:
+    - reconcile: "SELECT COUNT(*) FROM fct_bill"
+
+- name: billed_customers
+  label: Billed customers
+  type: simple
+  dataset: bill
+  agg: count_distinct
+  expr: customer_id
+  unit: customers
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  description: Distinct customers with a bill in the period. Not additive across months.
+  ai:
+    synonyms:
+      en: [billed customers, paying accounts, postpaid customers]
+      ar: [العملاء المفوترون, عدد الحسابات المفوترة]
+  tests:
+    - reconcile: "SELECT COUNT(DISTINCT customer_id) FROM fct_bill"
+
+- name: arpa
+  label: Average billed amount per account
+  type: derived
+  inputs: [billed_amount, billed_customers]
+  expr: billed_amount / billed_customers
+  unit: SAR per account
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  description: Billed amount divided by distinct billed customers in the same period (ARPA). Over several months it is not a monthly figure.
+  ai:
+    synonyms:
+      en: [ARPA, average revenue per account, average bill]
+      ar: [متوسط الفاتورة, متوسط الإيراد لكل حساب, متوسط الفوترة للحساب]
+    examples:
+      - q: What was the average bill per account in each month of Q3 of the fiscal year 2025-26?
+        query: {metrics: [arpa], by: [time.month], where: ["time.fiscal_quarter = 'FY2025-26-Q3'"]}
+
+- name: disputed_amount
+  label: Disputed amount
+  type: simple
+  dataset: bill
+  agg: sum
+  expr: disputed_amount
+  unit: SAR
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  description: Amount under dispute on bills for the service month
+  ai:
+    synonyms:
+      en: [disputed amount, disputes]
+      ar: [المبالغ المعترض عليها, الاعتراضات على الفواتير]
+  tests:
+    - reconcile: "SELECT SUM(disputed_amount) FROM fct_bill"

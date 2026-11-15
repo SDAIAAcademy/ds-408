@@ -1,0 +1,72 @@
+# Usage metrics of Qamar Telecom. Owner: Zeyad Al-Juraisy (data platform lead) for the network data team.
+- name: data_gb
+  label: Mobile and fibre data
+  type: simple
+  dataset: usage
+  agg: sum
+  expr: data_gb
+  unit: GB
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  description: Data used by all lines in the period, in gigabytes
+  ai:
+    synonyms:
+      en: [data usage, data consumption, traffic, gigabytes]
+      ar: [استهلاك البيانات, البيانات, الإنترنت, حجم البيانات]
+  tests:
+    - reconcile: "SELECT SUM(data_gb) FROM fct_usage_monthly"
+
+- name: voice_minutes
+  label: Voice minutes
+  type: simple
+  dataset: usage
+  agg: sum
+  expr: voice_min
+  unit: minutes
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  description: Outgoing voice minutes in the period
+  ai:
+    synonyms:
+      en: [voice minutes, call minutes, calls]
+      ar: [دقائق المكالمات, المكالمات الصوتية, دقائق الاتصال]
+  tests:
+    - reconcile: "SELECT SUM(voice_min) FROM fct_usage_monthly"
+
+- name: active_lines
+  label: Active lines
+  type: simple
+  dataset: usage
+  agg: count_distinct
+  expr: line_id
+  unit: lines
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  description: Distinct lines with a usage record in the period. Not additive across months.
+  ai:
+    synonyms:
+      en: [active lines, active subscriptions, lines in use]
+      ar: [الخطوط النشطة, الاشتراكات النشطة, عدد الخطوط]
+  tests:
+    - reconcile: "SELECT COUNT(DISTINCT line_id) FROM fct_usage_monthly"
+
+- name: data_per_line
+  label: Data per active line
+  type: derived
+  inputs: [data_gb, active_lines]
+  expr: data_gb / active_lines
+  unit: GB per line
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  description: Data used divided by active lines in the same period
+  ai:
+    synonyms:
+      en: [data per line, average data usage, usage per subscriber]
+      ar: [متوسط استهلاك البيانات للخط, البيانات لكل خط]
+    examples:
+      - q: Which plan had the highest data per line in June 2026?
+        query: {metrics: [data_per_line], by: [tariff.plan_name], where: ["time.month = DATE '2026-06-01'"]}

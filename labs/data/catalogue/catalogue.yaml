@@ -1,0 +1,364 @@
+catalogue:
+- name: billed_amount
+  area: billing
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases:
+  - billing
+  - total billed
+- name: bills_issued
+  area: billing
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases: []
+- name: billed_customers
+  area: billing
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases: []
+- name: arpa
+  area: billing
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  tests: 0
+  depends_on:
+  - billed_amount
+  - billed_customers
+  aliases:
+  - ARPA
+  - average bill
+- name: disputed_amount
+  area: billing
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases: []
+- name: billed_amount_ex_vat
+  area: billing
+  owner: Jood Al-Muhaisen
+  version: 0.2.0
+  status: draft
+  tests: 0
+  depends_on:
+  - billed_amount
+  aliases: []
+- name: credit_notes
+  area: billing
+  owner: Jood Al-Muhaisen
+  version: 1.1.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases: []
+- name: revenue_per_line
+  area: billing
+  owner: null
+  version: 1.0.0
+  status: certified
+  tests: 0
+  depends_on:
+  - billed_amount
+  aliases:
+  - RPL
+- name: net_due_30
+  area: collections
+  owner: Majdi Bawazir
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases: []
+- name: collected_30
+  area: collections
+  owner: Majdi Bawazir
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases: []
+- name: collection_rate
+  area: collections
+  owner: Majdi Bawazir
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on:
+  - collected_30
+  - net_due_30
+  aliases:
+  - collection rate (certified)
+- name: cash_collected
+  area: collections
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases:
+  - receipts
+- name: cash_collected_fytd
+  area: collections
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  tests: 0
+  depends_on:
+  - cash_collected
+  aliases: []
+- name: collection_rate_finance
+  area: collections
+  owner: Jood Al-Muhaisen
+  version: 1.3.0
+  status: certified
+  tests: 1
+  depends_on:
+  - cash_collected
+  - billed_amount
+  aliases:
+  - collection %
+  - cash collection rate
+- name: collection_rate_60d
+  area: collections
+  owner: Majdi Bawazir
+  version: 2.1.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases:
+  - collections rate
+  - recovery rate 60
+- name: paid_on_time_rate
+  area: collections
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  tests: 0
+  depends_on: []
+  aliases:
+  - on-time payers %
+- name: collections_score
+  area: collections
+  owner: Majdi Bawazir
+  version: 1.0.0
+  status: certified
+  tests: 0
+  depends_on:
+  - collection_rate_60d
+  - disputed_amount
+  aliases: []
+- name: bad_debt_provision
+  area: collections
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases: []
+- name: arrears_over_90
+  area: collections
+  owner: Majdi Bawazir
+  version: 1.2.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases:
+  - 90+ arrears
+- name: promise_to_pay_kept
+  area: collections
+  owner: Majdi Bawazir
+  version: 0.3.0
+  status: draft
+  tests: 0
+  depends_on: []
+  aliases: []
+- name: data_gb
+  area: usage
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases:
+  - traffic
+- name: voice_minutes
+  area: usage
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases: []
+- name: active_lines
+  area: usage
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases:
+  - active subscriptions
+- name: data_per_line
+  area: usage
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  tests: 0
+  depends_on:
+  - data_gb
+  - active_lines
+  aliases: []
+- name: roaming_mb
+  area: usage
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases: []
+- name: sms_count
+  area: usage
+  owner: Zeyad Al-Juraisy
+  version: 0.9.0
+  status: draft
+  tests: 0
+  depends_on: []
+  aliases: []
+- name: peak_hour_load
+  area: usage
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: deprecated
+  tests: 1
+  depends_on: []
+  aliases: []
+- name: fibre_uptake
+  area: usage
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  tests: 0
+  depends_on:
+  - active_lines
+  aliases: []
+- name: complaints
+  area: complaints
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases:
+  - tickets
+- name: billing_complaints
+  area: complaints
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases: []
+- name: median_resolution_days
+  area: complaints
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases: []
+- name: complaints_per_1k_lines
+  area: complaints
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  tests: 0
+  depends_on:
+  - complaints
+  - active_lines
+  aliases:
+  - complaint rate
+- name: first_contact_resolution
+  area: complaints
+  owner: Ebtihal Al-Ghanim
+  version: 1.1.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases:
+  - FCR
+- name: repeat_complaints
+  area: complaints
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  tests: 0
+  depends_on:
+  - complaints
+  aliases: []
+- name: complaint_backlog
+  area: complaints
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  tests: 1
+  depends_on: []
+  aliases: []
+- name: csat_after_complaint
+  area: complaints
+  owner: Ebtihal Al-Ghanim
+  version: 0.5.0
+  status: draft
+  tests: 0
+  depends_on: []
+  aliases: []
+- name: region_health_index
+  area: cross-area
+  owner: null
+  version: 1.0.0
+  status: certified
+  tests: 0
+  depends_on:
+  - collections_score
+  - complaints_per_1k_lines
+  aliases:
+  - RHI
+- name: billing_complaint_share
+  area: cross-area
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  tests: 0
+  depends_on:
+  - billing_complaints
+  - bills_issued
+  aliases: []
+- name: customer_value_index
+  area: cross-area
+  owner: Jood Al-Muhaisen
+  version: 0.4.0
+  status: draft
+  tests: 0
+  depends_on:
+  - arpa
+  - paid_on_time_rate
+  aliases: []
+- name: legacy_kpi_pack
+  area: cross-area
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: deprecated
+  tests: 0
+  depends_on:
+  - peak_hour_load
+  aliases: []
