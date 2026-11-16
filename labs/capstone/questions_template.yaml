@@ -1,0 +1,32 @@
+# Certified questions for the capstone: the format of data/assistant/certified_60.yaml.
+# Certify every answer by running its query through your semantic layer (Lab 3.1), never by typing a figure.
+# difficulty: 1 one filter; 2 two filters or a fiscal period; 3 a ranking, a Hijri period or a cumulative figure.
+title: "<Product name>: certified questions"
+questions:
+- id: C01
+  lang: en
+  area: collections
+  difficulty: 1
+  question: What was the collection rate for bills issued for March 2026?
+  query:
+    metrics: [collection_rate]
+    where: ["time.month = DATE '2026-03-01'"]
+  expect: {kind: value, value: 0.864526, unit: ratio, metric_version: 1.0.0}
+- id: C10
+  lang: ar
+  area: collections
+  difficulty: 3
+  question: أي قطاع عملاء كانت نسبة التحصيل فيه الأدنى في السنة المالية 2025-26؟
+  query:
+    metrics: [collection_rate]
+    by: [customer.segment]
+    where: ["time.fiscal_year = 'FY2025-26'"]
+    order: asc
+    limit: 1
+  expect: {kind: label, value: government, unit: label, metric_version: 1.0.0}
+- id: C14
+  lang: ar
+  area: collections
+  difficulty: 2
+  question: ما نسبة التحصيل لفواتير شهر مايو 2026؟
+  expect: {refuse: not_matured}

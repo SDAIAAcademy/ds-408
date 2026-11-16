@@ -28,13 +28,15 @@
 
 <section class="slide" id="format" data-label="Format">
   <div class="kicker">Format</div>
-  <h2>REPLACE: how many minutes each presentation and its questions take</h2>
+  <h2>12 minutes of design review, then 8 minutes of questions with a live re-run</h2>
   <div class="cols cols-3">
     <div class="card c-teal"><h4>1 · The problem</h4><p class="small mb0">Who, what, why now. One slide.</p></div>
     <div class="card c-cyan"><h4>2 · What you built</h4><p class="small mb0">Design, decisions, trade-offs. Then the live demo.</p></div>
-    <div class="card c-coral"><h4>3 · What you measured</h4><p class="small mb0">Baseline, improvement, failures found, what comes next.</p></div>
+    <div class="card c-coral"><h4>3 · What you measured</h4><p class="small mb0">Accuracy, wrong but plausible, stability, the routes and their decision record.</p></div>
   </div>
-  <div class="callout note mt"><b>Peer feedback.</b> After each talk, everyone writes one strength, one question and one suggestion.</div>
+  <div class="callout warn mt"><b>The live re-run.</b> In the questions the assessor gives five certified questions; add them and re-run your harness on screen.</div>
+  <div class="callout note mt"><b>Peer feedback.</b> After each talk, everyone writes one strength, one question and one suggestion, using the three lenses of Lab 4.4.</div>
+  <aside class="notes"><p>Keep time strictly: 12 minutes, then 8. The five assessor questions are prepared in advance from the participant's two areas (one Arabic, one must-refuse, one difficulty 3). The re-run counts toward reproducibility (10 points); a participant who cannot re-run explains why and shows the last results file with its input hashes.</p></aside>
 </section>
 
 <section class="slide order" id="running-order" data-label="Running order">
@@ -65,7 +67,15 @@
 <section class="slide dark presenting" id="now-presenting" data-label="Now presenting">
   <div class="kicker center">Now presenting</div>
   <div class="center"><input placeholder="Presenter · project"></div>
-  <aside class="notes">Type the presenter's name and press T to start the timer. Reuse this slide for every presenter.</aside>
+  <div class="timer" data-minutes="12"></div>
+  <aside class="notes">Type the presenter's name and press T to start the 12-minute timer. Reuse this slide for every presenter; move to the next slide for the questions.</aside>
+</section>
+
+<section class="slide dark" id="questions-rerun" data-label="Questions and re-run">
+  <div class="kicker center">Questions and live re-run</div>
+  <h2 class="center">Five assessor questions, one command</h2>
+  <div class="timer" data-minutes="8"></div>
+  <aside class="notes">Press T to start the 8 minutes. Hand over the five questions on paper or in the chat; the participant adds them to the set and runs the harness. Ask at least one question from each lens: correctness, governance, portability.</aside>
 </section>
 
 <section class="slide" id="review" data-label="Trainer review">
@@ -84,7 +94,8 @@
   <h2>Keep going</h2>
   <ul class="bullets">
     <li><b>Your project stays yours:</b> keep it reproducible and add the next improvement you named today</li>
-    <li><b>Next Academy course:</b> REPLACE: the course that follows this one</li>
+    <li><b>Follow-up task:</b> add a third business area to your product and re-run its evaluation; the trainer checks the repository history</li>
+    <li><b>Related Academy course:</b> AE-302 Agentic Systems Engineering, for building agents on top of a governed layer like yours</li>
   </ul>
 </section>
 

@@ -87,7 +87,7 @@ A governed analytics product for two business areas (metrics as code, a semantic
 - **Capstone day:** design reviews of the participants' products.
 - **Follow-up task (tracked):** after the course, add one business area to the capstone product and re-run its evaluation; the trainer checks the repository's history.
 - **Assessment:** a supervised check of modelling and metric fundamentals without AI assistance (20%), the capstone rubric (60%) and the live design review and defence (20%). Passing needs 70% overall and at least 60% on the capstone rubric.
-- **AI policy:** AI-off for the supervised check and for Lab 1.1; an AI tutor in the other labs; full AI assistance in the capstone, coding agents included, with the design and evaluation defended live.
+- **AI policy:** AI-off for the supervised check, for Lab 1.1, and for the first steps of Labs 3.4 and 4.3 (the hand-written rules and routes); an AI tutor in the other labs; full AI assistance in the capstone, coding agents included, with the design and evaluation defended live.
 - **Responsible use:** access rules are tested, not assumed; Restricted customer fields are masked; the assistant shows the metric, filters and grain behind every figure; the routing policy is a human-oversight decision, recorded with its evidence.
 
 ## Prerequisites
