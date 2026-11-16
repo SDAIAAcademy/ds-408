@@ -1,0 +1,26 @@
+[
+ {
+  "context": "examples",
+  "drop": 0.233,
+  "drop_ar": 0.233,
+  "drop_en": 0.233,
+  "area_most": "collections",
+  "more_plausible": 0.217
+ },
+ {
+  "context": "descriptions",
+  "drop": 0.15,
+  "drop_ar": 0.133,
+  "drop_en": 0.167,
+  "area_most": "collections",
+  "more_plausible": 0.15
+ },
+ {
+  "context": "synonyms",
+  "drop": 0.117,
+  "drop_ar": 0.233,
+  "drop_en": 0.0,
+  "area_most": "billing",
+  "more_plausible": 0.0
+ }
+]

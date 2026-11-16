@@ -1,0 +1,122 @@
+[
+ {
+  "id": "C14",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "Q13",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "Q15",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "C12",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "U15",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "Q10",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "U12",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "B15",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "Q14",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "C15",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "X08",
+  "keep": false,
+  "rule": "period"
+ },
+ {
+  "id": "C13",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "X04",
+  "keep": false,
+  "rule": "period"
+ },
+ {
+  "id": "B12",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "X06",
+  "keep": false,
+  "rule": "certified"
+ },
+ {
+  "id": "X02",
+  "keep": false,
+  "rule": "duplicate"
+ },
+ {
+  "id": "Q11",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "X03",
+  "keep": false,
+  "rule": "certified"
+ },
+ {
+  "id": "X07",
+  "keep": false,
+  "rule": "restricted"
+ },
+ {
+  "id": "C10",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "C11",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "X05",
+  "keep": false,
+  "rule": "duplicate"
+ },
+ {
+  "id": "Q12",
+  "keep": true,
+  "rule": ""
+ },
+ {
+  "id": "X01",
+  "keep": false,
+  "rule": "period"
+ }
+]

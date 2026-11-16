@@ -1,0 +1,92 @@
+[
+ {
+  "id": "C01",
+  "lang": "en",
+  "area": "collections",
+  "difficulty": 1,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 0.901555,
+  "want_full": 0.864526
+ },
+ {
+  "id": "C02",
+  "lang": "ar",
+  "area": "collections",
+  "difficulty": 1,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 0.912162,
+  "want_full": 0.849537
+ },
+ {
+  "id": "C05",
+  "lang": "en",
+  "area": "collections",
+  "difficulty": 1,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 0.954628,
+  "want_full": 0.560764
+ },
+ {
+  "id": "C06",
+  "lang": "ar",
+  "area": "collections",
+  "difficulty": 2,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 0.876135,
+  "want_full": 0.505641
+ },
+ {
+  "id": "C09",
+  "lang": "en",
+  "area": "collections",
+  "difficulty": 2,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 0.939293,
+  "want_full": 0.892228
+ },
+ {
+  "id": "C11",
+  "lang": "en",
+  "area": "collections",
+  "difficulty": 3,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": "NOR",
+  "want_full": "EAS"
+ },
+ {
+  "id": "C14",
+  "lang": "ar",
+  "area": "collections",
+  "difficulty": 2,
+  "outcome_full": "refused_right",
+  "outcome_variant": "missed_refusal",
+  "got_variant": null,
+  "want_full": "not_matured"
+ },
+ {
+  "id": "Q04",
+  "lang": "ar",
+  "area": "complaints",
+  "difficulty": 1,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 7.0,
+  "want_full": 8.0
+ },
+ {
+  "id": "Q05",
+  "lang": "en",
+  "area": "complaints",
+  "difficulty": 1,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 13.0,
+  "want_full": 15.0
+ }
+]

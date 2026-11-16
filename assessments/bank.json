@@ -565,9 +565,129 @@
       "weight": 1
     },
     {
-      "id": "q-example-4",
+      "id": "q-d3-ablate-04",
+      "type": "single",
+      "prompt": "A team removes both synonyms and examples in one run and accuracy drops 30 points. What can they conclude?",
+      "options": [
+        "Synonyms and examples matter equally",
+        "Examples matter more than synonyms",
+        "The two kinds together matter, but not how much each contributes",
+        "Descriptions matter least"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Changing two things at once mixes their effects; one kind at a time gives each drop one cause.",
+      "misconceptions": [
+        "The run cannot separate them",
+        "The run cannot separate them",
+        "",
+        "Descriptions were not removed"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": "day3",
+      "session": 2,
+      "slide": "ablation",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d3-answer-01",
+      "type": "single",
+      "prompt": "A certified question records only its value, 0.8645. Six months later the collection rate metric moves to version 2.0.0. What can the platform team no longer do?",
+      "options": [
+        "Re-run the question on the new version",
+        "Tell whether the old value came from version 1 and which filters it used",
+        "Score the assistant on that question",
+        "Translate the question into Arabic"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Without the metric, version, filters and grain, nobody can check or re-certify the value when the definition changes.",
+      "misconceptions": [
+        "The question text can still be re-run; what is lost is what it should be compared with",
+        "",
+        "Scoring needs only a value, which is still there",
+        "Language has nothing to do with the record"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": "day3",
+      "session": 1,
+      "slide": "certified-answer",
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d3-cache-10",
+      "type": "single",
+      "prompt": "An assistant caches the first answer to each question. Its unstable questions were all right on the first run. What does the cache do to the team's view of quality?",
+      "options": [
+        "Nothing: cached answers are right",
+        "It hides the instability, so a model or cache change can bring wrong answers back unseen",
+        "It fixes the instability for good",
+        "It makes the stable wrong answers right"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Users see one answer, so stability looks perfect until the cache is cleared or the model changes.",
+      "misconceptions": [
+        "Right today, not after the next change",
+        "",
+        "Clearing the cache brings it back",
+        "A cache repeats a wrong answer too"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": "day3",
+      "session": 4,
+      "slide": "cache-vote",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d3-coverage-02",
+      "type": "single",
+      "prompt": "A certified set of 44 questions has no difficulty 3 question for collections or complaints, and its only two refusals are about personal data. An assistant scores 97% on it. What does the score most likely overstate?",
+      "options": [
+        "Its accuracy on simple Arabic questions",
+        "Its accuracy on rankings, cumulative figures and Hijri periods, and how often it refuses forecasts or draft metrics",
+        "Its speed on long questions",
+        "Its accuracy on billing questions"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The missing cells are the hardest questions and most kinds of refusal, exactly where assistants fail.",
+      "misconceptions": [
+        "Simple questions are well covered",
+        "",
+        "The set does not measure speed",
+        "Billing is covered at every difficulty"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": "day3",
+      "session": 1,
+      "slide": "coverage",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d3-execute-07",
       "type": "tf",
-      "prompt": "REPLACE: a statement on LO4 that is true",
+      "prompt": "The harness compares the figure returned by the layer, not the text of the query. Two replies filter on the fiscal year, one by label and one by a date range. Both give the certified figure. Both count as right.",
       "options": [
         "True",
         "False"
@@ -575,17 +695,168 @@
       "correct": [
         0
       ],
-      "explanation": "REPLACE: why the right answer is right, in one sentence",
+      "explanation": "Execution accuracy scores what the manager sees; different queries that give the same figure are both right.",
       "misconceptions": [
         "",
-        "REPLACE: the misconception behind this option"
+        "Assumes the query text must match"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": "day3",
+      "session": 3,
+      "slide": "execute",
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d3-plausible-06",
+      "type": "single",
+      "prompt": "Two configurations both score 90%. A's misses are errors; B's misses are figures between half and twice the certified ones. Which statement is right?",
+      "options": [
+        "They carry the same risk",
+        "B is safer because it always answers",
+        "A is safer because its misses are seen; B's reach decisions",
+        "Neither can be compared without more questions"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "An error is noticed and re-asked; a plausible wrong figure goes on a slide.",
+      "misconceptions": [
+        "Same accuracy, different kind of failure",
+        "A wrong figure is worse than no figure",
+        "",
+        "The same set compares them fairly"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": "day3",
+      "session": 3,
+      "slide": "outcomes",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d3-rerun-08",
+      "type": "single",
+      "prompt": "A reviewer re-runs the scoring command and gets 93% where the report says 95%. What should be compared first?",
+      "options": [
+        "The Python versions",
+        "The hashes of the question set, the replies, the model and the metric files",
+        "The tolerance used for rounding",
+        "The order of the questions"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A different input explains a different number before any code does; the report records a hash of each.",
+      "misconceptions": [
+        "Unlikely to change a score when the inputs are the same",
+        "",
+        "The tolerance is recorded too, but inputs change more often",
+        "Order does not change the score"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": "day3",
+      "session": 3,
+      "slide": "rerun",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d3-screen-03",
+      "type": "single",
+      "prompt": "A candidate question asks 'Which customer in Riyadh had the largest bill in March 2026?' and its draft groups by customer.full_name. What should happen to it?",
+      "options": [
+        "Certify it: it has a period and a certified metric",
+        "Reject it as a duplicate",
+        "Enter it in the set as a must-refuse question about Restricted data",
+        "Rewrite it to group by customer_id and certify that"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Grouping by a Restricted field means the right answer is a refusal; the question is useful as a refusal test.",
+      "misconceptions": [
+        "Passing two rules does not pass the Restricted rule",
+        "No question in the set asks this",
+        "",
+        "An account number still identifies a person; the manager asked for a name"
       ],
       "lo": [
         "LO4"
       ],
       "day": "day3",
       "session": 1,
-      "level": "understand",
+      "slide": "screening",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d3-stable-09",
+      "type": "single",
+      "prompt": "Three runs per question give 52 stable right, 5 unstable and 3 stable wrong. Which group can only be found with certified answers?",
+      "options": [
+        "The unstable questions",
+        "The stable right questions",
+        "The stable wrong questions",
+        "None: agreement finds all of them"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Asking again reveals instability, but a wrong answer given the same way every time looks reliable.",
+      "misconceptions": [
+        "Re-asking finds them",
+        "They need no finding",
+        "",
+        "Agreement is not correctness"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": "day3",
+      "session": 4,
+      "slide": "stability-cells",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d3-syn-05",
+      "type": "single",
+      "prompt": "Removing synonyms leaves English accuracy unchanged and drops Arabic accuracy by 23 points. What best explains this?",
+      "options": [
+        "Arabic questions are harder",
+        "The metric names are English words, so only Arabic questions need synonyms to find them",
+        "The model cannot read Arabic",
+        "English questions had more examples"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "An English question matches 'collection rate' to collection_rate by name; an Arabic question needs 'نسبة التحصيل' as a synonym.",
+      "misconceptions": [
+        "With synonyms the Arabic accuracy is as high as the English",
+        "",
+        "With synonyms it answers Arabic well",
+        "Examples were kept in both runs"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": "day3",
+      "session": 2,
+      "slide": "contribution",
+      "level": "analyze",
       "pool": "practice",
       "weight": 1
     },

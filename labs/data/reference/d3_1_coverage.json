@@ -1,0 +1,86 @@
+[
+ {
+  "area": "usage",
+  "difficulty": 1,
+  "ar": 2,
+  "en": 3,
+  "refusals": 0
+ },
+ {
+  "area": "usage",
+  "difficulty": 2,
+  "ar": 2,
+  "en": 2,
+  "refusals": 1
+ },
+ {
+  "area": "usage",
+  "difficulty": 3,
+  "ar": 1,
+  "en": 2,
+  "refusals": 0
+ },
+ {
+  "area": "billing",
+  "difficulty": 1,
+  "ar": 2,
+  "en": 3,
+  "refusals": 0
+ },
+ {
+  "area": "billing",
+  "difficulty": 2,
+  "ar": 2,
+  "en": 2,
+  "refusals": 1
+ },
+ {
+  "area": "billing",
+  "difficulty": 3,
+  "ar": 1,
+  "en": 2,
+  "refusals": 0
+ },
+ {
+  "area": "collections",
+  "difficulty": 1,
+  "ar": 2,
+  "en": 3,
+  "refusals": 0
+ },
+ {
+  "area": "collections",
+  "difficulty": 2,
+  "ar": 2,
+  "en": 2,
+  "refusals": 0
+ },
+ {
+  "area": "collections",
+  "difficulty": 3,
+  "ar": 0,
+  "en": 0,
+  "refusals": 0
+ },
+ {
+  "area": "complaints",
+  "difficulty": 1,
+  "ar": 2,
+  "en": 3,
+  "refusals": 0
+ },
+ {
+  "area": "complaints",
+  "difficulty": 2,
+  "ar": 2,
+  "en": 2,
+  "refusals": 0
+ },
+ {
+  "area": "complaints",
+  "difficulty": 3,
+  "ar": 0,
+  "en": 0,
+  "refusals": 0
+ }
+]

@@ -146,8 +146,167 @@ def querylog():
     write_csv(DATA / "semantic" / "query_log.csv", rows)
 
 
+# ---------------------------------------------------------------------------------- question sets (Day 3)
+ASSIST = DATA / "assistant"
+UNITS = {"data_gb": "GB", "voice_minutes": "minutes", "active_lines": "lines", "data_per_line": "GB per line",
+         "billed_amount": "SAR", "bills_issued": "bills", "disputed_amount": "SAR", "billed_customers": "customers",
+         "arpa": "SAR per account", "collection_rate": "ratio", "cash_collected": "SAR", "collected_30": "SAR",
+         "cash_collected_fytd": "SAR", "complaints": "complaints", "billing_complaints": "complaints",
+         "median_resolution_days": "days", "complaints_per_1k_lines": "per 1,000 lines"}
+
+
+def _model():
+    import qsem as S
+    return S.Model.load(DATA / "semantic" / "qamar_model.yaml", Q.db(), metrics_dir=DATA / "metrics")
+
+
+def _certified():
+    sys.path.insert(0, str(LABS / "_tools"))
+    import daleel as D
+    from questions import ANSWERABLE, REFUSALS
+    model = _model()
+    out = []
+    for qid, lang, area, diff, text, query, kind, _tags in ANSWERABLE:
+        val = D.answer(model, query, kind)
+        unit = "label" if kind == "label" else UNITS[query["metrics"][0]]
+        out.append({"id": qid, "lang": lang, "area": area, "difficulty": diff, "question": text,
+                    "query": {k: v for k, v in query.items()}, "expect": {"kind": kind, "value": val, "unit": unit}})
+    for qid, lang, area, text, reason in REFUSALS:
+        out.append({"id": qid, "lang": lang, "area": area, "difficulty": 2, "question": text, "expect": {"refuse": reason}})
+    order = {"usage": 0, "billing": 1, "collections": 2, "complaints": 3}
+    return sorted(out, key=lambda q: (order[q["area"]], q["id"]))
+
+
+def questions():
+    import daleel as D
+    from questions import FLAWED, HELD_OUT
+    full = _certified()
+    D.save_set(full, ASSIST / "certified_60.yaml", "Qamar Telecom: certified questions for Daleel (synthetic)")
+    supplied = [q for q in full if q["id"] not in HELD_OUT]
+    D.save_set(supplied, ASSIST / "supplied_44.yaml", "Qamar Telecom: the supplied certified set (44 questions)")
+    cands = []
+    for q in full:
+        if q["id"] in HELD_OUT:
+            c = {k: q[k] for k in ("id", "lang", "area", "difficulty", "question")}
+            c["draft"] = q["query"] if "query" in q else {"refuse": q["expect"]["refuse"]}
+            if "query" in q:
+                c["kind"] = q["expect"]["kind"]
+            cands.append(c)
+    for qid, lang, area, diff, text, draft, refuse in FLAWED:
+        c = {"id": qid, "lang": lang, "area": area, "difficulty": diff, "question": text,
+             "draft": draft if draft else {"refuse": refuse}}
+        if draft:
+            c["kind"] = "label" if draft.get("order") else "value"
+        cands.append(c)
+    random.Random(4083).shuffle(cands)
+    D.save_set(cands, ASSIST / "candidates.yaml", "Candidate questions for the certified set: drafts, not yet certified")
+    print("wrote data/assistant/certified_60.yaml", len(full), "supplied_44.yaml", len(supplied), "candidates.yaml", len(cands))
+
+
+# ---------------------------------------------------------------------------------- stand-in replies (Day 3)
+# The stand-in's error model, stated so the Director and trainers can see what the recordings encode:
+#   no_synonyms      Arabic questions tagged syn pick a neighbouring metric or find none
+#   no_descriptions  collection_rate becomes the finance ratio, billed_customers becomes bills, complaints by
+#                    complaint.region become complaints by customer.region; one immature cohort is answered
+#   no_examples      fiscal years become calendar years, fiscal quarters calendar quarters, Hijri months
+#                    Gregorian months, the fiscal-year-to-date metric the plain monthly one
+#   unstable         in every variant, the run pattern below swaps in the no_examples error (or drops a filter)
+#   stable_wrong     wrong the same way in every run: Riyadh read as the Central region; all complaints
+#                    instead of billing complaints
+#   refusals         refused in every variant, except C15 (a draft metric answered every time), Q15 (answered
+#                    on run 2) and C14 (answered without descriptions)
+SYN_WRONG = {"data_gb": "voice_minutes", "billed_amount": "bills_issued", "arpa": "billed_amount",
+             "cash_collected": None, "complaints": None, "median_resolution_days": "complaints"}
+DESC_WRONG = {"collection_rate": "cash_collection_ratio", "billed_customers": "bills_issued"}
+UNSTABLE_RUNS = {"U11": (0, 1, 0), "U13": (0, 0, 1), "B10": (1, 0, 0), "C09": (0, 1, 1), "C12": (0, 1, 0), "Q13": (0, 0, 1)}
+CAL_Q = {1: ("2025-01-01", "2025-03-01"), 2: ("2025-04-01", "2025-06-01"), 3: ("2025-07-01", "2025-09-01"), 4: ("2025-10-01", "2025-12-01")}
+
+
+def _no_examples(query: dict) -> dict:
+    import copy
+    import re
+    q = copy.deepcopy(query)
+    where = []
+    for w in q.get("where", []):
+        if m := re.match(r"time\.fiscal_year = 'FY(\d{4})-\d\d'", w):
+            where.append(f"time.year = {m.group(1)}")
+        elif m := re.match(r"time\.fiscal_quarter = 'FY\d{4}-\d\d-Q(\d)'", w):
+            a, b = CAL_Q[int(m.group(1))]
+            where.append(f"time.month BETWEEN DATE '{a}' AND DATE '{b}'")
+        elif m := re.match(r"time\.hijri_month = '\d{4}-(\d\d)'", w):
+            where.append(f"time.month = DATE '2025-{m.group(1)}-01'")
+        else:
+            where.append(w)
+    q["where"] = where
+    if q["metrics"] == ["cash_collected_fytd"]:
+        q["metrics"] = ["cash_collected"]
+    return q
+
+
+def _unstable_wrong(query: dict) -> dict:
+    q = _no_examples(query)
+    if q == query and len(q.get("where", [])) > 1:
+        q = dict(q, where=q["where"][:-1])
+    return q
+
+
+def _reply(qid: str, variant: str, run: int, query: dict | None, tags: list, refuse: str | None) -> dict | str:
+    import copy
+    q = copy.deepcopy(query) if query else None
+    if refuse:  # a must-refuse question
+        if qid == "C15":
+            return {"metrics": ["on_time_payment_share"], "by": [], "where": ["time.month = DATE '2026-03-01'"]}
+        if qid == "Q15" and run == 2:
+            return {"metrics": ["complaints"], "by": ["complaint.category"], "where": ["time.month = DATE '2026-01-01'"], "order": "desc", "limit": 1}
+        if qid == "C14" and variant == "no_descriptions":
+            return {"metrics": ["collection_rate"], "by": [], "where": ["time.month = DATE '2026-05-01'"]}
+        return {"refuse": refuse}
+    if "stable_wrong" in tags:
+        if qid == "C13":
+            q["where"] = [w.replace("customer.city = 'Riyadh'", "customer.region = 'CEN'") for w in q["where"]]
+        if qid == "Q11":
+            q["metrics"] = ["complaints"]
+    if variant == "no_synonyms" and "syn" in tags:
+        alt = SYN_WRONG.get(q["metrics"][0], q["metrics"][0])
+        if alt is None:
+            return {"refuse": "no_metric"}
+        q["metrics"] = [alt]
+    if variant == "no_descriptions" and "desc" in tags:
+        q["metrics"] = [DESC_WRONG.get(m, m) for m in q["metrics"]]
+        q["where"] = [w.replace("complaint.region", "customer.region") for w in q.get("where", [])]
+    if variant == "no_examples" and "ex" in tags:
+        q = _no_examples(q)
+    if "unstable" in tags and UNSTABLE_RUNS[qid][run - 1]:
+        q = _unstable_wrong(q)
+    return q
+
+
+def recordings():
+    import json
+    from questions import ANSWERABLE, REFUSALS
+    items = [(a[0], a[5], a[7], None) for a in ANSWERABLE] + [(r[0], None, [], r[4]) for r in REFUSALS]
+    rows = []
+    for qid, query, tags, refuse in sorted(items):
+        for variant in ["full", "no_synonyms", "no_descriptions", "no_examples"]:
+            for run in (1, 2, 3):
+                r = _reply(qid, variant, run, query, tags, refuse)
+                text = json.dumps(r, ensure_ascii=False)
+                if (sum(map(ord, qid)) + run) % 5 == 0:  # some models wrap their JSON in a code fence
+                    text = "```json\n" + text + "\n```"
+                if qid == "Q09" and variant == "no_examples" and run == 3:
+                    text = "The complaint rate for business customers was about 36 per 1,000 lines in June 2026."
+                rows.append({"id": qid, "variant": variant, "run": run, "reply": text})
+    path = ASSIST / "replies.jsonl"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="\n") as f:
+        for r in rows:
+            f.write(json.dumps(r, ensure_ascii=False) + "\n")
+    print("wrote data/assistant/replies.jsonl", len(rows), "replies (stand-in, synthetic)")
+
+
 # ---------------------------------------------------------------------------------- main
-STEPS = {"catalogue": catalogue, "starter": starter, "querylog": querylog}
+STEPS = {"catalogue": catalogue, "starter": starter, "querylog": querylog, "questions": questions,
+         "recordings": recordings}
 
 if __name__ == "__main__":
     for name, fn in STEPS.items():

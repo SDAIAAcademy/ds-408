@@ -232,7 +232,109 @@ def d2_4(con):
                               "median_resolution_days on SQLite": "no such function: MEDIAN"})
 
 
-STEPS = {"d1_1": d1_1, "d1_2": d1_2, "d1_3": d1_3, "d1_4": d1_4, "d2_1": d2_1, "d2_2": d2_2, "d2_3": d2_3, "d2_4": d2_4}
+def _d3_setup(con):
+    import daleel as D
+    import qsem as S
+    model = S.Model.load(LABS / "data/semantic/qamar_model.yaml", con, metrics_dir=LABS / "data/metrics")
+    return D, model, D.load_set("data/assistant/certified_60.yaml")
+
+
+def d3_1(con):
+    """From the supplied files: the 44, the candidates and the certified 60 (built by make_case_files.py)."""
+    D, model, full = _d3_setup(con)
+    sup = D.load_set("data/assistant/supplied_44.yaml")
+    cands = D.load_set("data/assistant/candidates.yaml")
+    rows = []
+    for a in ["usage", "billing", "collections", "complaints"]:
+        for d in (1, 2, 3):
+            cell = [q for q in sup if q["area"] == a and q["difficulty"] == d]
+            ans = [q for q in cell if "refuse" not in q["expect"]]
+            rows.append({"area": a, "difficulty": d, "ar": sum(q["lang"] == "ar" for q in ans),
+                         "en": sum(q["lang"] == "en" for q in ans), "refusals": len(cell) - len(ans)})
+    save("d3_1_coverage", rows)
+    flawed = {"X01": "period", "X02": "duplicate", "X03": "certified", "X04": "period", "X05": "duplicate",
+              "X06": "certified", "X07": "restricted", "X08": "period"}  # stated in _tools/questions.py
+    save("d3_1_screen", [{"id": c["id"], "keep": c["id"] not in flawed, "rule": flawed.get(c["id"], "")} for c in cands])
+    byid = {q["id"]: q for q in full}
+    new = []
+    for c in cands:
+        if c["id"] in flawed:
+            continue
+        q = dict(byid[c["id"]])
+        if "query" in q:
+            q["expect"] = dict(q["expect"], metric_version=model.describe(q["query"]["metrics"][0])["version"])
+        new.append(q)
+    save("d3_1_certified_new", new)
+    ref = [q for q in full if "refuse" in q["expect"]]
+    save("d3_1_final", {"n": len(full), "gaps": 0, "ar": sum(q["lang"] == "ar" for q in full), "en": sum(q["lang"] == "en" for q in full),
+                        "refusals": len(ref), "refusal_kinds": sorted({q["expect"]["refuse"] for q in ref}),
+                        "areas_with_refusal": len({q["area"] for q in ref})})
+
+
+def d3_2(con):
+    D, model, qs = _d3_setup(con)
+    mets = list(model.metrics.values())
+    sizes = []
+    for v in D.VARIANTS:
+        ctx = D.context(mets, v)
+        sizes.append({"variant": v, "chars": len(json.dumps(ctx, ensure_ascii=False)), "synonyms": sum("synonyms" in m for m in ctx),
+                      "descriptions": sum("description" in m for m in ctx), "examples": sum("examples" in m for m in ctx)})
+    save("d3_2_sizes", sizes)
+    t = {v: D.score(model, qs, v) for v in D.VARIANTS}
+    for v, name in [("no_synonyms", "syn"), ("no_descriptions", "desc"), ("no_examples", "ex")]:
+        m = t["full"].merge(t[v], on=["id", "lang", "area", "difficulty", "run"], suffixes=("_full", "_variant"))
+        m = m[m.outcome_full != m.outcome_variant]
+        save(f"d3_2_flips_{name}", m[["id", "lang", "area", "difficulty", "outcome_full", "outcome_variant", "got_variant", "want_full"]].to_dict("records"))
+    rows = []
+    good = ["right", "refused_right"]
+    for kind, v in [("synonyms", "no_synonyms"), ("descriptions", "no_descriptions"), ("examples", "no_examples")]:
+        f, x = t["full"], t[v]
+        acc = lambda d: d.outcome.isin(good).mean()  # noqa: E731
+        area = {a: acc(f[f.area == a]) - acc(x[x.area == a]) for a in sorted(f.area.unique())}
+        rows.append({"context": kind, "drop": round(acc(f) - acc(x), 3), "drop_ar": round(acc(f[f.lang == "ar"]) - acc(x[x.lang == "ar"]), 3),
+                     "drop_en": round(acc(f[f.lang == "en"]) - acc(x[x.lang == "en"]), 3), "area_most": max(area, key=area.get),
+                     "more_plausible": round(x.outcome.isin(["wrong_plausible", "missed_refusal"]).mean() - f.outcome.isin(["wrong_plausible", "missed_refusal"]).mean(), 3)})
+    save("d3_2_contribution", sorted(rows, key=lambda r: -r["drop"]))
+
+
+def d3_3(con):
+    D, model, qs = _d3_setup(con)
+    t = D.score(model, qs, "full")
+    save("d3_3_accuracy", round(float(t.outcome.isin(["right", "refused_right"]).mean()), 3))
+    byid = {q["id"]: q for q in qs}
+    rows = []
+    for _, r in t[t.outcome.isin(["wrong_plausible", "missed_refusal"])].iterrows():
+        q, used = byid[r.id], D.parse(D.ask(byid[r.id], "full", 1))
+        cert = q.get("query", {"refuse": q["expect"].get("refuse")})
+        rows.append({"id": r.id, "outcome": r.outcome, "question": q["question"][:60], "used": f"{used.get('metrics')} {used.get('where')}",
+                     "certified": f"{cert.get('metrics', cert.get('refuse'))} {cert.get('where', '')}"})
+    save("d3_3_plausible", rows)
+
+
+def d3_4(con):
+    import pandas as pd
+    D, model, qs = _d3_setup(con)
+    runs = D.score(model, qs, "full", runs=(1, 2, 3))
+    runs["answer"] = runs.got.map(str)
+    good = ["right", "refused_right"]
+    per = runs.groupby(["id", "lang", "area", "difficulty"]).agg(agree=("answer", lambda s: int(s.value_counts().iloc[0])),
+                                                                 n_right=("outcome", lambda s: int(s.isin(good).sum()))).reset_index()
+    save("d3_4_agreement", per.to_dict("records"))
+    per["stability"] = ["unstable" if a < 3 else ("stable_right" if n == 3 else "stable_wrong") for a, n in zip(per.agree, per.n_right)]
+    save("d3_4_stability", per.to_dict("records"))
+    parts = []
+    for col in ["area", "difficulty", "lang"]:
+        g = per.groupby(col).stability.value_counts(normalize=True).unstack(fill_value=0)
+        g = g.reindex(columns=["unstable", "stable_wrong"], fill_value=0).round(3)
+        g.index = [f"{col}={i}" for i in g.index]
+        parts.append(g)
+    save("d3_4_groups", pd.concat(parts).rename_axis("group").reset_index().to_dict("records"))
+    first = set(runs[(runs.run == 1) & runs.outcome.isin(good)].id)
+    save("d3_4_hidden", sorted(set(per[per.stability == "unstable"].id) & first))
+
+
+STEPS = {"d1_1": d1_1, "d1_2": d1_2, "d1_3": d1_3, "d1_4": d1_4, "d2_1": d2_1, "d2_2": d2_2, "d2_3": d2_3, "d2_4": d2_4,
+         "d3_1": d3_1, "d3_2": d3_2, "d3_3": d3_3, "d3_4": d3_4}
 
 if __name__ == "__main__":
     con = Q.db()

@@ -1,158 +1,390 @@
 <section class="slide title" id="title" data-auto="title">
-  <aside class="notes">REPLACE: welcome; introduce yourself; one question to the room that calibrates the pace; the rhythm of the day</aside>
+  <aside class="notes"><p>Yesterday the metrics got a home: a conformed, fast, governed and portable layer. Today an assistant, Daleel, answers managers' questions through that layer, and we measure it the way a platform team must before 300 managers use it. Collect the three questions each participant brought; keep the Arabic ones for session 1.</p></aside>
 </section>
 
 <section class="slide" id="agenda" data-auto="agenda"></section>
 
-<!-- Session 1 -->
-
-<section class="slide section" id="s1" data-auto="section" data-session="1"></section>
-
-<section class="slide" id="s1-idea" data-lo="LO4">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
-  <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
-    </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+<section class="slide" id="review-day2" data-lo="LO3">
+  <div class="kicker">Review of Day 2</div>
+  <h2>A new dataset arrives on Thursday</h2>
+  <div class="quiz" data-type="single" data-lo="LO3">
+    <p class="lead">A roaming dataset is added to the layer on Thursday without a row rule. On Sunday the Eastern regional manager asks for roaming data by region. With deny by default on, what happens?</p>
+    <div class="opts">
+      <div class="opt" data-ok>The layer refuses the query and names the missing rule</div>
+      <div class="opt" data-why="Describes the allow-by-default layer of Lab 2.3 before the fix">All five regions come back</div>
+      <div class="opt" data-why="Assumes the layer guesses a rule from the customer join">Only the Eastern region comes back</div>
+      <div class="opt" data-why="Confuses masking fields with filtering rows">The rows come back with every value masked</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Deny by default turns a forgotten rule into a visible error for one role, instead of a silent leak to every limited role.</div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>Answer: A. Today that matters again: Daleel asks the layer with the manager's role, so an assistant cannot see more than its user. Day 4 takes the role from the credential.</p></aside>
 </section>
 
-<section class="slide" id="s1-steps" data-lo="LO4">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<!-- ======================= SESSION 1 ======================= -->
+<section class="slide section" id="s1" data-auto="section" data-session="1"></section>
+
+<section class="slide" id="why-certified" data-label="Why a certified set" data-lo="LO4">
+  <div class="kicker">Before 300 managers ask</div>
+  <h2>A leaderboard score says little about your metrics; a certified set says a lot</h2>
+  <div class="cols cols-2">
+    <ul class="bullets small">
+      <li>Public text-to-SQL benchmarks use other schemas and other definitions</li>
+      <li>Enterprise benchmarks show <b>real warehouses stay hard</b>: Spider 2.0 (ICLR 2025)</li>
+      <li>Your managers ask about <b>your</b> collection rate, fiscal year and Hijri months</li>
+      <li>DS-307 ended with ten certified answers and a go or no-go memo; a platform needs more</li>
+    </ul>
+    <div class="card c-navy tint"><h4>Qamar's set</h4><p class="small mb0">60 questions: four areas, three difficulties, 30 in Arabic and 30 in English, 8 that Daleel must refuse.</p></div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <aside class="notes"><p>Source: Spider 2.0, arxiv.org/abs/2411.07763, an enterprise text-to-SQL benchmark. Do not quote its percentages as if they applied here; the point is that a general score does not transfer. One slide of DS-307 recap: ten questions were enough for one go or no-go on one area. Ask: who has seen a vendor accuracy figure? On what questions was it measured?</p></aside>
+</section>
+
+<section class="slide" id="certified-answer" data-label="Certified answer" data-lo="LO4">
+  <div class="kicker">What is certified</div>
+  <h2>A certified answer is a figure and the four things that produce it</h2>
+  <div class="cols cols-2">
+    <pre class="code s" data-file="certified_60.yaml"><code class="language-yaml">- id: C05
+  lang: en
+  area: collections
+  difficulty: 1
+  question: What was the collection rate for government
+    customers for December 2025 bills?
+  query:
+    metrics: [collection_rate]
+    where: ["customer.segment = 'government'",
+            "time.month = DATE '2025-12-01'"]
+  expect: {kind: value, value: 0.560764, unit: ratio,
+           metric_version: 1.0.0}</code></pre>
+    <div class="stack">
+      <div class="card c-teal"><h4>Metric and version</h4><p class="small mb0">Which definition, and which version of it.</p></div>
+      <div class="card c-cyan"><h4>Filters and grain</h4><p class="small mb0">Which customers, which period, grouped how.</p></div>
+      <div class="card c-coral"><h4>Value</h4><p class="small mb0">Run through the layer, never typed from a report.</p></div>
+    </div>
+  </div>
+  <aside class="notes"><p>The value alone cannot be checked by a reviewer: 0.85 could be January or March, finance's ratio or the certified one. The version matters because a metric change (Day 1, session 3) changes the certified answer, and the set must be re-certified with it.</p></aside>
+</section>
+
+<section class="slide" id="coverage" data-label="Coverage" data-lo="LO4">
+  <div class="kicker">Lab 3.1, step 1</div>
+  <h2>The supplied 44 questions leave two cells empty and almost no refusals</h2>
+  <table class="t small">
+    <tr><th>Area</th><th class="num">Difficulty 1</th><th class="num">Difficulty 2</th><th class="num">Difficulty 3</th><th class="num">Refusals</th></tr>
+    <tr><td>Usage</td><td class="num">5</td><td class="num">4</td><td class="num">3</td><td class="num">1</td></tr>
+    <tr><td>Billing</td><td class="num">5</td><td class="num">4</td><td class="num">3</td><td class="num">1</td></tr>
+    <tr class="hl"><td>Collections</td><td class="num">5</td><td class="num">4</td><td class="num">0</td><td class="num">0</td></tr>
+    <tr class="hl"><td>Complaints</td><td class="num">5</td><td class="num">4</td><td class="num">0</td><td class="num">0</td></tr>
+  </table>
+  <p class="small mt">Difficulty 1: one filter. 2: two filters or a fiscal period. 3: a ranking, a Hijri period or a cumulative figure.</p>
+  <aside class="notes"><p>From Lab 3.1. The hard questions are exactly where an assistant fails; a set without them flatters it. Both supplied refusals are about personal data, so the set never tests a forecast, an immature cohort, a draft metric or a "why" question.</p></aside>
+</section>
+
+<section class="slide" id="refusals" data-label="Refusals" data-lo="LO4">
+  <div class="kicker">The questions Daleel must refuse</div>
+  <h2>A refusal is a right answer, and the set must test five kinds of it</h2>
+  <div class="cols cols-3">
+    <div class="card c-coral"><h4>Restricted</h4><p class="small mb0">Names, national IDs or mobile numbers of customers.</p></div>
+    <div class="card c-coral"><h4>Forecast</h4><p class="small mb0">Next year's revenue: the layer holds facts, not predictions.</p></div>
+    <div class="card c-coral"><h4>Not matured</h4><p class="small mb0">May 2026's collection rate: its 30-day window has not closed.</p></div>
+  </div>
+  <div class="cols cols-2 mt">
+    <div class="card c-coral"><h4>Uncertified</h4><p class="small mb0">Bills paid on time: only a draft metric fits.</p></div>
+    <div class="card c-coral"><h4>Causal</h4><p class="small mb0">"Why did complaints rise?": a figure is not a cause.</p></div>
+  </div>
+  <aside class="notes"><p>An assistant that answers everything looks good on answerable questions. Only must-refuse questions show whether it invents figures. Ask the room which refusal their own assistant would most likely miss; most say "uncertified", and Lab 3.3 shows why.</p></aside>
+</section>
+
+<section class="slide" id="screening" data-label="Screening" data-lo="LO4">
+  <div class="kicker">Lab 3.1, step 2</div>
+  <h2>Four rules screen a candidate question before it is certified</h2>
+  <table class="t small">
+    <tr><th>Rule</th><th>Reject when</th><th>Candidate</th></tr>
+    <tr><td>Period</td><td>an answer with no time condition</td><td>"What is the collection rate?"</td></tr>
+    <tr><td>Certified</td><td>only a draft metric fits the draft</td><td>"Cash to billing ratio in March"</td></tr>
+    <tr><td>Duplicate</td><td>same metrics, groups and filters as one in the set</td><td>January's rate, in other words</td></tr>
+    <tr><td>Restricted</td><td>groups or filters on a Restricted field</td><td>"Which customer had the largest bill?"</td></tr>
+  </table>
+  <p class="small mt">24 candidates: 16 kept, 8 rejected.</p>
+  <aside class="notes"><p>The candidates came from three analysts, as drafts. A rejected draft is not always a useless question: the on-time share and the largest-customer questions are good questions whose right answer is a refusal. Write them into the set as refusals.</p></aside>
+</section>
+
+<section class="slide" id="hijri-caveat" data-label="Hijri months" data-lo="LO4">
+  <div class="kicker">Lab 3.1, step 3</div>
+  <h2>A Hijri question about monthly facts certifies a labelling choice</h2>
+  <div class="cols cols-2">
+    <ul class="bullets small">
+      <li>Ramadan 1447 runs from about 18 February to 19 March 2026</li>
+      <li>Bills and monthly usage are dated on the first day of the service month</li>
+      <li>So "data in Ramadan 1447" counts the <b>March 2026</b> service month</li>
+      <li>Complaints are dated by day, so "complaints in Rajab 1447" is exact</li>
+    </ul>
+    <div class="callout warn small"><b>Say it in the question.</b> The certified answer must state the convention, or two analysts certify different figures and both are right.</div>
+  </div>
+  <aside class="notes"><p>The calendar uses the Umm al-Qura conversion (hijridate). Question U12 in the set. Ask: would your managers expect Ramadan's usage to include the February days? If yes, the layer needs daily usage, which is a design decision, not a test decision.</p></aside>
+</section>
+
+<section class="slide" id="checkpoint-1" data-lo="LO4">
+  <div class="kicker">Checkpoint</div>
+  <h2>Two analysts, two certified figures</h2>
+  <div class="quiz" data-type="single" data-lo="LO4">
+    <p class="lead">Two analysts certify "the collection rate for January bills" and record 0.8495 and 0.8645. Both ran the semantic layer. What must the certified answer also record so a reviewer can settle it?</p>
+    <div class="opts">
+      <div class="opt" data-why="The value is what is in dispute; more decimals do not explain it">The value to more decimal places</div>
+      <div class="opt" data-why="Who certified does not say what was run">The analysts' names and the date</div>
+      <div class="opt" data-ok>The metric and its version, the filters and the grain they ran</div>
+      <div class="opt" data-why="A model's answer is what is tested, not the reference">The assistant's answer to the same question</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> With the query recorded, the reviewer sees one analyst filtered on March, not January, and re-runs the right one.</div>
+  </div>
+  <aside class="notes"><p>Answer: C. 0.8645 is March 2026's rate, 0.8495 January's, both from Lab 3.1's data.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-3-1" data-auto="lab" data-lab="3.1">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>Usual problems: comparing a draft's filters without sorting them (the duplicate rule misses X02); treating a refusal draft as "no period"; forgetting the unit of a ranking ("label"). Reference: two empty cells and two refusals in the 44; 16 kept, 8 rejected; 60 questions, 30 per language, 8 refusals in all four areas.</p></aside>
 </section>
 
-<!-- Session 2 -->
-
+<!-- ======================= SESSION 2 ======================= -->
 <section class="slide section" id="s2" data-auto="section" data-session="2"></section>
 
-<section class="slide" id="s2-idea" data-lo="LO4">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
-  <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
-    </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+<section class="slide" id="three-kinds" data-label="Three kinds of context" data-lo="LO4">
+  <div class="kicker">What Daleel reads</div>
+  <h2>Each certified metric carries three kinds of context for the assistant</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>Synonyms</h4><p class="small mb0">In both languages: "collection rate", "نسبة التحصيل", "معدل التحصيل".</p></div>
+    <div class="card c-cyan"><h4>Description</h4><p class="small mb0">"Paid within 30 days of the due date, net of disputes, bill-month cohort."</p></div>
+    <div class="card c-coral"><h4>Examples</h4><p class="small mb0">A question and its query, such as a fiscal-year filter written correctly.</p></div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <p class="small mt">Daleel answers with a semantic query, not SQL; the layer computes the figure.</p>
+  <aside class="notes"><p>Open data/metrics/collections.yml and show the ai: block of collection_rate. The prompt is built by daleel.prompt from certified metrics only. Answering with a semantic query is what makes the layer the single source: the model chooses, the layer computes, the role applies.</p></aside>
 </section>
 
-<section class="slide" id="s2-steps" data-lo="LO4">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
+<section class="slide" id="ablation" data-label="Ablation" data-lo="LO4">
+  <div class="kicker">Lab 3.2, the design</div>
+  <h2>Remove one kind of context at a time, and keep everything else fixed</h2>
   <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+    <div class="step c-teal"><b>1 · Fix</b>the model, the 60 questions, run 1</div>
+    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · Remove one</b>synonyms, or descriptions, or examples</div>
+    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · Re-score</b>the same scorer, by language and by area</div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <div class="callout tip mt frag"><b>Takeaway.</b> One change per run, so each drop in accuracy has one cause.</div>
+  <aside class="notes"><p>Press once per step. Ask what goes wrong if you remove two kinds at once (the effects mix) or change the model between runs (a new model explains everything). This is the oldest rule of experiments, applied to prompts.</p></aside>
+</section>
+
+<section class="slide" id="contribution" data-label="Contribution" data-lo="LO4">
+  <div class="kicker">Lab 3.2, step 5</div>
+  <h2>Examples matter most overall; synonyms matter only in Arabic</h2>
+  <table class="t small">
+    <tr><th>Removed</th><th class="num">Accuracy drop</th><th class="num">Arabic</th><th class="num">English</th><th>Area hurt most</th><th class="num">More wrong but plausible</th></tr>
+    <tr><td>Examples</td><td class="num">23.3 pts</td><td class="num">23.4</td><td class="num">23.3</td><td>collections</td><td class="num">+21.7 pts</td></tr>
+    <tr><td>Descriptions</td><td class="num">15.0 pts</td><td class="num">13.4</td><td class="num">16.6</td><td>collections</td><td class="num">+15.0 pts</td></tr>
+    <tr class="hl"><td>Synonyms</td><td class="num">11.7 pts</td><td class="num">23.4</td><td class="num">0.0</td><td>billing</td><td class="num">0.0</td></tr>
+  </table>
+  <p class="small mt">Full context: 95.0% on 60 questions, run 1. Stand-in model (recorded, synthetic).</p>
+  <aside class="notes"><p>The metric names are English words, so an English question finds them without synonyms; an Arabic question does not. Synonym failures are visible (wrong scale or a refusal); description and example failures are plausible. For a mostly Arabic audience, the Arabic column decides. Say clearly: these figures come from the stand-in's recorded replies, written from a stated error model; the method is what transfers, and the stretch runs it on a hosted model.</p></aside>
+</section>
+
+<section class="slide" id="collections-desc" data-label="Without descriptions" data-lo="LO4">
+  <div class="kicker">Lab 3.2, step 3</div>
+  <h2>Without descriptions, collections accuracy falls to 40%, and every miss looks right</h2>
+  <div class="bars">
+    <div class="row"><span>Billing</span><div class="bar c-cyan" style="--w:100%"></div><span class="val">100%</span></div>
+    <div class="row"><span>Usage</span><div class="bar c-cyan" style="--w:100%"></div><span class="val">100%</span></div>
+    <div class="row"><span>Complaints</span><div class="bar c-cyan" style="--w:80%"></div><span class="val">80%</span></div>
+    <div class="row"><span>Collections</span><div class="bar c-coral" style="--w:40%"></div><span class="val">40%</span></div>
+  </div>
+  <p class="small mt">Daleel picks the finance ratio (cash over billed) for "collection rate": 0.90 for March instead of 0.86.</p>
+  <aside class="notes"><p>Day 1 again: three teams, three collection rates. The names do not tell them apart; only the certified description does ("within 30 days of the due date, net of disputes"). Complaints lose the difference between the customer's region and the region where the complaint was raised, also written only in the description.</p></aside>
+</section>
+
+<section class="slide" id="standin" data-label="Stand-in model" data-lo="LO4">
+  <div class="kicker">How the labs run without a key</div>
+  <h2>A recorded stand-in makes every figure reproducible; a free hosted model makes it real</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>Stand-in (default)</h4><p class="small mb0">720 recorded replies: 60 questions, 4 contexts, 3 runs. Written from a stated error model in <code>_tools/make_case_files.py</code>.</p></div>
+    <div class="card c-cyan"><h4>Live (stretch)</h4><p class="small mb0"><code>QAMAR_MODEL_MODE=live</code> and a free OpenRouter key: the same prompt to <code>google/gemma-4-31b-it:free</code>.</p></div>
+  </div>
+  <div class="callout warn small mt"><b>Free models change.</b> Record the model name and the date beside any live figure.</div>
+  <aside class="notes"><p>Be explicit with the room: the stand-in is not a model; it replays replies designed to show the failure kinds the session is about. Nobody should quote 95% as Daleel's accuracy. The live stretch shows how far a real free model is from it; results vary by day and by rate limits.</p></aside>
+</section>
+
+<section class="slide" id="checkpoint-2" data-lo="LO4">
+  <div class="kicker">Checkpoint</div>
+  <h2>One budget, three kinds of context</h2>
+  <div class="quiz" data-type="single" data-lo="LO4">
+    <p class="lead">Qamar's managers ask about 80% of their questions in Arabic. With the contribution table above, which kind of context should Zeyad fund first?</p>
+    <div class="opts">
+      <div class="opt" data-why="Reads only the English column">Descriptions, because they matter most in English</div>
+      <div class="opt" data-ok>Examples and Arabic synonyms tie in Arabic; he must weigh examples' plausible errors against synonyms' visible ones</div>
+      <div class="opt" data-why="Ranks by the overall drop and ignores the audience">Synonyms last, because their overall drop is smallest</div>
+      <div class="opt" data-why="Prompt length does not measure contribution">Whatever is shortest, to keep prompts small</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Both drop Arabic accuracy by about 23 points, but missing examples give plausible wrong figures, which reach decisions; missing synonyms mostly give visible errors.</div>
+  </div>
+  <aside class="notes"><p>Answer: B. The point is to read the column that matches the audience and the kind of error, not a single overall number.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-3-2" data-auto="lab" data-lab="3.2">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>Usual problems: merging the two score tables on id only, which duplicates rows when several runs are present; comparing accuracy without the language split. Reference: full 95.0%; without synonyms Arabic 73.3% and English unchanged; without descriptions collections 40%; without examples 71.7%, difficulty 1 unchanged.</p></aside>
 </section>
 
-<!-- Session 3 -->
-
+<!-- ======================= SESSION 3 ======================= -->
 <section class="slide section" id="s3" data-auto="section" data-session="3"></section>
 
-<section class="slide" id="s3-idea" data-lo="LO4">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
+<section class="slide" id="execute" data-label="Execute, then compare" data-lo="LO4">
+  <div class="kicker">Lab 3.3, step 1</div>
+  <h2>Score the figure the manager sees, not the text of the query</h2>
   <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
+    <ul class="bullets small">
+      <li>Two different queries can give the same figure: a fiscal year as a label or as a date range</li>
+      <li>A reply may come in a code fence, as a sentence, or with a bad date: each is an outcome, never a crash</li>
+      <li>Numbers match within a stated relative tolerance (0.5%); group names match exactly</li>
     </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+    <pre class="code s" data-file="a reply"><code class="language-json">```json
+{"metrics": ["collection_rate"], "by": [],
+ "where": ["time.month = DATE '2026-03-01'"]}
+```</code></pre>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>Execution accuracy is the common measure in text-to-SQL work (Spider, BIRD): run the predicted query, compare the result. Here the layer runs it with the asker's role, so an answer the role may not see is an error, which is right.</p></aside>
 </section>
 
-<section class="slide" id="s3-steps" data-lo="LO4">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="outcomes" data-label="Outcomes" data-lo="LO4">
+  <div class="kicker">Lab 3.3, step 2</div>
+  <h2>Seven outcomes, and the two that reach decisions</h2>
+  <table class="t small">
+    <tr><th>Outcome</th><th>When</th><th class="num">Run 1</th></tr>
+    <tr><td>Right</td><td>the certified figure, within tolerance</td><td class="num">50</td></tr>
+    <tr><td>Refused right</td><td>refused a must-refuse question</td><td class="num">7</td></tr>
+    <tr class="hl"><td>Wrong but plausible</td><td>half to twice the figure, or a valid wrong group</td><td class="num">2</td></tr>
+    <tr class="hl"><td>Missed refusal</td><td>answered a must-refuse question</td><td class="num">1</td></tr>
+    <tr><td>Wrong, visible</td><td>any other figure</td><td class="num">0</td></tr>
+    <tr><td>Error</td><td>no JSON, the layer failed, nothing came back</td><td class="num">0</td></tr>
+    <tr><td>Refused wrongly</td><td>refused an answerable question</td><td class="num">0</td></tr>
+  </table>
+  <aside class="notes"><p>The half-to-twice band is a convention, stated in daleel.PLAUSIBLE; a stricter team might use 80 to 125%. What matters is that it is written down and the same for every run. A missed refusal counts with the plausible errors: the number it gives looks real.</p></aside>
+</section>
+
+<section class="slide" id="three-plausible" data-label="Plausible errors" data-lo="LO4">
+  <div class="kicker">Lab 3.3, step 4</div>
+  <h2>Three answers nobody would notice on a slide</h2>
+  <div class="cols cols-3">
+    <div class="card c-coral"><h4>C13 · Riyadh</h4><p class="small mb0">Read "Riyadh" as the Central region: 86.0% instead of 81.5%.</p></div>
+    <div class="card c-coral"><h4>Q11 · Billing complaints</h4><p class="small mb0">Counted all complaints: January 2026 instead of November 2025.</p></div>
+    <div class="card c-coral"><h4>C15 · On time</h4><p class="small mb0">Answered with a draft metric (73.5%) instead of refusing.</p></div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <p class="small mt">Each looks like a careful answer. Each fails a different safeguard: a field, a metric choice, a certification status.</p>
+  <aside class="notes"><p>C13: is it a model error, a missing synonym (Riyadh is a city of the Central region) or a missing field in the prompt (customer.city is listed)? Q11: the price change in October 2025 caused billing complaints in November; the network incident in January caused complaints in general. C15 is fixed on Day 4 by a guard that refuses uncertified metrics before the layer runs them.</p></aside>
+</section>
+
+<section class="slide" id="rerun" data-label="Re-run" data-lo="LO4">
+  <div class="kicker">Lab 3.3, step 3</div>
+  <h2>A report is evidence only if a reviewer can re-run it and get the same number</h2>
+  <div class="cols cols-2">
+    <pre class="code s" data-file="from labs/"><code class="language-bash">uv run python harness/score.py \
+  --variant full --runs 1</code></pre>
+    <ul class="bullets small">
+      <li>Hashes of every input: the set, the replies, the model, the metric files</li>
+      <li>The scorer's version, the tolerance and the plausible band</li>
+      <li>The mode, and the model name and date when live</li>
+    </ul>
+  </div>
+  <div class="callout tip small mt"><b>First thing to compare when numbers differ:</b> the hashes, before any code.</div>
+  <aside class="notes"><p>The harness is a PEP 723 script: its dependencies are written in its header, so uv can run it anywhere. This is the capstone's reproducibility evidence (10 points): an assessor re-runs five questions during the defence.</p></aside>
+</section>
+
+<section class="slide" id="checkpoint-3" data-lo="LO4">
+  <div class="kicker">Checkpoint</div>
+  <h2>Same accuracy, different risk</h2>
+  <div class="quiz" data-type="single" data-lo="LO4">
+    <p class="lead">Two assistant configurations both score 90% on the certified set. In A, the misses are errors and wrong refusals. In B, the misses are wrong but plausible figures. Which do you put in front of managers, and why?</p>
+    <div class="opts">
+      <div class="opt" data-why="Treats equal accuracy as equal risk">Either: the accuracy is the same</div>
+      <div class="opt" data-why="Reads a figure as better than no figure, whatever its truth">B, because it always gives a number</div>
+      <div class="opt" data-ok>A, because its failures are seen and re-asked; B's reach decisions</div>
+      <div class="opt" data-why="Accuracy is measured on the certified set, not on how often managers ask">Neither until accuracy is measured on live traffic</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> An error costs a second question; a plausible wrong collection rate costs a decision. Report both rates, not accuracy alone.</div>
+  </div>
+  <aside class="notes"><p>Answer: C. Day 4's routing policy uses exactly this: a tolerance for wrong figures, not for errors.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-3-3" data-auto="lab" data-lab="3.3">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>Usual problems: dividing by a zero certified value in the plausible test; comparing labels as numbers; writing the report with the absolute path of the set (the hash must not depend on the folder). Reference: 95.0% accuracy, 5.0% wrong but plausible; the reviewer's re-run gives the same; C13, C15 and Q11 are the three plausible misses.</p></aside>
 </section>
 
-<!-- Session 4 -->
-
+<!-- ======================= SESSION 4 ======================= -->
 <section class="slide section" id="s4" data-auto="section" data-session="4"></section>
 
-<section class="slide" id="s4-idea" data-lo="LO4">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
-  <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
-    </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+<section class="slide" id="ask-again" data-label="Ask again" data-lo="LO4">
+  <div class="kicker">Lab 3.4, steps 1 and 2</div>
+  <h2>The three runs score about the same; the answers are not the same</h2>
+  <div class="cols cols-3">
+    <div class="stat center"><div class="big">95%</div><div class="lbl">run 1 accuracy</div></div>
+    <div class="stat center"><div class="big">90%</div><div class="lbl">runs 2 and 3</div></div>
+    <div class="stat center"><div class="big">91.7%</div><div class="lbl">questions with three agreeing answers</div></div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <p class="small mt">Five questions change answer between runs. A manager who asks twice and gets two figures stops trusting every figure.</p>
+  <aside class="notes"><p>Hosted models are not exactly deterministic even at temperature zero (batching, hardware, provider changes). The stand-in replays three recorded runs. Ask: who would notice? Only the manager who asks twice.</p></aside>
 </section>
 
-<section class="slide" id="s4-steps" data-lo="LO4">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="stability-cells" data-label="Stability" data-lo="LO4">
+  <div class="kicker">Lab 3.4, step 3</div>
+  <h2>Stable and wrong is the worst cell: re-asking never reveals it</h2>
+  <table class="t small">
+    <tr><th></th><th class="num">Questions</th><th>Found by</th></tr>
+    <tr><td>Stable right</td><td class="num">52</td><td>nothing needed</td></tr>
+    <tr><td>Unstable</td><td class="num">5</td><td>asking again</td></tr>
+    <tr class="hl"><td>Stable wrong</td><td class="num">3</td><td>only a certified answer</td></tr>
+  </table>
+  <p class="small mt">The stable-wrong three are the plausible errors of Lab 3.3: C13, C15 and Q11. The unstable five are all difficulty 2 or 3.</p>
+  <aside class="notes"><p>Agreement is not correctness. A team that tests stability alone would ship the three worst answers with confidence. Difficulty 1 questions are all stable and right here: the instability lives in fiscal periods, rankings and cumulative figures.</p></aside>
+</section>
+
+<section class="slide" id="cache-vote" data-label="Cache and vote" data-lo="LO4">
+  <div class="kicker">Lab 3.4, step 5 and the stretch</div>
+  <h2>A cache hides instability; a vote of three does not fix it</h2>
+  <div class="cols cols-2">
+    <div class="card c-navy tint"><h4>Cache run 1</h4><p class="small mb0">All five unstable questions were right on run 1: a cache shows them stable and right, while a fresh ask sometimes is not.</p></div>
+    <div class="card c-coral tint"><h4>Majority of three</h4><p class="small mb0">56 of 60 right against 57 with run 1 alone: C09 is wrong in two runs of three, so the vote picks the wrong one. Triple the cost.</p></div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <aside class="notes"><p>A cache is still useful for cost and consistency, but measure stability before caching, and re-measure when the model changes. A vote helps only when the right answer is the most common; for C09 it is not. The fix for C09 is an example for fiscal quarters, from Lab 3.2.</p></aside>
+</section>
+
+<section class="slide" id="checkpoint-4" data-lo="LO4">
+  <div class="kicker">Checkpoint</div>
+  <h2>A vendor's single run</h2>
+  <div class="quiz" data-type="single" data-lo="LO4">
+    <p class="lead">A vendor reports 96% accuracy from one run at temperature zero on your certified set. What do you ask for before trusting it?</p>
+    <div class="opts">
+      <div class="opt" data-why="More questions do not measure repeatability">A larger question set</div>
+      <div class="opt" data-ok>Three runs per question: the agreement rate and the stable-wrong questions</div>
+      <div class="opt" data-why="Temperature zero does not guarantee identical answers on hosted models">Nothing: temperature zero makes it deterministic</div>
+      <div class="opt" data-why="A higher temperature makes answers less stable, not more testable">A run at a higher temperature</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> One run hides instability and cannot separate a stable wrong answer from a lucky one.</div>
+  </div>
+  <aside class="notes"><p>Answer: B. Then ask which of the stable-wrong questions are wrong but plausible, and what the vendor changes when the model version changes.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-3-4" data-auto="lab" data-lab="3.4">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>Usual problems: comparing answers as floats with ==, which treats 0.8681 and 0.86814 as different (the lab compares the text of the rounded figure); counting a refusal as disagreement with itself. Reference: 91.7% agree; 52 stable right, 5 unstable, 3 stable wrong; all five unstable are hidden by a cache of run 1.</p></aside>
 </section>
 
-<section class="slide" id="wrap-up">
-  <div class="kicker">Day 3 · wrap-up</div>
+<section class="slide" id="wrap-up" data-label="Wrap-up" data-lo="LO4">
+  <div class="kicker">Day 3 · Wrap-up</div>
   <h2>Three things to keep</h2>
   <div class="cols cols-3">
-    <div class="card c-teal"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
-    <div class="card c-coral"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
-    <div class="card c-purple"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
+    <div class="card c-teal"><h4>Certify the query</h4><p class="small mb0">Value, metric and version, filters, grain; every area, difficulty and language; refusals.</p></div>
+    <div class="card c-cyan"><h4>Change one thing</h4><p class="small mb0">Ablate one kind of context at a time and read the column that matches your users.</p></div>
+    <div class="card c-coral"><h4>Count the plausible</h4><p class="small mb0">Report wrong-but-plausible and stable-wrong beside accuracy, in a report anyone can re-run.</p></div>
   </div>
+  <aside class="notes"><p>Ask each table: which of the three stable-wrong answers would have reached your executive committee, and through which report?</p></aside>
 </section>
 
 <section class="slide dark" id="next" data-label="Next">
   <div class="kicker">Next</div>
-  <h2>Day 4: Ship and govern</h2>
-  <p class="lead">REPLACE: what participants prepare before then; unfinished labs can be finished at home</p>
-  <aside class="notes">REPLACE: accounts, installs or reading participants need before the next unit</aside>
+  <h2>Day 4: ship and govern</h2>
+  <ul class="bullets">
+    <li>Serve the layer to tools and agents, with the role taken from the credential</li>
+    <li>Safeguards that cite the metric and refuse the uncertified</li>
+    <li>A routing policy, then a design review of a peer's product</li>
+  </ul>
+  <aside class="notes"><p>Remind participants that the capstone brief is in the README; Day 4 session 4 is a rehearsal of the design review they will face. Ask them to bring their Lab 3.3 report.</p></aside>
 </section>

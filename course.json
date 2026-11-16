@@ -450,6 +450,7 @@
             "title": "From 44 to 60 certified questions",
             "summary": "Extend the supplied certified set to cover each business area and difficulty level in Arabic and English, including questions the assistant must refuse, certifying each new answer through the semantic layer.",
             "minutes": 25,
+            "href": "D3_1_certified_set.ipynb",
             "steps": [
               {
                 "text": "Coverage of the supplied set",
@@ -487,6 +488,7 @@
             "title": "Remove one kind of context at a time",
             "summary": "Remove synonyms, descriptions and examples one at a time from the supplied configuration of Daleel and re-score each variant with the supplied scorer, by language and by area.",
             "minutes": 25,
+            "href": "D3_2_context_ablation.ipynb",
             "steps": [
               {
                 "text": "The full configuration and its score",
@@ -528,6 +530,7 @@
             "title": "Accuracy and wrong but plausible",
             "summary": "Build a harness that executes each reply, reports execution accuracy and the rate of wrong but plausible answers, and writes a report a reviewer can re-run.",
             "minutes": 25,
+            "href": "D3_3_scoring_harness.ipynb",
             "steps": [
               {
                 "text": "Execute a reply and compare",
@@ -565,6 +568,7 @@
             "title": "Three runs per question",
             "summary": "Run each certified question three times and measure how often the answers agree, which questions are stable but wrong, and how stability differs by area, difficulty and language.",
             "minutes": 25,
+            "href": "D3_4_stability.ipynb",
             "steps": [
               {
                 "text": "Load the three runs",

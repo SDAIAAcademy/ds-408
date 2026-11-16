@@ -1,0 +1,15 @@
+{
+ "n": 60,
+ "gaps": 0,
+ "ar": 30,
+ "en": 30,
+ "refusals": 8,
+ "refusal_kinds": [
+  "causal",
+  "forecast",
+  "not_matured",
+  "restricted",
+  "uncertified"
+ ],
+ "areas_with_refusal": 4
+}

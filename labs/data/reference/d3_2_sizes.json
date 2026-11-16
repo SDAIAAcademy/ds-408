@@ -1,0 +1,30 @@
+[
+ {
+  "variant": "full",
+  "chars": 6986,
+  "synonyms": 16,
+  "descriptions": 18,
+  "examples": 6
+ },
+ {
+  "variant": "no_synonyms",
+  "chars": 4827,
+  "synonyms": 0,
+  "descriptions": 18,
+  "examples": 6
+ },
+ {
+  "variant": "no_descriptions",
+  "chars": 5059,
+  "synonyms": 16,
+  "descriptions": 0,
+  "examples": 6
+ },
+ {
+  "variant": "no_examples",
+  "chars": 5540,
+  "synonyms": 16,
+  "descriptions": 18,
+  "examples": 0
+ }
+]

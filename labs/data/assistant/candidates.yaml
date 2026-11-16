@@ -1,0 +1,268 @@
+title: 'Candidate questions for the certified set: drafts, not yet certified'
+questions:
+- id: C14
+  lang: ar
+  area: collections
+  difficulty: 2
+  question: ما نسبة التحصيل لفواتير شهر مايو 2026؟
+  draft:
+    refuse: not_matured
+- id: Q13
+  lang: en
+  area: complaints
+  difficulty: 3
+  question: What was the complaint rate per 1,000 active lines for customers in the Eastern region in Q4 of the fiscal year 2025-26?
+  draft:
+    metrics:
+    - complaints_per_1k_lines
+    where:
+    - customer.region = 'EAS'
+    - time.fiscal_quarter = 'FY2025-26-Q4'
+  kind: value
+- id: Q15
+  lang: en
+  area: complaints
+  difficulty: 2
+  question: Why did complaints rise in January 2026?
+  draft:
+    refuse: causal
+- id: C12
+  lang: ar
+  area: collections
+  difficulty: 3
+  question: ما النقد المحصل منذ بداية السنة المالية حتى نهاية مايو 2026؟
+  draft:
+    metrics:
+    - cash_collected_fytd
+    by:
+    - time.month
+    where:
+    - time.fiscal_year = 'FY2026-27'
+    - time.month <= DATE '2026-05-01'
+    order: desc
+    limit: 1
+  kind: value
+- id: U15
+  lang: ar
+  area: usage
+  difficulty: 2
+  question: كم سيكون استهلاك البيانات في ديسمبر 2026؟
+  draft:
+    refuse: forecast
+- id: Q10
+  lang: ar
+  area: complaints
+  difficulty: 3
+  question: ما فئة الشكاوى الأكثر عدداً بين الشكاوى المرفوعة في المنطقة الشرقية في يناير 2026؟
+  draft:
+    metrics:
+    - complaints
+    by:
+    - complaint.category
+    where:
+    - complaint.region = 'EAS'
+    - time.month = DATE '2026-01-01'
+    order: desc
+    limit: 1
+  kind: label
+- id: U12
+  lang: ar
+  area: usage
+  difficulty: 3
+  question: كم استهلكت الخطوط من البيانات في شهر رمضان 1447 هـ؟
+  draft:
+    metrics:
+    - data_gb
+    where:
+    - time.hijri_month = '1447-09'
+  kind: value
+- id: B15
+  lang: ar
+  area: billing
+  difficulty: 2
+  question: ما الإيراد المتوقع للسنة المالية 2026-27؟
+  draft:
+    refuse: forecast
+- id: Q14
+  lang: en
+  area: complaints
+  difficulty: 2
+  question: List the mobile numbers of customers who complained more than twice in 2026.
+  draft:
+    refuse: restricted
+- id: C15
+  lang: ar
+  area: collections
+  difficulty: 2
+  question: ما نسبة الفواتير المسددة في موعدها لشهر مارس 2026؟
+  draft:
+    refuse: uncertified
+- id: X08
+  lang: en
+  area: billing
+  difficulty: 1
+  question: What was ARPA?
+  draft:
+    metrics:
+    - arpa
+  kind: value
+- id: C13
+  lang: en
+  area: collections
+  difficulty: 3
+  question: What was the collection rate for business customers in Riyadh for March 2026 bills?
+  draft:
+    metrics:
+    - collection_rate
+    where:
+    - customer.segment = 'business'
+    - customer.city = 'Riyadh'
+    - time.month = DATE '2026-03-01'
+  kind: value
+- id: X04
+  lang: en
+  area: complaints
+  difficulty: 2
+  question: How many complaints were there in the Eastern region?
+  draft:
+    metrics:
+    - complaints
+    where:
+    - complaint.region = 'EAS'
+  kind: value
+- id: B12
+  lang: ar
+  area: billing
+  difficulty: 3
+  question: كم كانت الفوترة في شهر رمضان 1447 هـ؟
+  draft:
+    metrics:
+    - billed_amount
+    where:
+    - time.hijri_month = '1447-09'
+  kind: value
+- id: X06
+  lang: en
+  area: collections
+  difficulty: 2
+  question: What share of bills was paid on time in March 2026?
+  draft:
+    metrics:
+    - on_time_payment_share
+    where:
+    - time.month = DATE '2026-03-01'
+  kind: value
+- id: X02
+  lang: ar
+  area: collections
+  difficulty: 1
+  question: كم كانت نسبة التحصيل لفواتير يناير 2026؟
+  draft:
+    metrics:
+    - collection_rate
+    where:
+    - time.month = DATE '2026-01-01'
+  kind: value
+- id: Q11
+  lang: en
+  area: complaints
+  difficulty: 3
+  question: Which month of the fiscal year 2025-26 had the most billing complaints?
+  draft:
+    metrics:
+    - billing_complaints
+    by:
+    - time.month
+    where:
+    - time.fiscal_year = 'FY2025-26'
+    order: desc
+    limit: 1
+  kind: label
+- id: X03
+  lang: en
+  area: collections
+  difficulty: 2
+  question: What was the cash to billing ratio in March 2026?
+  draft:
+    metrics:
+    - cash_collection_ratio
+    where:
+    - time.month = DATE '2026-03-01'
+  kind: value
+- id: X07
+  lang: en
+  area: billing
+  difficulty: 2
+  question: Which customer in Riyadh had the largest bill in March 2026?
+  draft:
+    metrics:
+    - billed_amount
+    by:
+    - customer.full_name
+    where:
+    - customer.city = 'Riyadh'
+    - time.month = DATE '2026-03-01'
+    order: desc
+    limit: 1
+  kind: label
+- id: C10
+  lang: ar
+  area: collections
+  difficulty: 3
+  question: أي قطاع عملاء كانت نسبة التحصيل فيه الأدنى في السنة المالية 2025-26؟
+  draft:
+    metrics:
+    - collection_rate
+    by:
+    - customer.segment
+    where:
+    - time.fiscal_year = 'FY2025-26'
+    order: asc
+    limit: 1
+  kind: label
+- id: C11
+  lang: en
+  area: collections
+  difficulty: 3
+  question: Which region had the highest collection rate for bills of the fiscal year 2025-26?
+  draft:
+    metrics:
+    - collection_rate
+    by:
+    - customer.region
+    where:
+    - time.fiscal_year = 'FY2025-26'
+    order: desc
+    limit: 1
+  kind: label
+- id: X05
+  lang: ar
+  area: billing
+  difficulty: 1
+  question: كم عدد الفواتير الصادرة عن شهر مارس 2026؟
+  draft:
+    metrics:
+    - bills_issued
+    where:
+    - time.month = DATE '2026-03-01'
+  kind: value
+- id: Q12
+  lang: ar
+  area: complaints
+  difficulty: 3
+  question: كم عدد الشكاوى التي فُتحت في شهر رجب 1447 هـ؟
+  draft:
+    metrics:
+    - complaints
+    where:
+    - time.hijri_month = '1447-07'
+  kind: value
+- id: X01
+  lang: en
+  area: collections
+  difficulty: 1
+  question: What is the collection rate?
+  draft:
+    metrics:
+    - collection_rate
+  kind: value

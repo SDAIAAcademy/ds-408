@@ -1,0 +1,649 @@
+title: 'Qamar Telecom: the supplied certified set (44 questions)'
+questions:
+- id: U01
+  lang: en
+  area: usage
+  difficulty: 1
+  question: How much data did Qamar's lines use in March 2026, in gigabytes?
+  query:
+    metrics:
+    - data_gb
+    where:
+    - time.month = DATE '2026-03-01'
+  expect:
+    kind: value
+    value: 200339.96
+    unit: GB
+- id: U02
+  lang: ar
+  area: usage
+  difficulty: 1
+  question: كم دقيقة مكالمات صوتية سُجّلت في فبراير 2026؟
+  query:
+    metrics:
+    - voice_minutes
+    where:
+    - time.month = DATE '2026-02-01'
+  expect:
+    kind: value
+    value: 621832.0
+    unit: minutes
+- id: U03
+  lang: en
+  area: usage
+  difficulty: 1
+  question: How many lines were active in June 2026?
+  query:
+    metrics:
+    - active_lines
+    where:
+    - time.month = DATE '2026-06-01'
+  expect:
+    kind: value
+    value: 3336.0
+    unit: lines
+- id: U04
+  lang: ar
+  area: usage
+  difficulty: 1
+  question: كم استهلكت خطوط المنطقة الغربية من الإنترنت في يناير 2026؟
+  query:
+    metrics:
+    - data_gb
+    where:
+    - customer.region = 'WES'
+    - time.month = DATE '2026-01-01'
+  expect:
+    kind: value
+    value: 61439.08
+    unit: GB
+- id: U05
+  lang: en
+  area: usage
+  difficulty: 1
+  question: What was total data usage in the Central region in May 2026?
+  query:
+    metrics:
+    - data_gb
+    where:
+    - customer.region = 'CEN'
+    - time.month = DATE '2026-05-01'
+  expect:
+    kind: value
+    value: 65055.06
+    unit: GB
+- id: U06
+  lang: ar
+  area: usage
+  difficulty: 2
+  question: ما متوسط استهلاك البيانات لكل خط في يونيو 2026؟
+  query:
+    metrics:
+    - data_per_line
+    where:
+    - time.month = DATE '2026-06-01'
+  expect:
+    kind: value
+    value: 64.663264
+    unit: GB per line
+- id: U07
+  lang: en
+  area: usage
+  difficulty: 2
+  question: How much data did government customers use in the fiscal year 2025-26?
+  query:
+    metrics:
+    - data_gb
+    where:
+    - customer.segment = 'government'
+    - time.fiscal_year = 'FY2025-26'
+  expect:
+    kind: value
+    value: 99753.84
+    unit: GB
+- id: U08
+  lang: ar
+  area: usage
+  difficulty: 2
+  question: كم عدد الخطوط النشطة لعملاء قطاع الأعمال في المنطقة الشرقية في أبريل 2026؟
+  query:
+    metrics:
+    - active_lines
+    where:
+    - customer.segment = 'business'
+    - customer.region = 'EAS'
+    - time.month = DATE '2026-04-01'
+  expect:
+    kind: value
+    value: 174.0
+    unit: lines
+- id: U09
+  lang: en
+  area: usage
+  difficulty: 2
+  question: What was data per active line on the Qamar Fibre 100 plan in December 2025?
+  query:
+    metrics:
+    - data_per_line
+    where:
+    - tariff.plan_name = 'Qamar Fibre 100'
+    - time.month = DATE '2025-12-01'
+  expect:
+    kind: value
+    value: 211.835289
+    unit: GB per line
+- id: U10
+  lang: ar
+  area: usage
+  difficulty: 3
+  question: أي باقة كان لها أعلى متوسط استهلاك بيانات لكل خط في يونيو 2026؟
+  query:
+    metrics:
+    - data_per_line
+    by:
+    - tariff.plan_name
+    where:
+    - time.month = DATE '2026-06-01'
+    order: desc
+    limit: 1
+  expect:
+    kind: label
+    value: Qamar Fibre 100
+    unit: label
+- id: U11
+  lang: en
+  area: usage
+  difficulty: 3
+  question: Which region used the most voice minutes in the fiscal year 2025-26?
+  query:
+    metrics:
+    - voice_minutes
+    by:
+    - customer.region
+    where:
+    - time.fiscal_year = 'FY2025-26'
+    order: desc
+    limit: 1
+  expect:
+    kind: label
+    value: CEN
+    unit: label
+- id: U13
+  lang: en
+  area: usage
+  difficulty: 3
+  question: How many voice minutes did postpaid lines in the Southern region use in Q3 of the fiscal year 2025-26?
+  query:
+    metrics:
+    - voice_minutes
+    where:
+    - line.product = 'postpaid'
+    - customer.region = 'SOU'
+    - time.fiscal_quarter = 'FY2025-26-Q3'
+  expect:
+    kind: value
+    value: 139446.0
+    unit: minutes
+- id: U14
+  lang: ar
+  area: usage
+  difficulty: 2
+  question: أي العملاء استهلكوا أكبر قدر من بيانات التجوال الشهر الماضي؟ اذكر أسماءهم.
+  expect:
+    refuse: restricted
+- id: B01
+  lang: en
+  area: billing
+  difficulty: 1
+  question: How much did Qamar bill for the service month of January 2026?
+  query:
+    metrics:
+    - billed_amount
+    where:
+    - time.month = DATE '2026-01-01'
+  expect:
+    kind: value
+    value: 576307.46
+    unit: SAR
+- id: B02
+  lang: ar
+  area: billing
+  difficulty: 1
+  question: كم عدد الفواتير الصادرة عن شهر مارس 2026؟
+  query:
+    metrics:
+    - bills_issued
+    where:
+    - time.month = DATE '2026-03-01'
+  expect:
+    kind: value
+    value: 1734.0
+    unit: bills
+- id: B03
+  lang: en
+  area: billing
+  difficulty: 1
+  question: What was the disputed amount on bills for October 2025?
+  query:
+    metrics:
+    - disputed_amount
+    where:
+    - time.month = DATE '2025-10-01'
+  expect:
+    kind: value
+    value: 6508.09
+    unit: SAR
+- id: B04
+  lang: ar
+  area: billing
+  difficulty: 1
+  question: كم بلغ إجمالي الفوترة في المنطقة الوسطى لشهر مايو 2026؟
+  query:
+    metrics:
+    - billed_amount
+    where:
+    - customer.region = 'CEN'
+    - time.month = DATE '2026-05-01'
+  expect:
+    kind: value
+    value: 200390.75
+    unit: SAR
+- id: B05
+  lang: en
+  area: billing
+  difficulty: 1
+  question: How many customers were billed in April 2026?
+  query:
+    metrics:
+    - billed_customers
+    where:
+    - time.month = DATE '2026-04-01'
+  expect:
+    kind: value
+    value: 1784.0
+    unit: customers
+- id: B06
+  lang: ar
+  area: billing
+  difficulty: 2
+  question: ما متوسط الفاتورة لكل حساب لعملاء القطاع الحكومي في يناير 2026؟
+  query:
+    metrics:
+    - arpa
+    where:
+    - customer.segment = 'government'
+    - time.month = DATE '2026-01-01'
+  expect:
+    kind: value
+    value: 496.519406
+    unit: SAR per account
+- id: B07
+  lang: en
+  area: billing
+  difficulty: 2
+  question: How much did we bill business customers in the fiscal year 2025-26?
+  query:
+    metrics:
+    - billed_amount
+    where:
+    - customer.segment = 'business'
+    - time.fiscal_year = 'FY2025-26'
+  expect:
+    kind: value
+    value: 2057728.33
+    unit: SAR
+- id: B08
+  lang: ar
+  area: billing
+  difficulty: 2
+  question: كم بلغت المبالغ المعترض عليها في المنطقة الشرقية خلال الربع الثالث من السنة المالية 2025-26؟
+  query:
+    metrics:
+    - disputed_amount
+    where:
+    - customer.region = 'EAS'
+    - time.fiscal_quarter = 'FY2025-26-Q3'
+  expect:
+    kind: value
+    value: 3393.48
+    unit: SAR
+- id: B09
+  lang: en
+  area: billing
+  difficulty: 2
+  question: What was the average bill per account in the Western region in March 2026?
+  query:
+    metrics:
+    - arpa
+    where:
+    - customer.region = 'WES'
+    - time.month = DATE '2026-03-01'
+  expect:
+    kind: value
+    value: 353.961086
+    unit: SAR per account
+- id: B10
+  lang: ar
+  area: billing
+  difficulty: 3
+  question: أي منطقة كان لها أعلى متوسط فاتورة لكل حساب في السنة المالية 2025-26؟
+  query:
+    metrics:
+    - arpa
+    by:
+    - customer.region
+    where:
+    - time.fiscal_year = 'FY2025-26'
+    order: desc
+    limit: 1
+  expect:
+    kind: label
+    value: NOR
+    unit: label
+- id: B11
+  lang: en
+  area: billing
+  difficulty: 3
+  question: Which segment had the largest billed amount in Q4 of the fiscal year 2025-26?
+  query:
+    metrics:
+    - billed_amount
+    by:
+    - customer.segment
+    where:
+    - time.fiscal_quarter = 'FY2025-26-Q4'
+    order: desc
+    limit: 1
+  expect:
+    kind: label
+    value: consumer
+    unit: label
+- id: B13
+  lang: en
+  area: billing
+  difficulty: 3
+  question: How much was billed to customers in Jeddah in June 2026?
+  query:
+    metrics:
+    - billed_amount
+    where:
+    - customer.city = 'Jeddah'
+    - time.month = DATE '2026-06-01'
+  expect:
+    kind: value
+    value: 51650.78
+    unit: SAR
+- id: B14
+  lang: ar
+  area: billing
+  difficulty: 2
+  question: اعرض رقم الهوية الوطنية ومبلغ الفاتورة لأكبر عشرة حسابات حكومية.
+  expect:
+    refuse: restricted
+- id: C01
+  lang: en
+  area: collections
+  difficulty: 1
+  question: What was the collection rate for bills issued for March 2026?
+  query:
+    metrics:
+    - collection_rate
+    where:
+    - time.month = DATE '2026-03-01'
+  expect:
+    kind: value
+    value: 0.864526
+    unit: ratio
+- id: C02
+  lang: ar
+  area: collections
+  difficulty: 1
+  question: ما نسبة التحصيل لفواتير شهر يناير 2026؟
+  query:
+    metrics:
+    - collection_rate
+    where:
+    - time.month = DATE '2026-01-01'
+  expect:
+    kind: value
+    value: 0.849537
+    unit: ratio
+- id: C03
+  lang: en
+  area: collections
+  difficulty: 1
+  question: How much cash was collected in February 2026?
+  query:
+    metrics:
+    - cash_collected
+    where:
+    - time.month = DATE '2026-02-01'
+  expect:
+    kind: value
+    value: 540627.11
+    unit: SAR
+- id: C04
+  lang: ar
+  area: collections
+  difficulty: 1
+  question: كم بلغت المتحصلات النقدية في أبريل 2026؟
+  query:
+    metrics:
+    - cash_collected
+    where:
+    - time.month = DATE '2026-04-01'
+  expect:
+    kind: value
+    value: 590927.32
+    unit: SAR
+- id: C05
+  lang: en
+  area: collections
+  difficulty: 1
+  question: What was the collection rate for government customers for December 2025 bills?
+  query:
+    metrics:
+    - collection_rate
+    where:
+    - customer.segment = 'government'
+    - time.month = DATE '2025-12-01'
+  expect:
+    kind: value
+    value: 0.560764
+    unit: ratio
+- id: C06
+  lang: ar
+  area: collections
+  difficulty: 2
+  question: ما نسبة التحصيل لعملاء القطاع الحكومي في السنة المالية 2025-26؟
+  query:
+    metrics:
+    - collection_rate
+    where:
+    - customer.segment = 'government'
+    - time.fiscal_year = 'FY2025-26'
+  expect:
+    kind: value
+    value: 0.505641
+    unit: ratio
+- id: C07
+  lang: en
+  area: collections
+  difficulty: 2
+  question: How much cash had been collected in the fiscal year by the end of December 2025?
+  query:
+    metrics:
+    - cash_collected_fytd
+    by:
+    - time.month
+    where:
+    - time.fiscal_year = 'FY2025-26'
+    - time.month <= DATE '2025-12-01'
+    order: desc
+    limit: 1
+  expect:
+    kind: value
+    value: 4039109.34
+    unit: SAR
+- id: C08
+  lang: ar
+  area: collections
+  difficulty: 2
+  question: كم حُصّل خلال 30 يوماً من تاريخ الاستحقاق لفواتير المنطقة الجنوبية في فبراير 2026؟
+  query:
+    metrics:
+    - collected_30
+    where:
+    - customer.region = 'SOU'
+    - time.month = DATE '2026-02-01'
+  expect:
+    kind: value
+    value: 48034.82
+    unit: SAR
+- id: C09
+  lang: en
+  area: collections
+  difficulty: 2
+  question: What was the collection rate in the Eastern region for Q2 of the fiscal year 2025-26?
+  query:
+    metrics:
+    - collection_rate
+    where:
+    - customer.region = 'EAS'
+    - time.fiscal_quarter = 'FY2025-26-Q2'
+  expect:
+    kind: value
+    value: 0.892228
+    unit: ratio
+- id: Q01
+  lang: en
+  area: complaints
+  difficulty: 1
+  question: How many complaints were opened in January 2026?
+  query:
+    metrics:
+    - complaints
+    where:
+    - time.month = DATE '2026-01-01'
+  expect:
+    kind: value
+    value: 151.0
+    unit: complaints
+- id: Q02
+  lang: ar
+  area: complaints
+  difficulty: 1
+  question: كم عدد شكاوى الفواتير في نوفمبر 2025؟
+  query:
+    metrics:
+    - billing_complaints
+    where:
+    - time.month = DATE '2025-11-01'
+  expect:
+    kind: value
+    value: 62.0
+    unit: complaints
+- id: Q03
+  lang: en
+  area: complaints
+  difficulty: 1
+  question: What was the median time to resolve complaints opened in March 2026, in days?
+  query:
+    metrics:
+    - median_resolution_days
+    where:
+    - time.month = DATE '2026-03-01'
+  expect:
+    kind: value
+    value: 4.0
+    unit: days
+- id: Q04
+  lang: ar
+  area: complaints
+  difficulty: 1
+  question: كم عدد البلاغات المرفوعة في المنطقة الشمالية خلال أبريل 2026؟
+  query:
+    metrics:
+    - complaints
+    where:
+    - complaint.region = 'NOR'
+    - time.month = DATE '2026-04-01'
+  expect:
+    kind: value
+    value: 8.0
+    unit: complaints
+- id: Q05
+  lang: en
+  area: complaints
+  difficulty: 1
+  question: How many billing complaints were raised in the Eastern region in December 2025?
+  query:
+    metrics:
+    - billing_complaints
+    where:
+    - complaint.region = 'EAS'
+    - time.month = DATE '2025-12-01'
+  expect:
+    kind: value
+    value: 15.0
+    unit: complaints
+- id: Q06
+  lang: ar
+  area: complaints
+  difficulty: 2
+  question: كم كان معدل الشكاوى لكل ألف خط لعملاء المنطقة الشرقية في يناير 2026؟
+  query:
+    metrics:
+    - complaints_per_1k_lines
+    where:
+    - customer.region = 'EAS'
+    - time.month = DATE '2026-01-01'
+  expect:
+    kind: value
+    value: 98.130841
+    unit: per 1,000 lines
+- id: Q07
+  lang: en
+  area: complaints
+  difficulty: 2
+  question: How many complaints did government customers open in the fiscal year 2025-26?
+  query:
+    metrics:
+    - complaints
+    where:
+    - customer.segment = 'government'
+    - time.fiscal_year = 'FY2025-26'
+  expect:
+    kind: value
+    value: 50.0
+    unit: complaints
+- id: Q08
+  lang: ar
+  area: complaints
+  difficulty: 2
+  question: ما الوسيط لمدة حل الشكاوى المرفوعة في المنطقة الغربية خلال الربع الرابع من السنة المالية 2025-26؟
+  query:
+    metrics:
+    - median_resolution_days
+    where:
+    - complaint.region = 'WES'
+    - time.fiscal_quarter = 'FY2025-26-Q4'
+  expect:
+    kind: value
+    value: 4.0
+    unit: days
+- id: Q09
+  lang: en
+  area: complaints
+  difficulty: 2
+  question: What was the complaint rate per 1,000 active lines for business customers in June 2026?
+  query:
+    metrics:
+    - complaints_per_1k_lines
+    where:
+    - customer.segment = 'business'
+    - time.month = DATE '2026-06-01'
+  expect:
+    kind: value
+    value: 35.868006
+    unit: per 1,000 lines

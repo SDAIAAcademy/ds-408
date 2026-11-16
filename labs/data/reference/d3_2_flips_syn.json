@@ -1,0 +1,72 @@
+[
+ {
+  "id": "U04",
+  "lang": "ar",
+  "area": "usage",
+  "difficulty": 1,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_visible",
+  "got_variant": 186684.0,
+  "want_full": 61439.08
+ },
+ {
+  "id": "B04",
+  "lang": "ar",
+  "area": "billing",
+  "difficulty": 1,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_visible",
+  "got_variant": 545.0,
+  "want_full": 200390.75
+ },
+ {
+  "id": "B06",
+  "lang": "ar",
+  "area": "billing",
+  "difficulty": 2,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_visible",
+  "got_variant": 50148.46,
+  "want_full": 496.519406
+ },
+ {
+  "id": "B12",
+  "lang": "ar",
+  "area": "billing",
+  "difficulty": 3,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_visible",
+  "got_variant": 1734.0,
+  "want_full": 630664.88
+ },
+ {
+  "id": "C04",
+  "lang": "ar",
+  "area": "collections",
+  "difficulty": 1,
+  "outcome_full": "right",
+  "outcome_variant": "refused_wrongly",
+  "got_variant": "no_metric",
+  "want_full": 590927.32
+ },
+ {
+  "id": "Q04",
+  "lang": "ar",
+  "area": "complaints",
+  "difficulty": 1,
+  "outcome_full": "right",
+  "outcome_variant": "refused_wrongly",
+  "got_variant": "no_metric",
+  "want_full": 8.0
+ },
+ {
+  "id": "Q08",
+  "lang": "ar",
+  "area": "complaints",
+  "difficulty": 2,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_visible",
+  "got_variant": 100.0,
+  "want_full": 4.0
+ }
+]
