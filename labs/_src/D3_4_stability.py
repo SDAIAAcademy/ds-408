@@ -7,10 +7,10 @@
 #
 # Day 3 · Session 4 (Ask it again) · 25 min. A manager who asks the same question on Sunday and on Monday and
 # gets two figures stops trusting every figure. You ask each certified question three times, measure how often
-# the answers agree, and find the cell that matters most: questions Daleel answers the same way every time,
+# the answers agree, and find the cell that matters most: questions Muhsi answers the same way every time,
 # and wrongly.
 #
-# **AI-off for steps 1 to 3.** Classify by hand-written rules first; an assistant may help with the plots after.
+# **AI-tutor.** An assistant may explain a result or help with the plots; the classification rules and the conclusions are yours.
 #
 # **Reference state.** `data/assistant/certified_60.yaml` and three recorded runs per question in
 # `data/assistant/replies.jsonl` (stand-in, synthetic: see Lab 3.2).
@@ -42,7 +42,7 @@ sys.path.insert(0, os.getcwd())
 import pandas as pd
 import qamar as Q
 import qsem as S
-import daleel as D
+import muhsi as D
 
 model = S.Model.load("data/semantic/qamar_model.yaml", Q.db(), metrics_dir="data/metrics")
 QS = D.load_set("data/assistant/certified_60.yaml")

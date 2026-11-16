@@ -68,7 +68,7 @@
   ],
   "case_study": {
     "name": "Qamar Telecom",
-    "summary": "Qamar Telecom is a fictional Saudi telecom operator whose 300 managers want to ask, in Arabic and English, about usage, billing, collections and complaints, while finance, collections and customer care each report a different collection rate. Participants certify one collection rate, write the metrics as tested code with owners and change control, build a conformed semantic layer with tariff history, fiscal and Hijri calendars and access rules by region and classification, export it to an open format, serve it to tools and agents, and evaluate Daleel, the bilingual assistant, on 60 certified questions before deciding which questions it may answer. All data is synthetic and generated with a fixed seed."
+    "summary": "Qamar Telecom is a fictional Saudi telecom operator whose 300 managers want to ask, in Arabic and English, about usage, billing, collections and complaints, while finance, collections and customer care each report a different collection rate. Participants certify one collection rate, write the metrics as tested code with owners and change control, build a conformed semantic layer with tariff history, fiscal and Hijri calendars and access rules by region and classification, export it to an open format, serve it to tools and agents, and evaluate Muhsi, the bilingual assistant, on 60 certified questions before deciding which questions it may answer. All data is synthetic and generated with a fixed seed."
   },
   "format": "intensive",
   "format_note": "Intensive: 4 teaching days of four sessions and a capstone day, with guided pre-work and a tracked follow-up task",
@@ -312,7 +312,7 @@
           ],
           "lab": {
             "id": "2.2",
-            "title": "Ten pre-aggregations, measured",
+            "title": "Pre-aggregations for the most-asked queries",
             "summary": "Add pre-aggregations for the ten most-asked metric patterns of the query log, measure query latency and rows scanned before and after, and check that every answer stayed the same.",
             "minutes": 25,
             "href": "D2_2_pre_aggregations.ipynb",
@@ -486,7 +486,7 @@
           "lab": {
             "id": "3.2",
             "title": "Remove one kind of context at a time",
-            "summary": "Remove synonyms, descriptions and examples one at a time from the supplied configuration of Daleel and re-score each variant with the supplied scorer, by language and by area.",
+            "summary": "Remove synonyms, descriptions and examples one at a time from the supplied configuration of Muhsi and re-score each variant with the supplied scorer, by language and by area.",
             "minutes": 25,
             "href": "D3_2_context_ablation.ipynb",
             "steps": [
@@ -661,7 +661,7 @@
           "lab": {
             "id": "4.2",
             "title": "Cite the metric, refuse the uncertified",
-            "summary": "Make Daleel cite the metric, filters, grain and version behind every figure and refuse uncertified metrics, Restricted fields and questions without a period, then re-score the certified set with the safeguards on.",
+            "summary": "Make Muhsi cite the metric, filters, grain and version behind every figure and refuse uncertified metrics, Restricted fields and questions without a period, then re-score the certified set with the safeguards on.",
             "minutes": 25,
             "href": "D4_2_safeguards.ipynb",
             "steps": [

@@ -3,7 +3,7 @@
     uv run python _tools/make_reference.py
 
 Days 1 and 2 are computed from the marts with plain SQL, not with the lab solutions, so a solution run
-that matches them is an independent check; Day 3 from the supplied scorer (daleel.py). Day 4's results
+that matches them is an independent check; Day 3 from the supplied scorer (muhsi.py). Day 4's results
 are judgements and protocol exchanges, so they are captured from a solution run of each lab source and
 checked by hand. Run after prepare_data.py and make_case_files.py.
 """
@@ -235,7 +235,7 @@ def d2_4(con):
 
 
 def _d3_setup(con):
-    import daleel as D
+    import muhsi as D
     import qsem as S
     model = S.Model.load(LABS / "data/semantic/qamar_model.yaml", con, metrics_dir=LABS / "data/metrics")
     return D, model, D.load_set("data/assistant/certified_60.yaml")

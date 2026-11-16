@@ -5,11 +5,11 @@
 # %% [markdown]
 # # Lab 3.1 · From 44 to 60 certified questions
 #
-# Day 3 · Session 1 (A certified set for a platform) · 25 min. Before Daleel answers 300 managers, the platform
+# Day 3 · Session 1 (A certified set for a platform) · 25 min. Before Muhsi answers 300 managers, the platform
 # needs a set of questions whose answers are certified: the figure, and the metric, filters and grain that
 # produce it. You read the coverage of the supplied set, screen 24 candidate questions, certify the ones that
 # pass through the semantic layer, and check the finished set covers every area, difficulty and language,
-# with questions Daleel must refuse.
+# with questions Muhsi must refuse.
 #
 # **AI-tutor.** An assistant may suggest paraphrases; a certified answer comes from the layer, never from a model.
 #
@@ -43,7 +43,7 @@ import copy
 import pandas as pd
 import qamar as Q
 import qsem as S
-import daleel as D
+import muhsi as D
 
 con = Q.db()
 model = S.Model.load("data/semantic/qamar_model.yaml", con, metrics_dir="data/metrics")
@@ -88,7 +88,7 @@ print("\ncells with no question in a language:", list(gaps.index))
 Q.check(len(gaps) == 2 and int(cov.refusals.sum()) == 2, "two empty cells and only two refusals in the supplied set")
 
 # %% [markdown]
-# 🔍 Both refusals in the supplied set are about personal data. Which other kinds of question should Daleel
+# 🔍 Both refusals in the supplied set are about personal data. Which other kinds of question should Muhsi
 # refuse at Qamar? Name three before reading the candidates.
 #
 # ## 2 · Screen the candidate questions (7')
@@ -143,7 +143,7 @@ Q.check(int(screened.keep.sum()) == 16 and sorted(screened[~screened.keep].rule.
 
 # %% [markdown]
 # 🔍 X06 asks for the share of bills paid on time, and only a draft metric fits. Rejecting the draft is right;
-# is the *question* useless? What should Daleel say to it, and where does that question belong in the set?
+# is the *question* useless? What should Muhsi say to it, and where does that question belong in the set?
 #
 # ## 3 · Certify the answers (7')
 #
@@ -214,7 +214,7 @@ except NotImplementedError:
 print(fc)
 Q.check(fc["n"] == 60 and fc["gaps"] == 0 and fc["ar"] == fc["en"] == 30 and fc["refusals"] >= 6 and fc["areas_with_refusal"] == 4,
         "60 questions, no empty cell, 30 per language, refusals in every area")
-path = D.save_set(full_set, Q.lab_dir("D3_1") / "certified_60.yaml", "Qamar Telecom: certified questions for Daleel")
+path = D.save_set(full_set, Q.lab_dir("D3_1") / "certified_60.yaml", "Qamar Telecom: certified questions for Muhsi")
 supplied_60 = {q["id"]: q["expect"].get("value", q["expect"].get("refuse")) for q in D.load_set("data/assistant/certified_60.yaml")}
 mine = {q["id"]: q["expect"].get("value", q["expect"].get("refuse")) for q in full_set}
 Q.check(all(D.same(mine[k], v) or mine[k] == v for k, v in supplied_60.items()), "the same answers as the supplied certified_60.yaml")

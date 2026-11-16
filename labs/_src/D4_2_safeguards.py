@@ -7,7 +7,7 @@
 #
 # Day 4 · Session 2 (Safeguards that show their work) · 25 min. Lab 3.3 found three answers nobody would notice.
 # One was a draft metric answered as if certified. You give every figure an answer card that names its metric,
-# version, filters and grain, put a guard between Daleel's reply and the layer, re-score the certified set with
+# version, filters and grain, put a guard between Muhsi's reply and the layer, re-score the certified set with
 # the guard on, and write the refusals a manager actually reads.
 #
 # **AI-tutor.** An assistant may help word the refusals; the guard's rules are tested code, not a prompt.
@@ -41,7 +41,7 @@ sys.path.insert(0, os.getcwd())
 import pandas as pd
 import qamar as Q
 import qsem as S
-import daleel as D
+import muhsi as D
 
 POLICY = Q.yaml_load("data/access/policy_governed.yaml")
 model = S.Model.load("data/semantic/qamar_model.yaml", Q.db(), metrics_dir="data/metrics", policy=POLICY, lineage=True)
@@ -99,7 +99,7 @@ Q.check(cards[0]["figure"] == "86.5%" and "v1.0.0" in cards[0]["metric"] and car
 #
 # ## 2 · The guard (8')
 #
-# The guard runs on Daleel's parsed reply, before the layer. It returns a refusal reason, or None to let the
+# The guard runs on Muhsi's parsed reply, before the layer. It returns a refusal reason, or None to let the
 # query run. Its rules, in order:
 #
 # | Reason | When |

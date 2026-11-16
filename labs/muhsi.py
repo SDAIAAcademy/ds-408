@@ -1,6 +1,6 @@
-"""daleel: Qamar Telecom's analytics assistant (دليل), as far as the labs need it.
+"""muhsi: Qamar Telecom's analytics assistant (مُحصي), as far as the labs need it.
 
-Daleel does not write SQL. It reads the metric catalogue (names, descriptions, synonyms, examples)
+Muhsi does not write SQL. It reads the metric catalogue (names, descriptions, synonyms, examples)
 and answers a question with a semantic query, a JSON object the layer executes:
 
     {"metrics": ["collection_rate"], "by": [], "where": ["time.month = DATE '2026-03-01'"]}
@@ -13,7 +13,7 @@ Two modes:
   live                QAMAR_MODEL_MODE=live and OPENROUTER_API_KEY set: the same prompt goes to a free
                       hosted model on OpenRouter (QAMAR_MODEL, default google/gemma-4-31b-it:free).
 
-    import daleel as D
+    import muhsi as D
     qs = D.load_set("data/assistant/certified_60.yaml")
     reply = D.ask(qs[0], variant="full", run=1)        # the reply text
     out = D.execute(model, D.parse(reply), qs[0])      # what the layer returns for it
@@ -41,7 +41,7 @@ TOLERANCE = 0.005  # relative: a figure within 0.5% of the certified value count
 PLAUSIBLE = (0.5, 2.0)  # a wrong figure within half to twice the certified value looks right on a slide
 REFUSE_REASONS = ["restricted", "forecast", "not_matured", "uncertified", "causal", "no_period", "no_metric"]
 
-SYSTEM = """You are Daleel, the analytics assistant of Qamar Telecom. Answer a manager's question with ONE
+SYSTEM = """You are Muhsi, the analytics assistant of Qamar Telecom. Answer a manager's question with ONE
 JSON object and nothing else.
 To answer: {"metrics": [metric names], "by": [fields to group by], "where": [SQL conditions on fields],
 "order": "desc" or "asc" (only to find the top or bottom group), "limit": 1 (with order)}.
@@ -71,7 +71,7 @@ def save_set(questions: list[dict], path, title: str = "") -> Path:
 
 # ------------------------------------------------------------------------------------ context and prompt
 def context(metrics: list[dict], variant: str = "full", certified_only: bool = True) -> list[dict]:
-    """The metric context Daleel sees. Each variant removes one kind of context and keeps the rest."""
+    """The metric context Muhsi sees. Each variant removes one kind of context and keeps the rest."""
     if variant not in VARIANTS:
         raise ValueError(f"variant must be one of {VARIANTS}")
     out = []
@@ -117,7 +117,7 @@ def _recorded() -> dict:
 
 
 def ask(q: dict, variant: str = "full", run: int = 1, metrics: list[dict] | None = None) -> str:
-    """Daleel's reply text to one question of the set."""
+    """Muhsi's reply text to one question of the set."""
     if MODE == "live":
         if metrics is None:
             raise ValueError("live mode needs the metric list")

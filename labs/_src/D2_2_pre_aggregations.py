@@ -3,7 +3,7 @@
 # dependencies = ["duckdb>=1.4", "pandas>=2.2", "pyyaml>=6.0"]
 # ///
 # %% [markdown]
-# # Lab 2.2 · Ten pre-aggregations, measured
+# # Lab 2.2 · Pre-aggregations for the most-asked queries
 #
 # Day 2 · Session 2 (Performance and cost) · 25 min. Most questions managers ask read the session table, about 2.8
 # million rows. You find the ten most-asked patterns in a month of the query log, measure them, add

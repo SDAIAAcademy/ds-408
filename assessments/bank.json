@@ -863,7 +863,7 @@
     {
       "id": "q-d4-bound-05",
       "type": "single",
-      "prompt": "Hijri-period questions show 0 wrong figures in 9 answers; the tolerance is 10% wrong figures. Why should Daleel not answer them alone yet?",
+      "prompt": "Hijri-period questions show 0 wrong figures in 9 answers; the tolerance is 10% wrong figures. Why should Muhsi not answer them alone yet?",
       "options": [
         "Hijri dates are always wrong in semantic layers",
         "The 95% upper bound on 0 of 9 is about 30%, above the tolerance",
@@ -893,7 +893,7 @@
     {
       "id": "q-d4-guard-03",
       "type": "single",
-      "prompt": "Daleel's reply asks the layer for on_time_payment_share for March 2026. The metric's status is draft. What should the guard do?",
+      "prompt": "Muhsi's reply asks the layer for on_time_payment_share for March 2026. The metric's status is draft. What should the guard do?",
       "options": [
         "Run it and add a warning to the answer",
         "Refuse, name the draft's owner and offer the nearest certified metric",

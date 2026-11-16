@@ -38,7 +38,7 @@ print("missing:", missing or "nothing")
 # %%
 import qamar as Q
 import qsem as S
-import daleel as D
+import muhsi as D
 
 con = Q.db()
 rows = con.execute("SELECT COUNT(*) FROM fct_bill").fetchone()[0]

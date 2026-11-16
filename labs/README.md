@@ -41,7 +41,7 @@ laptop CPU or in Colab; no model is downloaded.
 
 ## The assistant: stand-in and live modes
 
-Daleel (`daleel.py`) answers a question with a semantic query, which the layer executes.
+Muhsi (`muhsi.py`) answers a question with a semantic query, which the layer executes.
 
 - **Stand-in (default).** 720 recorded replies in `data/assistant/replies.jsonl`: 60 certified questions, four
   context configurations, three runs. They are synthetic, written by `_tools/make_case_files.py` from an error
@@ -58,7 +58,7 @@ Daleel (`daleel.py`) answers a question with a semantic query, which the layer e
 | `qamar.py` | data access (DuckDB views over `data/marts/`), `check`, `reference`, quick mode |
 | `qsem.py` | the course's semantic layer: models, metrics, drill-across, pre-aggregations, access rules |
 | `qossie.py` | export to the Ossie open format and a second engine (SQLite) |
-| `daleel.py` | the assistant: prompt from the metric context, stand-in and live modes, scoring |
+| `muhsi.py` | the assistant: prompt from the metric context, stand-in and live modes, scoring |
 | `harness/score.py` | the scorer a reviewer re-runs (PEP 723 script): `uv run python harness/score.py` |
 | `servers/qamar_mcp.py` | the semantic layer as an MCP server over standard input and output |
 | `ci/` | metric review rules and the CI workflow of Lab 1.3 |

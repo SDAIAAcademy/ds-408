@@ -2,7 +2,7 @@
 # requires-python = ">=3.11"
 # dependencies = ["duckdb>=1.4", "pandas>=2.2", "pyyaml>=6.0"]
 # ///
-"""Score Daleel on a certified question set, so a reviewer can re-run any figure in a report.
+"""Score Muhsi on a certified question set, so a reviewer can re-run any figure in a report.
 
     uv run python harness/score.py                                   # full context, run 1
     uv run python harness/score.py --variant no_synonyms --runs 1 2 3
@@ -21,7 +21,7 @@ from pathlib import Path
 
 LABS = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(LABS))
-import daleel as D  # noqa: E402
+import muhsi as D  # noqa: E402
 import qamar as Q  # noqa: E402
 import qsem as S  # noqa: E402
 

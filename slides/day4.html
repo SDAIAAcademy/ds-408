@@ -1,5 +1,5 @@
 <section class="slide title" id="title" data-auto="title">
-  <aside class="notes"><p>Yesterday we measured Daleel: accuracy, plausible errors, stability, which context helps. Today we ship the layer and govern the assistant: one door for tools and agents, safeguards in code, a routing policy as a recorded decision, and a design review. The afternoon is a rehearsal of the capstone defence.</p></aside>
+  <aside class="notes"><p>Yesterday we measured Muhsi: accuracy, plausible errors, stability, which context helps. Today we ship the layer and govern the assistant: one door for tools and agents, safeguards in code, a routing policy as a recorded decision, and a design review. The afternoon is a rehearsal of the capstone defence.</p></aside>
 </section>
 
 <section class="slide" id="agenda" data-auto="agenda"></section>
@@ -8,7 +8,7 @@
   <div class="kicker">Review of Day 3</div>
   <h2>A stable answer</h2>
   <div class="quiz" data-type="single" data-lo="LO4">
-    <p class="lead">Daleel gives the same collection rate for business customers in Riyadh in all three runs: 86.0%. The certified answer is 81.5%. What kind of result is this, and what found it?</p>
+    <p class="lead">Muhsi gives the same collection rate for business customers in Riyadh in all three runs: 86.0%. The certified answer is 81.5%. What kind of result is this, and what found it?</p>
     <div class="opts">
       <div class="opt" data-why="Agreement between runs is not correctness">Stable and right, found by asking three times</div>
       <div class="opt" data-why="The three runs agree, so it is not unstable">Unstable, found by asking three times</div>
@@ -146,7 +146,7 @@
     <tr><td>Full, three runs</td><td class="num">91.7%</td><td class="num">93.3%</td><td class="num">8.3%</td><td class="num">6.7%</td></tr>
     <tr class="hl"><td>Without descriptions, run 1</td><td class="num">80.0%</td><td class="num">83.3%</td><td class="num">20.0%</td><td class="num">6.7%</td></tr>
   </table>
-  <p class="small mt">Without descriptions, Daleel reaches for the finance ratio, a draft: the guard refuses it. Accuracy barely moves; plausible errors fall by two thirds.</p>
+  <p class="small mt">Without descriptions, Muhsi reaches for the finance ratio, a draft: the guard refuses it. Accuracy barely moves; plausible errors fall by two thirds.</p>
   <aside class="notes"><p>Stand-in replies, synthetic. A refused answerable question is a cost (the manager asks an analyst) but not a wrong figure. The remaining plausible errors are C13, Q11 and the unstable fiscal questions: certified metrics, wrong filters. Only the routing policy handles those.</p></aside>
 </section>
 
@@ -164,7 +164,7 @@
   <div class="kicker">Checkpoint</div>
   <h2>Where the safeguard lives</h2>
   <div class="quiz" data-type="single" data-lo="LO5">
-    <p class="lead">A team adds to Daleel's prompt: "Never answer with a draft metric." Its evaluation still shows one draft metric answered in every run. What is the right fix?</p>
+    <p class="lead">A team adds to Muhsi's prompt: "Never answer with a draft metric." Its evaluation still shows one draft metric answered in every run. What is the right fix?</p>
     <div class="opts">
       <div class="opt" data-why="Louder instructions are still requests">Repeat the rule in capital letters</div>
       <div class="opt" data-why="Removes the evidence, not the behaviour">Remove that question from the certified set</div>
@@ -187,7 +187,7 @@
   <div class="kicker">A decision, not a score</div>
   <h2>The committee states a tolerance; the evidence decides each type of question</h2>
   <div class="cols cols-2">
-    <div class="card c-navy tint"><h4>Qamar's tolerance</h4><p class="small mb0">At most 10% wrong figures for any question type Daleel answers alone.</p></div>
+    <div class="card c-navy tint"><h4>Qamar's tolerance</h4><p class="small mb0">At most 10% wrong figures for any question type Muhsi answers alone.</p></div>
     <ul class="bullets small">
       <li>A wrong figure: plausible, visible, or a missed refusal</li>
       <li>Not a wrong figure: an error or a wrong refusal (costly, but seen)</li>

@@ -5,7 +5,7 @@
 # %% [markdown]
 # # Lab 3.2 · Remove one kind of context at a time
 #
-# Day 3 · Session 2 (Which context helps) · 25 min. Daleel reads three kinds of context on each metric:
+# Day 3 · Session 2 (Which context helps) · 25 min. Muhsi reads three kinds of context on each metric:
 # synonyms in both languages, descriptions, and worked examples. Zeyad (data platform lead) has budget to
 # maintain one of them well. You remove each kind in turn, everything else fixed (the same model, the same
 # questions, run 1), re-score with the supplied scorer, and build the table that tells him which one to fund.
@@ -47,7 +47,7 @@ import json
 import pandas as pd
 import qamar as Q
 import qsem as S
-import daleel as D
+import muhsi as D
 
 model = S.Model.load("data/semantic/qamar_model.yaml", Q.db(), metrics_dir="data/metrics")
 METRICS = list(model.metrics.values())
@@ -57,7 +57,7 @@ print(len(QS), "questions; mode:", D.MODE)
 # %% [markdown]
 # ## 1 · The full configuration and its score (4')
 #
-# `D.context(METRICS, variant)` is what Daleel sees: certified metrics only, each with or without one kind of
+# `D.context(METRICS, variant)` is what Muhsi sees: certified metrics only, each with or without one kind of
 # context. `D.score(model, QS, variant)` asks every question, executes the reply on the layer and classifies it.
 #
 # ✏️ **Exercise** · Return, for each of the four variants, the prompt size in characters and how many metrics
@@ -137,7 +137,7 @@ print(f_desc.to_string(index=False))
 Q.check(by_area.accuracy.idxmin() == "collections", "without descriptions, collections lose most")
 
 # %% [markdown]
-# 🔍 Most collections flips are `wrong_plausible`, not errors. Which metric did Daleel use instead? Open
+# 🔍 Most collections flips are `wrong_plausible`, not errors. Which metric did Muhsi use instead? Open
 # `data/metrics/collections.yml` and say which sentence of the certified description tells them apart.
 #
 # ## 4 · Without examples (5')
@@ -155,7 +155,7 @@ print(f_ex[["id", "lang", "area", "difficulty", "outcome_variant", "got_variant"
 Q.check(len(f_ex) > len(f_syn) and f_ex.difficulty.min() >= 2, "examples matter most, and only above difficulty 1")
 
 # %% [markdown]
-# 🔍 Pick two flips. What did Daleel do to the fiscal year, the fiscal quarter or the Hijri month? Is the result
+# 🔍 Pick two flips. What did Muhsi do to the fiscal year, the fiscal quarter or the Hijri month? Is the result
 # a figure anyone would notice on a slide?
 #
 # ## 5 · The contribution table (6')

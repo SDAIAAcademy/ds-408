@@ -5,7 +5,7 @@
 # %% [markdown]
 # # Lab 3.3 · Accuracy and wrong but plausible
 #
-# Day 3 · Session 3 (A scoring harness) · 25 min. Eissa (data governance) will not accept "Daleel is 95%
+# Day 3 · Session 3 (A scoring harness) · 25 min. Eissa (data governance) will not accept "Muhsi is 95%
 # accurate" from a slide. He wants a harness that executes every reply on the semantic layer, compares it
 # with the certified answer, separates the wrong answers anyone would notice from the ones nobody would, and a
 # report he can re-run himself and get the same numbers.
@@ -43,7 +43,7 @@ import re
 import pandas as pd
 import qamar as Q
 import qsem as S
-import daleel as D
+import muhsi as D
 
 model = S.Model.load("data/semantic/qamar_model.yaml", Q.db(), metrics_dir="data/metrics")
 QS = D.load_set("data/assistant/certified_60.yaml")
@@ -188,7 +188,7 @@ def report(table: pd.DataFrame, folder: Path) -> float:
     t = table.assign(correct=table.outcome.isin(["right", "refused_right"]))
     acc = round(float(t.correct.mean()), 3)
     plaus = round(float(t.outcome.isin(["wrong_plausible", "missed_refusal"]).mean()), 3)
-    lines = ["# Daleel on the certified set: run 1, full context", "",
+    lines = ["# Muhsi on the certified set: run 1, full context", "",
              f"Accuracy **{acc:.1%}** on {len(t)} questions; wrong but plausible **{plaus:.1%}**.", "",
              "## Outcomes", "", t.outcome.value_counts().to_string(), "",
              "## By area and language", "", t.groupby("area").correct.mean().round(3).to_string(), "",
@@ -219,7 +219,7 @@ Q.check(abs(reviewer["accuracy"] - acc) < 1e-9, "the reviewer's re-run gives you
 # ## 4 · Read the wrong but plausible answers (5')
 #
 # ✏️ **Exercise** · For every `wrong_plausible` or `missed_refusal` row, return the question, the metric and
-# filters Daleel used, and the certified metric and filters, so a reader sees *what* went wrong.
+# filters Muhsi used, and the certified metric and filters, so a reader sees *what* went wrong.
 
 # %%
 def read_plausible(table: pd.DataFrame) -> pd.DataFrame:

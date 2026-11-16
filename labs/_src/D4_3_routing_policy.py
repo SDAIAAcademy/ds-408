@@ -6,12 +6,12 @@
 # # Lab 4.3 · A routing policy from the evaluation
 #
 # Day 4 · Session 3 (Which questions may go to the assistant) · 25 min. Qamar's executive committee states a
-# tolerance: **at most 10% wrong figures** for any type of question Daleel answers alone. You measure the
+# tolerance: **at most 10% wrong figures** for any type of question Muhsi answers alone. You measure the
 # wrong-figure rate by question type with the guard on, put an upper bound on each rate, give each type a route,
 # and write the decision record Eissa will file.
 #
-# **AI-off for steps 1 to 3.** The routes follow from the numbers; write the decision record yourself, then an
-# assistant may check its wording.
+# **AI-tutor.** An assistant may check the wording of the decision record; the routes follow from the numbers and are
+# yours.
 #
 # **Reference state.** `data/assistant/evaluation.csv`: the 60 certified questions, three runs each, full context,
 # Lab 4.2's guard on (stand-in model, synthetic). A wrong figure is `wrong_plausible`, `wrong_visible` or
@@ -76,7 +76,7 @@ print(r.to_string(index=False))
 Q.check(int(r.answers.sum()) == 180 and int(r.wrong.sum()) == 12, "180 answers, 12 wrong figures")
 
 # %% [markdown]
-# 🔍 Hijri questions show 0 wrong figures. Would you let Daleel answer them alone? How many answers is that
+# 🔍 Hijri questions show 0 wrong figures. Would you let Muhsi answer them alone? How many answers is that
 # zero based on?
 #
 # ## 2 · An upper bound, not a point (6')
@@ -171,18 +171,18 @@ def decision_record(policy: pd.DataFrame) -> str:
     review = ", ".join(policy[policy.route == "assistant_with_review"].type)
     analyst = ", ".join(policy[policy.route == "analyst"].type)
     return "\n".join([
-        "# Decision record: which questions Daleel may answer", "",
+        "# Decision record: which questions Muhsi may answer", "",
         f"Status: proposed · Date: {pd.Timestamp.today():%Y-%m-%d} · Owner: Eissa Al-Mahfouth (data governance)", "",
         "## Context", "",
-        "Daleel answers managers' questions through Qamar's semantic layer, with the guard of Lab 4.2 on. Evidence: 60 certified",
+        "Muhsi answers managers' questions through Qamar's semantic layer, with the guard of Lab 4.2 on. Evidence: 60 certified",
         "questions (30 Arabic, 30 English), three runs each, full context. Model: the course's stand-in (recorded, synthetic);",
         "a live model must be re-evaluated before this record applies to it.", "",
         "## Tolerance", "",
-        f"At most {TOLERANCE:.0%} of the figures Daleel gives alone may be wrong, judged on the 95% upper bound, not the point rate.", "",
+        f"At most {TOLERANCE:.0%} of the figures Muhsi gives alone may be wrong, judged on the 95% upper bound, not the point rate.", "",
         "## Evidence", "", *table, "", f"evaluation.csv SHA-256 (first 12): `{digest}`", "",
         "## Decision", "",
-        f"- Daleel answers alone: {alone or 'none'}.",
-        f"- Daleel answers with the answer card; an analyst samples the answers weekly: {review or 'none'}.",
+        f"- Muhsi answers alone: {alone or 'none'}.",
+        f"- Muhsi answers with the answer card; an analyst samples the answers weekly: {review or 'none'}.",
         f"- Routed to an analyst or a certified report: {analyst or 'none'}.", "",
         "## Consequences", "",
         "Managers wait longer for fiscal, ranking and cumulative questions; the analysts' weekly sample costs about two hours.",

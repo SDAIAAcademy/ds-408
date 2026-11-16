@@ -7,7 +7,7 @@ complaints) in your own public GitHub repository, then defend it in a design rev
 ## Start
 
 1. Create a new public repository and copy into it, from this course's `labs/`: `qamar.py`, `qsem.py`,
-   `daleel.py`, `harness/`, `pyproject.toml`, `uv.lock`, `prepare_data.py` and `data/marts/` (or run
+   `muhsi.py`, `harness/`, `pyproject.toml`, `uv.lock`, `prepare_data.py` and `data/marts/` (or run
    `prepare_data.py` to regenerate the marts).
 2. Copy `README_template.md` from this folder as your repository's `README.md`, and `questions_template.yaml`
    as the start of your certified set.

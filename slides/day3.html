@@ -1,5 +1,5 @@
 <section class="slide title" id="title" data-auto="title">
-  <aside class="notes"><p>Yesterday the metrics got a home: a conformed, fast, governed and portable layer. Today an assistant, Daleel, answers managers' questions through that layer, and we measure it the way a platform team must before 300 managers use it. Collect the three questions each participant brought; keep the Arabic ones for session 1.</p></aside>
+  <aside class="notes"><p>Yesterday the metrics got a home: a conformed, fast, governed and portable layer. Today an assistant, Muhsi, answers managers' questions through that layer, and we measure it the way a platform team must before 300 managers use it. Collect the three questions each participant brought; keep the Arabic ones for session 1.</p></aside>
 </section>
 
 <section class="slide" id="agenda" data-auto="agenda"></section>
@@ -17,7 +17,7 @@
     </div>
     <div class="callout tip why"><b>Why.</b> Deny by default turns a forgotten rule into a visible error for one role, instead of a silent leak to every limited role.</div>
   </div>
-  <aside class="notes"><p>Answer: A. Today that matters again: Daleel asks the layer with the manager's role, so an assistant cannot see more than its user. Day 4 takes the role from the credential.</p></aside>
+  <aside class="notes"><p>Answer: A. Today that matters again: Muhsi asks the layer with the manager's role, so an assistant cannot see more than its user. Day 4 takes the role from the credential.</p></aside>
 </section>
 
 <!-- ======================= SESSION 1 ======================= -->
@@ -33,7 +33,7 @@
       <li>Your managers ask about <b>your</b> collection rate, fiscal year and Hijri months</li>
       <li>DS-307 ended with ten certified answers and a go or no-go memo; a platform needs more</li>
     </ul>
-    <div class="card c-navy tint"><h4>Qamar's set</h4><p class="small mb0">60 questions: four areas, three difficulties, 30 in Arabic and 30 in English, 8 that Daleel must refuse.</p></div>
+    <div class="card c-navy tint"><h4>Qamar's set</h4><p class="small mb0">60 questions: four areas, three difficulties, 30 in Arabic and 30 in English, 8 that Muhsi must refuse.</p></div>
   </div>
   <aside class="notes"><p>Source: Spider 2.0, arxiv.org/abs/2411.07763, an enterprise text-to-SQL benchmark. Do not quote its percentages as if they applied here; the point is that a general score does not transfer. One slide of DS-307 recap: ten questions were enough for one go or no-go on one area. Ask: who has seen a vendor accuracy figure? On what questions was it measured?</p></aside>
 </section>
@@ -78,7 +78,7 @@
 </section>
 
 <section class="slide" id="refusals" data-label="Refusals" data-lo="LO4">
-  <div class="kicker">The questions Daleel must refuse</div>
+  <div class="kicker">The questions Muhsi must refuse</div>
   <h2>A refusal is a right answer, and the set must test five kinds of it</h2>
   <div class="cols cols-3">
     <div class="card c-coral"><h4>Restricted</h4><p class="small mb0">Names, national IDs or mobile numbers of customers.</p></div>
@@ -145,15 +145,15 @@
 <section class="slide section" id="s2" data-auto="section" data-session="2"></section>
 
 <section class="slide" id="three-kinds" data-label="Three kinds of context" data-lo="LO4">
-  <div class="kicker">What Daleel reads</div>
+  <div class="kicker">What Muhsi reads</div>
   <h2>Each certified metric carries three kinds of context for the assistant</h2>
   <div class="cols cols-3">
     <div class="card c-teal"><h4>Synonyms</h4><p class="small mb0">In both languages: "collection rate", "نسبة التحصيل", "معدل التحصيل".</p></div>
     <div class="card c-cyan"><h4>Description</h4><p class="small mb0">"Paid within 30 days of the due date, net of disputes, bill-month cohort."</p></div>
     <div class="card c-coral"><h4>Examples</h4><p class="small mb0">A question and its query, such as a fiscal-year filter written correctly.</p></div>
   </div>
-  <p class="small mt">Daleel answers with a semantic query, not SQL; the layer computes the figure.</p>
-  <aside class="notes"><p>Open data/metrics/collections.yml and show the ai: block of collection_rate. The prompt is built by daleel.prompt from certified metrics only. Answering with a semantic query is what makes the layer the single source: the model chooses, the layer computes, the role applies.</p></aside>
+  <p class="small mt">Muhsi answers with a semantic query, not SQL; the layer computes the figure.</p>
+  <aside class="notes"><p>Open data/metrics/collections.yml and show the ai: block of collection_rate. The prompt is built by muhsi.prompt from certified metrics only. Answering with a semantic query is what makes the layer the single source: the model chooses, the layer computes, the role applies.</p></aside>
 </section>
 
 <section class="slide" id="ablation" data-label="Ablation" data-lo="LO4">
@@ -190,7 +190,7 @@
     <div class="row"><span>Complaints</span><div class="bar c-cyan" style="--w:80%"></div><span class="val">80%</span></div>
     <div class="row"><span>Collections</span><div class="bar c-coral" style="--w:40%"></div><span class="val">40%</span></div>
   </div>
-  <p class="small mt">Daleel picks the finance ratio (cash over billed) for "collection rate": 0.90 for March instead of 0.86.</p>
+  <p class="small mt">Muhsi picks the finance ratio (cash over billed) for "collection rate": 0.90 for March instead of 0.86.</p>
   <aside class="notes"><p>Day 1 again: three teams, three collection rates. The names do not tell them apart; only the certified description does ("within 30 days of the due date, net of disputes"). Complaints lose the difference between the customer's region and the region where the complaint was raised, also written only in the description.</p></aside>
 </section>
 
@@ -202,7 +202,7 @@
     <div class="card c-cyan"><h4>Live (stretch)</h4><p class="small mb0"><code>QAMAR_MODEL_MODE=live</code> and a free OpenRouter key: the same prompt to <code>google/gemma-4-31b-it:free</code>.</p></div>
   </div>
   <div class="callout warn small mt"><b>Free models change.</b> Record the model name and the date beside any live figure.</div>
-  <aside class="notes"><p>Be explicit with the room: the stand-in is not a model; it replays replies designed to show the failure kinds the session is about. Nobody should quote 95% as Daleel's accuracy. The live stretch shows how far a real free model is from it; results vary by day and by rate limits.</p></aside>
+  <aside class="notes"><p>Be explicit with the room: the stand-in is not a model; it replays replies designed to show the failure kinds the session is about. Nobody should quote 95% as Muhsi's accuracy. The live stretch shows how far a real free model is from it; results vary by day and by rate limits.</p></aside>
 </section>
 
 <section class="slide" id="checkpoint-2" data-lo="LO4">
@@ -258,7 +258,7 @@
     <tr><td>Error</td><td>no JSON, the layer failed, nothing came back</td><td class="num">0</td></tr>
     <tr><td>Refused wrongly</td><td>refused an answerable question</td><td class="num">0</td></tr>
   </table>
-  <aside class="notes"><p>The half-to-twice band is a convention, stated in daleel.PLAUSIBLE; a stricter team might use 80 to 125%. What matters is that it is written down and the same for every run. A missed refusal counts with the plausible errors: the number it gives looks real.</p></aside>
+  <aside class="notes"><p>The half-to-twice band is a convention, stated in muhsi.PLAUSIBLE; a stricter team might use 80 to 125%. What matters is that it is written down and the same for every run. A missed refusal counts with the plausible errors: the number it gives looks real.</p></aside>
 </section>
 
 <section class="slide" id="three-plausible" data-label="Plausible errors" data-lo="LO4">

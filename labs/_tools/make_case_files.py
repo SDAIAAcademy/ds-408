@@ -162,7 +162,7 @@ def _model():
 
 def _certified():
     sys.path.insert(0, str(LABS / "_tools"))
-    import daleel as D
+    import muhsi as D
     from questions import ANSWERABLE, REFUSALS
     model = _model()
     out = []
@@ -178,10 +178,10 @@ def _certified():
 
 
 def questions():
-    import daleel as D
+    import muhsi as D
     from questions import FLAWED, HELD_OUT
     full = _certified()
-    D.save_set(full, ASSIST / "certified_60.yaml", "Qamar Telecom: certified questions for Daleel (synthetic)")
+    D.save_set(full, ASSIST / "certified_60.yaml", "Qamar Telecom: certified questions for Muhsi (synthetic)")
     supplied = [q for q in full if q["id"] not in HELD_OUT]
     D.save_set(supplied, ASSIST / "supplied_44.yaml", "Qamar Telecom: the supplied certified set (44 questions)")
     cands = []
@@ -360,7 +360,7 @@ def _guard(model, query: dict):
 
 
 def evaluation():
-    import daleel as D
+    import muhsi as D
     import qsem as S
     pol = Q.yaml_load("data/access/policy_governed.yaml")
     model = S.Model.load(DATA / "semantic" / "qamar_model.yaml", Q.db(), metrics_dir=DATA / "metrics", policy=pol, lineage=True)
