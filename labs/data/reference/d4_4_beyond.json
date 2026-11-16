@@ -1,0 +1,22 @@
+[
+ {
+  "lens": "correctness",
+  "finding": "collection_rate is finance's cash-over-billed ratio, marked certified",
+  "evidence": "expr: cash_collected / billed_amount; the agreed definition is paid within 30 days of due date over net due, by bill cohort"
+ },
+ {
+  "lens": "correctness",
+  "finding": "the collection_rate test reconciles to its own formula",
+  "evidence": "the test divides deduplicated cash by billed amount: it passes whatever the definition, so it proves nothing"
+ },
+ {
+  "lens": "reproducibility",
+  "finding": "the README claims 97% with no command and no input hashes",
+  "evidence": "**97% accurate** on our certified questions, so managers can use it for every question type"
+ },
+ {
+  "lens": "governance",
+  "finding": "the README sends every question type to the assistant",
+  "evidence": "'managers can use it for every question type': no refusals, no routes to an analyst"
+ }
+]

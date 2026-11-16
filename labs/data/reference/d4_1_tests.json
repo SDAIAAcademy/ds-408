@@ -1,0 +1,26 @@
+[
+ {
+  "test": "no credential refuses initialize",
+  "passed": true
+ },
+ {
+  "test": "manager sees only EAS",
+  "passed": true
+ },
+ {
+  "test": "a role argument is an error",
+  "passed": true
+ },
+ {
+  "test": "an uncertified metric is an error",
+  "passed": true
+ },
+ {
+  "test": "names are masked for the executive",
+  "passed": true
+ },
+ {
+  "test": "unknown method is -32601",
+  "passed": true
+ }
+]

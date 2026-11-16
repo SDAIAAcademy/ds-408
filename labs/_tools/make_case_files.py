@@ -304,9 +304,142 @@ def recordings():
     print("wrote data/assistant/replies.jsonl", len(rows), "replies (stand-in, synthetic)")
 
 
+# ---------------------------------------------------------------------------------- serving (Lab 4.1)
+DEMO_TOKENS = {"demo-exec-4081": "executive", "demo-eas-4082": "regional_manager_eas", "demo-coll-4083": "collections_officer"}
+
+
+def serving():
+    import hashlib
+    import json
+    pol = json.loads((DATA / "reference" / "d2_3_policy.json").read_text(encoding="utf-8"))
+    head = ("# Governed access policy of the Qamar semantic layer: Lab 2.3's fixed policy (complaint row rule added).\n"
+            "# Used with deny_by_default and lineage by the protocol server of Lab 4.1. Synthetic.\n")
+    (DATA / "access" / "policy_governed.yaml").write_text(head + Q.yaml_dump(pol), encoding="utf-8", newline="\n")
+    toks = {"tokens": {hashlib.sha256(t.encode()).hexdigest(): r for t, r in DEMO_TOKENS.items()}}
+    head = ("# Credential registry of the protocol server: SHA-256 digest of each token, and the role it carries.\n"
+            "# The three tokens are synthetic demo values printed in Lab 4.1; a real registry never holds tokens.\n")
+    (DATA / "access" / "tokens.yaml").write_text(head + Q.yaml_dump(toks), encoding="utf-8", newline="\n")
+    print("wrote data/access/policy_governed.yaml and tokens.yaml")
+
+
+# ---------------------------------------------------------------------------------- evaluation (Lab 4.3)
+def qtype(q: dict) -> str:
+    if "refuse" in q["expect"]:
+        return "must_refuse"
+    query, where = q["query"], " ".join(q["query"].get("where", []))
+    if q["expect"]["kind"] == "label":
+        return "ranking"
+    if "hijri_month" in where:
+        return "hijri_period"
+    if any(m.endswith("_fytd") for m in query["metrics"]):
+        return "cumulative"
+    if "fiscal_" in where:
+        return "fiscal_period"
+    return "lookup"
+
+
+def _guard(model, query: dict):
+    """Lab 4.2's guard, for the supplied evaluation: no_metric, uncertified, restricted, no_period, not_matured."""
+    import qsem as S
+    mets = query.get("metrics", [])
+    if not mets or any(m not in model.metrics for m in mets):
+        return "no_metric"
+    if any(model.metrics[m].get("status") != "certified" for m in mets):
+        return "uncertified"
+    for text in (query.get("by", []) or []) + (query.get("where", []) or []):
+        for ds, f in S.REF.findall(text):
+            if ds in model.datasets and model.is_restricted(ds, model.field(ds, f)):
+                return "restricted"
+    if not any(w.strip().startswith("time.") for w in query.get("where", []) or []):
+        return "no_period"
+    if "collection_rate" in mets:
+        due = model.query(["net_due_30"], where=query.get("where", []))
+        if due.empty or due.net_due_30.isna().iloc[0] or due.net_due_30.iloc[0] == 0:
+            return "not_matured"
+    return None
+
+
+def evaluation():
+    import daleel as D
+    import qsem as S
+    pol = Q.yaml_load("data/access/policy_governed.yaml")
+    model = S.Model.load(DATA / "semantic" / "qamar_model.yaml", Q.db(), metrics_dir=DATA / "metrics", policy=pol, lineage=True)
+    rows = []
+    for q in D.load_set("data/assistant/certified_60.yaml"):
+        for run in (1, 2, 3):
+            reply = D.parse(D.ask(q, "full", run))
+            reason = _guard(model, reply) if "metrics" in reply else None
+            out = {"refused": reason} if reason else D.execute(model, reply, q)
+            rows.append({"id": q["id"], "lang": q["lang"], "area": q["area"], "difficulty": q["difficulty"], "type": qtype(q),
+                         "run": run, "outcome": D.outcome(q, out)})
+    write_csv(ASSIST / "evaluation.csv", rows)
+
+
+# ---------------------------------------------------------------------------------- peer package (Lab 4.4)
+# A peer team's analytics product with planted flaws (all synthetic), stated here for trainers:
+#   model     the line-to-tariff join has no validity dates (fan-out by plan)
+#   metrics   collection_rate is finance's cash-over-billed ratio, marked certified, with a test that
+#             reconciles to its own formula (passes, proves nothing)
+#   policy    no row rule for complaints, allow by default, lineage off (contact_name readable)
+#   eval      30 questions, English only, one run, no must-refuse question; "97%"
+#   routing   rankings sent to the assistant alone on 0 wrong of 4 answers (point rate, no bound)
+#   README    claims 97% with no command to re-run and no input hashes
+def peer():
+    import copy
+    import json
+    import qsem as S
+    out = DATA / "review"
+    out.mkdir(parents=True, exist_ok=True)
+    doc = copy.deepcopy(S.load_yaml(DATA / "semantic" / "qamar_model.yaml"))
+    doc["name"] = "team_b_product"
+    doc["datasets"] = [d for d in doc["datasets"] if d["name"] != "usage_event"]
+    for d in doc["datasets"]:
+        if d["name"] == "line":
+            for j in d["joins"]:
+                j.pop("asof", None)
+    head = "# Team B's semantic model (peer package for the design review; synthetic).\n"
+    (out / "model.yaml").write_text(head + Q.yaml_dump(doc), encoding="utf-8", newline="\n")
+    mets = []
+    for f in ["billing.yml", "collections.yml", "usage.yml", "complaints.yml"]:
+        for m in S.load_yaml(DATA / "metrics" / f):
+            if m["name"] in ("collection_rate", "cash_collection_ratio", "on_time_payment_share", "bills_paid_on_time"):
+                continue
+            mets.append(m)
+    cash = "(SELECT SUM(amount) FROM (SELECT DISTINCT bill_id, paid_date, amount, batch_id FROM fct_payment))"
+    mets.append({"name": "collection_rate", "label": "Collection rate", "type": "derived", "inputs": ["cash_collected", "billed_amount"],
+                 "expr": "cash_collected / billed_amount", "unit": "ratio", "owner": "Team B", "version": "1.0.0", "status": "certified",
+                 "description": "Collection rate: cash collected over amount billed.",
+                 "ai": {"synonyms": {"en": ["collection rate", "collections rate"], "ar": ["نسبة التحصيل"]}},
+                 "tests": [{"reconcile": f"SELECT {cash} / (SELECT SUM(amount_due) FROM fct_bill)"}]})
+    head = "# Team B's metrics: billing, collections, usage and complaints (peer package; synthetic).\n"
+    (out / "metrics.yml").write_text(head + Q.yaml_dump(mets), encoding="utf-8", newline="\n")
+    pol = S.load_yaml(DATA / "access" / "policy.yaml")
+    pol["settings"] = {"deny_by_default": False, "lineage": False}
+    (out / "policy.yaml").write_text("# Team B's access policy (peer package; synthetic).\n" + Q.yaml_dump(pol), encoding="utf-8", newline="\n")
+    rng = random.Random(4084)
+    rows = []
+    types = ["lookup"] * 20 + ["fiscal_period"] * 6 + ["ranking"] * 4
+    for i, t in enumerate(types, 1):
+        rows.append({"id": f"T{i:02d}", "lang": "en", "type": t, "run": 1, "outcome": "right"})
+    rows[rng.randrange(20, 26)]["outcome"] = "wrong_plausible"
+    write_csv(out / "evaluation.csv", rows)
+    routing = {"tolerance": 0.10, "rule": "route to the assistant when the measured wrong-figure rate is within the tolerance",
+               "routes": {"lookup": "assistant", "fiscal_period": "assistant", "ranking": "assistant"}}
+    (out / "routing.yaml").write_text("# Team B's routing policy (peer package; synthetic).\n" + Q.yaml_dump(routing), encoding="utf-8", newline="\n")
+    readme = ("# Team B: governed analytics for billing and collections\n\n"
+              "Our assistant is **97% accurate** on our certified questions, so managers can use it for every question type.\n\n"
+              "- Semantic model: `model.yaml`; metrics: `metrics.yml` (all reconciliation tests pass)\n"
+              "- Access: `policy.yaml`, three roles\n- Evaluation: `evaluation.csv`\n- Routing: `routing.yaml`\n")
+    (out / "README.md").write_text(readme, encoding="utf-8", newline="\n")
+    (out / "manifest.json").write_text(json.dumps({"team": "Team B", "files": ["README.md", "model.yaml", "metrics.yml", "policy.yaml",
+                                                   "evaluation.csv", "routing.yaml"]}, indent=1) + "\n", encoding="utf-8", newline="\n")
+    print("wrote data/review/ (Team B's peer package)")
+
+
 # ---------------------------------------------------------------------------------- main
 STEPS = {"catalogue": catalogue, "starter": starter, "querylog": querylog, "questions": questions,
-         "recordings": recordings}
+         "recordings": recordings, "serving": serving, "evaluation": evaluation,
+         "peer": peer}
 
 if __name__ == "__main__":
     for name, fn in STEPS.items():

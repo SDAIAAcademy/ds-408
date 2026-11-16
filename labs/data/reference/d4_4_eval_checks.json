@@ -1,0 +1,37 @@
+[
+ {
+  "lens": "evaluation",
+  "finding": "fewer than 40 certified questions",
+  "evidence": "30 questions"
+ },
+ {
+  "lens": "evaluation",
+  "finding": "one language only",
+  "evidence": "languages: ['en']"
+ },
+ {
+  "lens": "evaluation",
+  "finding": "stability not measured",
+  "evidence": "1 run per question"
+ },
+ {
+  "lens": "evaluation",
+  "finding": "no must-refuse question",
+  "evidence": "types: ['fiscal_period', 'lookup', 'ranking']"
+ },
+ {
+  "lens": "routing",
+  "finding": "lookup routed to the assistant on a point rate",
+  "evidence": "0 of 20 wrong; upper bound 16% > 10%"
+ },
+ {
+  "lens": "routing",
+  "finding": "fiscal_period routed to the assistant on a point rate",
+  "evidence": "1 of 6 wrong; upper bound 56% > 10%"
+ },
+ {
+  "lens": "routing",
+  "finding": "ranking routed to the assistant on a point rate",
+  "evidence": "0 of 4 wrong; upper bound 49% > 10%"
+ }
+]

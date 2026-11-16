@@ -620,6 +620,7 @@
             "title": "A protocol server with role-scoped credentials",
             "summary": "Expose the semantic layer through a Model Context Protocol server over standard input and output, with the role taken from the credential, and test it for three roles and for a request that claims another role.",
             "minutes": 25,
+            "href": "D4_1_serve_layer.ipynb",
             "steps": [
               {
                 "text": "Start the server and list its tools",
@@ -662,6 +663,7 @@
             "title": "Cite the metric, refuse the uncertified",
             "summary": "Make Daleel cite the metric, filters, grain and version behind every figure and refuse uncertified metrics, Restricted fields and questions without a period, then re-score the certified set with the safeguards on.",
             "minutes": 25,
+            "href": "D4_2_safeguards.ipynb",
             "steps": [
               {
                 "text": "The answer card",
@@ -699,6 +701,7 @@
             "title": "A routing policy from the evaluation",
             "summary": "Set a routing policy from the evaluation and a stated tolerance for wrong figures: the wrong-figure rate by question type with an upper bound, a route for each type, and a decision record.",
             "minutes": 25,
+            "href": "D4_3_routing_policy.ipynb",
             "steps": [
               {
                 "text": "Wrong-figure rate by question type",
@@ -736,6 +739,7 @@
             "title": "Review a peer's product",
             "summary": "Present the product design to a peer panel: run the review checks on a peer's package, add what the checks cannot see, rank the findings by risk and log the decisions taken.",
             "minutes": 25,
+            "href": "D4_4_design_review.ipynb",
             "steps": [
               {
                 "text": "Run the review checks",

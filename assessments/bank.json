@@ -861,38 +861,129 @@
       "weight": 1
     },
     {
-      "id": "q-example-5",
+      "id": "q-d4-bound-05",
       "type": "single",
-      "prompt": "REPLACE: a practice question on LO5, as a short scenario",
+      "prompt": "Hijri-period questions show 0 wrong figures in 9 answers; the tolerance is 10% wrong figures. Why should Daleel not answer them alone yet?",
       "options": [
-        "REPLACE: a wrong option that a common misconception makes tempting",
-        "REPLACE: the right answer",
-        "REPLACE: a wrong option that a common misconception makes tempting",
-        "REPLACE: a wrong option that a common misconception makes tempting"
+        "Hijri dates are always wrong in semantic layers",
+        "The 95% upper bound on 0 of 9 is about 30%, above the tolerance",
+        "Nine answers are too many for a small type",
+        "The tolerance applies only to fiscal questions"
       ],
       "correct": [
         1
       ],
-      "explanation": "REPLACE: why the right answer is right, in one sentence",
+      "explanation": "With few answers, zero errors is compatible with a high rate; the upper bound shows how high.",
       "misconceptions": [
-        "REPLACE: the misconception behind this option",
+        "The measured rate is 0%; the issue is evidence, not the calendar",
         "",
-        "REPLACE: the misconception behind this option",
-        "REPLACE: the misconception behind this option"
+        "The problem is too few answers, not too many",
+        "The tolerance applies to every type"
       ],
       "lo": [
         "LO5"
       ],
       "day": "day4",
-      "session": 1,
+      "session": 3,
+      "slide": "upper-bound",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d4-guard-03",
+      "type": "single",
+      "prompt": "Daleel's reply asks the layer for on_time_payment_share for March 2026. The metric's status is draft. What should the guard do?",
+      "options": [
+        "Run it and add a warning to the answer",
+        "Refuse, name the draft's owner and offer the nearest certified metric",
+        "Run collection_rate instead without saying so",
+        "Ask the model to try again"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "An uncertified metric is refused in code; a helpful refusal says why and points to the certified alternative.",
+      "misconceptions": [
+        "A warning beside a figure is still a figure on a slide",
+        "",
+        "A silent substitution answers a different question",
+        "Another try may answer the same draft again"
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day4",
+      "session": 2,
+      "slide": "guard",
       "level": "apply",
       "pool": "practice",
       "weight": 1
     },
     {
-      "id": "q-example-6",
+      "id": "q-d4-inject-02",
+      "type": "single",
+      "prompt": "The Eastern manager's token sends a filter \"customer.region = 'CEN' OR 1=1\". The layer still returns Eastern rows only. Why?",
+      "options": [
+        "The server removes OR from filters",
+        "The role's row rule is applied inside each dataset before the caller's filters",
+        "DuckDB ignores 1=1",
+        "The manager has no permission to filter"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A filter is combined with rows the rule already limited, so it can narrow them but never widen them.",
+      "misconceptions": [
+        "The filter is passed on unchanged",
+        "",
+        "1=1 is true in any SQL engine",
+        "Filtering is allowed; widening is not possible"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": "day4",
+      "session": 1,
+      "slide": "three-roles",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d4-log-10",
+      "type": "single",
+      "prompt": "A design review ends with a list of ranked findings. What turns the list into something the next review can check?",
+      "options": [
+        "A summary paragraph",
+        "A decision, an owner and a due date for each finding",
+        "The panel members' names",
+        "A score for the whole product"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Without an owner and a date, a finding is an opinion; with them, the next review checks what was done.",
+      "misconceptions": [
+        "Summaries are not checkable",
+        "",
+        "Names say who reviewed, not who fixes",
+        "A single score hides which finding blocks release"
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": "day4",
+      "session": 4,
+      "slide": "rank-and-log",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d4-matured-04",
       "type": "tf",
-      "prompt": "REPLACE: a statement on LO6 that is true",
+      "prompt": "On 1 July 2026 a manager asks for May 2026's collection rate (paid within 30 days of the due date). The guard refuses with 'not matured'. This is right because May's bills have not all reached 30 days past their due date.",
       "options": [
         "True",
         "False"
@@ -900,17 +991,168 @@
       "correct": [
         0
       ],
-      "explanation": "REPLACE: why the right answer is right, in one sentence",
+      "explanation": "A cohort's rate is final only when its 30-day window has closed; before that it understates collection.",
       "misconceptions": [
         "",
-        "REPLACE: the misconception behind this option"
+        "Treats a partial cohort as a final figure"
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day4",
+      "session": 2,
+      "slide": "guard",
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d4-rank-09",
+      "type": "single",
+      "prompt": "A panel scores findings by impact times likelihood. Which finding should score highest?",
+      "options": [
+        "DuckDB-only SQL in three fields",
+        "No command to re-run the evaluation in the README",
+        "The regional manager can see complaints of all regions",
+        "One run per question in the evaluation"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "A silent leak on a common query has the highest impact and likelihood; the others are visible, rare or about evidence.",
+      "misconceptions": [
+        "Matters only when the engine changes",
+        "Weakens the evidence but reaches no manager",
+        "",
+        "Weakens the evidence of stability, but leaks nothing"
       ],
       "lo": [
         "LO6"
       ],
       "day": "day4",
+      "session": 4,
+      "slide": "rank-and-log",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d4-record-07",
+      "type": "single",
+      "prompt": "A routing decision record lists the routes and the tolerance. What is the most important thing missing if it has no review triggers?",
+      "options": [
+        "The name of the model's vendor",
+        "When the decision must be re-evaluated, such as a model change or a major metric version",
+        "The colour coding of the routes",
+        "The number of managers"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Risk management includes monitoring: the decision holds only for the model and metrics it was measured on.",
+      "misconceptions": [
+        "Useful context, but it does not make the decision revisit itself",
+        "",
+        "Presentation, not governance",
+        "Useful context, but it does not change when to re-decide"
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day4",
+      "session": 3,
+      "slide": "decision-record",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d4-review-08",
+      "type": "single",
+      "prompt": "In a peer's package, every reconciliation test passes, but the certified collection rate is defined as cash collected over amount billed. How should the panel treat it?",
+      "options": [
+        "As fine, since the tests pass",
+        "As a low-risk documentation issue",
+        "As a high-risk correctness finding: the agreed definition differs and the test only checks its own formula",
+        "As a portability finding"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "A test written from the same formula proves consistency, not correctness; the wrong definition gives plausible figures silently.",
+      "misconceptions": [
+        "Passing tests do not show the definition is the agreed one",
+        "Every collection-rate question gets a wrong figure",
+        "",
+        "It would be wrong on any engine"
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": "day4",
+      "session": 4,
+      "slide": "checks-and-reading",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d4-role-01",
+      "type": "single",
+      "prompt": "A protocol server for the semantic layer runs over standard input and output for one agent. Where should it take the caller's role from?",
+      "options": [
+        "From a role argument in each tool call",
+        "From the credential in the server's environment, mapped to a role by a registry",
+        "From the agent's system prompt",
+        "From the region named in the question"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The role must come from something the server checks; for a stdio server the credential comes from the environment.",
+      "misconceptions": [
+        "Arguments are written by the caller, and for an agent by any text it read",
+        "",
+        "A prompt is text the model may change or ignore",
+        "A region in a question is a filter, not a permission"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": "day4",
       "session": 1,
-      "level": "understand",
+      "slide": "role-from-credential",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d4-route-06",
+      "type": "single",
+      "prompt": "Fiscal-period questions show 4 wrong figures in 27 answers (14.8%); the tolerance is 10%. Which route follows from Qamar's rule?",
+      "options": [
+        "Assistant alone",
+        "Assistant with the answer card and weekly review",
+        "An analyst or a certified report",
+        "Refuse every fiscal question"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "The measured rate itself is above the tolerance, so the type goes to an analyst until new evidence brings it under.",
+      "misconceptions": [
+        "The upper bound is far above the tolerance",
+        "Review is for types whose rate is within the tolerance",
+        "",
+        "These questions are answerable; they need a different route, not a refusal"
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day4",
+      "session": 3,
+      "slide": "routes",
+      "level": "apply",
       "pool": "practice",
       "weight": 1
     }

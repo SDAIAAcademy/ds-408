@@ -2,8 +2,10 @@
 
     uv run python _tools/make_reference.py
 
-Computed from the marts with plain SQL, not with the lab solutions, so a solution run that matches
-them is an independent check. Run after prepare_data.py.
+Days 1 and 2 are computed from the marts with plain SQL, not with the lab solutions, so a solution run
+that matches them is an independent check; Day 3 from the supplied scorer (daleel.py). Day 4's results
+are judgements and protocol exchanges, so they are captured from a solution run of each lab source and
+checked by hand. Run after prepare_data.py and make_case_files.py.
 """
 from __future__ import annotations
 
@@ -333,8 +335,56 @@ def d3_4(con):
     save("d3_4_hidden", sorted(set(per[per.stability == "unstable"].id) & first))
 
 
+def _solution_run(name: str) -> dict:
+    """Run one lab source (solutions included) from labs/ and return its namespace."""
+    import os
+    os.chdir(LABS)
+    ns = {"__name__": "__lab__"}
+    exec(compile((LABS / "_src" / f"{name}.py").read_text(encoding="utf-8"), name, "exec"), ns)
+    return ns
+
+
+def _records(df):
+    return json.loads(df.to_json(orient="records", force_ascii=False))
+
+
+def d4_1(con):
+    ns = _solution_run("D4_1_serve_layer")
+    save("d4_1_handshake", ns["hs"])
+    save("d4_1_three_roles", _records(ns["seen"]))
+    save("d4_1_raise", _records(ns["tries"]))
+    save("d4_1_tests", _records(ns["tests"]))
+
+
+def d4_2(con):
+    ns = _solution_run("D4_2_safeguards")
+    save("d4_2_cards", ns["cards"])
+    save("d4_2_verdicts", ns["verdicts"])
+    after = {}
+    for variant, runs in [("full", (1, 2, 3)), ("no_descriptions", (1,))]:
+        after[variant] = ns["D"].summary(ns["guarded_score"](variant, runs)).iloc[0].to_dict()
+    save("d4_2_after", after)
+    save("d4_2_refusals", ns["texts"])
+
+
+def d4_3(con):
+    ns = _solution_run("D4_3_routing_policy")
+    save("d4_3_rates", _records(ns["rates"](ns["EVAL"])))
+    save("d4_3_bounds", _records(ns["r"][["type", "upper"]]))
+    save("d4_3_routes", _records(ns["policy"]))
+    save("d4_3_record", ns["record"])
+
+
+def d4_4(con):
+    ns = _solution_run("D4_4_design_review")
+    save("d4_4_eval_checks", ns["checks2"])
+    save("d4_4_beyond", ns["extra"])
+    save("d4_4_ranked", _records(ns["ranked"]))
+    save("d4_4_log", _records(ns["log"]))
+
+
 STEPS = {"d1_1": d1_1, "d1_2": d1_2, "d1_3": d1_3, "d1_4": d1_4, "d2_1": d2_1, "d2_2": d2_2, "d2_3": d2_3, "d2_4": d2_4,
-         "d3_1": d3_1, "d3_2": d3_2, "d3_3": d3_3, "d3_4": d3_4}
+         "d3_1": d3_1, "d3_2": d3_2, "d3_3": d3_3, "d3_4": d3_4, "d4_1": d4_1, "d4_2": d4_2, "d4_3": d4_3, "d4_4": d4_4}
 
 if __name__ == "__main__":
     con = Q.db()

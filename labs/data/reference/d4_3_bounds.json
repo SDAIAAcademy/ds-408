@@ -1,0 +1,26 @@
+[
+ {
+  "type": "cumulative",
+  "upper": 0.564
+ },
+ {
+  "type": "fiscal_period",
+  "upper": 0.325
+ },
+ {
+  "type": "hijri_period",
+  "upper": 0.299
+ },
+ {
+  "type": "lookup",
+  "upper": 0.093
+ },
+ {
+  "type": "must_refuse",
+  "upper": 0.202
+ },
+ {
+  "type": "ranking",
+  "upper": 0.31
+ }
+]

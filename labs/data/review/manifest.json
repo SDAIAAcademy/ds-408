@@ -1,0 +1,11 @@
+{
+ "team": "Team B",
+ "files": [
+  "README.md",
+  "model.yaml",
+  "metrics.yml",
+  "policy.yaml",
+  "evaluation.csv",
+  "routing.yaml"
+ ]
+}

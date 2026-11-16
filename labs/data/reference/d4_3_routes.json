@@ -1,0 +1,56 @@
+[
+ {
+  "type": "cumulative",
+  "questions": 2,
+  "answers": 6,
+  "wrong": 1,
+  "rate": 0.167,
+  "upper": 0.564,
+  "route": "analyst"
+ },
+ {
+  "type": "fiscal_period",
+  "questions": 9,
+  "answers": 27,
+  "wrong": 4,
+  "rate": 0.148,
+  "upper": 0.325,
+  "route": "analyst"
+ },
+ {
+  "type": "hijri_period",
+  "questions": 3,
+  "answers": 9,
+  "wrong": 0,
+  "rate": 0.0,
+  "upper": 0.299,
+  "route": "assistant_with_review"
+ },
+ {
+  "type": "lookup",
+  "questions": 30,
+  "answers": 90,
+  "wrong": 3,
+  "rate": 0.033,
+  "upper": 0.093,
+  "route": "assistant"
+ },
+ {
+  "type": "must_refuse",
+  "questions": 8,
+  "answers": 24,
+  "wrong": 1,
+  "rate": 0.042,
+  "upper": 0.202,
+  "route": "assistant_with_review"
+ },
+ {
+  "type": "ranking",
+  "questions": 8,
+  "answers": 24,
+  "wrong": 3,
+  "rate": 0.125,
+  "upper": 0.31,
+  "route": "analyst"
+ }
+]

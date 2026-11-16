@@ -64,10 +64,10 @@ Every lab is a notebook in `labs/`. Open it in Google Colab from the course page
 | 3.2 | Day 3 · Session 2 | Remove one kind of context at a time | [`D3_2_context_ablation.ipynb`](labs/D3_2_context_ablation.ipynb) |
 | 3.3 | Day 3 · Session 3 | Accuracy and wrong but plausible | [`D3_3_scoring_harness.ipynb`](labs/D3_3_scoring_harness.ipynb) |
 | 3.4 | Day 3 · Session 4 | Three runs per question | [`D3_4_stability.ipynb`](labs/D3_4_stability.ipynb) |
-| 4.1 | Day 4 · Session 1 | A protocol server with role-scoped credentials |  |
-| 4.2 | Day 4 · Session 2 | Cite the metric, refuse the uncertified |  |
-| 4.3 | Day 4 · Session 3 | A routing policy from the evaluation |  |
-| 4.4 | Day 4 · Session 4 | Review a peer's product |  |
+| 4.1 | Day 4 · Session 1 | A protocol server with role-scoped credentials | [`D4_1_serve_layer.ipynb`](labs/D4_1_serve_layer.ipynb) |
+| 4.2 | Day 4 · Session 2 | Cite the metric, refuse the uncertified | [`D4_2_safeguards.ipynb`](labs/D4_2_safeguards.ipynb) |
+| 4.3 | Day 4 · Session 3 | A routing policy from the evaluation | [`D4_3_routing_policy.ipynb`](labs/D4_3_routing_policy.ipynb) |
+| 4.4 | Day 4 · Session 4 | Review a peer's product | [`D4_4_design_review.ipynb`](labs/D4_4_design_review.ipynb) |
 <!-- /academy:labs -->
 
 ## Capstone

@@ -1,0 +1,8 @@
+{
+ "protocol": "2025-11-25",
+ "tools": [
+  "list_metrics",
+  "describe_metric",
+  "query_metrics"
+ ]
+}
