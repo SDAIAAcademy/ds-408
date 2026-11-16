@@ -56,10 +56,10 @@ Every lab is a notebook in `labs/`. Open it in Google Colab from the course page
 | 1.2 | Day 1 · Session 2 | Five metrics as code | [`D1_2_metrics_as_code.ipynb`](labs/D1_2_metrics_as_code.ipynb) |
 | 1.3 | Day 1 · Session 3 | A change taken through review | [`D1_3_change_control.ipynb`](labs/D1_3_change_control.ipynb) |
 | 1.4 | Day 1 · Session 4 | Deprecate in a 40-metric catalogue | [`D1_4_catalogue_lifecycle.ipynb`](labs/D1_4_catalogue_lifecycle.ipynb) |
-| 2.1 | Day 2 · Session 1 | Four areas, one customer, one calendar |  |
-| 2.2 | Day 2 · Session 2 | Ten pre-aggregations, measured |  |
-| 2.3 | Day 2 · Session 3 | Three roles and a seeded leak |  |
-| 2.4 | Day 2 · Session 4 | Export to Ossie, query from SQLite |  |
+| 2.1 | Day 2 · Session 1 | Four areas, one customer, one calendar | [`D2_1_conformed_model.ipynb`](labs/D2_1_conformed_model.ipynb) |
+| 2.2 | Day 2 · Session 2 | Ten pre-aggregations, measured | [`D2_2_pre_aggregations.ipynb`](labs/D2_2_pre_aggregations.ipynb) |
+| 2.3 | Day 2 · Session 3 | Three roles and a seeded leak | [`D2_3_access_rules.ipynb`](labs/D2_3_access_rules.ipynb) |
+| 2.4 | Day 2 · Session 4 | Export to Ossie, query from SQLite | [`D2_4_portability.ipynb`](labs/D2_4_portability.ipynb) |
 | 3.1 | Day 3 · Session 1 | From 44 to 60 certified questions |  |
 | 3.2 | Day 3 · Session 2 | Remove one kind of context at a time |  |
 | 3.3 | Day 3 · Session 3 | Accuracy and wrong but plausible |  |

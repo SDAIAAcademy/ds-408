@@ -62,7 +62,7 @@ def yaml_dump(obj, path=None) -> str:
     if path:
         p = Path(path)
         p.parent.mkdir(parents=True, exist_ok=True)
-        p.write_text(text, encoding="utf-8")
+        p.write_text(text, encoding="utf-8", newline="\n")
     return text
 
 
@@ -102,15 +102,16 @@ def usage_events(con, rows: int | None = None) -> int:
           FROM fct_usage_monthly u
           WHERE CAST(substr(line_id, 2) AS INTEGER) % {keep} = 0
         ), s AS (
-          SELECT m.*, i, 40 + (k * 7) % 40 AS n
-          FROM m, range(0, 80) r(i)
+          SELECT m.*, i, n, CASE WHEN voice_min > 0 THEN (n + 2) // 3 ELSE 0 END AS n_voice
+          FROM (SELECT *, 40 + (k * 7) % 40 AS n FROM m) m, range(0, 80) r(i)
+          WHERE i < n
         )
         SELECT line_id,
                usage_month + CAST((i * 13 + k) % 28 AS INTEGER) AS event_date,
                CASE WHEN i % 3 = 0 AND voice_min > 0 THEN 'voice' ELSE 'data' END AS kind,
-               CASE WHEN i % 3 = 0 AND voice_min > 0 THEN 0 ELSE round(data_gb * 1024 / (n - n // 3), 3) END AS mb,
-               CASE WHEN i % 3 = 0 AND voice_min > 0 THEN round(voice_min * 60.0 / (n // 3 + 1), 1) ELSE 0 END AS seconds
-        FROM s WHERE i < n
+               CASE WHEN i % 3 = 0 AND voice_min > 0 THEN 0 ELSE data_gb * 1024 / (n - n_voice) END AS mb,
+               CASE WHEN i % 3 = 0 AND voice_min > 0 THEN voice_min * 60.0 / n_voice ELSE 0 END AS seconds
+        FROM s
     """)
     return con.execute("SELECT count(*) FROM fct_usage_event").fetchone()[0]
 

@@ -308,6 +308,26 @@ class Model:
                 return sql
         return None
 
+    def plan(self, metrics: list[str], by: list[str] | None = None, where: list[str] | None = None) -> list[dict]:
+        """Which table each simple component of a query reads, and how many rows that table has."""
+        by, where = list(by or []), list(where or [])
+        comps: dict = {}
+        for name in metrics:
+            self._expand(name, comps, by)
+        out = []
+        for cname, (m, cby) in comps.items():
+            rule = self._row_rule(m["dataset"])
+            conds = where + ([rule] if rule else [])
+            refs = set(cby) | {x.group(0) for c in conds for x in REF.finditer(c)}
+            pre = next((p for p in self.preaggs.values() if p["dataset"] == m["dataset"] and m["name"] in p["measures"]
+                        and refs <= set(p["by"]) and m["agg"].lower() in ADDITIVE), None)
+            table = f"pre_{pre['name']}" if pre else self.datasets[m["dataset"]]["source"]
+            if table.strip().lower().startswith("select"):
+                table = f"({table})"
+            rows = self.con.execute(f"SELECT count(*) FROM {table}").fetchone()[0]
+            out.append({"component": cname, "reads": f"pre_{pre['name']}" if pre else m["dataset"], "rows": rows})
+        return out
+
     # ------------------------------------------------------------------ describing
     def describe(self, name: str) -> dict:
         m = self.metrics[name]

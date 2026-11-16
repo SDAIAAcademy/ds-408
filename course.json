@@ -273,6 +273,7 @@
             "title": "Four areas, one customer, one calendar",
             "summary": "Model subscribers, lines, bills and complaints with conformed customer and time dimensions, fix a cross-area fan-out and a tariff join without validity dates, and prove the model with reconciliation tests against source totals.",
             "minutes": 25,
+            "href": "D2_1_conformed_model.ipynb",
             "steps": [
               {
                 "text": "Read the starter model",
@@ -314,6 +315,7 @@
             "title": "Ten pre-aggregations, measured",
             "summary": "Add pre-aggregations for the ten most-asked metric patterns of the query log, measure query latency and rows scanned before and after, and check that every answer stayed the same.",
             "minutes": 25,
+            "href": "D2_2_pre_aggregations.ipynb",
             "steps": [
               {
                 "text": "The ten most-asked patterns",
@@ -355,6 +357,7 @@
             "title": "Three roles and a seeded leak",
             "summary": "Add row-level rules by region, mask Restricted fields and test with three roles; the tests find a dataset without a rule and a field that copies a Restricted column without its label.",
             "minutes": 25,
+            "href": "D2_3_access_rules.ipynb",
             "steps": [
               {
                 "text": "The roles and the classification register",
@@ -396,6 +399,7 @@
             "title": "Export to Ossie, query from SQLite",
             "summary": "Export the model to an Apache Ossie document, compile three metrics from it for a second engine (SQLite), compare the results with DuckDB and fix the expression that did not port.",
             "minutes": 25,
+            "href": "D2_4_portability.ipynb",
             "steps": [
               {
                 "text": "Export the model",

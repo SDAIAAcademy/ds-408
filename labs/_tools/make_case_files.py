@@ -98,8 +98,56 @@ def catalogue():
               [{"report": r, "report_owner": o, "metric_ref": m} for r, o, ms in reports for m in ms])
 
 
+# ---------------------------------------------------------------------------------- starter model (Lab 2.1)
+def starter():
+    import copy
+    import qsem as S
+    doc = copy.deepcopy(S.load_yaml(DATA / "semantic" / "qamar_model.yaml"))
+    for d in doc["datasets"]:
+        if d["name"] == "complaint":
+            d.pop("time")
+            d.pop("joins")
+        if d["name"] == "line":
+            for j in d["joins"]:
+                j.pop("asof", None)
+    head = ("# Lab 2.1 starting state: the complaint dataset is not yet conformed (no time, no join to customer)\n"
+            "# and the tariff join of line has no validity dates. The finished model is qamar_model.yaml.\n")
+    (DATA / "semantic" / "model_starter.yaml").write_text(head + Q.yaml_dump(doc), encoding="utf-8", newline="\n")
+    print("wrote data/semantic/model_starter.yaml")
+
+
+# ---------------------------------------------------------------------------------- query log (Lab 2.2)
+def querylog():
+    rng = random.Random(4082)
+    patterns = [  # (metrics, by, weight): what managers ask most, by area
+        (["session_data_gb"], ["customer.region", "time.month"], 60),
+        (["sessions"], ["time.month"], 48),
+        (["session_data_gb", "lines_with_sessions"], ["tariff.plan_name"], 40),
+        (["call_minutes"], ["customer.region", "time.month"], 36),
+        (["session_data_gb"], ["customer.segment", "time.fiscal_year"], 33),
+        (["sessions", "call_minutes"], ["usage_event.kind", "time.month"], 30),
+        (["session_data_gb"], ["time.day"], 26),
+        (["sessions"], ["customer.region", "customer.segment"], 24),
+        (["call_minutes"], ["tariff.plan_name", "time.fiscal_quarter"], 21),
+        (["session_data_gb", "sessions"], ["customer.city"], 19),
+        (["lines_with_sessions"], ["time.month"], 12),
+        (["billed_amount"], ["time.month"], 9),
+        (["collection_rate"], ["customer.segment"], 8),
+        (["complaints"], ["complaint.category", "time.month"], 7),
+        (["session_data_gb"], ["line.product", "customer.region"], 5),
+        (["data_gb"], ["tariff.plan_name"], 4),
+    ]
+    roles = ["executive", "regional_manager_eas", "collections_officer"]
+    rows = []
+    for i in range(1, 401):
+        mets, by, _ = rng.choices(patterns, weights=[p[2] for p in patterns])[0]
+        rows.append({"query_id": f"QL{i:04d}", "asked_by_role": rng.choice(roles), "metrics": "|".join(mets),
+                     "group_by": "|".join(by), "days_ago": rng.randrange(0, 30)})
+    write_csv(DATA / "semantic" / "query_log.csv", rows)
+
+
 # ---------------------------------------------------------------------------------- main
-STEPS = {"catalogue": catalogue}
+STEPS = {"catalogue": catalogue, "starter": starter, "querylog": querylog}
 
 if __name__ == "__main__":
     for name, fn in STEPS.items():

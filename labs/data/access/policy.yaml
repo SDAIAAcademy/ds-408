@@ -1,0 +1,32 @@
+# Access policy of the Qamar Telecom semantic layer (Lab 2.3 starting state; synthetic).
+# The levels are those of the NDMO Data Classification Policy. The register below is Qamar's own
+# (fictional) classification of source columns; columns not listed are treated as below Restricted
+# for this exercise.
+classification_levels: [Top Secret, Secret, Restricted, Public]
+classification:
+  dim_customer.full_name: Restricted
+  dim_customer.national_id: Restricted
+  dim_customer.msisdn: Restricted
+  dim_customer.date_of_birth: Restricted
+roles:
+  executive:
+    description: Executive committee; all regions; no access to Restricted customer fields
+    regions: all
+    restricted: false
+  regional_manager_eas:
+    description: Regional manager, Eastern region; Eastern data only; no Restricted fields
+    regions: [EAS]
+    restricted: false
+  collections_officer:
+    description: Collections officer; all regions; sees Restricted contact fields to contact customers who owe
+    regions: all
+    restricted: true
+# How each dataset reaches the region a row belongs to. A limited role sees only rows of its regions.
+row_rules:
+  customer: customer.region
+  line: customer.region
+  usage: customer.region
+  usage_event: customer.region
+  bill: customer.region
+  collection: customer.region
+  payment: customer.region

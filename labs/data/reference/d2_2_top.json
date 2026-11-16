@@ -1,0 +1,101 @@
+[
+ {
+  "metrics": [
+   "session_data_gb"
+  ],
+  "by": [
+   "customer.region",
+   "time.month"
+  ],
+  "n": 64
+ },
+ {
+  "metrics": [
+   "sessions"
+  ],
+  "by": [
+   "time.month"
+  ],
+  "n": 58
+ },
+ {
+  "metrics": [
+   "session_data_gb"
+  ],
+  "by": [
+   "customer.segment",
+   "time.fiscal_year"
+  ],
+  "n": 37
+ },
+ {
+  "metrics": [
+   "session_data_gb",
+   "lines_with_sessions"
+  ],
+  "by": [
+   "tariff.plan_name"
+  ],
+  "n": 37
+ },
+ {
+  "metrics": [
+   "sessions"
+  ],
+  "by": [
+   "customer.region",
+   "customer.segment"
+  ],
+  "n": 33
+ },
+ {
+  "metrics": [
+   "call_minutes"
+  ],
+  "by": [
+   "customer.region",
+   "time.month"
+  ],
+  "n": 30
+ },
+ {
+  "metrics": [
+   "sessions",
+   "call_minutes"
+  ],
+  "by": [
+   "usage_event.kind",
+   "time.month"
+  ],
+  "n": 30
+ },
+ {
+  "metrics": [
+   "session_data_gb",
+   "sessions"
+  ],
+  "by": [
+   "customer.city"
+  ],
+  "n": 29
+ },
+ {
+  "metrics": [
+   "call_minutes"
+  ],
+  "by": [
+   "tariff.plan_name",
+   "time.fiscal_quarter"
+  ],
+  "n": 24
+ },
+ {
+  "metrics": [
+   "session_data_gb"
+  ],
+  "by": [
+   "time.day"
+  ],
+  "n": 23
+ }
+]

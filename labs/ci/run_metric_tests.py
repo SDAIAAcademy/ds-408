@@ -26,7 +26,7 @@ def main(argv=None) -> int:
     ap.add_argument("--model", default="data/semantic/qamar_model.yaml")
     ap.add_argument("--metrics", default="data/metrics")
     a = ap.parse_args(argv)
-    model = S.Model.load(a.model, Q.db(), metrics_dir=a.metrics)
+    model = S.Model.load(a.model, Q.db(events=True), metrics_dir=a.metrics)
     res = S.run_tests(model)
     print(res[["metric", "expected", "actual", "passed"]].to_string(index=False))
     print("reconciliation tests:", "passed" if res.passed.all() else f"{(~res.passed).sum()} failed")

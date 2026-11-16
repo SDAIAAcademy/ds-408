@@ -21,7 +21,7 @@ M = "DATE '2026-03-01'"
 
 def save(name, obj):
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / f"{name}.json").write_text(json.dumps(obj, indent=1, ensure_ascii=False, default=str) + "\n", encoding="utf-8")
+    (OUT / f"{name}.json").write_text(json.dumps(obj, indent=1, ensure_ascii=False, default=str) + "\n", encoding="utf-8", newline="\n")
     print("wrote", name)
 
 
@@ -119,7 +119,120 @@ def d1_4(con):
     save("d1_4_reports", rows)
 
 
-STEPS = {"d1_1": d1_1, "d1_2": d1_2, "d1_3": d1_3, "d1_4": d1_4}
+def d2_1(con):
+    import copy
+    import qsem as S
+    t = con.execute("SELECT (SELECT SUM(amount_due) FROM fct_bill), (SELECT COUNT(*) FROM fct_complaint)").fetchone()
+    w = con.execute("""SELECT SUM(b.amount_due), COUNT(q.complaint_id) FROM dim_customer c JOIN fct_bill b USING (customer_id)
+                       LEFT JOIN fct_complaint q USING (customer_id)""").fetchone()
+    save("d2_1_fan_out", {"billed_factor": round(w[0] / t[0], 2), "complaints_factor": round(w[1] / t[1], 2)})
+    full = S.load_yaml(Q.LABS / "data" / "semantic" / "qamar_model.yaml")
+    save("d2_1_model", full)
+    conf = copy.deepcopy(full)
+    for j in next(d for d in conf["datasets"] if d["name"] == "line")["joins"]:
+        j.pop("asof", None)
+    save("d2_1_conformed", conf)
+
+
+def d2_2(con):
+    import collections
+    import csv
+    with open(Q.LABS / "data" / "semantic" / "query_log.csv", encoding="utf-8") as f:
+        cnt = collections.Counter((r["metrics"], r["group_by"]) for r in csv.DictReader(f))
+    top = sorted(cnt.items(), key=lambda kv: (-kv[1], kv[0]))[:10]
+    save("d2_2_top", [{"metrics": m.split("|"), "by": b.split("|"), "n": n} for (m, b), n in top])
+    m = ["session_data_gb", "sessions", "call_minutes"]
+    save("d2_2_preaggs", [
+        {"name": "usage_region_month", "dataset": "usage_event", "measures": m,
+         "by": ["customer.region", "customer.segment", "usage_event.kind", "time.month", "time.fiscal_year"]},
+        {"name": "usage_plan_quarter", "dataset": "usage_event", "measures": m, "by": ["tariff.plan_name", "time.fiscal_quarter"]},
+        {"name": "usage_day", "dataset": "usage_event", "measures": m, "by": ["time.day"]},
+        {"name": "usage_city", "dataset": "usage_event", "measures": m, "by": ["customer.city"]}])
+
+
+def d2_3(con):
+    import copy
+    import qsem as S
+    pol = Q.yaml_load("data/access/policy.yaml")
+    areas = {"billing": ("billed_amount", "customer.region"), "collections": ("collection_rate", "customer.region"),
+             "payments": ("cash_collected", "customer.region"), "usage": ("data_gb", "customer.region"),
+             "complaints": ("complaints", "complaint.region")}
+
+    def run(model, policy):
+        rows = []
+        for role, r in policy["roles"].items():
+            m = model.as_role(role, policy=policy)
+            allowed = None if r["regions"] == "all" else set(r["regions"])
+            for area, (metric, region) in areas.items():
+                seen = set(m.query([metric], by=[region])[region])
+                rows.append({"role": role, "test": f"rows:{area}", "passed": allowed is None or seen <= allowed,
+                             "detail": ",".join(sorted(seen))})
+            for field in ("customer.full_name", "customer.contact_name"):
+                vals = set(m.query(["billed_amount"], by=[field])[field])
+                masked = vals == {"***"}
+                rows.append({"role": role, "test": f"mask:{field}", "passed": masked != bool(r.get("restricted")),
+                             "detail": "masked" if masked else f"{len(vals)} values visible"})
+        return rows
+
+    base = S.Model.load(Q.LABS / "data/semantic/qamar_model.yaml", con, metrics_dir=Q.LABS / "data/metrics")
+    save("d2_3_first_run", run(base, pol))
+    save("d2_3_leaks", {"row_leak": "complaint", "mask_leak": "customer.contact_name"})
+    pol2 = copy.deepcopy(pol)
+    pol2["row_rules"]["complaint"] = "complaint.region"
+    save("d2_3_policy", pol2)
+    save("d2_3_second_run", run(S.Model(base.doc, con, policy=pol2, deny_by_default=True, lineage=True), pol2))
+
+
+def d2_4(con):
+    import re
+    import qsem as S
+    import qossie as O
+    model = S.Model.load(Q.LABS / "data/semantic/qamar_model.yaml", con, metrics_dir=Q.LABS / "data/metrics")
+    fields = {d["name"]: {f["name"] for f in d["fields"]} for d in model.doc["datasets"]}
+
+    def sql(name):
+        x = model.metrics[name]
+        t = x.get("type", "simple")
+        if t == "simple":
+            e = O.qualify(x["expr"], x["dataset"], fields[x["dataset"]])
+            if x.get("filter"):
+                e = f"CASE WHEN {O.qualify(x['filter'], x['dataset'], fields[x['dataset']])} THEN {e} END"
+            return f"COUNT(DISTINCT {e})" if x["agg"] == "count_distinct" else f"{x['agg'].upper()}({e})"
+        if t == "ratio":
+            return f"({sql(x['numerator'])}) * 1.0 / ({sql(x['denominator'])})"
+        if t == "derived":
+            e = x["expr"]
+            for i in sorted(x["inputs"], key=len, reverse=True):
+                e = re.sub(rf"\b{i}\b", lambda _: f"({sql(i)})", e)
+            return e
+        return None
+    mets = []
+    for n, m in model.metrics.items():
+        s = sql(n)
+        if s:
+            mets.append({"name": n, "expression": {"sql": s}, "description": m.get("description", ""),
+                         "nonportable_extensions": [{"vendor_name": O.VENDOR, "data": {k: m.get(k) for k in ("owner", "version", "status", "unit")}}]})
+    save("d2_4_metrics", mets)
+    doc = O.export_datasets(model.doc)
+    doc["metrics"] = mets
+    lite = O.sqlite_copy(con, model.doc)
+    first = {}
+    for metric, by in [("billed_amount", ["bill.service_month"]), ("collection_rate", ["customer.segment"]), ("complaints", ["complaint.region"])]:
+        try:
+            first[metric] = O.run(doc, lite, metric, by).to_dict("records")
+        except Exception as e:
+            first[metric] = f"error: {str(e).splitlines()[-1][-90:]}"
+    save("d2_4_first", first)
+    save("d2_4_fixes", {"bill.service_month": "strftime('%Y-%m', bill_month)",
+                        "customer.contact_name": "substr(full_name, 1, instr(full_name || ' ', ' ') - 1)",
+                        "complaint.resolution_days": "CAST(julianday(closed_date) - julianday(opened_date) AS INTEGER)"})
+    save("d2_4_left_behind", {"extensions": ["dataset collection: materialize_as, duckdb_sql", "dataset payment: materialize_as, duckdb_sql",
+                                             "field customer.full_name: classification", "relationship line_to_tariff: asof_valid_between",
+                                             "model: {'cumulative_metrics': ['cash_collected_fytd']}"],
+                              "median_resolution_days on SQLite": "no such function: MEDIAN"})
+
+
+STEPS = {"d1_1": d1_1, "d1_2": d1_2, "d1_3": d1_3, "d1_4": d1_4, "d2_1": d2_1, "d2_2": d2_2, "d2_3": d2_3, "d2_4": d2_4}
 
 if __name__ == "__main__":
     con = Q.db()

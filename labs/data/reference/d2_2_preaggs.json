@@ -1,0 +1,55 @@
+[
+ {
+  "name": "usage_region_month",
+  "dataset": "usage_event",
+  "measures": [
+   "session_data_gb",
+   "sessions",
+   "call_minutes"
+  ],
+  "by": [
+   "customer.region",
+   "customer.segment",
+   "usage_event.kind",
+   "time.month",
+   "time.fiscal_year"
+  ]
+ },
+ {
+  "name": "usage_plan_quarter",
+  "dataset": "usage_event",
+  "measures": [
+   "session_data_gb",
+   "sessions",
+   "call_minutes"
+  ],
+  "by": [
+   "tariff.plan_name",
+   "time.fiscal_quarter"
+  ]
+ },
+ {
+  "name": "usage_day",
+  "dataset": "usage_event",
+  "measures": [
+   "session_data_gb",
+   "sessions",
+   "call_minutes"
+  ],
+  "by": [
+   "time.day"
+  ]
+ },
+ {
+  "name": "usage_city",
+  "dataset": "usage_event",
+  "measures": [
+   "session_data_gb",
+   "sessions",
+   "call_minutes"
+  ],
+  "by": [
+   "customer.city"
+  ]
+ }
+]

@@ -95,6 +95,7 @@ datasets:
       - {name: month, sql: bill_month}
       - {name: issue_date, sql: issue_date}
       - {name: due_date, sql: due_date}
+      - {name: service_month, sql: "strftime(bill_month, '%Y-%m')"}
       - {name: amount_due, sql: amount_due}
       - {name: disputed_amount, sql: disputed_amount}
     joins:
@@ -160,3 +161,17 @@ datasets:
       - {name: resolution_days, sql: "date_diff('day', opened_date, closed_date)"}
     joins:
       - {to: customer, keys: [[customer_id, customer_id]]}
+
+  - name: usage_event
+    source: fct_usage_event
+    primary_key: [line_id, event_date, kind, mb, seconds]
+    time: event_date
+    description: One row per data or voice session (about 2.1 million rows; built in memory by qamar.usage_events)
+    fields:
+      - {name: line_id, sql: line_id}
+      - {name: event_date, sql: event_date}
+      - {name: kind, sql: kind}
+      - {name: mb, sql: mb}
+      - {name: seconds, sql: seconds}
+    joins:
+      - {to: line, keys: [[line_id, line_id]]}

@@ -1,0 +1,53 @@
+# Session-level usage metrics of Qamar Telecom (the fct_usage_event table). Owner: Zeyad Al-Juraisy.
+- name: session_data_gb
+  label: Data from sessions
+  type: simple
+  dataset: usage_event
+  agg: sum
+  expr: mb / 1024
+  unit: GB
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  description: Data used in data sessions in the period, in gigabytes, from the session table
+  tests:
+    - reconcile: "SELECT SUM(mb / 1024) FROM fct_usage_event"
+- name: sessions
+  label: Sessions
+  type: simple
+  dataset: usage_event
+  agg: count
+  expr: line_id
+  unit: sessions
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  description: Data and voice sessions in the period
+  tests:
+    - reconcile: "SELECT COUNT(*) FROM fct_usage_event"
+- name: call_minutes
+  label: Call minutes from sessions
+  type: simple
+  dataset: usage_event
+  agg: sum
+  expr: seconds / 60
+  unit: minutes
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  description: Voice minutes in the period, from the session table
+  tests:
+    - reconcile: "SELECT SUM(seconds / 60) FROM fct_usage_event"
+- name: lines_with_sessions
+  label: Lines with a session
+  type: simple
+  dataset: usage_event
+  agg: count_distinct
+  expr: line_id
+  unit: lines
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  description: Distinct lines with at least one session in the period. Not additive.
+  tests:
+    - reconcile: "SELECT COUNT(DISTINCT line_id) FROM fct_usage_event"

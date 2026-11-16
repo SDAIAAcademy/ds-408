@@ -3,32 +3,32 @@
   "version": 1,
   "questions": [
     {
-      "id": "q-d1-walk-01",
+      "id": "q-d1-approve-07",
       "type": "single",
-      "prompt": "A walk from the finance collection rate to the collections rate has four steps. Which step should be fixed in the data rather than decided by the metrics council?",
+      "prompt": "The steward who edited the billed amount also wrote the approval line naming himself. The tests pass. Should the change merge?",
       "options": [
-        "Shortening the window from 60 to 30 days after the due date",
-        "Taking disputed amounts out of the denominator",
-        "Removing a payment batch that was loaded twice",
-        "Measuring a cohort of the month's bills instead of the month's cash"
+        "Yes, the tests prove the new definition is right",
+        "Yes, if the steward is senior to the owner",
+        "No, the metric's owner must approve, and the author cannot",
+        "No, a passing test is never enough to merge anything"
       ],
       "correct": [
         2
       ],
-      "explanation": "A payment loaded twice is a data error: it is wrong under every definition, so it is fixed once in the payment data.",
+      "explanation": "The owner answers for the meaning and the author for the edit; one person doing both is no review.",
       "misconceptions": [
-        "A window is a definition choice the council makes on criteria",
-        "Whether disputes count is a policy choice, not an error",
+        "Tests check the numbers, not that the owner agreed to the meaning",
+        "Seniority does not replace the owner's decision",
         "",
-        "The population measured is a definition choice"
+        "Overstates the rule: tests and the owner's approval together are enough"
       ],
       "lo": [
         "LO2"
       ],
       "day": "day1",
-      "session": 1,
-      "slide": "walk",
-      "level": "analyze",
+      "session": 3,
+      "slide": "three-roles",
+      "level": "evaluate",
       "pool": "practice",
       "weight": 1
     },
@@ -59,6 +59,36 @@
       "session": 1,
       "slide": "what-differs",
       "level": "apply",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d1-lineage-08",
+      "type": "single",
+      "prompt": "Three collection rates are deprecated. Which method finds every report that must move before the sunset?",
+      "options": [
+        "Search the report definitions for the deprecated metrics' names",
+        "Resolve each report's metric names and aliases, then follow depends_on to everything built on them",
+        "Ask each report owner whether they use a collection rate",
+        "List the reports that were changed in the last quarter"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Reports use aliases and metrics built on deprecated ones; in Lab 1.4 a text search found one report, lineage found nine.",
+      "misconceptions": [
+        "Misses aliases and metrics built on deprecated ones",
+        "",
+        "Relies on memory, and owners use aliases they do not recognise as deprecated",
+        "Recent change says nothing about which metrics a report reads"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day1",
+      "session": 4,
+      "slide": "lineage",
+      "level": "analyze",
       "pool": "practice",
       "weight": 1
     },
@@ -123,6 +153,36 @@
       "weight": 1
     },
     {
+      "id": "q-d1-rename-09",
+      "type": "single",
+      "prompt": "Customer care's paid_on_time_rate counts bills paid in full by the due date. The council certified a value-based collection rate. What should happen to the care metric?",
+      "options": [
+        "Replace it with the certified collection rate in the care scorecard",
+        "Delete it, since only one collection rate may exist",
+        "Keep it as it is, under the same name",
+        "Rename it for what it measures and keep it, with the old name deprecated"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "It answers another question (bills paid on time, by count); it keeps its own meaning under a name that does not claim to be the collection rate.",
+      "misconceptions": [
+        "Changes what the care scorecard measures without its owner deciding it",
+        "Loses a useful measure of customer behaviour",
+        "Leaves two different meanings under one familiar name",
+        ""
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day1",
+      "session": 4,
+      "slide": "deprecate-with-successor",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
       "id": "q-d1-test-05",
       "type": "tf",
       "prompt": "A reconciliation test compares a metric computed through the semantic layer with a total computed by SQL directly on the marts. It can catch a filter that was dropped from the metric.",
@@ -179,121 +239,328 @@
       "weight": 1
     },
     {
-      "id": "q-d1-approve-07",
+      "id": "q-d1-walk-01",
       "type": "single",
-      "prompt": "The steward who edited the billed amount also wrote the approval line naming himself. The tests pass. Should the change merge?",
+      "prompt": "A walk from the finance collection rate to the collections rate has four steps. Which step should be fixed in the data rather than decided by the metrics council?",
       "options": [
-        "Yes, the tests prove the new definition is right",
-        "Yes, if the steward is senior to the owner",
-        "No, the metric's owner must approve, and the author cannot",
-        "No, a passing test is never enough to merge anything"
+        "Shortening the window from 60 to 30 days after the due date",
+        "Taking disputed amounts out of the denominator",
+        "Removing a payment batch that was loaded twice",
+        "Measuring a cohort of the month's bills instead of the month's cash"
       ],
       "correct": [
         2
       ],
-      "explanation": "The owner answers for the meaning and the author for the edit; one person doing both is no review.",
+      "explanation": "A payment loaded twice is a data error: it is wrong under every definition, so it is fixed once in the payment data.",
       "misconceptions": [
-        "Tests check the numbers, not that the owner agreed to the meaning",
-        "Seniority does not replace the owner's decision",
+        "A window is a definition choice the council makes on criteria",
+        "Whether disputes count is a policy choice, not an error",
         "",
-        "Overstates the rule: tests and the owner's approval together are enough"
+        "The population measured is a definition choice"
       ],
       "lo": [
         "LO2"
       ],
       "day": "day1",
-      "session": 3,
-      "slide": "three-roles",
-      "level": "evaluate",
-      "pool": "practice",
-      "weight": 1
-    },
-    {
-      "id": "q-d1-lineage-08",
-      "type": "single",
-      "prompt": "Three collection rates are deprecated. Which method finds every report that must move before the sunset?",
-      "options": [
-        "Search the report definitions for the deprecated metrics' names",
-        "Resolve each report's metric names and aliases, then follow depends_on to everything built on them",
-        "Ask each report owner whether they use a collection rate",
-        "List the reports that were changed in the last quarter"
-      ],
-      "correct": [
-        1
-      ],
-      "explanation": "Reports use aliases and metrics built on deprecated ones; in Lab 1.4 a text search found one report, lineage found nine.",
-      "misconceptions": [
-        "Misses aliases and metrics built on deprecated ones",
-        "",
-        "Relies on memory, and owners use aliases they do not recognise as deprecated",
-        "Recent change says nothing about which metrics a report reads"
-      ],
-      "lo": [
-        "LO2"
-      ],
-      "day": "day1",
-      "session": 4,
-      "slide": "lineage",
+      "session": 1,
+      "slide": "walk",
       "level": "analyze",
       "pool": "practice",
       "weight": 1
     },
     {
-      "id": "q-d1-rename-09",
+      "id": "q-d2-asof-03",
       "type": "single",
-      "prompt": "Customer care's paid_on_time_rate counts bills paid in full by the due date. The council certified a value-based collection rate. What should happen to the care metric?",
+      "prompt": "Data used by plan adds up to 1.6 times the company total after two plans changed price. What change to the model fixes it?",
       "options": [
-        "Replace it with the certified collection rate in the care scorecard",
-        "Delete it, since only one collection rate may exist",
-        "Keep it as it is, under the same name",
-        "Rename it for what it measures and keep it, with the old name deprecated"
+        "Join the tariff history on its code and the validity dates around the usage month",
+        "Divide each plan's figure by the number of its tariff rows",
+        "Remove the old tariff rows from the history table",
+        "Group by the tariff key instead of the plan name"
       ],
       "correct": [
-        3
+        0
       ],
-      "explanation": "It answers another question (bills paid on time, by count); it keeps its own meaning under a name that does not claim to be the collection rate.",
+      "explanation": "A type 2 history needs an as-of join: the row valid on the fact's date, so each line matches one tariff row.",
       "misconceptions": [
-        "Changes what the care scorecard measures without its owner deciding it",
-        "Loses a useful measure of customer behaviour",
-        "Leaves two different meanings under one familiar name",
-        ""
+        "",
+        "Scaling hides the duplication and is wrong for lines active in one period only",
+        "Loses the history that older months need",
+        "Splits a plan into its price periods without removing the duplication"
       ],
       "lo": [
-        "LO2"
+        "LO1"
       ],
-      "day": "day1",
-      "session": 4,
-      "slide": "deprecate-with-successor",
-      "level": "evaluate",
+      "day": "day2",
+      "session": 1,
+      "slide": "tariff-history",
+      "level": "apply",
       "pool": "practice",
       "weight": 1
     },
     {
-      "id": "q-example-3",
+      "id": "q-d2-deny-08",
       "type": "single",
-      "prompt": "REPLACE: a practice question on LO3, as a short scenario",
+      "prompt": "A new roaming dataset is added without a row rule. Which layer behaviour is safest for the regional manager's role?",
       "options": [
-        "REPLACE: a wrong option that a common misconception makes tempting",
-        "REPLACE: the right answer",
-        "REPLACE: a wrong option that a common misconception makes tempting",
-        "REPLACE: a wrong option that a common misconception makes tempting"
+        "Refuse the query with an error naming the missing rule",
+        "Return all regions until a rule is written",
+        "Return the Eastern region by guessing the rule from the customer join",
+        "Return the rows with every value masked"
       ],
       "correct": [
-        1
+        0
       ],
-      "explanation": "REPLACE: why the right answer is right, in one sentence",
+      "explanation": "Deny by default turns a forgotten rule into a visible error for one role instead of a silent leak.",
       "misconceptions": [
-        "REPLACE: the misconception behind this option",
         "",
-        "REPLACE: the misconception behind this option",
-        "REPLACE: the misconception behind this option"
+        "Leaks every region silently",
+        "A guessed rule is an untested rule",
+        "Masking values is not filtering rows"
       ],
       "lo": [
         "LO3"
       ],
       "day": "day2",
-      "session": 1,
+      "session": 3,
+      "slide": "fix-the-cause",
       "level": "apply",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d2-drill-02",
+      "type": "tf",
+      "prompt": "A semantic layer answers billing and complaints by region and month by aggregating each fact on its own and then joining the two results on region and month. This keeps each figure equal to what it would be alone.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Each side has one row per key after aggregation, so the join repeats nothing: that is drill-across.",
+      "misconceptions": [
+        "",
+        "Assumes any join of two facts multiplies rows"
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": "day2",
+      "session": 1,
+      "slide": "drill-across",
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d2-fanout-01",
+      "type": "single",
+      "prompt": "An analyst joins customers to their bills and to their complaints in one query and groups by region. Billing comes out 1.5 times the source total and complaints 13 times. Why are complaints inflated more?",
+      "options": [
+        "Complaints are counted with DISTINCT and bills are not",
+        "Each complaint repeats once per bill of its customer, and customers have many more bills than complaints",
+        "The complaint table has duplicate rows in the source",
+        "Complaints are dated by opening day and bills by service month"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "In a wide join each row of one fact repeats once per matching row of the other; a customer has up to 18 bills but few complaints.",
+      "misconceptions": [
+        "DISTINCT is not in the query, and would not fix a sum anyway",
+        "",
+        "The source total is the reference the factor is computed against",
+        "Different dates change the grouping, not the row count"
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": "day2",
+      "session": 1,
+      "slide": "wide-join",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d2-leak-06",
+      "type": "single",
+      "prompt": "An access test shows the Eastern regional manager the complaints of all five regions, while billing and collections are correctly limited. What is the most likely cause?",
+      "options": [
+        "The manager's role allows all regions",
+        "The complaint dataset has no row rule and the layer allows by default",
+        "Complaints are masked instead of filtered",
+        "The dashboard's region filter was removed"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A dataset without a rule is unfiltered when the layer allows by default; the other areas show the role itself is right.",
+      "misconceptions": [
+        "Then billing would show all regions too",
+        "",
+        "Masking hides field values, it does not remove rows",
+        "The test asks the layer directly, not through a dashboard"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": "day2",
+      "session": 3,
+      "slide": "two-leaks",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d2-lineage-07",
+      "type": "single",
+      "prompt": "A field contact_name takes the first word of the Restricted full name and carries no classification tag. How should the layer treat it?",
+      "options": [
+        "As unrestricted, since only first names are shown",
+        "As unrestricted until someone tags it",
+        "As Restricted, because its expression reads a Restricted column",
+        "As Public, because first names are common"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Classification follows lineage: a value derived from a Restricted column is Restricted, whatever its name or tag.",
+      "misconceptions": [
+        "First names with region and city can identify a person",
+        "Relies on someone remembering to tag every derived field",
+        "",
+        "Commonness does not change where the value comes from"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": "day2",
+      "session": 3,
+      "slide": "fix-the-cause",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d2-port-09",
+      "type": "single",
+      "prompt": "After exporting the model to Ossie and running it on SQLite, which failure is the most dangerous?",
+      "options": [
+        "A query that stops with 'no such function: split_part'",
+        "A query that stops with 'no such function: date_diff'",
+        "A query on a cumulative metric that the export left behind",
+        "A query that runs and puts the whole amount in one row with an empty month"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "A query that runs and returns a plausible but wrong figure reaches a slide; errors are seen and fixed.",
+      "misconceptions": [
+        "A loud error is noticed at once",
+        "A loud error is noticed at once, whatever the missing function",
+        "A missing metric is visible, not wrong",
+        ""
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": "day2",
+      "session": 4,
+      "slide": "second-engine",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d2-preagg-04",
+      "type": "single",
+      "prompt": "Lines with a session are 3,253 for the fiscal year, but adding the twelve monthly counts gives 31,226. What does this mean for a monthly pre-aggregation of that metric?",
+      "options": [
+        "It can serve yearly questions if divided by twelve",
+        "It can serve any question grouped by month or coarser",
+        "It is safe if refreshed every night",
+        "It cannot serve a coarser question: a distinct count does not roll up"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "A line active in many months is counted once per month; only sums and counts can be re-added from a coarser table.",
+      "misconceptions": [
+        "Lines are not active in exactly twelve months each",
+        "Months are fine; anything coarser re-adds distinct counts",
+        "Freshness does not fix double counting",
+        ""
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": "day2",
+      "session": 2,
+      "slide": "cannot-roll-up",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d2-rows-05",
+      "type": "single",
+      "prompt": "Two teams compare their pre-aggregation designs on different laptops. Which measure lets them compare fairly?",
+      "options": [
+        "Milliseconds per query, the median of several runs",
+        "Rows scanned per query",
+        "Milliseconds of the first run, before any cache",
+        "Number of pre-aggregation tables"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Rows scanned does not depend on the machine or the cache, and predicts cost on a warehouse that bills by data scanned.",
+      "misconceptions": [
+        "Latency depends on each laptop",
+        "",
+        "A cold first run is still machine-dependent",
+        "Fewer tables can mean slower or faster queries"
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": "day2",
+      "session": 2,
+      "slide": "preagg-results",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
+      "id": "q-d2-travel-10",
+      "type": "single",
+      "prompt": "Which part of the Qamar layer does the Ossie core specification carry between tools?",
+      "options": [
+        "The access rules and roles",
+        "The metrics' SQL, the datasets and their relationships",
+        "The reconciliation tests",
+        "The cumulative fiscal-year-to-date metric"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The core holds datasets, fields, relationships and model-scoped metrics; access rules, tests and windows over time stay behind.",
+      "misconceptions": [
+        "Access rules are not in the core",
+        "",
+        "Tests are not part of the document",
+        "The core has no window over time"
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": "day2",
+      "session": 4,
+      "slide": "not-travelled",
+      "level": "understand",
       "pool": "practice",
       "weight": 1
     },

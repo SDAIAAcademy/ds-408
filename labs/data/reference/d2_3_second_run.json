@@ -1,0 +1,128 @@
+[
+ {
+  "role": "executive",
+  "test": "rows:billing",
+  "passed": true,
+  "detail": "CEN,EAS,NOR,SOU,WES"
+ },
+ {
+  "role": "executive",
+  "test": "rows:collections",
+  "passed": true,
+  "detail": "CEN,EAS,NOR,SOU,WES"
+ },
+ {
+  "role": "executive",
+  "test": "rows:payments",
+  "passed": true,
+  "detail": "CEN,EAS,NOR,SOU,WES"
+ },
+ {
+  "role": "executive",
+  "test": "rows:usage",
+  "passed": true,
+  "detail": "CEN,EAS,NOR,SOU,WES"
+ },
+ {
+  "role": "executive",
+  "test": "rows:complaints",
+  "passed": true,
+  "detail": "CEN,EAS,NOR,SOU,WES"
+ },
+ {
+  "role": "executive",
+  "test": "mask:customer.full_name",
+  "passed": true,
+  "detail": "masked"
+ },
+ {
+  "role": "executive",
+  "test": "mask:customer.contact_name",
+  "passed": true,
+  "detail": "masked"
+ },
+ {
+  "role": "regional_manager_eas",
+  "test": "rows:billing",
+  "passed": true,
+  "detail": "EAS"
+ },
+ {
+  "role": "regional_manager_eas",
+  "test": "rows:collections",
+  "passed": true,
+  "detail": "EAS"
+ },
+ {
+  "role": "regional_manager_eas",
+  "test": "rows:payments",
+  "passed": true,
+  "detail": "EAS"
+ },
+ {
+  "role": "regional_manager_eas",
+  "test": "rows:usage",
+  "passed": true,
+  "detail": "EAS"
+ },
+ {
+  "role": "regional_manager_eas",
+  "test": "rows:complaints",
+  "passed": true,
+  "detail": "EAS"
+ },
+ {
+  "role": "regional_manager_eas",
+  "test": "mask:customer.full_name",
+  "passed": true,
+  "detail": "masked"
+ },
+ {
+  "role": "regional_manager_eas",
+  "test": "mask:customer.contact_name",
+  "passed": true,
+  "detail": "masked"
+ },
+ {
+  "role": "collections_officer",
+  "test": "rows:billing",
+  "passed": true,
+  "detail": "CEN,EAS,NOR,SOU,WES"
+ },
+ {
+  "role": "collections_officer",
+  "test": "rows:collections",
+  "passed": true,
+  "detail": "CEN,EAS,NOR,SOU,WES"
+ },
+ {
+  "role": "collections_officer",
+  "test": "rows:payments",
+  "passed": true,
+  "detail": "CEN,EAS,NOR,SOU,WES"
+ },
+ {
+  "role": "collections_officer",
+  "test": "rows:usage",
+  "passed": true,
+  "detail": "CEN,EAS,NOR,SOU,WES"
+ },
+ {
+  "role": "collections_officer",
+  "test": "rows:complaints",
+  "passed": true,
+  "detail": "CEN,EAS,NOR,SOU,WES"
+ },
+ {
+  "role": "collections_officer",
+  "test": "mask:customer.full_name",
+  "passed": true,
+  "detail": "882 values visible"
+ },
+ {
+  "role": "collections_officer",
+  "test": "mask:customer.contact_name",
+  "passed": true,
+  "detail": "21 values visible"
+ }
+]
