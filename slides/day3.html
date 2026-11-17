@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-ax="deck" data-track="data-science">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 3 · Test the assistant · Analytics Products: Semantic Layers and Conversational Analytics</title>
+<meta name="generator" content="SDAIA Academy engine 1.0.0">
+<link rel="icon" href="../_engine/icon.svg">
+<link rel="alternate" type="text/markdown" href="day3.md">
+<link rel="describedby" href="../llms.txt">
+<link rel="stylesheet" href="../_engine/academy.css">
+</head>
+<body>
+<div class="deck" data-course="Analytics Products: Semantic Layers and Conversational Analytics" data-track="data-science" data-day="Day 3">
+<section class="slide title" id="title" data-auto="title" data-label="Welcome" data-n="1">
+  <div class="kicker">SDAIA Academy · Analytics Products: Semantic Layers and Conversational Analytics</div>
+  <h1>Test the assistant</h1>
+  <p class="lead mt">Day 3: Certified questions, context, accuracy and stability</p>
+  <div class="meta"><span class="track">Data Science Track</span><span>4 teaching days + capstone day</span><span>4 sessions · 4 labs</span><span>DS-408</span></div>
+  <aside class="notes"><p>Yesterday the metrics got a home: a conformed, fast, governed and portable layer. Today an assistant, Muhsi, answers managers' questions through that layer, and we measure it the way a platform team must before 300 managers use it. Collect the three questions each participant brought; keep the Arabic ones for session 1.</p></aside>
+</section>
+
+<section class="slide" id="agenda" data-auto="agenda" data-label="Agenda" data-n="2">
+  <div class="kicker">Today</div>
+  <h2>Test the assistant</h2>
+  <div class="agenda"><div class="item"><div><b>Session 1 · A certified set for a platform</b><small>Questions with certified answers, covering every area, difficulty and language, including those the assistant must refuse</small></div></div><div class="item"><div><b>Session 2 · Which context helps</b><small>Synonyms, descriptions and examples removed one at a time, with everything else fixed</small></div></div><div class="item"><div><b>Session 3 · A scoring harness</b><small>Execution accuracy, wrong but plausible answers and refusals, in a report a reviewer can re-run</small></div></div><div class="item"><div><b>Session 4 · Ask it again</b><small>The same question three times: agreement, and the cell that matters most, stable and wrong</small></div></div></div>
+</section>
+
+<section class="slide" id="review-day2" data-lo="LO3" data-n="3">
+  <div class="kicker">Review of Day 2</div>
+  <h2>A new dataset arrives on Thursday</h2>
+  <div class="quiz" data-type="single" data-lo="LO3" data-id="review-day2-q1">
+    <p class="lead">A roaming dataset is added to the layer on Thursday without a row rule. On Sunday the Eastern regional manager asks for roaming data by region. With deny by default on, what happens?</p>
+    <div class="opts">
+      <div class="opt" data-ok data-k="A">The layer refuses the query and names the missing rule</div>
+      <div class="opt" data-why="Describes the allow-by-default layer of Lab 2.3 before the fix" data-k="B">All five regions come back</div>
+      <div class="opt" data-why="Assumes the layer guesses a rule from the customer join" data-k="C">Only the Eastern region comes back</div>
+      <div class="opt" data-why="Confuses masking fields with filtering rows" data-k="D">The rows come back with every value masked</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Deny by default turns a forgotten rule into a visible error for one role, instead of a silent leak to every limited role.</div>
+  </div>
+  <aside class="notes"><p>Answer: A. Today that matters again: Muhsi asks the layer with the manager's role, so an assistant cannot see more than its user. Day 4 takes the role from the credential.</p></aside>
+</section>
+
+<!-- ======================= SESSION 1 ======================= -->
+<section class="slide section" id="s1" data-auto="section" data-session="1" data-n="4">
+  <div class="kicker">Session 1</div>
+  <h1>A certified set for a platform</h1>
+  <ul class="bullets outcomes"><li>Write a certified answer as value, metric, filters and grain</li><li>Cover areas, difficulty levels and both languages</li><li>Include questions the assistant must refuse</li></ul>
+  <div class="sess-no">01</div>
+</section>
+
+<section class="slide" id="why-certified" data-label="Why a certified set" data-lo="LO4" data-n="5" data-session="1">
+  <div class="kicker">Before 300 managers ask</div>
+  <h2>A leaderboard score says little about your metrics; a certified set says a lot</h2>
+  <div class="cols cols-2">
+    <ul class="bullets small">
+      <li>Public text-to-SQL benchmarks use other schemas and other definitions</li>
+      <li>Enterprise benchmarks show <b>real warehouses stay hard</b>: Spider 2.0 (ICLR 2025)</li>
+      <li>Your managers ask about <b>your</b> collection rate, fiscal year and Hijri months</li>
+      <li>DS-307 ended with ten certified answers and a go or no-go memo; a platform needs more</li>
+    </ul>
+    <div class="card c-navy tint"><h4>Qamar's set</h4><p class="small mb0">60 questions: four areas, three difficulties, 30 in Arabic and 30 in English, 8 that Muhsi must refuse.</p></div>
+  </div>
+  <aside class="notes"><p>Source: Spider 2.0, arxiv.org/abs/2411.07763, an enterprise text-to-SQL benchmark. Do not quote its percentages as if they applied here; the point is that a general score does not transfer. One slide of DS-307 recap: ten questions were enough for one go or no-go on one area. Ask: who has seen a vendor accuracy figure? On what questions was it measured?</p></aside>
+</section>
+
+<section class="slide" id="certified-answer" data-label="Certified answer" data-lo="LO4" data-n="6" data-session="1">
+  <div class="kicker">What is certified</div>
+  <h2>A certified answer is a figure and the four things that produce it</h2>
+  <div class="cols cols-2">
+    <pre class="code s" data-file="certified_60.yaml"><code class="language-yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">C05</span>
+  <span class="hljs-attr">lang:</span> <span class="hljs-string">en</span>
+  <span class="hljs-attr">area:</span> <span class="hljs-string">collections</span>
+  <span class="hljs-attr">difficulty:</span> <span class="hljs-number">1</span>
+  <span class="hljs-attr">question:</span> <span class="hljs-string">What</span> <span class="hljs-string">was</span> <span class="hljs-string">the</span> <span class="hljs-string">collection</span> <span class="hljs-string">rate</span> <span class="hljs-string">for</span> <span class="hljs-string">government</span>
+    <span class="hljs-string">customers</span> <span class="hljs-string">for</span> <span class="hljs-string">December</span> <span class="hljs-number">2025 </span><span class="hljs-string">bills?</span>
+  <span class="hljs-attr">query:</span>
+    <span class="hljs-attr">metrics:</span> [<span class="hljs-string">collection_rate</span>]
+    <span class="hljs-attr">where:</span> [<span class="hljs-string">&quot;customer.segment = &#x27;government&#x27;&quot;</span>,
+            <span class="hljs-string">&quot;time.month = DATE &#x27;2025-12-01&#x27;&quot;</span>]
+  <span class="hljs-attr">expect:</span> {<span class="hljs-attr">kind:</span> <span class="hljs-string">value</span>, <span class="hljs-attr">value:</span> <span class="hljs-number">0.560764</span>, <span class="hljs-attr">unit:</span> <span class="hljs-string">ratio</span>,
+           <span class="hljs-attr">metric_version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>}</code></pre>
+    <div class="stack">
+      <div class="card c-teal"><h4>Metric and version</h4><p class="small mb0">Which definition, and which version of it.</p></div>
+      <div class="card c-cyan"><h4>Filters and grain</h4><p class="small mb0">Which customers, which period, grouped how.</p></div>
+      <div class="card c-coral"><h4>Value</h4><p class="small mb0">Run through the layer, never typed from a report.</p></div>
+    </div>
+  </div>
+  <aside class="notes"><p>The value alone cannot be checked by a reviewer: 0.85 could be January or March, finance's ratio or the certified one. The version matters because a metric change (Day 1, session 3) changes the certified answer, and the set must be re-certified with it.</p></aside>
+</section>
+
+<section class="slide" id="coverage" data-label="Coverage" data-lo="LO4" data-n="7" data-session="1">
+  <div class="kicker">Lab 3.1, step 1</div>
+  <h2>The supplied 44 questions leave two cells empty and almost no refusals</h2>
+  <table class="t small">
+    <tr><th>Area</th><th class="num">Difficulty 1</th><th class="num">Difficulty 2</th><th class="num">Difficulty 3</th><th class="num">Refusals</th></tr>
+    <tr><td>Usage</td><td class="num">5</td><td class="num">4</td><td class="num">3</td><td class="num">1</td></tr>
+    <tr><td>Billing</td><td class="num">5</td><td class="num">4</td><td class="num">3</td><td class="num">1</td></tr>
+    <tr class="hl"><td>Collections</td><td class="num">5</td><td class="num">4</td><td class="num">0</td><td class="num">0</td></tr>
+    <tr class="hl"><td>Complaints</td><td class="num">5</td><td class="num">4</td><td class="num">0</td><td class="num">0</td></tr>
+  </table>
+  <p class="small mt">Difficulty 1: one filter. 2: two filters or a fiscal period. 3: a ranking, a Hijri period or a cumulative figure.</p>
+  <aside class="notes"><p>From Lab 3.1. The hard questions are exactly where an assistant fails; a set without them flatters it. Both supplied refusals are about personal data, so the set never tests a forecast, an immature cohort, a draft metric or a "why" question.</p></aside>
+</section>
+
+<section class="slide" id="refusals" data-label="Refusals" data-lo="LO4" data-n="8" data-session="1">
+  <div class="kicker">The questions Muhsi must refuse</div>
+  <h2>A refusal is a right answer, and the set must test five kinds of it</h2>
+  <div class="cols cols-3">
+    <div class="card c-coral"><h4>Restricted</h4><p class="small mb0">Names, national IDs or mobile numbers of customers.</p></div>
+    <div class="card c-coral"><h4>Forecast</h4><p class="small mb0">Next year's revenue: the layer holds facts, not predictions.</p></div>
+    <div class="card c-coral"><h4>Not matured</h4><p class="small mb0">May 2026's collection rate: its 30-day window has not closed.</p></div>
+  </div>
+  <div class="cols cols-2 mt">
+    <div class="card c-coral"><h4>Uncertified</h4><p class="small mb0">Bills paid on time: only a draft metric fits.</p></div>
+    <div class="card c-coral"><h4>Causal</h4><p class="small mb0">"Why did complaints rise?": a figure is not a cause.</p></div>
+  </div>
+  <aside class="notes"><p>An assistant that answers everything looks good on answerable questions. Only must-refuse questions show whether it invents figures. Ask the room which refusal their own assistant would most likely miss; most say "uncertified", and Lab 3.3 shows why.</p></aside>
+</section>
+
+<section class="slide" id="screening" data-label="Screening" data-lo="LO4" data-n="9" data-session="1">
+  <div class="kicker">Lab 3.1, step 2</div>
+  <h2>Four rules screen a candidate question before it is certified</h2>
+  <table class="t small">
+    <tr><th>Rule</th><th>Reject when</th><th>Candidate</th></tr>
+    <tr><td>Period</td><td>an answer with no time condition</td><td>"What is the collection rate?"</td></tr>
+    <tr><td>Certified</td><td>only a draft metric fits the draft</td><td>"Cash to billing ratio in March"</td></tr>
+    <tr><td>Duplicate</td><td>same metrics, groups and filters as one in the set</td><td>January's rate, in other words</td></tr>
+    <tr><td>Restricted</td><td>groups or filters on a Restricted field</td><td>"Which customer had the largest bill?"</td></tr>
+  </table>
+  <p class="small mt">24 candidates: 16 kept, 8 rejected.</p>
+  <aside class="notes"><p>The candidates came from three analysts, as drafts. A rejected draft is not always a useless question: the on-time share and the largest-customer questions are good questions whose right answer is a refusal. Write them into the set as refusals.</p></aside>
+</section>
+
+<section class="slide" id="hijri-caveat" data-label="Hijri months" data-lo="LO4" data-n="10" data-session="1">
+  <div class="kicker">Lab 3.1, step 3</div>
+  <h2>A Hijri question about monthly facts certifies a labelling choice</h2>
+  <div class="cols cols-2">
+    <ul class="bullets small">
+      <li>Ramadan 1447 runs from about 18 February to 19 March 2026</li>
+      <li>Bills and monthly usage are dated on the first day of the service month</li>
+      <li>So "data in Ramadan 1447" counts the <b>March 2026</b> service month</li>
+      <li>Complaints are dated by day, so "complaints in Rajab 1447" is exact</li>
+    </ul>
+    <div class="callout warn small"><b>Say it in the question.</b> The certified answer must state the convention, or two analysts certify different figures and both are right.</div>
+  </div>
+  <aside class="notes"><p>The calendar uses the Umm al-Qura conversion (hijridate). Question U12 in the set. Ask: would your managers expect Ramadan's usage to include the February days? If yes, the layer needs daily usage, which is a design decision, not a test decision.</p></aside>
+</section>
+
+<section class="slide" id="checkpoint-1" data-lo="LO4" data-n="11" data-session="1">
+  <div class="kicker">Checkpoint</div>
+  <h2>Two analysts, two certified figures</h2>
+  <div class="quiz" data-type="single" data-lo="LO4" data-id="checkpoint-1-q1">
+    <p class="lead">Two analysts certify "the collection rate for January bills" and record 0.8495 and 0.8645. Both ran the semantic layer. What must the certified answer also record so a reviewer can settle it?</p>
+    <div class="opts">
+      <div class="opt" data-why="The value is what is in dispute; more decimals do not explain it" data-k="A">The value to more decimal places</div>
+      <div class="opt" data-why="Who certified does not say what was run" data-k="B">The analysts' names and the date</div>
+      <div class="opt" data-ok data-k="C">The metric and its version, the filters and the grain they ran</div>
+      <div class="opt" data-why="A model's answer is what is tested, not the reference" data-k="D">The assistant's answer to the same question</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> With the query recorded, the reviewer sees one analyst filtered on March, not January, and re-runs the right one.</div>
+  </div>
+  <aside class="notes"><p>Answer: C. 0.8645 is March 2026's rate, 0.8495 January's, both from Lab 3.1's data.</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-3-1" data-auto="lab" data-lab="3.1" data-label="Lab 3.1" data-n="12" data-session="1">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 3.1 · 25 min</div><h2>From 44 to 60 certified questions</h2><p class="lead small">Extend the supplied certified set to cover each business area and difficulty level in Arabic and English, including questions the assistant must refuse, certifying each new answer through the semantic layer.</p><a class="nb" href="../labs/D3_1_certified_set.ipynb">D3_1_certified_set.ipynb</a></div><ul class="checklist"><li>Coverage of the supplied set <span class="min">5 min</span></li><li>Screen the candidate questions <span class="min">7 min</span></li><li>Certify the answers <span class="min">7 min</span></li><li>Check coverage, languages and refusals <span class="min">6 min</span></li><li class="stretch">✱ Stretch: Three paraphrases of one question</li></ul></div>
+  <aside class="notes"><p>Usual problems: comparing a draft's filters without sorting them (the duplicate rule misses X02); treating a refusal draft as "no period"; forgetting the unit of a ranking ("label"). Reference: two empty cells and two refusals in the 44; 16 kept, 8 rejected; 60 questions, 30 per language, 8 refusals in all four areas.</p></aside>
+</section>
+
+<!-- ======================= SESSION 2 ======================= -->
+<section class="slide section" id="s2" data-auto="section" data-session="2" data-n="13">
+  <div class="kicker">Session 2</div>
+  <h1>Which context helps</h1>
+  <ul class="bullets outcomes"><li>Design an ablation that changes one kind of context at a time</li><li>Score each variant with a fixed model and question set</li><li>Read the contribution of each kind of context by language and area</li></ul>
+  <div class="sess-no">02</div>
+</section>
+
+<section class="slide" id="three-kinds" data-label="Three kinds of context" data-lo="LO4" data-n="14" data-session="2">
+  <div class="kicker">What Muhsi reads</div>
+  <h2>Each certified metric carries three kinds of context for the assistant</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>Synonyms</h4><p class="small mb0">In both languages: "collection rate", "نسبة التحصيل", "معدل التحصيل".</p></div>
+    <div class="card c-cyan"><h4>Description</h4><p class="small mb0">"Paid within 30 days of the due date, net of disputes, bill-month cohort."</p></div>
+    <div class="card c-coral"><h4>Examples</h4><p class="small mb0">A question and its query, such as a fiscal-year filter written correctly.</p></div>
+  </div>
+  <p class="small mt">Muhsi answers with a semantic query, not SQL; the layer computes the figure.</p>
+  <aside class="notes"><p>Open data/metrics/collections.yml and show the ai: block of collection_rate. The prompt is built by muhsi.prompt from certified metrics only. Answering with a semantic query is what makes the layer the single source: the model chooses, the layer computes, the role applies.</p></aside>
+</section>
+
+<section class="slide" id="ablation" data-label="Ablation" data-lo="LO4" data-n="15" data-session="2">
+  <div class="kicker">Lab 3.2, the design</div>
+  <h2>Remove one kind of context at a time, and keep everything else fixed</h2>
+  <div class="flow">
+    <div class="step c-teal"><b>1 · Fix</b>the model, the 60 questions, run 1</div>
+    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · Remove one</b>synonyms, or descriptions, or examples</div>
+    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · Re-score</b>the same scorer, by language and by area</div>
+  </div>
+  <div class="callout tip mt frag"><b>Takeaway.</b> One change per run, so each drop in accuracy has one cause.</div>
+  <aside class="notes"><p>Press once per step. Ask what goes wrong if you remove two kinds at once (the effects mix) or change the model between runs (a new model explains everything). This is the oldest rule of experiments, applied to prompts.</p></aside>
+</section>
+
+<section class="slide" id="contribution" data-label="Contribution" data-lo="LO4" data-n="16" data-session="2">
+  <div class="kicker">Lab 3.2, step 5</div>
+  <h2>Examples matter most overall; synonyms matter only in Arabic</h2>
+  <table class="t small">
+    <tr><th>Removed</th><th class="num">Accuracy drop</th><th class="num">Arabic</th><th class="num">English</th><th>Area hurt most</th><th class="num">More wrong but plausible</th></tr>
+    <tr><td>Examples</td><td class="num">23.3 pts</td><td class="num">23.4</td><td class="num">23.3</td><td>collections</td><td class="num">+21.7 pts</td></tr>
+    <tr><td>Descriptions</td><td class="num">15.0 pts</td><td class="num">13.4</td><td class="num">16.6</td><td>collections</td><td class="num">+15.0 pts</td></tr>
+    <tr class="hl"><td>Synonyms</td><td class="num">11.7 pts</td><td class="num">23.4</td><td class="num">0.0</td><td>billing</td><td class="num">0.0</td></tr>
+  </table>
+  <p class="small mt">Full context: 95.0% on 60 questions, run 1. Stand-in model (recorded, synthetic).</p>
+  <aside class="notes"><p>The metric names are English words, so an English question finds them without synonyms; an Arabic question does not. Synonym failures are visible (wrong scale or a refusal); description and example failures are plausible. For a mostly Arabic audience, the Arabic column decides. Say clearly: these figures come from the stand-in's recorded replies, written from a stated error model; the method is what transfers, and the stretch runs it on a hosted model.</p></aside>
+</section>
+
+<section class="slide" id="collections-desc" data-label="Without descriptions" data-lo="LO4" data-n="17" data-session="2">
+  <div class="kicker">Lab 3.2, step 3</div>
+  <h2>Without descriptions, collections accuracy falls to 40%, and every miss looks right</h2>
+  <div class="bars">
+    <div class="row"><span>Billing</span><div class="bar c-cyan" style="--w:100%"></div><span class="val">100%</span></div>
+    <div class="row"><span>Usage</span><div class="bar c-cyan" style="--w:100%"></div><span class="val">100%</span></div>
+    <div class="row"><span>Complaints</span><div class="bar c-cyan" style="--w:80%"></div><span class="val">80%</span></div>
+    <div class="row"><span>Collections</span><div class="bar c-coral" style="--w:40%"></div><span class="val">40%</span></div>
+  </div>
+  <p class="small mt">Muhsi picks the finance ratio (cash over billed) for "collection rate": 0.90 for March instead of 0.86.</p>
+  <aside class="notes"><p>Day 1 again: three teams, three collection rates. The names do not tell them apart; only the certified description does ("within 30 days of the due date, net of disputes"). Complaints lose the difference between the customer's region and the region where the complaint was raised, also written only in the description.</p></aside>
+</section>
+
+<section class="slide" id="standin" data-label="Stand-in model" data-lo="LO4" data-n="18" data-session="2">
+  <div class="kicker">How the labs run without a key</div>
+  <h2>A recorded stand-in makes every figure reproducible; a free hosted model makes it real</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>Stand-in (default)</h4><p class="small mb0">720 recorded replies: 60 questions, 4 contexts, 3 runs. Written from a stated error model in <code>_tools/make_case_files.py</code>.</p></div>
+    <div class="card c-cyan"><h4>Live (stretch)</h4><p class="small mb0"><code>QAMAR_MODEL_MODE=live</code> and a free OpenRouter key: the same prompt to <code>google/gemma-4-31b-it:free</code>.</p></div>
+  </div>
+  <div class="callout warn small mt"><b>Free models change.</b> Record the model name and the date beside any live figure.</div>
+  <aside class="notes"><p>Be explicit with the room: the stand-in is not a model; it replays replies designed to show the failure kinds the session is about. Nobody should quote 95% as Muhsi's accuracy. The live stretch shows how far a real free model is from it; results vary by day and by rate limits.</p></aside>
+</section>
+
+<section class="slide" id="checkpoint-2" data-lo="LO4" data-n="19" data-session="2">
+  <div class="kicker">Checkpoint</div>
+  <h2>One budget, three kinds of context</h2>
+  <div class="quiz" data-type="single" data-lo="LO4" data-id="checkpoint-2-q1">
+    <p class="lead">Qamar's managers ask about 80% of their questions in Arabic. With the contribution table above, which kind of context should Zeyad fund first?</p>
+    <div class="opts">
+      <div class="opt" data-why="Reads only the English column" data-k="A">Descriptions, because they matter most in English</div>
+      <div class="opt" data-ok data-k="B">Examples: the same Arabic drop as synonyms, with plausible errors</div>
+      <div class="opt" data-why="Ranks by the overall drop and ignores the audience" data-k="C">Synonyms last, because their overall drop is smallest</div>
+      <div class="opt" data-why="Prompt length does not measure contribution" data-k="D">Whatever is shortest, to keep prompts small</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Both drop Arabic accuracy by about 23 points, but missing examples give plausible wrong figures, which reach decisions; missing synonyms mostly give visible errors.</div>
+  </div>
+  <aside class="notes"><p>Answer: B. The point is to read the column that matches the audience and the kind of error, not a single overall number.</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-3-2" data-auto="lab" data-lab="3.2" data-label="Lab 3.2" data-n="20" data-session="2">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 3.2 · 25 min</div><h2>Remove one kind of context at a time</h2><p class="lead small">Remove synonyms, descriptions and examples one at a time from the supplied configuration of Muhsi and re-score each variant with the supplied scorer, by language and by area.</p><a class="nb" href="../labs/D3_2_context_ablation.ipynb">D3_2_context_ablation.ipynb</a></div><ul class="checklist"><li>The full configuration and its score <span class="min">4 min</span></li><li>Without synonyms <span class="min">5 min</span></li><li>Without descriptions <span class="min">5 min</span></li><li>Without examples <span class="min">5 min</span></li><li>The contribution table <span class="min">6 min</span></li><li class="stretch">✱ Stretch: Ten questions on a free hosted model</li></ul></div>
+  <aside class="notes"><p>Usual problems: merging the two score tables on id only, which duplicates rows when several runs are present; comparing accuracy without the language split. Reference: full 95.0%; without synonyms Arabic 73.3% and English unchanged; without descriptions collections 40%; without examples 71.7%, difficulty 1 unchanged.</p></aside>
+</section>
+
+<!-- ======================= SESSION 3 ======================= -->
+<section class="slide section" id="s3" data-auto="section" data-session="3" data-n="21">
+  <div class="kicker">Session 3</div>
+  <h1>A scoring harness</h1>
+  <ul class="bullets outcomes"><li>Score an answer by executing it and comparing with the certified value</li><li>Separate wrong but plausible answers from obvious failures</li><li>Write an evaluation report that a reviewer can re-run</li></ul>
+  <div class="sess-no">03</div>
+</section>
+
+<section class="slide" id="execute" data-label="Execute, then compare" data-lo="LO4" data-n="22" data-session="3">
+  <div class="kicker">Lab 3.3, step 1</div>
+  <h2>Score the figure the manager sees, not the text of the query</h2>
+  <div class="cols cols-2">
+    <ul class="bullets small">
+      <li>Two different queries can give the same figure: a fiscal year as a label or as a date range</li>
+      <li>A reply may come in a code fence, as a sentence, or with a bad date: each is an outcome, never a crash</li>
+      <li>Numbers match within a stated relative tolerance (0.5%); group names match exactly</li>
+    </ul>
+    <pre class="code s" data-file="a reply"><code class="language-json">```json
+<span class="hljs-punctuation">{</span><span class="hljs-attr">&quot;metrics&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;collection_rate&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;by&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+ <span class="hljs-attr">&quot;where&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;time.month = DATE &#x27;2026-03-01&#x27;&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">}</span>
+```</code></pre>
+  </div>
+  <aside class="notes"><p>Execution accuracy is the common measure in text-to-SQL work (Spider, BIRD): run the predicted query, compare the result. Here the layer runs it with the asker's role, so an answer the role may not see is an error, which is right.</p></aside>
+</section>
+
+<section class="slide" id="outcomes" data-label="Outcomes" data-lo="LO4" data-n="23" data-session="3">
+  <div class="kicker">Lab 3.3, step 2</div>
+  <h2>Seven outcomes, and the two that reach decisions</h2>
+  <table class="t small">
+    <tr><th>Outcome</th><th>When</th><th class="num">Run 1</th></tr>
+    <tr><td>Right</td><td>the certified figure, within tolerance</td><td class="num">50</td></tr>
+    <tr><td>Refused right</td><td>refused a must-refuse question</td><td class="num">7</td></tr>
+    <tr class="hl"><td>Wrong but plausible</td><td>half to twice the figure, or a valid wrong group</td><td class="num">2</td></tr>
+    <tr class="hl"><td>Missed refusal</td><td>answered a must-refuse question</td><td class="num">1</td></tr>
+    <tr><td>Wrong, visible</td><td>any other figure</td><td class="num">0</td></tr>
+    <tr><td>Error</td><td>no JSON, the layer failed, nothing came back</td><td class="num">0</td></tr>
+    <tr><td>Refused wrongly</td><td>refused an answerable question</td><td class="num">0</td></tr>
+  </table>
+  <aside class="notes"><p>The half-to-twice band is a convention, stated in muhsi.PLAUSIBLE; a stricter team might use 80 to 125%. What matters is that it is written down and the same for every run. A missed refusal counts with the plausible errors: the number it gives looks real.</p></aside>
+</section>
+
+<section class="slide" id="three-plausible" data-label="Plausible errors" data-lo="LO4" data-n="24" data-session="3">
+  <div class="kicker">Lab 3.3, step 4</div>
+  <h2>Three answers nobody would notice on a slide</h2>
+  <div class="cols cols-3">
+    <div class="card c-coral"><h4>C13 · Riyadh</h4><p class="small mb0">Read "Riyadh" as the Central region: 86.0% instead of 81.5%.</p></div>
+    <div class="card c-coral"><h4>Q11 · Billing complaints</h4><p class="small mb0">Counted all complaints: January 2026 instead of November 2025.</p></div>
+    <div class="card c-coral"><h4>C15 · On time</h4><p class="small mb0">Answered with a draft metric (73.5%) instead of refusing.</p></div>
+  </div>
+  <p class="small mt">Each looks like a careful answer. Each fails a different safeguard: a field, a metric choice, a certification status.</p>
+  <aside class="notes"><p>C13: is it a model error, a missing synonym (Riyadh is a city of the Central region) or a missing field in the prompt (customer.city is listed)? Q11: the price change in October 2025 caused billing complaints in November; the network incident in January caused complaints in general. C15 is fixed on Day 4 by a guard that refuses uncertified metrics before the layer runs them.</p></aside>
+</section>
+
+<section class="slide" id="rerun" data-label="Re-run" data-lo="LO4" data-n="25" data-session="3">
+  <div class="kicker">Lab 3.3, step 3</div>
+  <h2>A report is evidence only if a reviewer can re-run it and get the same number</h2>
+  <div class="cols cols-2">
+    <pre class="code s" data-file="from labs/"><code class="language-bash">uv run python harness/score.py \
+  --variant full --runs 1</code></pre>
+    <ul class="bullets small">
+      <li>Hashes of every input: the set, the replies, the model, the metric files</li>
+      <li>The scorer's version, the tolerance and the plausible band</li>
+      <li>The mode, and the model name and date when live</li>
+    </ul>
+  </div>
+  <div class="callout tip small mt"><b>First thing to compare when numbers differ:</b> the hashes, before any code.</div>
+  <aside class="notes"><p>The harness is a PEP 723 script: its dependencies are written in its header, so uv can run it anywhere. This is the capstone's reproducibility evidence (10 points): an assessor re-runs five questions during the defence.</p></aside>
+</section>
+
+<section class="slide" id="checkpoint-3" data-lo="LO4" data-n="26" data-session="3">
+  <div class="kicker">Checkpoint</div>
+  <h2>Same accuracy, different risk</h2>
+  <div class="quiz" data-type="single" data-lo="LO4" data-id="checkpoint-3-q1">
+    <p class="lead">Two assistant configurations both score 90% on the certified set. In A, the misses are errors and wrong refusals. In B, the misses are wrong but plausible figures. Which do you put in front of managers, and why?</p>
+    <div class="opts">
+      <div class="opt" data-why="Treats equal accuracy as equal risk" data-k="A">Either: the accuracy is the same</div>
+      <div class="opt" data-why="Reads a figure as better than no figure, whatever its truth" data-k="B">B, because it always gives a number</div>
+      <div class="opt" data-ok data-k="C">A, because its failures are seen and re-asked; B's reach decisions</div>
+      <div class="opt" data-why="Accuracy is measured on the certified set, not on how often managers ask" data-k="D">Neither until accuracy is measured on live traffic</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> An error costs a second question; a plausible wrong collection rate costs a decision. Report both rates, not accuracy alone.</div>
+  </div>
+  <aside class="notes"><p>Answer: C. Day 4's routing policy uses exactly this: a tolerance for wrong figures, not for errors.</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-3-3" data-auto="lab" data-lab="3.3" data-label="Lab 3.3" data-n="27" data-session="3">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 3.3 · 25 min</div><h2>Accuracy and wrong but plausible</h2><p class="lead small">Build a harness that executes each reply, reports execution accuracy and the rate of wrong but plausible answers, and writes a report a reviewer can re-run.</p><a class="nb" href="../labs/D3_3_scoring_harness.ipynb">D3_3_scoring_harness.ipynb</a></div><ul class="checklist"><li>Execute a reply and compare <span class="min">6 min</span></li><li>Classify every outcome <span class="min">7 min</span></li><li>The report a reviewer can re-run <span class="min">7 min</span></li><li>Read the wrong but plausible answers <span class="min">5 min</span></li><li class="stretch">✱ Stretch: A tolerance for rounding: where does it stop being right?</li></ul></div>
+  <aside class="notes"><p>Usual problems: dividing by a zero certified value in the plausible test; comparing labels as numbers; writing the report with the absolute path of the set (the hash must not depend on the folder). Reference: 95.0% accuracy, 5.0% wrong but plausible; the reviewer's re-run gives the same; C13, C15 and Q11 are the three plausible misses.</p></aside>
+</section>
+
+<!-- ======================= SESSION 4 ======================= -->
+<section class="slide section" id="s4" data-auto="section" data-session="4" data-n="28">
+  <div class="kicker">Session 4</div>
+  <h1>Ask it again</h1>
+  <ul class="bullets outcomes"><li>Measure answer agreement across repeated runs</li><li>Separate stable right, stable wrong and unstable answers</li><li>Explain what a response cache hides from a stability test</li></ul>
+  <div class="sess-no">04</div>
+</section>
+
+<section class="slide" id="ask-again" data-label="Ask again" data-lo="LO4" data-n="29" data-session="4">
+  <div class="kicker">Lab 3.4, steps 1 and 2</div>
+  <h2>The three runs score about the same; the answers are not the same</h2>
+  <div class="cols cols-3">
+    <div class="stat center"><div class="big">95%</div><div class="lbl">run 1 accuracy</div></div>
+    <div class="stat center"><div class="big">90%</div><div class="lbl">runs 2 and 3</div></div>
+    <div class="stat center"><div class="big">91.7%</div><div class="lbl">questions with three agreeing answers</div></div>
+  </div>
+  <p class="small mt">Five questions change answer between runs. A manager who asks twice and gets two figures stops trusting every figure.</p>
+  <aside class="notes"><p>Hosted models are not exactly deterministic even at temperature zero (batching, hardware, provider changes). The stand-in replays three recorded runs. Ask: who would notice? Only the manager who asks twice.</p></aside>
+</section>
+
+<section class="slide" id="stability-cells" data-label="Stability" data-lo="LO4" data-n="30" data-session="4">
+  <div class="kicker">Lab 3.4, step 3</div>
+  <h2>Stable and wrong is the worst cell: re-asking never reveals it</h2>
+  <table class="t small">
+    <tr><th></th><th class="num">Questions</th><th>Found by</th></tr>
+    <tr><td>Stable right</td><td class="num">52</td><td>nothing needed</td></tr>
+    <tr><td>Unstable</td><td class="num">5</td><td>asking again</td></tr>
+    <tr class="hl"><td>Stable wrong</td><td class="num">3</td><td>only a certified answer</td></tr>
+  </table>
+  <p class="small mt">The stable-wrong three are the plausible errors of Lab 3.3: C13, C15 and Q11. The unstable five are all difficulty 2 or 3.</p>
+  <aside class="notes"><p>Agreement is not correctness. A team that tests stability alone would ship the three worst answers with confidence. Difficulty 1 questions are all stable and right here: the instability lives in fiscal periods, rankings and cumulative figures.</p></aside>
+</section>
+
+<section class="slide" id="cache-vote" data-label="Cache and vote" data-lo="LO4" data-n="31" data-session="4">
+  <div class="kicker">Lab 3.4, step 5 and the stretch</div>
+  <h2>A cache hides instability; a vote of three does not fix it</h2>
+  <div class="cols cols-2">
+    <div class="card c-navy tint"><h4>Cache run 1</h4><p class="small mb0">All five unstable questions were right on run 1: a cache shows them stable and right, while a fresh ask sometimes is not.</p></div>
+    <div class="card c-coral tint"><h4>Majority of three</h4><p class="small mb0">56 of 60 right against 57 with run 1 alone: C09 is wrong in two runs of three, so the vote picks the wrong one. Triple the cost.</p></div>
+  </div>
+  <aside class="notes"><p>A cache is still useful for cost and consistency, but measure stability before caching, and re-measure when the model changes. A vote helps only when the right answer is the most common; for C09 it is not. The fix for C09 is an example for fiscal quarters, from Lab 3.2.</p></aside>
+</section>
+
+<section class="slide" id="checkpoint-4" data-lo="LO4" data-n="32" data-session="4">
+  <div class="kicker">Checkpoint</div>
+  <h2>A vendor's single run</h2>
+  <div class="quiz" data-type="single" data-lo="LO4" data-id="checkpoint-4-q1">
+    <p class="lead">A vendor reports 96% accuracy from one run at temperature zero on your certified set. What do you ask for before trusting it?</p>
+    <div class="opts">
+      <div class="opt" data-why="More questions do not measure repeatability" data-k="A">A larger question set</div>
+      <div class="opt" data-ok data-k="B">Three runs per question: the agreement rate and the stable-wrong questions</div>
+      <div class="opt" data-why="Temperature zero does not guarantee identical answers on hosted models" data-k="C">Nothing: temperature zero makes it deterministic</div>
+      <div class="opt" data-why="A higher temperature makes answers less stable, not more testable" data-k="D">A run at a higher temperature</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> One run hides instability and cannot separate a stable wrong answer from a lucky one.</div>
+  </div>
+  <aside class="notes"><p>Answer: B. Then ask which of the stable-wrong questions are wrong but plausible, and what the vendor changes when the model version changes.</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-3-4" data-auto="lab" data-lab="3.4" data-label="Lab 3.4" data-n="33" data-session="4">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 3.4 · 25 min</div><h2>Three runs per question</h2><p class="lead small">Run each certified question three times and measure how often the answers agree, which questions are stable but wrong, and how stability differs by area, difficulty and language.</p><a class="nb" href="../labs/D3_4_stability.ipynb">D3_4_stability.ipynb</a></div><ul class="checklist"><li>Load the three runs <span class="min">3 min</span></li><li>Agreement per question <span class="min">6 min</span></li><li>Stable right, stable wrong, unstable <span class="min">7 min</span></li><li>Stability by area, difficulty and language <span class="min">6 min</span></li><li>What a cache would hide <span class="min">3 min</span></li><li class="stretch">✱ Stretch: Does a majority vote of three fix the unstable questions?</li></ul></div>
+  <aside class="notes"><p>Usual problems: comparing answers as floats with ==, which treats 0.8681 and 0.86814 as different (the lab compares the text of the rounded figure); counting a refusal as disagreement with itself. Reference: 91.7% agree; 52 stable right, 5 unstable, 3 stable wrong; all five unstable are hidden by a cache of run 1.</p></aside>
+</section>
+
+<section class="slide" id="wrap-up" data-label="Wrap-up" data-lo="LO4" data-n="34" data-session="4">
+  <div class="kicker">Day 3 · Wrap-up</div>
+  <h2>Three things to keep</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>Certify the query</h4><p class="small mb0">Value, metric and version, filters, grain; every area, difficulty and language; refusals.</p></div>
+    <div class="card c-cyan"><h4>Change one thing</h4><p class="small mb0">Ablate one kind of context at a time and read the column that matches your users.</p></div>
+    <div class="card c-coral"><h4>Count the plausible</h4><p class="small mb0">Report wrong-but-plausible and stable-wrong beside accuracy, in a report anyone can re-run.</p></div>
+  </div>
+  <aside class="notes"><p>Ask each table: which of the three stable-wrong answers would have reached your executive committee, and through which report?</p></aside>
+</section>
+
+<section class="slide dark" id="next" data-label="Next" data-n="35" data-session="4">
+  <div class="kicker">Next</div>
+  <h2>Day 4: ship and govern</h2>
+  <ul class="bullets">
+    <li>Serve the layer to tools and agents, with the role taken from the credential</li>
+    <li>Safeguards that cite the metric and refuse the uncertified</li>
+    <li>A routing policy, then a design review of a peer's product</li>
+  </ul>
+  <aside class="notes"><p>Remind participants that the capstone brief is in the README; Day 4 session 4 is a rehearsal of the design review they will face. Ask them to bring their Lab 3.3 report.</p></aside>
+</section>
+</div>
+<script type="application/json" id="academy-data">{"v":1,"engine":"1.0.0","build":{"at":"2026-11-16T01:26:35Z","version":"2027.1.0","commit":"30c3cc0"},"course":{"id":"ds-408","code":"DS-408","title":"Analytics Products: Semantic Layers and Conversational Analytics","track":"data-science","lang":"en","dir":"ltr","url":"https://sdaiaacademy.github.io/ds-408/","repo":"SDAIAAcademy/ds-408","home":"../index.html"},"deck":{"id":"day3","kind":"day","day":3,"label":"Day 3","title":"Test the assistant","prev":"day2.html","next":"day4.html","md":"day3.md","alt":{}},"sessions":[{"n":1,"label":"Session 1","title":"A certified set for a platform","slide":"s1","outcomes":["Write a certified answer as value, metric, filters and grain","Cover areas, difficulty levels and both languages","Include questions the assistant must refuse"],"minutes":50,"lab":{"id":"3.1","title":"From 44 to 60 certified questions","minutes":25,"href":"../labs/D3_1_certified_set.ipynb"}},{"n":2,"label":"Session 2","title":"Which context helps","slide":"s2","outcomes":["Design an ablation that changes one kind of context at a time","Score each variant with a fixed model and question set","Read the contribution of each kind of context by language and area"],"minutes":50,"lab":{"id":"3.2","title":"Remove one kind of context at a time","minutes":25,"href":"../labs/D3_2_context_ablation.ipynb"}},{"n":3,"label":"Session 3","title":"A scoring harness","slide":"s3","outcomes":["Score an answer by executing it and comparing with the certified value","Separate wrong but plausible answers from obvious failures","Write an evaluation report that a reviewer can re-run"],"minutes":50,"lab":{"id":"3.3","title":"Accuracy and wrong but plausible","minutes":25,"href":"../labs/D3_3_scoring_harness.ipynb"}},{"n":4,"label":"Session 4","title":"Ask it again","slide":"s4","outcomes":["Measure answer agreement across repeated runs","Separate stable right, stable wrong and unstable answers","Explain what a response cache hides from a stability test"],"minutes":50,"lab":{"id":"3.4","title":"Three runs per question","minutes":25,"href":"../labs/D3_4_stability.ipynb"}}],"slides":[{"id":"title","n":1,"title":"Test the assistant","kind":"title","session":0,"hash":"c47f02e0","md":"#### [day3#title] Test the assistant\n\n*SDAIA Academy · Analytics Products: Semantic Layers and Conversational Analytics*\n\nDay 3: Certified questions, context, accuracy and stability\n\nData Science Track · 4 teaching days + capstone day · 4 sessions · 4 labs · DS-408","notes":"Yesterday the metrics got a home: a conformed, fast, governed and portable layer. Today an assistant, Muhsi, answers managers' questions through that layer, and we measure it the way a platform team must before 300 managers use it. Collect the three questions each participant brought; keep the Arabic ones for session 1.","minutes":null,"lo":[]},{"id":"agenda","n":2,"title":"Test the assistant","kind":"content","session":0,"hash":"b4e7c092","md":"#### [day3#agenda] Test the assistant\n\n*Today*\n\n- **Session 1 · A certified set for a platform**: Questions with certified answers, covering every area, difficulty and language, including those the assistant must refuse\n- **Session 2 · Which context helps**: Synonyms, descriptions and examples removed one at a time, with everything else fixed\n- **Session 3 · A scoring harness**: Execution accuracy, wrong but plausible answers and refusals, in a report a reviewer can re-run\n- **Session 4 · Ask it again**: The same question three times: agreement, and the cell that matters most, stable and wrong","notes":"","minutes":null,"lo":[]},{"id":"review-day2","n":3,"title":"A new dataset arrives on Thursday","kind":"quiz","session":0,"hash":"9827d580","md":"#### [day3#review-day2] A new dataset arrives on Thursday\n\n*Review of Day 2*\n\n**Question:** A roaming dataset is added to the layer on Thursday without a row rule. On Sunday the Eastern regional manager asks for roaming data by region. With deny by default on, what happens?\n\n- A. The layer refuses the query and names the missing rule\n- B. All five regions come back\n- C. Only the Eastern region comes back\n- D. The rows come back with every value masked","notes":"Answer: A. Today that matters again: Muhsi asks the layer with the manager's role, so an assistant cannot see more than its user. Day 4 takes the role from the credential.","minutes":null,"lo":["LO3"]},{"id":"s1","n":4,"title":"A certified set for a platform","kind":"section","session":1,"hash":"8df5d836","md":"#### [day3#s1] A certified set for a platform\n\n*Session 1*\n\n- Write a certified answer as value, metric, filters and grain\n- Cover areas, difficulty levels and both languages\n- Include questions the assistant must refuse","notes":"","minutes":null,"lo":["LO4"]},{"id":"why-certified","n":5,"title":"A leaderboard score says little about your metrics; a certified set says a lot","kind":"content","session":1,"hash":"c84d1fb3","md":"#### [day3#why-certified] A leaderboard score says little about your metrics; a certified set says a lot\n\n*Before 300 managers ask*\n\n- Public text-to-SQL benchmarks use other schemas and other definitions\n- Enterprise benchmarks show **real warehouses stay hard**: Spider 2.0 (ICLR 2025)\n- Your managers ask about **your** collection rate, fiscal year and Hijri months\n- DS-307 ended with ten certified answers and a go or no-go memo; a platform needs more\n\n- **Qamar's set.** 60 questions: four areas, three difficulties, 30 in Arabic and 30 in English, 8 that Muhsi must refuse.","notes":"Source: Spider 2.0, arxiv.org/abs/2411.07763, an enterprise text-to-SQL benchmark. Do not quote its percentages as if they applied here; the point is that a general score does not transfer. One slide of DS-307 recap: ten questions were enough for one go or no-go on one area. Ask: who has seen a vendor accuracy figure? On what questions was it measured?","minutes":null,"lo":["LO4"]},{"id":"certified-answer","n":6,"title":"A certified answer is a figure and the four things that produce it","kind":"content","session":1,"hash":"cfafe89d","md":"#### [day3#certified-answer] A certified answer is a figure and the four things that produce it\n\n*What is certified*\n\n```yaml\n# file: certified_60.yaml\n- id: C05\n  lang: en\n  area: collections\n  difficulty: 1\n  question: What was the collection rate for government\n    customers for December 2025 bills?\n  query:\n    metrics: [collection_rate]\n    where: [\"customer.segment = 'government'\",\n            \"time.month = DATE '2025-12-01'\"]\n  expect: {kind: value, value: 0.560764, unit: ratio,\n           metric_version: 1.0.0}\n```\n\n- **Metric and version.** Which definition, and which version of it.\n- **Filters and grain.** Which customers, which period, grouped how.\n- **Value.** Run through the layer, never typed from a report.","notes":"The value alone cannot be checked by a reviewer: 0.85 could be January or March, finance's ratio or the certified one. The version matters because a metric change (Day 1, session 3) changes the certified answer, and the set must be re-certified with it.","minutes":null,"lo":["LO4"]},{"id":"coverage","n":7,"title":"The supplied 44 questions leave two cells empty and almost no refusals","kind":"content","session":1,"hash":"da3d137c","md":"#### [day3#coverage] The supplied 44 questions leave two cells empty and almost no refusals\n\n*Lab 3.1, step 1*\n\n| Area | Difficulty 1 | Difficulty 2 | Difficulty 3 | Refusals |\n| --- | --- | --- | --- | --- |\n| Usage | 5 | 4 | 3 | 1 |\n| Billing | 5 | 4 | 3 | 1 |\n| Collections | 5 | 4 | 0 | 0 |\n| Complaints | 5 | 4 | 0 | 0 |\n\nDifficulty 1: one filter. 2: two filters or a fiscal period. 3: a ranking, a Hijri period or a cumulative figure.","notes":"From Lab 3.1. The hard questions are exactly where an assistant fails; a set without them flatters it. Both supplied refusals are about personal data, so the set never tests a forecast, an immature cohort, a draft metric or a \"why\" question.","minutes":null,"lo":["LO4"]},{"id":"refusals","n":8,"title":"A refusal is a right answer, and the set must test five kinds of it","kind":"content","session":1,"hash":"3c330282","md":"#### [day3#refusals] A refusal is a right answer, and the set must test five kinds of it\n\n*The questions Muhsi must refuse*\n\n- **Restricted.** Names, national IDs or mobile numbers of customers.\n- **Forecast.** Next year's revenue: the layer holds facts, not predictions.\n- **Not matured.** May 2026's collection rate: its 30-day window has not closed.\n\n- **Uncertified.** Bills paid on time: only a draft metric fits.\n- **Causal.** \"Why did complaints rise?\": a figure is not a cause.","notes":"An assistant that answers everything looks good on answerable questions. Only must-refuse questions show whether it invents figures. Ask the room which refusal their own assistant would most likely miss; most say \"uncertified\", and Lab 3.3 shows why.","minutes":null,"lo":["LO4"]},{"id":"screening","n":9,"title":"Four rules screen a candidate question before it is certified","kind":"content","session":1,"hash":"ce4d995e","md":"#### [day3#screening] Four rules screen a candidate question before it is certified\n\n*Lab 3.1, step 2*\n\n| Rule | Reject when | Candidate |\n| --- | --- | --- |\n| Period | an answer with no time condition | \"What is the collection rate?\" |\n| Certified | only a draft metric fits the draft | \"Cash to billing ratio in March\" |\n| Duplicate | same metrics, groups and filters as one in the set | January's rate, in other words |\n| Restricted | groups or filters on a Restricted field | \"Which customer had the largest bill?\" |\n\n24 candidates: 16 kept, 8 rejected.","notes":"The candidates came from three analysts, as drafts. A rejected draft is not always a useless question: the on-time share and the largest-customer questions are good questions whose right answer is a refusal. Write them into the set as refusals.","minutes":null,"lo":["LO4"]},{"id":"hijri-caveat","n":10,"title":"A Hijri question about monthly facts certifies a labelling choice","kind":"content","session":1,"hash":"c3e58e42","md":"#### [day3#hijri-caveat] A Hijri question about monthly facts certifies a labelling choice\n\n*Lab 3.1, step 3*\n\n- Ramadan 1447 runs from about 18 February to 19 March 2026\n- Bills and monthly usage are dated on the first day of the service month\n- So \"data in Ramadan 1447\" counts the **March 2026** service month\n- Complaints are dated by day, so \"complaints in Rajab 1447\" is exact\n\n> **Say it in the question.** The certified answer must state the convention, or two analysts certify different figures and both are right.","notes":"The calendar uses the Umm al-Qura conversion (hijridate). Question U12 in the set. Ask: would your managers expect Ramadan's usage to include the February days? If yes, the layer needs daily usage, which is a design decision, not a test decision.","minutes":null,"lo":["LO4"]},{"id":"checkpoint-1","n":11,"title":"Two analysts, two certified figures","kind":"quiz","session":1,"hash":"08a2d86f","md":"#### [day3#checkpoint-1] Two analysts, two certified figures\n\n*Checkpoint*\n\n**Question:** Two analysts certify \"the collection rate for January bills\" and record 0.8495 and 0.8645. Both ran the semantic layer. What must the certified answer also record so a reviewer can settle it?\n\n- A. The value to more decimal places\n- B. The analysts' names and the date\n- C. The metric and its version, the filters and the grain they ran\n- D. The assistant's answer to the same question","notes":"Answer: C. 0.8645 is March 2026's rate, 0.8495 January's, both from Lab 3.1's data.","minutes":null,"lo":["LO4"]},{"id":"lab-3-1","n":12,"title":"From 44 to 60 certified questions","kind":"lab","session":1,"hash":"8931257d","md":"#### [day3#lab-3-1] From 44 to 60 certified questions\n\nLab 3.1 · 25 min\n\nExtend the supplied certified set to cover each business area and difficulty level in Arabic and English, including questions the assistant must refuse, certifying each new answer through the semantic layer.\n\n[D3_1_certified_set.ipynb](https://sdaiaacademy.github.io/ds-408/labs/D3_1_certified_set.ipynb)\n\n- [ ] Coverage of the supplied set (5 min)\n- [ ] Screen the candidate questions (7 min)\n- [ ] Certify the answers (7 min)\n- [ ] Check coverage, languages and refusals (6 min)\n- [ ] ✱ Stretch: Three paraphrases of one question","notes":"Usual problems: comparing a draft's filters without sorting them (the duplicate rule misses X02); treating a refusal draft as \"no period\"; forgetting the unit of a ranking (\"label\"). Reference: two empty cells and two refusals in the 44; 16 kept, 8 rejected; 60 questions, 30 per language, 8 refusals in all four areas.","minutes":null,"lo":[]},{"id":"s2","n":13,"title":"Which context helps","kind":"section","session":2,"hash":"e11c43ec","md":"#### [day3#s2] Which context helps\n\n*Session 2*\n\n- Design an ablation that changes one kind of context at a time\n- Score each variant with a fixed model and question set\n- Read the contribution of each kind of context by language and area","notes":"","minutes":null,"lo":["LO4"]},{"id":"three-kinds","n":14,"title":"Each certified metric carries three kinds of context for the assistant","kind":"content","session":2,"hash":"967e53dd","md":"#### [day3#three-kinds] Each certified metric carries three kinds of context for the assistant\n\n*What Muhsi reads*\n\n- **Synonyms.** In both languages: \"collection rate\", \"نسبة التحصيل\", \"معدل التحصيل\".\n- **Description.** \"Paid within 30 days of the due date, net of disputes, bill-month cohort.\"\n- **Examples.** A question and its query, such as a fiscal-year filter written correctly.\n\nMuhsi answers with a semantic query, not SQL; the layer computes the figure.","notes":"Open data/metrics/collections.yml and show the ai: block of collection_rate. The prompt is built by muhsi.prompt from certified metrics only. Answering with a semantic query is what makes the layer the single source: the model chooses, the layer computes, the role applies.","minutes":null,"lo":["LO4"]},{"id":"ablation","n":15,"title":"Remove one kind of context at a time, and keep everything else fixed","kind":"content","session":2,"hash":"06301bfa","md":"#### [day3#ablation] Remove one kind of context at a time, and keep everything else fixed\n\n*Lab 3.2, the design*\n\n1. **1 · Fix** the model, the 60 questions, run 1\n2. **2 · Remove one** synonyms, or descriptions, or examples\n3. **3 · Re-score** the same scorer, by language and by area\n\n> **Takeaway.** One change per run, so each drop in accuracy has one cause.","notes":"Press once per step. Ask what goes wrong if you remove two kinds at once (the effects mix) or change the model between runs (a new model explains everything). This is the oldest rule of experiments, applied to prompts.","minutes":null,"lo":["LO4"]},{"id":"contribution","n":16,"title":"Examples matter most overall; synonyms matter only in Arabic","kind":"content","session":2,"hash":"e269a3f0","md":"#### [day3#contribution] Examples matter most overall; synonyms matter only in Arabic\n\n*Lab 3.2, step 5*\n\n| Removed | Accuracy drop | Arabic | English | Area hurt most | More wrong but plausible |\n| --- | --- | --- | --- | --- | --- |\n| Examples | 23.3 pts | 23.4 | 23.3 | collections | +21.7 pts |\n| Descriptions | 15.0 pts | 13.4 | 16.6 | collections | +15.0 pts |\n| Synonyms | 11.7 pts | 23.4 | 0.0 | billing | 0.0 |\n\nFull context: 95.0% on 60 questions, run 1. Stand-in model (recorded, synthetic).","notes":"The metric names are English words, so an English question finds them without synonyms; an Arabic question does not. Synonym failures are visible (wrong scale or a refusal); description and example failures are plausible. For a mostly Arabic audience, the Arabic column decides. Say clearly: these figures come from the stand-in's recorded replies, written from a stated error model; the method is what transfers, and the stretch runs it on a hosted model.","minutes":null,"lo":["LO4"]},{"id":"collections-desc","n":17,"title":"Without descriptions, collections accuracy falls to 40%, and every miss looks right","kind":"content","session":2,"hash":"5bf02f45","md":"#### [day3#collections-desc] Without descriptions, collections accuracy falls to 40%, and every miss looks right\n\n*Lab 3.2, step 3*\n\n| Item | Value |\n| --- | --- |\n| Billing | 100% |\n| Usage | 100% |\n| Complaints | 80% |\n| Collections | 40% |\n\nMuhsi picks the finance ratio (cash over billed) for \"collection rate\": 0.90 for March instead of 0.86.","notes":"Day 1 again: three teams, three collection rates. The names do not tell them apart; only the certified description does (\"within 30 days of the due date, net of disputes\"). Complaints lose the difference between the customer's region and the region where the complaint was raised, also written only in the description.","minutes":null,"lo":["LO4"]},{"id":"standin","n":18,"title":"A recorded stand-in makes every figure reproducible; a free hosted model makes it real","kind":"content","session":2,"hash":"3777ebef","md":"#### [day3#standin] A recorded stand-in makes every figure reproducible; a free hosted model makes it real\n\n*How the labs run without a key*\n\n- **Stand-in (default).** 720 recorded replies: 60 questions, 4 contexts, 3 runs. Written from a stated error model in `_tools/make_case_files.py`.\n- **Live (stretch).** `QAMAR_MODEL_MODE=live` and a free OpenRouter key: the same prompt to `google/gemma-4-31b-it:free`.\n\n> **Free models change.** Record the model name and the date beside any live figure.","notes":"Be explicit with the room: the stand-in is not a model; it replays replies designed to show the failure kinds the session is about. Nobody should quote 95% as Muhsi's accuracy. The live stretch shows how far a real free model is from it; results vary by day and by rate limits.","minutes":null,"lo":["LO4"]},{"id":"checkpoint-2","n":19,"title":"One budget, three kinds of context","kind":"quiz","session":2,"hash":"a602594d","md":"#### [day3#checkpoint-2] One budget, three kinds of context\n\n*Checkpoint*\n\n**Question:** Qamar's managers ask about 80% of their questions in Arabic. With the contribution table above, which kind of context should Zeyad fund first?\n\n- A. Descriptions, because they matter most in English\n- B. Examples: the same Arabic drop as synonyms, with plausible errors\n- C. Synonyms last, because their overall drop is smallest\n- D. Whatever is shortest, to keep prompts small","notes":"Answer: B. The point is to read the column that matches the audience and the kind of error, not a single overall number.","minutes":null,"lo":["LO4"]},{"id":"lab-3-2","n":20,"title":"Remove one kind of context at a time","kind":"lab","session":2,"hash":"6be4e6f2","md":"#### [day3#lab-3-2] Remove one kind of context at a time\n\nLab 3.2 · 25 min\n\nRemove synonyms, descriptions and examples one at a time from the supplied configuration of Muhsi and re-score each variant with the supplied scorer, by language and by area.\n\n[D3_2_context_ablation.ipynb](https://sdaiaacademy.github.io/ds-408/labs/D3_2_context_ablation.ipynb)\n\n- [ ] The full configuration and its score (4 min)\n- [ ] Without synonyms (5 min)\n- [ ] Without descriptions (5 min)\n- [ ] Without examples (5 min)\n- [ ] The contribution table (6 min)\n- [ ] ✱ Stretch: Ten questions on a free hosted model","notes":"Usual problems: merging the two score tables on id only, which duplicates rows when several runs are present; comparing accuracy without the language split. Reference: full 95.0%; without synonyms Arabic 73.3% and English unchanged; without descriptions collections 40%; without examples 71.7%, difficulty 1 unchanged.","minutes":null,"lo":[]},{"id":"s3","n":21,"title":"A scoring harness","kind":"section","session":3,"hash":"8e15d55f","md":"#### [day3#s3] A scoring harness\n\n*Session 3*\n\n- Score an answer by executing it and comparing with the certified value\n- Separate wrong but plausible answers from obvious failures\n- Write an evaluation report that a reviewer can re-run","notes":"","minutes":null,"lo":["LO4"]},{"id":"execute","n":22,"title":"Score the figure the manager sees, not the text of the query","kind":"content","session":3,"hash":"dad011a4","md":"#### [day3#execute] Score the figure the manager sees, not the text of the query\n\n*Lab 3.3, step 1*\n\n- Two different queries can give the same figure: a fiscal year as a label or as a date range\n- A reply may come in a code fence, as a sentence, or with a bad date: each is an outcome, never a crash\n- Numbers match within a stated relative tolerance (0.5%); group names match exactly\n\n````json\n// file: a reply\n```json\n{\"metrics\": [\"collection_rate\"], \"by\": [],\n \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```\n````","notes":"Execution accuracy is the common measure in text-to-SQL work (Spider, BIRD): run the predicted query, compare the result. Here the layer runs it with the asker's role, so an answer the role may not see is an error, which is right.","minutes":null,"lo":["LO4"]},{"id":"outcomes","n":23,"title":"Seven outcomes, and the two that reach decisions","kind":"content","session":3,"hash":"b21a551e","md":"#### [day3#outcomes] Seven outcomes, and the two that reach decisions\n\n*Lab 3.3, step 2*\n\n| Outcome | When | Run 1 |\n| --- | --- | --- |\n| Right | the certified figure, within tolerance | 50 |\n| Refused right | refused a must-refuse question | 7 |\n| Wrong but plausible | half to twice the figure, or a valid wrong group | 2 |\n| Missed refusal | answered a must-refuse question | 1 |\n| Wrong, visible | any other figure | 0 |\n| Error | no JSON, the layer failed, nothing came back | 0 |\n| Refused wrongly | refused an answerable question | 0 |","notes":"The half-to-twice band is a convention, stated in muhsi.PLAUSIBLE; a stricter team might use 80 to 125%. What matters is that it is written down and the same for every run. A missed refusal counts with the plausible errors: the number it gives looks real.","minutes":null,"lo":["LO4"]},{"id":"three-plausible","n":24,"title":"Three answers nobody would notice on a slide","kind":"content","session":3,"hash":"07dd2bce","md":"#### [day3#three-plausible] Three answers nobody would notice on a slide\n\n*Lab 3.3, step 4*\n\n- **C13 · Riyadh.** Read \"Riyadh\" as the Central region: 86.0% instead of 81.5%.\n- **Q11 · Billing complaints.** Counted all complaints: January 2026 instead of November 2025.\n- **C15 · On time.** Answered with a draft metric (73.5%) instead of refusing.\n\nEach looks like a careful answer. Each fails a different safeguard: a field, a metric choice, a certification status.","notes":"C13: is it a model error, a missing synonym (Riyadh is a city of the Central region) or a missing field in the prompt (customer.city is listed)? Q11: the price change in October 2025 caused billing complaints in November; the network incident in January caused complaints in general. C15 is fixed on Day 4 by a guard that refuses uncertified metrics before the layer runs them.","minutes":null,"lo":["LO4"]},{"id":"rerun","n":25,"title":"A report is evidence only if a reviewer can re-run it and get the same number","kind":"content","session":3,"hash":"f3a6367d","md":"#### [day3#rerun] A report is evidence only if a reviewer can re-run it and get the same number\n\n*Lab 3.3, step 3*\n\n```bash\n# file: from labs/\nuv run python harness/score.py \\\n  --variant full --runs 1\n```\n\n- Hashes of every input: the set, the replies, the model, the metric files\n- The scorer's version, the tolerance and the plausible band\n- The mode, and the model name and date when live\n\n> **First thing to compare when numbers differ:** the hashes, before any code.","notes":"The harness is a PEP 723 script: its dependencies are written in its header, so uv can run it anywhere. This is the capstone's reproducibility evidence (10 points): an assessor re-runs five questions during the defence.","minutes":null,"lo":["LO4"]},{"id":"checkpoint-3","n":26,"title":"Same accuracy, different risk","kind":"quiz","session":3,"hash":"d1ae9b12","md":"#### [day3#checkpoint-3] Same accuracy, different risk\n\n*Checkpoint*\n\n**Question:** Two assistant configurations both score 90% on the certified set. In A, the misses are errors and wrong refusals. In B, the misses are wrong but plausible figures. Which do you put in front of managers, and why?\n\n- A. Either: the accuracy is the same\n- B. B, because it always gives a number\n- C. A, because its failures are seen and re-asked; B's reach decisions\n- D. Neither until accuracy is measured on live traffic","notes":"Answer: C. Day 4's routing policy uses exactly this: a tolerance for wrong figures, not for errors.","minutes":null,"lo":["LO4"]},{"id":"lab-3-3","n":27,"title":"Accuracy and wrong but plausible","kind":"lab","session":3,"hash":"e132d797","md":"#### [day3#lab-3-3] Accuracy and wrong but plausible\n\nLab 3.3 · 25 min\n\nBuild a harness that executes each reply, reports execution accuracy and the rate of wrong but plausible answers, and writes a report a reviewer can re-run.\n\n[D3_3_scoring_harness.ipynb](https://sdaiaacademy.github.io/ds-408/labs/D3_3_scoring_harness.ipynb)\n\n- [ ] Execute a reply and compare (6 min)\n- [ ] Classify every outcome (7 min)\n- [ ] The report a reviewer can re-run (7 min)\n- [ ] Read the wrong but plausible answers (5 min)\n- [ ] ✱ Stretch: A tolerance for rounding: where does it stop being right?","notes":"Usual problems: dividing by a zero certified value in the plausible test; comparing labels as numbers; writing the report with the absolute path of the set (the hash must not depend on the folder). Reference: 95.0% accuracy, 5.0% wrong but plausible; the reviewer's re-run gives the same; C13, C15 and Q11 are the three plausible misses.","minutes":null,"lo":[]},{"id":"s4","n":28,"title":"Ask it again","kind":"section","session":4,"hash":"2b135738","md":"#### [day3#s4] Ask it again\n\n*Session 4*\n\n- Measure answer agreement across repeated runs\n- Separate stable right, stable wrong and unstable answers\n- Explain what a response cache hides from a stability test","notes":"","minutes":null,"lo":["LO4"]},{"id":"ask-again","n":29,"title":"The three runs score about the same; the answers are not the same","kind":"content","session":4,"hash":"f62fdf92","md":"#### [day3#ask-again] The three runs score about the same; the answers are not the same\n\n*Lab 3.4, steps 1 and 2*\n\n- **95%** run 1 accuracy\n- **90%** runs 2 and 3\n- **91.7%** questions with three agreeing answers\n\nFive questions change answer between runs. A manager who asks twice and gets two figures stops trusting every figure.","notes":"Hosted models are not exactly deterministic even at temperature zero (batching, hardware, provider changes). The stand-in replays three recorded runs. Ask: who would notice? Only the manager who asks twice.","minutes":null,"lo":["LO4"]},{"id":"stability-cells","n":30,"title":"Stable and wrong is the worst cell: re-asking never reveals it","kind":"content","session":4,"hash":"28958486","md":"#### [day3#stability-cells] Stable and wrong is the worst cell: re-asking never reveals it\n\n*Lab 3.4, step 3*\n\n|  | Questions | Found by |\n| --- | --- | --- |\n| Stable right | 52 | nothing needed |\n| Unstable | 5 | asking again |\n| Stable wrong | 3 | only a certified answer |\n\nThe stable-wrong three are the plausible errors of Lab 3.3: C13, C15 and Q11. The unstable five are all difficulty 2 or 3.","notes":"Agreement is not correctness. A team that tests stability alone would ship the three worst answers with confidence. Difficulty 1 questions are all stable and right here: the instability lives in fiscal periods, rankings and cumulative figures.","minutes":null,"lo":["LO4"]},{"id":"cache-vote","n":31,"title":"A cache hides instability; a vote of three does not fix it","kind":"content","session":4,"hash":"3f9b456b","md":"#### [day3#cache-vote] A cache hides instability; a vote of three does not fix it\n\n*Lab 3.4, step 5 and the stretch*\n\n- **Cache run 1.** All five unstable questions were right on run 1: a cache shows them stable and right, while a fresh ask sometimes is not.\n- **Majority of three.** 56 of 60 right against 57 with run 1 alone: C09 is wrong in two runs of three, so the vote picks the wrong one. Triple the cost.","notes":"A cache is still useful for cost and consistency, but measure stability before caching, and re-measure when the model changes. A vote helps only when the right answer is the most common; for C09 it is not. The fix for C09 is an example for fiscal quarters, from Lab 3.2.","minutes":null,"lo":["LO4"]},{"id":"checkpoint-4","n":32,"title":"A vendor's single run","kind":"quiz","session":4,"hash":"c6e46ea7","md":"#### [day3#checkpoint-4] A vendor's single run\n\n*Checkpoint*\n\n**Question:** A vendor reports 96% accuracy from one run at temperature zero on your certified set. What do you ask for before trusting it?\n\n- A. A larger question set\n- B. Three runs per question: the agreement rate and the stable-wrong questions\n- C. Nothing: temperature zero makes it deterministic\n- D. A run at a higher temperature","notes":"Answer: B. Then ask which of the stable-wrong questions are wrong but plausible, and what the vendor changes when the model version changes.","minutes":null,"lo":["LO4"]},{"id":"lab-3-4","n":33,"title":"Three runs per question","kind":"lab","session":4,"hash":"7a1f3c21","md":"#### [day3#lab-3-4] Three runs per question\n\nLab 3.4 · 25 min\n\nRun each certified question three times and measure how often the answers agree, which questions are stable but wrong, and how stability differs by area, difficulty and language.\n\n[D3_4_stability.ipynb](https://sdaiaacademy.github.io/ds-408/labs/D3_4_stability.ipynb)\n\n- [ ] Load the three runs (3 min)\n- [ ] Agreement per question (6 min)\n- [ ] Stable right, stable wrong, unstable (7 min)\n- [ ] Stability by area, difficulty and language (6 min)\n- [ ] What a cache would hide (3 min)\n- [ ] ✱ Stretch: Does a majority vote of three fix the unstable questions?","notes":"Usual problems: comparing answers as floats with ==, which treats 0.8681 and 0.86814 as different (the lab compares the text of the rounded figure); counting a refusal as disagreement with itself. Reference: 91.7% agree; 52 stable right, 5 unstable, 3 stable wrong; all five unstable are hidden by a cache of run 1.","minutes":null,"lo":[]},{"id":"wrap-up","n":34,"title":"Three things to keep","kind":"content","session":4,"hash":"681279c5","md":"#### [day3#wrap-up] Three things to keep\n\n*Day 3 · Wrap-up*\n\n- **Certify the query.** Value, metric and version, filters, grain; every area, difficulty and language; refusals.\n- **Change one thing.** Ablate one kind of context at a time and read the column that matches your users.\n- **Count the plausible.** Report wrong-but-plausible and stable-wrong beside accuracy, in a report anyone can re-run.","notes":"Ask each table: which of the three stable-wrong answers would have reached your executive committee, and through which report?","minutes":null,"lo":["LO4"]},{"id":"next","n":35,"title":"Day 4: ship and govern","kind":"content","session":4,"hash":"fe156a9a","md":"#### [day3#next] Day 4: ship and govern\n\n*Next*\n\n- Serve the layer to tools and agents, with the role taken from the credential\n- Safeguards that cite the metric and refuse the uncertified\n- A routing policy, then a design review of a peer's product","notes":"Remind participants that the capstone brief is in the README; Day 4 session 4 is a rehearsal of the design review they will face. Ask them to bring their Lab 3.3 report.","minutes":null,"lo":[]}],"activities":[{"id":"review-day2-q1","slide":"review-day2","type":"single","prompt":"A roaming dataset is added to the layer on Thursday without a row rule. On Sunday the Eastern regional manager asks for roaming data by region. With deny by default on, what happens?","options":[{"key":"A","text":"The layer refuses the query and names the missing rule"},{"key":"B","text":"All five regions come back"},{"key":"C","text":"Only the Eastern region comes back"},{"key":"D","text":"The rows come back with every value masked"}],"correct":[0],"explanation":"Deny by default turns a forgotten rule into a visible error for one role, instead of a silent leak to every limited role.","misconceptions":["","Describes the allow-by-default layer of Lab 2.3 before the fix","Assumes the layer guesses a rule from the customer join","Confuses masking fields with filtering rows"],"lo":["LO3"]},{"id":"checkpoint-1-q1","slide":"checkpoint-1","type":"single","prompt":"Two analysts certify \"the collection rate for January bills\" and record 0.8495 and 0.8645. Both ran the semantic layer. What must the certified answer also record so a reviewer can settle it?","options":[{"key":"A","text":"The value to more decimal places"},{"key":"B","text":"The analysts' names and the date"},{"key":"C","text":"The metric and its version, the filters and the grain they ran"},{"key":"D","text":"The assistant's answer to the same question"}],"correct":[2],"explanation":"With the query recorded, the reviewer sees one analyst filtered on March, not January, and re-runs the right one.","misconceptions":["The value is what is in dispute; more decimals do not explain it","Who certified does not say what was run","","A model's answer is what is tested, not the reference"],"lo":["LO4"]},{"id":"checkpoint-2-q1","slide":"checkpoint-2","type":"single","prompt":"Qamar's managers ask about 80% of their questions in Arabic. With the contribution table above, which kind of context should Zeyad fund first?","options":[{"key":"A","text":"Descriptions, because they matter most in English"},{"key":"B","text":"Examples: the same Arabic drop as synonyms, with plausible errors"},{"key":"C","text":"Synonyms last, because their overall drop is smallest"},{"key":"D","text":"Whatever is shortest, to keep prompts small"}],"correct":[1],"explanation":"Both drop Arabic accuracy by about 23 points, but missing examples give plausible wrong figures, which reach decisions; missing synonyms mostly give visible errors.","misconceptions":["Reads only the English column","","Ranks by the overall drop and ignores the audience","Prompt length does not measure contribution"],"lo":["LO4"]},{"id":"checkpoint-3-q1","slide":"checkpoint-3","type":"single","prompt":"Two assistant configurations both score 90% on the certified set. In A, the misses are errors and wrong refusals. In B, the misses are wrong but plausible figures. Which do you put in front of managers, and why?","options":[{"key":"A","text":"Either: the accuracy is the same"},{"key":"B","text":"B, because it always gives a number"},{"key":"C","text":"A, because its failures are seen and re-asked; B's reach decisions"},{"key":"D","text":"Neither until accuracy is measured on live traffic"}],"correct":[2],"explanation":"An error costs a second question; a plausible wrong collection rate costs a decision. Report both rates, not accuracy alone.","misconceptions":["Treats equal accuracy as equal risk","Reads a figure as better than no figure, whatever its truth","","Accuracy is measured on the certified set, not on how often managers ask"],"lo":["LO4"]},{"id":"checkpoint-4-q1","slide":"checkpoint-4","type":"single","prompt":"A vendor reports 96% accuracy from one run at temperature zero on your certified set. What do you ask for before trusting it?","options":[{"key":"A","text":"A larger question set"},{"key":"B","text":"Three runs per question: the agreement rate and the stable-wrong questions"},{"key":"C","text":"Nothing: temperature zero makes it deterministic"},{"key":"D","text":"A run at a higher temperature"}],"correct":[1],"explanation":"One run hides instability and cannot separate a stable wrong answer from a lucky one.","misconceptions":["More questions do not measure repeatability","","Temperature zero does not guarantee identical answers on hosted models","A higher temperature makes answers less stable, not more testable"],"lo":["LO4"]}],"ai":{"context":{"course":"../context/course.md","courseJs":"../context/course.js","day":"day3.md","llms":"../llms.txt"},"tasks":[],"tools":[]},"bridge":{"allowedOrigins":[]},"features":{},"strings":{}}</script>
+<script src="../_engine/academy.js"></script>
+</body>
+</html>

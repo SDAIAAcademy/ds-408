@@ -1,0 +1,720 @@
+{"id": "B01", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B01", "variant": "full", "run": 2, "reply": "```json\n{\"metrics\": [\"billed_amount\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "B01", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B01", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B01", "variant": "no_synonyms", "run": 2, "reply": "```json\n{\"metrics\": [\"billed_amount\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "B01", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B01", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B01", "variant": "no_descriptions", "run": 2, "reply": "```json\n{\"metrics\": [\"billed_amount\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "B01", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B01", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B01", "variant": "no_examples", "run": 2, "reply": "```json\n{\"metrics\": [\"billed_amount\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "B01", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B02", "variant": "full", "run": 1, "reply": "```json\n{\"metrics\": [\"bills_issued\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "B02", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B02", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B02", "variant": "no_synonyms", "run": 1, "reply": "```json\n{\"metrics\": [\"bills_issued\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "B02", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B02", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B02", "variant": "no_descriptions", "run": 1, "reply": "```json\n{\"metrics\": [\"bills_issued\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "B02", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B02", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B02", "variant": "no_examples", "run": 1, "reply": "```json\n{\"metrics\": [\"bills_issued\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "B02", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B02", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B03", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"time.month = DATE '2025-10-01'\"]}"}
+{"id": "B03", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"time.month = DATE '2025-10-01'\"]}"}
+{"id": "B03", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"time.month = DATE '2025-10-01'\"]}"}
+{"id": "B03", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"time.month = DATE '2025-10-01'\"]}"}
+{"id": "B03", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"time.month = DATE '2025-10-01'\"]}"}
+{"id": "B03", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"time.month = DATE '2025-10-01'\"]}"}
+{"id": "B03", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"time.month = DATE '2025-10-01'\"]}"}
+{"id": "B03", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"time.month = DATE '2025-10-01'\"]}"}
+{"id": "B03", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"time.month = DATE '2025-10-01'\"]}"}
+{"id": "B03", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"time.month = DATE '2025-10-01'\"]}"}
+{"id": "B03", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"time.month = DATE '2025-10-01'\"]}"}
+{"id": "B03", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"time.month = DATE '2025-10-01'\"]}"}
+{"id": "B04", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "B04", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "B04", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "B04", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "B04", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "B04", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "B04", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "B04", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "B04", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "B04", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "B04", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "B04", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "B05", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"billed_customers\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}"}
+{"id": "B05", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"billed_customers\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}"}
+{"id": "B05", "variant": "full", "run": 3, "reply": "```json\n{\"metrics\": [\"billed_customers\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}\n```"}
+{"id": "B05", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"billed_customers\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}"}
+{"id": "B05", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"billed_customers\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}"}
+{"id": "B05", "variant": "no_synonyms", "run": 3, "reply": "```json\n{\"metrics\": [\"billed_customers\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}\n```"}
+{"id": "B05", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}"}
+{"id": "B05", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}"}
+{"id": "B05", "variant": "no_descriptions", "run": 3, "reply": "```json\n{\"metrics\": [\"bills_issued\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}\n```"}
+{"id": "B05", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"billed_customers\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}"}
+{"id": "B05", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"billed_customers\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}"}
+{"id": "B05", "variant": "no_examples", "run": 3, "reply": "```json\n{\"metrics\": [\"billed_customers\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}\n```"}
+{"id": "B06", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B06", "variant": "full", "run": 2, "reply": "```json\n{\"metrics\": [\"arpa\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "B06", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B06", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B06", "variant": "no_synonyms", "run": 2, "reply": "```json\n{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "B06", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B06", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B06", "variant": "no_descriptions", "run": 2, "reply": "```json\n{\"metrics\": [\"arpa\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "B06", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B06", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B06", "variant": "no_examples", "run": 2, "reply": "```json\n{\"metrics\": [\"arpa\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "B06", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "B07", "variant": "full", "run": 1, "reply": "```json\n{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.segment = 'business'\", \"time.fiscal_year = 'FY2025-26'\"]}\n```"}
+{"id": "B07", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.segment = 'business'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "B07", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.segment = 'business'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "B07", "variant": "no_synonyms", "run": 1, "reply": "```json\n{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.segment = 'business'\", \"time.fiscal_year = 'FY2025-26'\"]}\n```"}
+{"id": "B07", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.segment = 'business'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "B07", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.segment = 'business'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "B07", "variant": "no_descriptions", "run": 1, "reply": "```json\n{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.segment = 'business'\", \"time.fiscal_year = 'FY2025-26'\"]}\n```"}
+{"id": "B07", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.segment = 'business'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "B07", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.segment = 'business'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "B07", "variant": "no_examples", "run": 1, "reply": "```json\n{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.segment = 'business'\", \"time.year = 2025\"]}\n```"}
+{"id": "B07", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.segment = 'business'\", \"time.year = 2025\"]}"}
+{"id": "B07", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.segment = 'business'\", \"time.year = 2025\"]}"}
+{"id": "B08", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q3'\"]}"}
+{"id": "B08", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q3'\"]}"}
+{"id": "B08", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q3'\"]}"}
+{"id": "B08", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q3'\"]}"}
+{"id": "B08", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q3'\"]}"}
+{"id": "B08", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q3'\"]}"}
+{"id": "B08", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q3'\"]}"}
+{"id": "B08", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q3'\"]}"}
+{"id": "B08", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q3'\"]}"}
+{"id": "B08", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"customer.region = 'EAS'\", \"time.month BETWEEN DATE '2025-07-01' AND DATE '2025-09-01'\"]}"}
+{"id": "B08", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"customer.region = 'EAS'\", \"time.month BETWEEN DATE '2025-07-01' AND DATE '2025-09-01'\"]}"}
+{"id": "B08", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"disputed_amount\"], \"where\": [\"customer.region = 'EAS'\", \"time.month BETWEEN DATE '2025-07-01' AND DATE '2025-09-01'\"]}"}
+{"id": "B09", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B09", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B09", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B09", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B09", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B09", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B09", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B09", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B09", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B09", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B09", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B09", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"arpa\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "B10", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"arpa\"], \"by\": [\"customer.region\"], \"where\": [\"time.year = 2025\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B10", "variant": "full", "run": 2, "reply": "```json\n{\"metrics\": [\"arpa\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "B10", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"arpa\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B10", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"arpa\"], \"by\": [\"customer.region\"], \"where\": [\"time.year = 2025\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B10", "variant": "no_synonyms", "run": 2, "reply": "```json\n{\"metrics\": [\"arpa\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "B10", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"arpa\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B10", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"arpa\"], \"by\": [\"customer.region\"], \"where\": [\"time.year = 2025\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B10", "variant": "no_descriptions", "run": 2, "reply": "```json\n{\"metrics\": [\"arpa\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "B10", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"arpa\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B10", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"arpa\"], \"by\": [\"customer.region\"], \"where\": [\"time.year = 2025\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B10", "variant": "no_examples", "run": 2, "reply": "```json\n{\"metrics\": [\"arpa\"], \"by\": [\"customer.region\"], \"where\": [\"time.year = 2025\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "B10", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"arpa\"], \"by\": [\"customer.region\"], \"where\": [\"time.year = 2025\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B11", "variant": "full", "run": 1, "reply": "```json\n{\"metrics\": [\"billed_amount\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_quarter = 'FY2025-26-Q4'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "B11", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_quarter = 'FY2025-26-Q4'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B11", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_quarter = 'FY2025-26-Q4'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B11", "variant": "no_synonyms", "run": 1, "reply": "```json\n{\"metrics\": [\"billed_amount\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_quarter = 'FY2025-26-Q4'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "B11", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_quarter = 'FY2025-26-Q4'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B11", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_quarter = 'FY2025-26-Q4'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B11", "variant": "no_descriptions", "run": 1, "reply": "```json\n{\"metrics\": [\"billed_amount\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_quarter = 'FY2025-26-Q4'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "B11", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_quarter = 'FY2025-26-Q4'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B11", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_quarter = 'FY2025-26-Q4'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B11", "variant": "no_examples", "run": 1, "reply": "```json\n{\"metrics\": [\"billed_amount\"], \"by\": [\"customer.segment\"], \"where\": [\"time.month BETWEEN DATE '2025-10-01' AND DATE '2025-12-01'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "B11", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"by\": [\"customer.segment\"], \"where\": [\"time.month BETWEEN DATE '2025-10-01' AND DATE '2025-12-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B11", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"by\": [\"customer.segment\"], \"where\": [\"time.month BETWEEN DATE '2025-10-01' AND DATE '2025-12-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "B12", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.hijri_month = '1447-09'\"]}"}
+{"id": "B12", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.hijri_month = '1447-09'\"]}"}
+{"id": "B12", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.hijri_month = '1447-09'\"]}"}
+{"id": "B12", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"time.hijri_month = '1447-09'\"]}"}
+{"id": "B12", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"time.hijri_month = '1447-09'\"]}"}
+{"id": "B12", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"bills_issued\"], \"where\": [\"time.hijri_month = '1447-09'\"]}"}
+{"id": "B12", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.hijri_month = '1447-09'\"]}"}
+{"id": "B12", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.hijri_month = '1447-09'\"]}"}
+{"id": "B12", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.hijri_month = '1447-09'\"]}"}
+{"id": "B12", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.month = DATE '2025-09-01'\"]}"}
+{"id": "B12", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.month = DATE '2025-09-01'\"]}"}
+{"id": "B12", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"time.month = DATE '2025-09-01'\"]}"}
+{"id": "B13", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.city = 'Jeddah'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "B13", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.city = 'Jeddah'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "B13", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.city = 'Jeddah'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "B13", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.city = 'Jeddah'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "B13", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.city = 'Jeddah'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "B13", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.city = 'Jeddah'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "B13", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.city = 'Jeddah'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "B13", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.city = 'Jeddah'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "B13", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.city = 'Jeddah'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "B13", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.city = 'Jeddah'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "B13", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.city = 'Jeddah'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "B13", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"billed_amount\"], \"where\": [\"customer.city = 'Jeddah'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "B14", "variant": "full", "run": 1, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "B14", "variant": "full", "run": 2, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "B14", "variant": "full", "run": 3, "reply": "```json\n{\"refuse\": \"restricted\"}\n```"}
+{"id": "B14", "variant": "no_synonyms", "run": 1, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "B14", "variant": "no_synonyms", "run": 2, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "B14", "variant": "no_synonyms", "run": 3, "reply": "```json\n{\"refuse\": \"restricted\"}\n```"}
+{"id": "B14", "variant": "no_descriptions", "run": 1, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "B14", "variant": "no_descriptions", "run": 2, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "B14", "variant": "no_descriptions", "run": 3, "reply": "```json\n{\"refuse\": \"restricted\"}\n```"}
+{"id": "B14", "variant": "no_examples", "run": 1, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "B14", "variant": "no_examples", "run": 2, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "B14", "variant": "no_examples", "run": 3, "reply": "```json\n{\"refuse\": \"restricted\"}\n```"}
+{"id": "B15", "variant": "full", "run": 1, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "B15", "variant": "full", "run": 2, "reply": "```json\n{\"refuse\": \"forecast\"}\n```"}
+{"id": "B15", "variant": "full", "run": 3, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "B15", "variant": "no_synonyms", "run": 1, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "B15", "variant": "no_synonyms", "run": 2, "reply": "```json\n{\"refuse\": \"forecast\"}\n```"}
+{"id": "B15", "variant": "no_synonyms", "run": 3, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "B15", "variant": "no_descriptions", "run": 1, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "B15", "variant": "no_descriptions", "run": 2, "reply": "```json\n{\"refuse\": \"forecast\"}\n```"}
+{"id": "B15", "variant": "no_descriptions", "run": 3, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "B15", "variant": "no_examples", "run": 1, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "B15", "variant": "no_examples", "run": 2, "reply": "```json\n{\"refuse\": \"forecast\"}\n```"}
+{"id": "B15", "variant": "no_examples", "run": 3, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "C01", "variant": "full", "run": 1, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "C01", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C01", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C01", "variant": "no_synonyms", "run": 1, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "C01", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C01", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C01", "variant": "no_descriptions", "run": 1, "reply": "```json\n{\"metrics\": [\"cash_collection_ratio\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "C01", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"cash_collection_ratio\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C01", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"cash_collection_ratio\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C01", "variant": "no_examples", "run": 1, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "C01", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C01", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C02", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "C02", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "C02", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "C02", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "C02", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "C02", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "C02", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"cash_collection_ratio\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "C02", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"cash_collection_ratio\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "C02", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"cash_collection_ratio\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "C02", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "C02", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "C02", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "C03", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C03", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C03", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C03", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C03", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C03", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C03", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C03", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C03", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C03", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C03", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C03", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C04", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}"}
+{"id": "C04", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}"}
+{"id": "C04", "variant": "full", "run": 3, "reply": "```json\n{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}\n```"}
+{"id": "C04", "variant": "no_synonyms", "run": 1, "reply": "{\"refuse\": \"no_metric\"}"}
+{"id": "C04", "variant": "no_synonyms", "run": 2, "reply": "{\"refuse\": \"no_metric\"}"}
+{"id": "C04", "variant": "no_synonyms", "run": 3, "reply": "```json\n{\"refuse\": \"no_metric\"}\n```"}
+{"id": "C04", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}"}
+{"id": "C04", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}"}
+{"id": "C04", "variant": "no_descriptions", "run": 3, "reply": "```json\n{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}\n```"}
+{"id": "C04", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}"}
+{"id": "C04", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}"}
+{"id": "C04", "variant": "no_examples", "run": 3, "reply": "```json\n{\"metrics\": [\"cash_collected\"], \"where\": [\"time.month = DATE '2026-04-01'\"]}\n```"}
+{"id": "C05", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "C05", "variant": "full", "run": 2, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2025-12-01'\"]}\n```"}
+{"id": "C05", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "C05", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "C05", "variant": "no_synonyms", "run": 2, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2025-12-01'\"]}\n```"}
+{"id": "C05", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "C05", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"cash_collection_ratio\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "C05", "variant": "no_descriptions", "run": 2, "reply": "```json\n{\"metrics\": [\"cash_collection_ratio\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2025-12-01'\"]}\n```"}
+{"id": "C05", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"cash_collection_ratio\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "C05", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "C05", "variant": "no_examples", "run": 2, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2025-12-01'\"]}\n```"}
+{"id": "C05", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "C06", "variant": "full", "run": 1, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}\n```"}
+{"id": "C06", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "C06", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "C06", "variant": "no_synonyms", "run": 1, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}\n```"}
+{"id": "C06", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "C06", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "C06", "variant": "no_descriptions", "run": 1, "reply": "```json\n{\"metrics\": [\"cash_collection_ratio\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}\n```"}
+{"id": "C06", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"cash_collection_ratio\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "C06", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"cash_collection_ratio\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "C06", "variant": "no_examples", "run": 1, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.year = 2025\"]}\n```"}
+{"id": "C06", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.year = 2025\"]}"}
+{"id": "C06", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'government'\", \"time.year = 2025\"]}"}
+{"id": "C07", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"cash_collected_fytd\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\", \"time.month <= DATE '2025-12-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C07", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"cash_collected_fytd\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\", \"time.month <= DATE '2025-12-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C07", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"cash_collected_fytd\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\", \"time.month <= DATE '2025-12-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C07", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"cash_collected_fytd\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\", \"time.month <= DATE '2025-12-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C07", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"cash_collected_fytd\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\", \"time.month <= DATE '2025-12-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C07", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"cash_collected_fytd\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\", \"time.month <= DATE '2025-12-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C07", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"cash_collected_fytd\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\", \"time.month <= DATE '2025-12-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C07", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"cash_collected_fytd\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\", \"time.month <= DATE '2025-12-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C07", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"cash_collected_fytd\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\", \"time.month <= DATE '2025-12-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C07", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"cash_collected\"], \"by\": [\"time.month\"], \"where\": [\"time.year = 2025\", \"time.month <= DATE '2025-12-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C07", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"cash_collected\"], \"by\": [\"time.month\"], \"where\": [\"time.year = 2025\", \"time.month <= DATE '2025-12-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C07", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"cash_collected\"], \"by\": [\"time.month\"], \"where\": [\"time.year = 2025\", \"time.month <= DATE '2025-12-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C08", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"collected_30\"], \"where\": [\"customer.region = 'SOU'\", \"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C08", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"collected_30\"], \"where\": [\"customer.region = 'SOU'\", \"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C08", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"collected_30\"], \"where\": [\"customer.region = 'SOU'\", \"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C08", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"collected_30\"], \"where\": [\"customer.region = 'SOU'\", \"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C08", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"collected_30\"], \"where\": [\"customer.region = 'SOU'\", \"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C08", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"collected_30\"], \"where\": [\"customer.region = 'SOU'\", \"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C08", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"collected_30\"], \"where\": [\"customer.region = 'SOU'\", \"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C08", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"collected_30\"], \"where\": [\"customer.region = 'SOU'\", \"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C08", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"collected_30\"], \"where\": [\"customer.region = 'SOU'\", \"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C08", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"collected_30\"], \"where\": [\"customer.region = 'SOU'\", \"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C08", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"collected_30\"], \"where\": [\"customer.region = 'SOU'\", \"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C08", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"collected_30\"], \"where\": [\"customer.region = 'SOU'\", \"time.month = DATE '2026-02-01'\"]}"}
+{"id": "C09", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q2'\"]}"}
+{"id": "C09", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.region = 'EAS'\", \"time.month BETWEEN DATE '2025-04-01' AND DATE '2025-06-01'\"]}"}
+{"id": "C09", "variant": "full", "run": 3, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.region = 'EAS'\", \"time.month BETWEEN DATE '2025-04-01' AND DATE '2025-06-01'\"]}\n```"}
+{"id": "C09", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q2'\"]}"}
+{"id": "C09", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.region = 'EAS'\", \"time.month BETWEEN DATE '2025-04-01' AND DATE '2025-06-01'\"]}"}
+{"id": "C09", "variant": "no_synonyms", "run": 3, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.region = 'EAS'\", \"time.month BETWEEN DATE '2025-04-01' AND DATE '2025-06-01'\"]}\n```"}
+{"id": "C09", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"cash_collection_ratio\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q2'\"]}"}
+{"id": "C09", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"cash_collection_ratio\"], \"where\": [\"customer.region = 'EAS'\", \"time.month BETWEEN DATE '2025-04-01' AND DATE '2025-06-01'\"]}"}
+{"id": "C09", "variant": "no_descriptions", "run": 3, "reply": "```json\n{\"metrics\": [\"cash_collection_ratio\"], \"where\": [\"customer.region = 'EAS'\", \"time.month BETWEEN DATE '2025-04-01' AND DATE '2025-06-01'\"]}\n```"}
+{"id": "C09", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.region = 'EAS'\", \"time.month BETWEEN DATE '2025-04-01' AND DATE '2025-06-01'\"]}"}
+{"id": "C09", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.region = 'EAS'\"]}"}
+{"id": "C09", "variant": "no_examples", "run": 3, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.region = 'EAS'\"]}\n```"}
+{"id": "C10", "variant": "full", "run": 1, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"asc\", \"limit\": 1}\n```"}
+{"id": "C10", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"asc\", \"limit\": 1}"}
+{"id": "C10", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"asc\", \"limit\": 1}"}
+{"id": "C10", "variant": "no_synonyms", "run": 1, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"asc\", \"limit\": 1}\n```"}
+{"id": "C10", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"asc\", \"limit\": 1}"}
+{"id": "C10", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"asc\", \"limit\": 1}"}
+{"id": "C10", "variant": "no_descriptions", "run": 1, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"asc\", \"limit\": 1}\n```"}
+{"id": "C10", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"asc\", \"limit\": 1}"}
+{"id": "C10", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.segment\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"asc\", \"limit\": 1}"}
+{"id": "C10", "variant": "no_examples", "run": 1, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.segment\"], \"where\": [\"time.year = 2025\"], \"order\": \"asc\", \"limit\": 1}\n```"}
+{"id": "C10", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.segment\"], \"where\": [\"time.year = 2025\"], \"order\": \"asc\", \"limit\": 1}"}
+{"id": "C10", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.segment\"], \"where\": [\"time.year = 2025\"], \"order\": \"asc\", \"limit\": 1}"}
+{"id": "C11", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C11", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C11", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C11", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C11", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C11", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C11", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"cash_collection_ratio\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C11", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"cash_collection_ratio\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C11", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"cash_collection_ratio\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C11", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.region\"], \"where\": [\"time.year = 2025\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C11", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.region\"], \"where\": [\"time.year = 2025\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C11", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [\"customer.region\"], \"where\": [\"time.year = 2025\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C12", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"cash_collected_fytd\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2026-27'\", \"time.month <= DATE '2026-05-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C12", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"cash_collected\"], \"by\": [\"time.month\"], \"where\": [\"time.year = 2026\", \"time.month <= DATE '2026-05-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C12", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"cash_collected_fytd\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2026-27'\", \"time.month <= DATE '2026-05-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C12", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"cash_collected_fytd\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2026-27'\", \"time.month <= DATE '2026-05-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C12", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"cash_collected\"], \"by\": [\"time.month\"], \"where\": [\"time.year = 2026\", \"time.month <= DATE '2026-05-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C12", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"cash_collected_fytd\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2026-27'\", \"time.month <= DATE '2026-05-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C12", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"cash_collected_fytd\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2026-27'\", \"time.month <= DATE '2026-05-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C12", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"cash_collected\"], \"by\": [\"time.month\"], \"where\": [\"time.year = 2026\", \"time.month <= DATE '2026-05-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C12", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"cash_collected_fytd\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2026-27'\", \"time.month <= DATE '2026-05-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C12", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"cash_collected\"], \"by\": [\"time.month\"], \"where\": [\"time.year = 2026\", \"time.month <= DATE '2026-05-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C12", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"cash_collected\"], \"by\": [\"time.month\"], \"where\": [\"time.year = 2026\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C12", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"cash_collected\"], \"by\": [\"time.month\"], \"where\": [\"time.year = 2026\", \"time.month <= DATE '2026-05-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "C13", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'CEN'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C13", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'CEN'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C13", "variant": "full", "run": 3, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'CEN'\", \"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "C13", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'CEN'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C13", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'CEN'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C13", "variant": "no_synonyms", "run": 3, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'CEN'\", \"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "C13", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'CEN'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C13", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'CEN'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C13", "variant": "no_descriptions", "run": 3, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'CEN'\", \"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "C13", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'CEN'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C13", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'CEN'\", \"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C13", "variant": "no_examples", "run": 3, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'CEN'\", \"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "C14", "variant": "full", "run": 1, "reply": "{\"refuse\": \"not_matured\"}"}
+{"id": "C14", "variant": "full", "run": 2, "reply": "```json\n{\"refuse\": \"not_matured\"}\n```"}
+{"id": "C14", "variant": "full", "run": 3, "reply": "{\"refuse\": \"not_matured\"}"}
+{"id": "C14", "variant": "no_synonyms", "run": 1, "reply": "{\"refuse\": \"not_matured\"}"}
+{"id": "C14", "variant": "no_synonyms", "run": 2, "reply": "```json\n{\"refuse\": \"not_matured\"}\n```"}
+{"id": "C14", "variant": "no_synonyms", "run": 3, "reply": "{\"refuse\": \"not_matured\"}"}
+{"id": "C14", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [], \"where\": [\"time.month = DATE '2026-05-01'\"]}"}
+{"id": "C14", "variant": "no_descriptions", "run": 2, "reply": "```json\n{\"metrics\": [\"collection_rate\"], \"by\": [], \"where\": [\"time.month = DATE '2026-05-01'\"]}\n```"}
+{"id": "C14", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"collection_rate\"], \"by\": [], \"where\": [\"time.month = DATE '2026-05-01'\"]}"}
+{"id": "C14", "variant": "no_examples", "run": 1, "reply": "{\"refuse\": \"not_matured\"}"}
+{"id": "C14", "variant": "no_examples", "run": 2, "reply": "```json\n{\"refuse\": \"not_matured\"}\n```"}
+{"id": "C14", "variant": "no_examples", "run": 3, "reply": "{\"refuse\": \"not_matured\"}"}
+{"id": "C15", "variant": "full", "run": 1, "reply": "```json\n{\"metrics\": [\"on_time_payment_share\"], \"by\": [], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "C15", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"on_time_payment_share\"], \"by\": [], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C15", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"on_time_payment_share\"], \"by\": [], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C15", "variant": "no_synonyms", "run": 1, "reply": "```json\n{\"metrics\": [\"on_time_payment_share\"], \"by\": [], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "C15", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"on_time_payment_share\"], \"by\": [], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C15", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"on_time_payment_share\"], \"by\": [], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C15", "variant": "no_descriptions", "run": 1, "reply": "```json\n{\"metrics\": [\"on_time_payment_share\"], \"by\": [], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "C15", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"on_time_payment_share\"], \"by\": [], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C15", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"on_time_payment_share\"], \"by\": [], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C15", "variant": "no_examples", "run": 1, "reply": "```json\n{\"metrics\": [\"on_time_payment_share\"], \"by\": [], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "C15", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"on_time_payment_share\"], \"by\": [], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "C15", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"on_time_payment_share\"], \"by\": [], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "Q01", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q01", "variant": "full", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "Q01", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q01", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q01", "variant": "no_synonyms", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "Q01", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q01", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q01", "variant": "no_descriptions", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "Q01", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q01", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q01", "variant": "no_examples", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "Q01", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q02", "variant": "full", "run": 1, "reply": "```json\n{\"metrics\": [\"billing_complaints\"], \"where\": [\"time.month = DATE '2025-11-01'\"]}\n```"}
+{"id": "Q02", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"time.month = DATE '2025-11-01'\"]}"}
+{"id": "Q02", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"time.month = DATE '2025-11-01'\"]}"}
+{"id": "Q02", "variant": "no_synonyms", "run": 1, "reply": "```json\n{\"metrics\": [\"billing_complaints\"], \"where\": [\"time.month = DATE '2025-11-01'\"]}\n```"}
+{"id": "Q02", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"time.month = DATE '2025-11-01'\"]}"}
+{"id": "Q02", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"time.month = DATE '2025-11-01'\"]}"}
+{"id": "Q02", "variant": "no_descriptions", "run": 1, "reply": "```json\n{\"metrics\": [\"billing_complaints\"], \"where\": [\"time.month = DATE '2025-11-01'\"]}\n```"}
+{"id": "Q02", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"time.month = DATE '2025-11-01'\"]}"}
+{"id": "Q02", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"time.month = DATE '2025-11-01'\"]}"}
+{"id": "Q02", "variant": "no_examples", "run": 1, "reply": "```json\n{\"metrics\": [\"billing_complaints\"], \"where\": [\"time.month = DATE '2025-11-01'\"]}\n```"}
+{"id": "Q02", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"time.month = DATE '2025-11-01'\"]}"}
+{"id": "Q02", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"time.month = DATE '2025-11-01'\"]}"}
+{"id": "Q03", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "Q03", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "Q03", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "Q03", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "Q03", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "Q03", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "Q03", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "Q03", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "Q03", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "Q03", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "Q03", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "Q03", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "Q04", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"complaint.region = 'NOR'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "Q04", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"complaint.region = 'NOR'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "Q04", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"complaint.region = 'NOR'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "Q04", "variant": "no_synonyms", "run": 1, "reply": "{\"refuse\": \"no_metric\"}"}
+{"id": "Q04", "variant": "no_synonyms", "run": 2, "reply": "{\"refuse\": \"no_metric\"}"}
+{"id": "Q04", "variant": "no_synonyms", "run": 3, "reply": "{\"refuse\": \"no_metric\"}"}
+{"id": "Q04", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"customer.region = 'NOR'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "Q04", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"customer.region = 'NOR'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "Q04", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"customer.region = 'NOR'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "Q04", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"complaint.region = 'NOR'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "Q04", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"complaint.region = 'NOR'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "Q04", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"complaint.region = 'NOR'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "Q05", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "Q05", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "Q05", "variant": "full", "run": 3, "reply": "```json\n{\"metrics\": [\"billing_complaints\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2025-12-01'\"]}\n```"}
+{"id": "Q05", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "Q05", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "Q05", "variant": "no_synonyms", "run": 3, "reply": "```json\n{\"metrics\": [\"billing_complaints\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2025-12-01'\"]}\n```"}
+{"id": "Q05", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"customer.region = 'EAS'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "Q05", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"customer.region = 'EAS'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "Q05", "variant": "no_descriptions", "run": 3, "reply": "```json\n{\"metrics\": [\"billing_complaints\"], \"where\": [\"customer.region = 'EAS'\", \"time.month = DATE '2025-12-01'\"]}\n```"}
+{"id": "Q05", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "Q05", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"billing_complaints\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "Q05", "variant": "no_examples", "run": 3, "reply": "```json\n{\"metrics\": [\"billing_complaints\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2025-12-01'\"]}\n```"}
+{"id": "Q06", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q06", "variant": "full", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "Q06", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q06", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q06", "variant": "no_synonyms", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "Q06", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q06", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q06", "variant": "no_descriptions", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "Q06", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q06", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q06", "variant": "no_examples", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"]}\n```"}
+{"id": "Q06", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "Q07", "variant": "full", "run": 1, "reply": "```json\n{\"metrics\": [\"complaints\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}\n```"}
+{"id": "Q07", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "Q07", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "Q07", "variant": "no_synonyms", "run": 1, "reply": "```json\n{\"metrics\": [\"complaints\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}\n```"}
+{"id": "Q07", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "Q07", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "Q07", "variant": "no_descriptions", "run": 1, "reply": "```json\n{\"metrics\": [\"complaints\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}\n```"}
+{"id": "Q07", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "Q07", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "Q07", "variant": "no_examples", "run": 1, "reply": "```json\n{\"metrics\": [\"complaints\"], \"where\": [\"customer.segment = 'government'\", \"time.year = 2025\"]}\n```"}
+{"id": "Q07", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"customer.segment = 'government'\", \"time.year = 2025\"]}"}
+{"id": "Q07", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"customer.segment = 'government'\", \"time.year = 2025\"]}"}
+{"id": "Q08", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"complaint.region = 'WES'\", \"time.fiscal_quarter = 'FY2025-26-Q4'\"]}"}
+{"id": "Q08", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"complaint.region = 'WES'\", \"time.fiscal_quarter = 'FY2025-26-Q4'\"]}"}
+{"id": "Q08", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"complaint.region = 'WES'\", \"time.fiscal_quarter = 'FY2025-26-Q4'\"]}"}
+{"id": "Q08", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"complaint.region = 'WES'\", \"time.fiscal_quarter = 'FY2025-26-Q4'\"]}"}
+{"id": "Q08", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"complaint.region = 'WES'\", \"time.fiscal_quarter = 'FY2025-26-Q4'\"]}"}
+{"id": "Q08", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"complaint.region = 'WES'\", \"time.fiscal_quarter = 'FY2025-26-Q4'\"]}"}
+{"id": "Q08", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"complaint.region = 'WES'\", \"time.fiscal_quarter = 'FY2025-26-Q4'\"]}"}
+{"id": "Q08", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"complaint.region = 'WES'\", \"time.fiscal_quarter = 'FY2025-26-Q4'\"]}"}
+{"id": "Q08", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"complaint.region = 'WES'\", \"time.fiscal_quarter = 'FY2025-26-Q4'\"]}"}
+{"id": "Q08", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"complaint.region = 'WES'\", \"time.month BETWEEN DATE '2025-10-01' AND DATE '2025-12-01'\"]}"}
+{"id": "Q08", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"complaint.region = 'WES'\", \"time.month BETWEEN DATE '2025-10-01' AND DATE '2025-12-01'\"]}"}
+{"id": "Q08", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"median_resolution_days\"], \"where\": [\"complaint.region = 'WES'\", \"time.month BETWEEN DATE '2025-10-01' AND DATE '2025-12-01'\"]}"}
+{"id": "Q09", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.segment = 'business'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "Q09", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.segment = 'business'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "Q09", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.segment = 'business'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "Q09", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.segment = 'business'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "Q09", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.segment = 'business'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "Q09", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.segment = 'business'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "Q09", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.segment = 'business'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "Q09", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.segment = 'business'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "Q09", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.segment = 'business'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "Q09", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.segment = 'business'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "Q09", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.segment = 'business'\", \"time.month = DATE '2026-06-01'\"]}"}
+{"id": "Q09", "variant": "no_examples", "run": 3, "reply": "The complaint rate for business customers was about 36 per 1,000 lines in June 2026."}
+{"id": "Q10", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q10", "variant": "full", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "Q10", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q10", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q10", "variant": "no_synonyms", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "Q10", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q10", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q10", "variant": "no_descriptions", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "Q10", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q10", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q10", "variant": "no_examples", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "Q10", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"complaint.region = 'EAS'\", \"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q11", "variant": "full", "run": 1, "reply": "```json\n{\"metrics\": [\"complaints\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "Q11", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q11", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q11", "variant": "no_synonyms", "run": 1, "reply": "```json\n{\"metrics\": [\"complaints\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "Q11", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q11", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q11", "variant": "no_descriptions", "run": 1, "reply": "```json\n{\"metrics\": [\"complaints\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "Q11", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q11", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q11", "variant": "no_examples", "run": 1, "reply": "```json\n{\"metrics\": [\"complaints\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "Q11", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q11", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"by\": [\"time.month\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "Q12", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.hijri_month = '1447-07'\"]}"}
+{"id": "Q12", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.hijri_month = '1447-07'\"]}"}
+{"id": "Q12", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.hijri_month = '1447-07'\"]}"}
+{"id": "Q12", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.hijri_month = '1447-07'\"]}"}
+{"id": "Q12", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.hijri_month = '1447-07'\"]}"}
+{"id": "Q12", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.hijri_month = '1447-07'\"]}"}
+{"id": "Q12", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.hijri_month = '1447-07'\"]}"}
+{"id": "Q12", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.hijri_month = '1447-07'\"]}"}
+{"id": "Q12", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.hijri_month = '1447-07'\"]}"}
+{"id": "Q12", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.month = DATE '2025-07-01'\"]}"}
+{"id": "Q12", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.month = DATE '2025-07-01'\"]}"}
+{"id": "Q12", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"complaints\"], \"where\": [\"time.month = DATE '2025-07-01'\"]}"}
+{"id": "Q13", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q4'\"]}"}
+{"id": "Q13", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q4'\"]}"}
+{"id": "Q13", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month BETWEEN DATE '2025-10-01' AND DATE '2025-12-01'\"]}"}
+{"id": "Q13", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q4'\"]}"}
+{"id": "Q13", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q4'\"]}"}
+{"id": "Q13", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month BETWEEN DATE '2025-10-01' AND DATE '2025-12-01'\"]}"}
+{"id": "Q13", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q4'\"]}"}
+{"id": "Q13", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.fiscal_quarter = 'FY2025-26-Q4'\"]}"}
+{"id": "Q13", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month BETWEEN DATE '2025-10-01' AND DATE '2025-12-01'\"]}"}
+{"id": "Q13", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month BETWEEN DATE '2025-10-01' AND DATE '2025-12-01'\"]}"}
+{"id": "Q13", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\", \"time.month BETWEEN DATE '2025-10-01' AND DATE '2025-12-01'\"]}"}
+{"id": "Q13", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"complaints_per_1k_lines\"], \"where\": [\"customer.region = 'EAS'\"]}"}
+{"id": "Q14", "variant": "full", "run": 1, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "Q14", "variant": "full", "run": 2, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "Q14", "variant": "full", "run": 3, "reply": "```json\n{\"refuse\": \"restricted\"}\n```"}
+{"id": "Q14", "variant": "no_synonyms", "run": 1, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "Q14", "variant": "no_synonyms", "run": 2, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "Q14", "variant": "no_synonyms", "run": 3, "reply": "```json\n{\"refuse\": \"restricted\"}\n```"}
+{"id": "Q14", "variant": "no_descriptions", "run": 1, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "Q14", "variant": "no_descriptions", "run": 2, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "Q14", "variant": "no_descriptions", "run": 3, "reply": "```json\n{\"refuse\": \"restricted\"}\n```"}
+{"id": "Q14", "variant": "no_examples", "run": 1, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "Q14", "variant": "no_examples", "run": 2, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "Q14", "variant": "no_examples", "run": 3, "reply": "```json\n{\"refuse\": \"restricted\"}\n```"}
+{"id": "Q15", "variant": "full", "run": 1, "reply": "{\"refuse\": \"causal\"}"}
+{"id": "Q15", "variant": "full", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "Q15", "variant": "full", "run": 3, "reply": "{\"refuse\": \"causal\"}"}
+{"id": "Q15", "variant": "no_synonyms", "run": 1, "reply": "{\"refuse\": \"causal\"}"}
+{"id": "Q15", "variant": "no_synonyms", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "Q15", "variant": "no_synonyms", "run": 3, "reply": "{\"refuse\": \"causal\"}"}
+{"id": "Q15", "variant": "no_descriptions", "run": 1, "reply": "{\"refuse\": \"causal\"}"}
+{"id": "Q15", "variant": "no_descriptions", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "Q15", "variant": "no_descriptions", "run": 3, "reply": "{\"refuse\": \"causal\"}"}
+{"id": "Q15", "variant": "no_examples", "run": 1, "reply": "{\"refuse\": \"causal\"}"}
+{"id": "Q15", "variant": "no_examples", "run": 2, "reply": "```json\n{\"metrics\": [\"complaints\"], \"by\": [\"complaint.category\"], \"where\": [\"time.month = DATE '2026-01-01'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "Q15", "variant": "no_examples", "run": 3, "reply": "{\"refuse\": \"causal\"}"}
+{"id": "U01", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "U01", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "U01", "variant": "full", "run": 3, "reply": "```json\n{\"metrics\": [\"data_gb\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "U01", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "U01", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "U01", "variant": "no_synonyms", "run": 3, "reply": "```json\n{\"metrics\": [\"data_gb\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "U01", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "U01", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "U01", "variant": "no_descriptions", "run": 3, "reply": "```json\n{\"metrics\": [\"data_gb\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "U01", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "U01", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}"}
+{"id": "U01", "variant": "no_examples", "run": 3, "reply": "```json\n{\"metrics\": [\"data_gb\"], \"where\": [\"time.month = DATE '2026-03-01'\"]}\n```"}
+{"id": "U02", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "U02", "variant": "full", "run": 2, "reply": "```json\n{\"metrics\": [\"voice_minutes\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}\n```"}
+{"id": "U02", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "U02", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "U02", "variant": "no_synonyms", "run": 2, "reply": "```json\n{\"metrics\": [\"voice_minutes\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}\n```"}
+{"id": "U02", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "U02", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "U02", "variant": "no_descriptions", "run": 2, "reply": "```json\n{\"metrics\": [\"voice_minutes\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}\n```"}
+{"id": "U02", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "U02", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "U02", "variant": "no_examples", "run": 2, "reply": "```json\n{\"metrics\": [\"voice_minutes\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}\n```"}
+{"id": "U02", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"time.month = DATE '2026-02-01'\"]}"}
+{"id": "U03", "variant": "full", "run": 1, "reply": "```json\n{\"metrics\": [\"active_lines\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}\n```"}
+{"id": "U03", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U03", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U03", "variant": "no_synonyms", "run": 1, "reply": "```json\n{\"metrics\": [\"active_lines\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}\n```"}
+{"id": "U03", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U03", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U03", "variant": "no_descriptions", "run": 1, "reply": "```json\n{\"metrics\": [\"active_lines\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}\n```"}
+{"id": "U03", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U03", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U03", "variant": "no_examples", "run": 1, "reply": "```json\n{\"metrics\": [\"active_lines\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}\n```"}
+{"id": "U03", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U03", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U04", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "U04", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "U04", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "U04", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "U04", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "U04", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "U04", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "U04", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "U04", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "U04", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "U04", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "U04", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'WES'\", \"time.month = DATE '2026-01-01'\"]}"}
+{"id": "U05", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "U05", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "U05", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "U05", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "U05", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "U05", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "U05", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "U05", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "U05", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "U05", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "U05", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "U05", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.region = 'CEN'\", \"time.month = DATE '2026-05-01'\"]}"}
+{"id": "U06", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U06", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U06", "variant": "full", "run": 3, "reply": "```json\n{\"metrics\": [\"data_per_line\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}\n```"}
+{"id": "U06", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U06", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U06", "variant": "no_synonyms", "run": 3, "reply": "```json\n{\"metrics\": [\"data_per_line\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}\n```"}
+{"id": "U06", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U06", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U06", "variant": "no_descriptions", "run": 3, "reply": "```json\n{\"metrics\": [\"data_per_line\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}\n```"}
+{"id": "U06", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U06", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}"}
+{"id": "U06", "variant": "no_examples", "run": 3, "reply": "```json\n{\"metrics\": [\"data_per_line\"], \"where\": [\"time.month = DATE '2026-06-01'\"]}\n```"}
+{"id": "U07", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "U07", "variant": "full", "run": 2, "reply": "```json\n{\"metrics\": [\"data_gb\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}\n```"}
+{"id": "U07", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "U07", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "U07", "variant": "no_synonyms", "run": 2, "reply": "```json\n{\"metrics\": [\"data_gb\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}\n```"}
+{"id": "U07", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "U07", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "U07", "variant": "no_descriptions", "run": 2, "reply": "```json\n{\"metrics\": [\"data_gb\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}\n```"}
+{"id": "U07", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.segment = 'government'\", \"time.fiscal_year = 'FY2025-26'\"]}"}
+{"id": "U07", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.segment = 'government'\", \"time.year = 2025\"]}"}
+{"id": "U07", "variant": "no_examples", "run": 2, "reply": "```json\n{\"metrics\": [\"data_gb\"], \"where\": [\"customer.segment = 'government'\", \"time.year = 2025\"]}\n```"}
+{"id": "U07", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"customer.segment = 'government'\", \"time.year = 2025\"]}"}
+{"id": "U08", "variant": "full", "run": 1, "reply": "```json\n{\"metrics\": [\"active_lines\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'EAS'\", \"time.month = DATE '2026-04-01'\"]}\n```"}
+{"id": "U08", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'EAS'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "U08", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'EAS'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "U08", "variant": "no_synonyms", "run": 1, "reply": "```json\n{\"metrics\": [\"active_lines\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'EAS'\", \"time.month = DATE '2026-04-01'\"]}\n```"}
+{"id": "U08", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'EAS'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "U08", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'EAS'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "U08", "variant": "no_descriptions", "run": 1, "reply": "```json\n{\"metrics\": [\"active_lines\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'EAS'\", \"time.month = DATE '2026-04-01'\"]}\n```"}
+{"id": "U08", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'EAS'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "U08", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'EAS'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "U08", "variant": "no_examples", "run": 1, "reply": "```json\n{\"metrics\": [\"active_lines\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'EAS'\", \"time.month = DATE '2026-04-01'\"]}\n```"}
+{"id": "U08", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'EAS'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "U08", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"active_lines\"], \"where\": [\"customer.segment = 'business'\", \"customer.region = 'EAS'\", \"time.month = DATE '2026-04-01'\"]}"}
+{"id": "U09", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"tariff.plan_name = 'Qamar Fibre 100'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "U09", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"tariff.plan_name = 'Qamar Fibre 100'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "U09", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"tariff.plan_name = 'Qamar Fibre 100'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "U09", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"tariff.plan_name = 'Qamar Fibre 100'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "U09", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"tariff.plan_name = 'Qamar Fibre 100'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "U09", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"tariff.plan_name = 'Qamar Fibre 100'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "U09", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"tariff.plan_name = 'Qamar Fibre 100'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "U09", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"tariff.plan_name = 'Qamar Fibre 100'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "U09", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"tariff.plan_name = 'Qamar Fibre 100'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "U09", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"tariff.plan_name = 'Qamar Fibre 100'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "U09", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"tariff.plan_name = 'Qamar Fibre 100'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "U09", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"data_per_line\"], \"where\": [\"tariff.plan_name = 'Qamar Fibre 100'\", \"time.month = DATE '2025-12-01'\"]}"}
+{"id": "U10", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"data_per_line\"], \"by\": [\"tariff.plan_name\"], \"where\": [\"time.month = DATE '2026-06-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U10", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"data_per_line\"], \"by\": [\"tariff.plan_name\"], \"where\": [\"time.month = DATE '2026-06-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U10", "variant": "full", "run": 3, "reply": "```json\n{\"metrics\": [\"data_per_line\"], \"by\": [\"tariff.plan_name\"], \"where\": [\"time.month = DATE '2026-06-01'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "U10", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"data_per_line\"], \"by\": [\"tariff.plan_name\"], \"where\": [\"time.month = DATE '2026-06-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U10", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"data_per_line\"], \"by\": [\"tariff.plan_name\"], \"where\": [\"time.month = DATE '2026-06-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U10", "variant": "no_synonyms", "run": 3, "reply": "```json\n{\"metrics\": [\"data_per_line\"], \"by\": [\"tariff.plan_name\"], \"where\": [\"time.month = DATE '2026-06-01'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "U10", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"data_per_line\"], \"by\": [\"tariff.plan_name\"], \"where\": [\"time.month = DATE '2026-06-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U10", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"data_per_line\"], \"by\": [\"tariff.plan_name\"], \"where\": [\"time.month = DATE '2026-06-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U10", "variant": "no_descriptions", "run": 3, "reply": "```json\n{\"metrics\": [\"data_per_line\"], \"by\": [\"tariff.plan_name\"], \"where\": [\"time.month = DATE '2026-06-01'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "U10", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"data_per_line\"], \"by\": [\"tariff.plan_name\"], \"where\": [\"time.month = DATE '2026-06-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U10", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"data_per_line\"], \"by\": [\"tariff.plan_name\"], \"where\": [\"time.month = DATE '2026-06-01'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U10", "variant": "no_examples", "run": 3, "reply": "```json\n{\"metrics\": [\"data_per_line\"], \"by\": [\"tariff.plan_name\"], \"where\": [\"time.month = DATE '2026-06-01'\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "U11", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"voice_minutes\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U11", "variant": "full", "run": 2, "reply": "```json\n{\"metrics\": [\"voice_minutes\"], \"by\": [\"customer.region\"], \"where\": [\"time.year = 2025\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "U11", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"voice_minutes\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U11", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"voice_minutes\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U11", "variant": "no_synonyms", "run": 2, "reply": "```json\n{\"metrics\": [\"voice_minutes\"], \"by\": [\"customer.region\"], \"where\": [\"time.year = 2025\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "U11", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"voice_minutes\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U11", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"voice_minutes\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U11", "variant": "no_descriptions", "run": 2, "reply": "```json\n{\"metrics\": [\"voice_minutes\"], \"by\": [\"customer.region\"], \"where\": [\"time.year = 2025\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "U11", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"voice_minutes\"], \"by\": [\"customer.region\"], \"where\": [\"time.fiscal_year = 'FY2025-26'\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U11", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"voice_minutes\"], \"by\": [\"customer.region\"], \"where\": [\"time.year = 2025\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U11", "variant": "no_examples", "run": 2, "reply": "```json\n{\"metrics\": [\"voice_minutes\"], \"by\": [\"customer.region\"], \"where\": [\"time.year = 2025\"], \"order\": \"desc\", \"limit\": 1}\n```"}
+{"id": "U11", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"voice_minutes\"], \"by\": [\"customer.region\"], \"where\": [\"time.year = 2025\"], \"order\": \"desc\", \"limit\": 1}"}
+{"id": "U12", "variant": "full", "run": 1, "reply": "```json\n{\"metrics\": [\"data_gb\"], \"where\": [\"time.hijri_month = '1447-09'\"]}\n```"}
+{"id": "U12", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.hijri_month = '1447-09'\"]}"}
+{"id": "U12", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.hijri_month = '1447-09'\"]}"}
+{"id": "U12", "variant": "no_synonyms", "run": 1, "reply": "```json\n{\"metrics\": [\"data_gb\"], \"where\": [\"time.hijri_month = '1447-09'\"]}\n```"}
+{"id": "U12", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.hijri_month = '1447-09'\"]}"}
+{"id": "U12", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.hijri_month = '1447-09'\"]}"}
+{"id": "U12", "variant": "no_descriptions", "run": 1, "reply": "```json\n{\"metrics\": [\"data_gb\"], \"where\": [\"time.hijri_month = '1447-09'\"]}\n```"}
+{"id": "U12", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.hijri_month = '1447-09'\"]}"}
+{"id": "U12", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.hijri_month = '1447-09'\"]}"}
+{"id": "U12", "variant": "no_examples", "run": 1, "reply": "```json\n{\"metrics\": [\"data_gb\"], \"where\": [\"time.month = DATE '2025-09-01'\"]}\n```"}
+{"id": "U12", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.month = DATE '2025-09-01'\"]}"}
+{"id": "U12", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"data_gb\"], \"where\": [\"time.month = DATE '2025-09-01'\"]}"}
+{"id": "U13", "variant": "full", "run": 1, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"line.product = 'postpaid'\", \"customer.region = 'SOU'\", \"time.fiscal_quarter = 'FY2025-26-Q3'\"]}"}
+{"id": "U13", "variant": "full", "run": 2, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"line.product = 'postpaid'\", \"customer.region = 'SOU'\", \"time.fiscal_quarter = 'FY2025-26-Q3'\"]}"}
+{"id": "U13", "variant": "full", "run": 3, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"line.product = 'postpaid'\", \"customer.region = 'SOU'\", \"time.month BETWEEN DATE '2025-07-01' AND DATE '2025-09-01'\"]}"}
+{"id": "U13", "variant": "no_synonyms", "run": 1, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"line.product = 'postpaid'\", \"customer.region = 'SOU'\", \"time.fiscal_quarter = 'FY2025-26-Q3'\"]}"}
+{"id": "U13", "variant": "no_synonyms", "run": 2, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"line.product = 'postpaid'\", \"customer.region = 'SOU'\", \"time.fiscal_quarter = 'FY2025-26-Q3'\"]}"}
+{"id": "U13", "variant": "no_synonyms", "run": 3, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"line.product = 'postpaid'\", \"customer.region = 'SOU'\", \"time.month BETWEEN DATE '2025-07-01' AND DATE '2025-09-01'\"]}"}
+{"id": "U13", "variant": "no_descriptions", "run": 1, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"line.product = 'postpaid'\", \"customer.region = 'SOU'\", \"time.fiscal_quarter = 'FY2025-26-Q3'\"]}"}
+{"id": "U13", "variant": "no_descriptions", "run": 2, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"line.product = 'postpaid'\", \"customer.region = 'SOU'\", \"time.fiscal_quarter = 'FY2025-26-Q3'\"]}"}
+{"id": "U13", "variant": "no_descriptions", "run": 3, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"line.product = 'postpaid'\", \"customer.region = 'SOU'\", \"time.month BETWEEN DATE '2025-07-01' AND DATE '2025-09-01'\"]}"}
+{"id": "U13", "variant": "no_examples", "run": 1, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"line.product = 'postpaid'\", \"customer.region = 'SOU'\", \"time.month BETWEEN DATE '2025-07-01' AND DATE '2025-09-01'\"]}"}
+{"id": "U13", "variant": "no_examples", "run": 2, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"line.product = 'postpaid'\", \"customer.region = 'SOU'\", \"time.month BETWEEN DATE '2025-07-01' AND DATE '2025-09-01'\"]}"}
+{"id": "U13", "variant": "no_examples", "run": 3, "reply": "{\"metrics\": [\"voice_minutes\"], \"where\": [\"line.product = 'postpaid'\", \"customer.region = 'SOU'\"]}"}
+{"id": "U14", "variant": "full", "run": 1, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "U14", "variant": "full", "run": 2, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "U14", "variant": "full", "run": 3, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "U14", "variant": "no_synonyms", "run": 1, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "U14", "variant": "no_synonyms", "run": 2, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "U14", "variant": "no_synonyms", "run": 3, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "U14", "variant": "no_descriptions", "run": 1, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "U14", "variant": "no_descriptions", "run": 2, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "U14", "variant": "no_descriptions", "run": 3, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "U14", "variant": "no_examples", "run": 1, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "U14", "variant": "no_examples", "run": 2, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "U14", "variant": "no_examples", "run": 3, "reply": "{\"refuse\": \"restricted\"}"}
+{"id": "U15", "variant": "full", "run": 1, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "U15", "variant": "full", "run": 2, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "U15", "variant": "full", "run": 3, "reply": "```json\n{\"refuse\": \"forecast\"}\n```"}
+{"id": "U15", "variant": "no_synonyms", "run": 1, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "U15", "variant": "no_synonyms", "run": 2, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "U15", "variant": "no_synonyms", "run": 3, "reply": "```json\n{\"refuse\": \"forecast\"}\n```"}
+{"id": "U15", "variant": "no_descriptions", "run": 1, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "U15", "variant": "no_descriptions", "run": 2, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "U15", "variant": "no_descriptions", "run": 3, "reply": "```json\n{\"refuse\": \"forecast\"}\n```"}
+{"id": "U15", "variant": "no_examples", "run": 1, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "U15", "variant": "no_examples", "run": 2, "reply": "{\"refuse\": \"forecast\"}"}
+{"id": "U15", "variant": "no_examples", "run": 3, "reply": "```json\n{\"refuse\": \"forecast\"}\n```"}

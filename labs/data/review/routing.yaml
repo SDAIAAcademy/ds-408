@@ -1,0 +1,7 @@
+# Team B's routing policy (peer package; synthetic).
+tolerance: 0.1
+rule: route to the assistant when the measured wrong-figure rate is within the tolerance
+routes:
+  lookup: assistant
+  fiscal_period: assistant
+  ranking: assistant

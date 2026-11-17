@@ -1,0 +1,10 @@
+{
+ "extensions": [
+  "dataset collection: materialize_as, duckdb_sql",
+  "dataset payment: materialize_as, duckdb_sql",
+  "field customer.full_name: classification",
+  "relationship line_to_tariff: asof_valid_between",
+  "model: {'cumulative_metrics': ['cash_collected_fytd']}"
+ ],
+ "median_resolution_days on SQLite": "no such function: MEDIAN"
+}

@@ -1,0 +1,22 @@
+[
+ {
+  "step": "Finance as reported",
+  "rate": 0.9408826760735451
+ },
+ {
+  "step": "Remove the duplicated batch",
+  "rate": 0.90155511751345
+ },
+ {
+  "step": "Cohort: March bills, 60 days, gross",
+  "rate": 0.9288431440799566
+ },
+ {
+  "step": "Disputes out of the denominator",
+  "rate": 0.938449055471668
+ },
+ {
+  "step": "Window 30 days",
+  "rate": 0.8645262856730744
+ }
+]

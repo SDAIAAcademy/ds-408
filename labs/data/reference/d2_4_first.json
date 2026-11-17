@@ -1,0 +1,10 @@
+{
+ "billed_amount": [
+  {
+   "bill.service_month": null,
+   "billed_amount": 9366506.05
+  }
+ ],
+ "collection_rate": "error: ORDER BY 1': no such function: split_part",
+ "complaints": "error: ORDER BY 1': no such function: date_diff"
+}

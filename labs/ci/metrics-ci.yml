@@ -1,0 +1,18 @@
+# A GitHub Actions workflow to copy into your capstone repository as .github/workflows/metrics-ci.yml.
+# It runs the review rules on every pull request that touches metric files, then the reconciliation tests.
+name: metrics-ci
+on:
+  pull_request:
+    paths: ["metrics/**", "CHANGELOG.md", "approvals.yml"]
+jobs:
+  review-rules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v10
+      - name: Review rules (R1 to R6)
+        run: uv run ci/check_metrics.py --repo . --base origin/${{ github.base_ref }} --head HEAD
+      - name: Reconciliation tests
+        run: uv run ci/run_metric_tests.py

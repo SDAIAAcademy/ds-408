@@ -1,0 +1,142 @@
+[
+ {
+  "id": "U07",
+  "lang": "en",
+  "area": "usage",
+  "difficulty": 2,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 89878.24,
+  "want_full": 99753.84
+ },
+ {
+  "id": "U12",
+  "lang": "ar",
+  "area": "usage",
+  "difficulty": 3,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 158545.62,
+  "want_full": 200339.96
+ },
+ {
+  "id": "U13",
+  "lang": "en",
+  "area": "usage",
+  "difficulty": 3,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 122826.0,
+  "want_full": 139446.0
+ },
+ {
+  "id": "B07",
+  "lang": "en",
+  "area": "billing",
+  "difficulty": 2,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 1850954.95,
+  "want_full": 2057728.33
+ },
+ {
+  "id": "B08",
+  "lang": "ar",
+  "area": "billing",
+  "difficulty": 2,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 5393.28,
+  "want_full": 3393.48
+ },
+ {
+  "id": "B12",
+  "lang": "ar",
+  "area": "billing",
+  "difficulty": 3,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 497915.54,
+  "want_full": 630664.88
+ },
+ {
+  "id": "C06",
+  "lang": "ar",
+  "area": "collections",
+  "difficulty": 2,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 0.508482,
+  "want_full": 0.505641
+ },
+ {
+  "id": "C07",
+  "lang": "en",
+  "area": "collections",
+  "difficulty": 2,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_visible",
+  "got_variant": 534704.09,
+  "want_full": 4039109.34
+ },
+ {
+  "id": "C09",
+  "lang": "en",
+  "area": "collections",
+  "difficulty": 2,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 0.868141,
+  "want_full": 0.892228
+ },
+ {
+  "id": "C12",
+  "lang": "ar",
+  "area": "collections",
+  "difficulty": 3,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 622024.67,
+  "want_full": 1212951.99
+ },
+ {
+  "id": "Q07",
+  "lang": "en",
+  "area": "complaints",
+  "difficulty": 2,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 47.0,
+  "want_full": 50.0
+ },
+ {
+  "id": "Q08",
+  "lang": "ar",
+  "area": "complaints",
+  "difficulty": 2,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 5.0,
+  "want_full": 4.0
+ },
+ {
+  "id": "Q12",
+  "lang": "ar",
+  "area": "complaints",
+  "difficulty": 3,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 81.0,
+  "want_full": 142.0
+ },
+ {
+  "id": "Q13",
+  "lang": "en",
+  "area": "complaints",
+  "difficulty": 3,
+  "outcome_full": "right",
+  "outcome_variant": "wrong_plausible",
+  "got_variant": 111.470113,
+  "want_full": 159.830269
+ }
+]

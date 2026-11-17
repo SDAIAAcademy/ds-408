@@ -1,0 +1,12 @@
+{
+ "full": {
+  "n": 180.0,
+  "accuracy": 0.933,
+  "wrong_plausible": 0.067
+ },
+ "no_descriptions": {
+  "n": 60.0,
+  "accuracy": 0.833,
+  "wrong_plausible": 0.067
+ }
+}

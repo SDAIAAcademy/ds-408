@@ -1,0 +1,6 @@
+# Credential registry of the protocol server: SHA-256 digest of each token, and the role it carries.
+# The three tokens are synthetic demo values printed in Lab 4.1; a real registry never holds tokens.
+tokens:
+  13c9e528b1da6c962e27a3bfeb1361372177b2057d794435fd39774e762a2215: executive
+  31381ddef6ad4693f901e05d5195285b64701efc6ddd6aa8b0cf100f5a56b689: regional_manager_eas
+  df222255046a5c3f40a4149d4c513012892b18c4b1fb87733a35e054caf03613: collections_officer

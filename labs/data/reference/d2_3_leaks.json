@@ -1,0 +1,4 @@
+{
+ "row_leak": "complaint",
+ "mask_leak": "customer.contact_name"
+}

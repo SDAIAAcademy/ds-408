@@ -1,0 +1,29 @@
+[
+ {
+  "figure": "86.5%",
+  "metric": "Collection rate (certified) v1.0.0",
+  "status": "certified",
+  "owner": "Majdi Bawazir",
+  "filters": "time.month = DATE '2026-03-01'",
+  "grain": "total",
+  "text": "86.5% · Collection rate (certified) v1.0.0 (certified, Majdi Bawazir) · filters: time.month = DATE '2026-03-01' · grain: total"
+ },
+ {
+  "figure": "SAR 2,057,728",
+  "metric": "Billed amount v1.0.0",
+  "status": "certified",
+  "owner": "Jood Al-Muhaisen",
+  "filters": "customer.segment = 'business'; time.fiscal_year = 'FY2025-26'",
+  "grain": "total",
+  "text": "SAR 2,057,728 · Billed amount v1.0.0 (certified, Jood Al-Muhaisen) · filters: customer.segment = 'business'; time.fiscal_year = 'FY2025-26' · grain: total"
+ },
+ {
+  "figure": "Qamar Fibre 100",
+  "metric": "Data per active line v1.0.0",
+  "status": "certified",
+  "owner": "Zeyad Al-Juraisy",
+  "filters": "time.month = DATE '2026-06-01'",
+  "grain": "tariff.plan_name",
+  "text": "Qamar Fibre 100 · Data per active line v1.0.0 (certified, Zeyad Al-Juraisy) · filters: time.month = DATE '2026-06-01' · grain: tariff.plan_name"
+ }
+]

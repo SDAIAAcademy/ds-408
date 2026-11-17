@@ -1,0 +1,138 @@
+# Collections metrics of Qamar Telecom. Owner: Majdi Bawazir (collections director).
+- name: net_due_30
+  label: Net amount due, matured cohorts
+  type: simple
+  dataset: collection
+  agg: sum
+  expr: net_due
+  filter: matured_30
+  unit: SAR
+  owner: Majdi Bawazir
+  version: 1.0.0
+  status: certified
+  description: Amount due minus open disputed amounts, for bills issued in the period whose due date plus 30 days is on or before the data cut-off
+  tests:
+    - reconcile: "SELECT SUM(amount_due - disputed_amount) FROM fct_bill WHERE due_date + 30 <= DATE '2026-06-30'"
+
+- name: collected_30
+  label: Collected within 30 days of due date
+  type: simple
+  dataset: collection
+  agg: sum
+  expr: paid_30
+  filter: matured_30
+  unit: SAR
+  owner: Majdi Bawazir
+  version: 1.0.0
+  status: certified
+  description: Payments received up to 30 days after the due date against bills issued in the period, duplicates removed, matured cohorts only
+  tests:
+    - reconcile: >-
+        SELECT SUM(p.amount) FROM (SELECT DISTINCT bill_id, paid_date, amount, batch_id FROM fct_payment) p
+        JOIN fct_bill b USING (bill_id) WHERE p.paid_date <= b.due_date + 30 AND b.due_date + 30 <= DATE '2026-06-30'
+
+- name: collection_rate
+  label: Collection rate (certified)
+  type: ratio
+  numerator: collected_30
+  denominator: net_due_30
+  unit: ratio
+  owner: Majdi Bawazir
+  version: 1.0.0
+  status: certified
+  description: >-
+    Certified collection rate. Share of the net amount due on bills issued in the period that was paid within
+    30 days of the due date. Value basis, bill-month cohort, open disputes excluded, payments deduplicated,
+    only cohorts whose 30-day window has closed.
+  ai:
+    synonyms:
+      en: [collection rate, collections rate, recovery rate, share collected]
+      ar: [نسبة التحصيل, معدل التحصيل, نسبة السداد, التحصيل]
+    examples:
+      - q: What was the collection rate for bills issued in March 2026?
+        query: {metrics: [collection_rate], by: [], where: ["time.month = DATE '2026-03-01'"]}
+      - q: ما نسبة التحصيل لعملاء القطاع الحكومي في السنة المالية 2025-26؟
+        query: {metrics: [collection_rate], by: [], where: ["customer.segment = 'government'", "time.fiscal_year = 'FY2025-26'"]}
+  tests:
+    - reconcile: >-
+        SELECT (SELECT SUM(p.amount) FROM (SELECT DISTINCT bill_id, paid_date, amount, batch_id FROM fct_payment) p
+                JOIN fct_bill b USING (bill_id) WHERE p.paid_date <= b.due_date + 30 AND b.due_date + 30 <= DATE '2026-06-30')
+             / (SELECT SUM(amount_due - disputed_amount) FROM fct_bill WHERE due_date + 30 <= DATE '2026-06-30')
+
+- name: bills_paid_on_time
+  label: Bills paid in full by the due date
+  type: simple
+  dataset: collection
+  agg: count
+  expr: bill_id
+  filter: paid_on_time
+  unit: bills
+  owner: Ebtihal Al-Ghanim
+  version: 0.9.0
+  status: draft
+  description: Number of bills whose net amount was paid in full by the due date
+
+- name: on_time_payment_share
+  label: Share of bills paid on time (customer care)
+  type: ratio
+  numerator: bills_paid_on_time
+  denominator: bills_issued
+  unit: ratio
+  owner: Ebtihal Al-Ghanim
+  version: 0.9.0
+  status: draft
+  description: Customer care's view. Share of bills, by count, paid in full by the due date. Not the collection rate.
+  ai:
+    synonyms:
+      en: [on-time payment share, paid on time]
+      ar: [نسبة الفواتير المسددة في موعدها]
+
+- name: cash_collected
+  label: Cash collected
+  type: simple
+  dataset: payment
+  agg: sum
+  expr: amount
+  unit: SAR
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  description: Payments received in the period, whatever bill they settle, duplicates removed (cash basis)
+  ai:
+    synonyms:
+      en: [cash collected, cash received, receipts]
+      ar: [النقد المحصل, المبالغ المستلمة, المتحصلات]
+  tests:
+    - reconcile: "SELECT SUM(amount) FROM (SELECT DISTINCT bill_id, paid_date, amount, batch_id FROM fct_payment)"
+
+- name: cash_collected_fytd
+  label: Cash collected, fiscal year to date
+  type: cumulative
+  base: cash_collected
+  unit: SAR
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  description: Cash collected from the first month of the fiscal year (April) to the month shown
+  ai:
+    synonyms:
+      en: [fiscal year to date collections, FYTD cash, year to date cash]
+      ar: [المتحصلات منذ بداية السنة المالية, النقد المحصل حتى تاريخه]
+    examples:
+      - q: How much cash had been collected in the fiscal year by the end of December 2025?
+        query: {metrics: [cash_collected_fytd], by: [time.month], where: ["time.month = DATE '2025-12-01'"]}
+
+- name: cash_collection_ratio
+  label: Cash over billed (finance view)
+  type: derived
+  inputs: [cash_collected, billed_amount]
+  expr: cash_collected / billed_amount
+  unit: ratio
+  owner: Jood Al-Muhaisen
+  version: 0.9.0
+  status: draft
+  description: Finance's month-end view. Cash received in the month divided by the amount billed for the month. Mixes cohorts; not the collection rate.
+  ai:
+    synonyms:
+      en: [cash to billing ratio]
+      ar: [نسبة النقد إلى الفوترة]

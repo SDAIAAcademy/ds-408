@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-ax="page" data-track="data-science">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analytics Products: Semantic Layers and Conversational Analytics · SDAIA Academy</title>
+<meta name="generator" content="SDAIA Academy engine 1.0.0">
+<meta name="description" content="Define metrics once as tested code, serve them through a governed semantic layer, and let an assistant answer only the questions it has proved it can answer">
+<link rel="icon" href="_engine/icon.svg">
+<link rel="alternate" type="text/markdown" href="index.md">
+<link rel="describedby" href="llms.txt">
+<link rel="stylesheet" href="_engine/academy.css">
+</head>
+<body>
+<header>
+<div class="wrap">
+<div class="top"><div class="logo" id="logo"></div><nav><a href="slides/day1.html">Slides</a><a href="practice.html">Practice</a><a href="index.md" type="text/markdown">Markdown</a></nav></div>
+<div class="kicker">Data Science Track · SDAIA Academy · DS-408</div>
+<h1>Analytics Products: Semantic Layers and Conversational Analytics<span class="sub ar" lang="ar" dir="rtl">منتجات التحليلات: الطبقات الدلالية والتحليلات الحوارية</span></h1>
+<p>Define metrics once as tested code, serve them through a governed semantic layer, and let an assistant answer only the questions it has proved it can answer</p>
+<div class="meta"><span class="track">Data Science Track</span><span>4 teaching days + capstone day</span><span>26 hours</span><span>Level 400</span><span>Data Science · Expert badge</span></div>
+</div>
+</header>
+<main class="wrap">
+<h2>About the course</h2>
+<p>Participants build the analytics product of the fictional Qamar Telecom, whose 300 managers want to ask questions in Arabic and English about usage, billing, collections and complaints. They define metrics once as tested code with owners, design a semantic layer with conformed time, tariff history and access rules by region and classification, expose it to tools and agents, and evaluate a conversational assistant on certified questions, ending with a policy on which questions the assistant may answer. DS-307 covers single-area metrics, dashboards and a first agent test; this course designs the layer across business areas and governs the assistant.</p>
+<p><b>Who it is for:</b> Specialists. Data scientists who have completed the level 300 core and practicum, or can show equivalent work: an analysis they led from question to recommendation and defended.</p>
+<p><b>Format:</b> Intensive: 4 teaching days of four sessions and a capstone day, with guided pre-work and a tracked follow-up task</p>
+<h2>The case study</h2>
+<div class="note info"><b>Qamar Telecom.</b> Qamar Telecom is a fictional Saudi telecom operator whose 300 managers want to ask, in Arabic and English, about usage, billing, collections and complaints, while finance, collections and customer care each report a different collection rate. Participants certify one collection rate, write the metrics as tested code with owners and change control, build a conformed semantic layer with tariff history, fiscal and Hijri calendars and access rules by region and classification, export it to an open format, serve it to tools and agents, and evaluate Muhsi, the bilingual assistant, on 60 certified questions before deciding which questions it may answer. All data is synthetic and generated with a fixed seed.</div>
+<h2>The course</h2>
+<div class="day">
+<div class="day-head c-teal"><div><div class="t">Day 1 · 4 sessions · 4 labs</div><h3>Metrics as products</h3></div><a class="btn" href="slides/day1.html">Open the slides</a></div>
+<div class="scroll"><table>
+<tr><th>Session</th><th>Topic</th><th>Lab</th></tr>
+<tr><td>1</td><td><b>One metric, three owners</b><br>Why three collection rates disagree, and how a walk turns the disagreement into decisions<ul><li>Compute one metric as each of its owners defines it</li><li>Separate a data error from a definition choice with a walk</li><li>Write a certified definition with an owner and its choices</li></ul></td><td><a href="labs/D1_1_collection_rate.ipynb">Lab 1.1 · Three collection rates, one certified</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D1_1_collection_rate.ipynb">Open in Colab</a></td></tr>
+<tr><td>2</td><td><b>Metrics as code with tests</b><br>A metric as a file with an owner, a version, a status and reconciliation tests<ul><li>Write simple, ratio, cumulative and derived metrics as code</li><li>Explain why a ratio is computed after aggregation</li><li>Prove a metric against an independent total from the marts</li></ul></td><td><a href="labs/D1_2_metrics_as_code.ipynb">Lab 1.2 · Five metrics as code</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D1_2_metrics_as_code.ipynb">Open in Colab</a></td></tr>
+<tr><td>3</td><td><b>Ownership and change control</b><br>Who may change a metric, how its version moves, and review rules that run in continuous integration<ul><li>Distinguish the owner, the steward and the approver of a metric</li><li>Version a metric change as major, minor or patch</li><li>Take a change through review rules that run in continuous integration</li></ul></td><td><a href="labs/D1_3_change_control.ipynb">Lab 1.3 · A change taken through review</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D1_3_change_control.ipynb">Open in Colab</a></td></tr>
+<tr><td>4</td><td><b>Certification and deprecation</b><br>The life of a metric in a catalogue: certified, deprecated with a successor, followed through lineage to the reports<ul><li>Check a metric catalogue for owners and tests</li><li>Deprecate a metric with a successor and a sunset date</li><li>Find every report that depends on a deprecated metric, directly or through lineage</li></ul></td><td><a href="labs/D1_4_catalogue_lifecycle.ipynb">Lab 1.4 · Deprecate in a 40-metric catalogue</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D1_4_catalogue_lifecycle.ipynb">Open in Colab</a></td></tr>
+</table></div>
+</div>
+<div class="day">
+<div class="day-head c-cyan"><div><div class="t">Day 2 · 4 sessions · 4 labs</div><h3>Design the semantic layer</h3></div><a class="btn" href="slides/day2.html">Open the slides</a></div>
+<div class="scroll"><table>
+<tr><th>Session</th><th>Topic</th><th>Lab</th></tr>
+<tr><td>1</td><td><b>Conformed dimensions across areas</b><br>One customer, one region and one calendar shared by four business areas, joined without multiplying a figure<ul><li>Model several business areas on conformed customer and time dimensions</li><li>Detect and remove a cross-area fan-out by drilling across</li><li>Join a type 2 tariff history as of the fact's date</li></ul></td><td><a href="labs/D2_1_conformed_model.ipynb">Lab 2.1 · Four areas, one customer, one calendar</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D2_1_conformed_model.ipynb">Open in Colab</a></td></tr>
+<tr><td>2</td><td><b>Performance and cost</b><br>Pre-aggregations for the questions people actually ask, measured before and after<ul><li>Choose pre-aggregations from a query log</li><li>Measure latency and rows scanned before and after</li><li>Explain which metrics cannot roll up from a pre-aggregation</li></ul></td><td><a href="labs/D2_2_pre_aggregations.ipynb">Lab 2.2 · Pre-aggregations for the most-asked queries</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D2_2_pre_aggregations.ipynb">Open in Colab</a></td></tr>
+<tr><td>3</td><td><b>Access rules</b><br>Row rules by region and masking by classification, written in the layer and tested for each role<ul><li>Map the national classification levels to fields of the model</li><li>Write row rules and masking in the semantic layer</li><li>Test access for each role and catch a seeded leak</li></ul></td><td><a href="labs/D2_3_access_rules.ipynb">Lab 2.3 · Three roles and a seeded leak</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D2_3_access_rules.ipynb">Open in Colab</a></td></tr>
+<tr><td>4</td><td><b>Portability</b><br>What an open interchange format carries between tools, and what stays behind<ul><li>Export a semantic model to an open interchange format</li><li>Run the exported model on a second engine and compare</li><li>Name what does not port: access rules, cumulative metrics, dialects</li></ul></td><td><a href="labs/D2_4_portability.ipynb">Lab 2.4 · Export to Ossie, query from SQLite</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D2_4_portability.ipynb">Open in Colab</a></td></tr>
+</table></div>
+</div>
+<div class="day">
+<div class="day-head c-coral"><div><div class="t">Day 3 · 4 sessions · 4 labs</div><h3>Test the assistant</h3></div><a class="btn" href="slides/day3.html">Open the slides</a></div>
+<div class="scroll"><table>
+<tr><th>Session</th><th>Topic</th><th>Lab</th></tr>
+<tr><td>1</td><td><b>A certified set for a platform</b><br>Questions with certified answers, covering every area, difficulty and language, including those the assistant must refuse<ul><li>Write a certified answer as value, metric, filters and grain</li><li>Cover areas, difficulty levels and both languages</li><li>Include questions the assistant must refuse</li></ul></td><td><a href="labs/D3_1_certified_set.ipynb">Lab 3.1 · From 44 to 60 certified questions</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D3_1_certified_set.ipynb">Open in Colab</a></td></tr>
+<tr><td>2</td><td><b>Which context helps</b><br>Synonyms, descriptions and examples removed one at a time, with everything else fixed<ul><li>Design an ablation that changes one kind of context at a time</li><li>Score each variant with a fixed model and question set</li><li>Read the contribution of each kind of context by language and area</li></ul></td><td><a href="labs/D3_2_context_ablation.ipynb">Lab 3.2 · Remove one kind of context at a time</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D3_2_context_ablation.ipynb">Open in Colab</a></td></tr>
+<tr><td>3</td><td><b>A scoring harness</b><br>Execution accuracy, wrong but plausible answers and refusals, in a report a reviewer can re-run<ul><li>Score an answer by executing it and comparing with the certified value</li><li>Separate wrong but plausible answers from obvious failures</li><li>Write an evaluation report that a reviewer can re-run</li></ul></td><td><a href="labs/D3_3_scoring_harness.ipynb">Lab 3.3 · Accuracy and wrong but plausible</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D3_3_scoring_harness.ipynb">Open in Colab</a></td></tr>
+<tr><td>4</td><td><b>Ask it again</b><br>The same question three times: agreement, and the cell that matters most, stable and wrong<ul><li>Measure answer agreement across repeated runs</li><li>Separate stable right, stable wrong and unstable answers</li><li>Explain what a response cache hides from a stability test</li></ul></td><td><a href="labs/D3_4_stability.ipynb">Lab 3.4 · Three runs per question</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D3_4_stability.ipynb">Open in Colab</a></td></tr>
+</table></div>
+</div>
+<div class="day">
+<div class="day-head c-purple"><div><div class="t">Day 4 · 4 sessions · 4 labs</div><h3>Ship and govern</h3></div><a class="btn" href="slides/day4.html">Open the slides</a></div>
+<div class="scroll"><table>
+<tr><th>Session</th><th>Topic</th><th>Lab</th></tr>
+<tr><td>1</td><td><b>Serving metrics to tools and agents</b><br>One governed layer behind an API or a protocol server, with the role taken from the credential<ul><li>Expose semantic-layer queries as tools of a protocol server</li><li>Take the caller's role from the credential, never from the request</li><li>Test the server for each role</li></ul></td><td><a href="labs/D4_1_serve_layer.ipynb">Lab 4.1 · A protocol server with role-scoped credentials</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D4_1_serve_layer.ipynb">Open in Colab</a></td></tr>
+<tr><td>2</td><td><b>Safeguards that show their work</b><br>An answer that names its metric, filters, grain and version, and a refusal when the metric is not certified<ul><li>Show the metric, filters, grain and version behind each figure</li><li>Refuse uncertified metrics, Restricted fields and questions without a period</li><li>Measure the effect of the safeguards on the certified set</li></ul></td><td><a href="labs/D4_2_safeguards.ipynb">Lab 4.2 · Cite the metric, refuse the uncertified</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D4_2_safeguards.ipynb">Open in Colab</a></td></tr>
+<tr><td>3</td><td><b>Which questions may go to the assistant</b><br>A routing policy from measured risk and a stated tolerance for wrong figures, recorded as a decision<ul><li>Estimate the wrong-figure rate by question type with an upper bound</li><li>Route each question type under a stated tolerance</li><li>Record the decision with its evidence and its review date</li></ul></td><td><a href="labs/D4_3_routing_policy.ipynb">Lab 4.3 · A routing policy from the evaluation</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D4_3_routing_policy.ipynb">Open in Colab</a></td></tr>
+<tr><td>4</td><td><b>Design review</b><br>Reviewing a peer's analytics product for correctness, portability and governance, findings ranked by risk<ul><li>Review a semantic model and an evaluation with a checklist</li><li>Rank findings by likelihood and impact</li><li>Log the decisions a review panel takes</li></ul></td><td><a href="labs/D4_4_design_review.ipynb">Lab 4.4 · Review a peer's product</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-408/blob/main/labs/D4_4_design_review.ipynb">Open in Colab</a></td></tr>
+</table></div>
+</div>
+<div class="day">
+<div class="day-head c-amber"><div><div class="t">Capstone</div><h3>Capstone: a governed analytics product and its design review</h3></div><a class="btn" href="slides/capstone.html">Open the slides</a></div>
+<div class="scroll"><table><tr><td>A governed analytics product for two business areas (metrics as code, a semantic layer with tested access rules, an assistant evaluation on at least 40 certified questions, a routing policy) in a public repository whose README reports measured accuracy and stability, defended in a design review</td></tr></table></div>
+</div>
+<h2>Capstone</h2>
+<div class="two">
+<div><p>A governed analytics product for two business areas (metrics as code, a semantic layer with tested access rules, an assistant evaluation on at least 40 certified questions, a routing policy) in a public repository whose README reports measured accuracy and stability, defended in a design review</p><p><b>What you submit:</b> A public GitHub repository for two business areas of Qamar Telecom: metric files with tests and the review rules in continuous integration, the semantic model with access rules and their tests, an evaluation of the assistant on at least 40 certified questions (accuracy, wrong but plausible answers, stability over three runs) from a harness a reviewer can re-run, and a routing policy with its decision record; the README reports the measured accuracy and stability. Then a live design review in which the participant re-runs the evaluation on five questions the assessor adds.</p><p><b>Format:</b> 12 min talk and demo · 8 min Q&amp;A</p></div>
+<div><h3>Rubric</h3><div class="bar c-teal"><span>Semantic model and metrics<i style="--w:100%"></i></span><b>30%</b></div><div class="bar c-cyan"><span>Access rules<i style="--w:50%"></i></span><b>15%</b></div><div class="bar c-coral"><span>Assistant evaluation<i style="--w:100%"></i></span><b>30%</b></div><div class="bar c-purple"><span>Routing policy<i style="--w:50%"></i></span><b>15%</b></div><div class="bar c-amber"><span>Reproducibility<i style="--w:33%"></i></span><b>10%</b></div></div>
+</div>
+<h2>Outcomes</h2>
+<p>By the end of the course, participants can:</p>
+<div class="day"><div class="scroll"><table>
+<tr><th></th><th>Outcomes</th><th>Level</th><th>Evidence</th></tr>
+<tr><td><b>LO1</b></td><td>Design a semantic layer with entities, grain, conformed time and governed metrics for several business areas, given the company's marts, a tariff history and Hijri and fiscal calendars</td><td>Performance</td><td>model files whose reconciliation tests pass against source totals</td></tr>
+<tr><td><b>LO2</b></td><td>Implement metric definitions as code with owners, tests and change control, given three conflicting definitions of the collection rate</td><td>Applied</td><td>metric files and one change taken through review in continuous integration</td></tr>
+<tr><td><b>LO3</b></td><td>Configure row-level access and field masking in the semantic layer according to data classification, given three user roles and the national classification levels</td><td>Applied</td><td>access tests that pass for each role and catch a seeded leak</td></tr>
+<tr><td><b>LO4</b></td><td>Evaluate a conversational assistant on certified questions, measuring accuracy, stability, wrong but plausible answers and the contribution of each kind of semantic context, given 60 bilingual questions with certified answers and a fixed model</td><td>Performance</td><td>a report from a harness a reviewer can re-run</td></tr>
+<tr><td><b>LO5</b></td><td>Decide which question types the assistant may answer and under which safeguards, given the evaluation results and a stated tolerance for wrong figures</td><td>Performance</td><td>a routing policy with a decision record</td></tr>
+<tr><td><b>LO6</b></td><td>Review the design of a peer's analytics product for correctness, portability and governance, given a peer's semantic model and evaluation</td><td>Performance</td><td>design review notes with findings ranked by risk</td></tr>
+</table></div></div>
+<h2>Tools</h2>
+<div class="grid">
+<div class="card c-teal"><h3>Transformation framework</h3><p>SQLMesh · dbt</p></div>
+<div class="card c-cyan"><h3>Semantic layer and metric definitions</h3><p>MetricFlow · Cube Core · Apache Ossie (Open Semantic Interchange) files</p></div>
+<div class="card c-coral"><h3>Analytical engine</h3><p>DuckDB · PostgreSQL</p></div>
+<div class="card c-purple"><h3>Access for tools and agents</h3><p>a Model Context Protocol server · a REST API over the semantic layer</p></div>
+<div class="card c-green"><h3>Language model through a chat-completions style endpoint</h3><p>a locally served open-weight model · a free hosted model</p></div>
+<div class="card c-teal"><h3>Evaluation harness</h3><p>pytest with custom assertions · promptfoo · Inspect</p></div>
+</div>
+<h2>Before you start</h2>
+<h3>Prerequisites</h3>
+<ul><li>DS-307 Metrics, Semantic Models and Dashboards</li><li>Writes SQL over a star schema, including window functions</li><li>Has defined metrics in a semantic layer or a BI calculation language</li><li>Setup: a laptop CPU with uv, or Google Colab. Nothing downloads a model; the assistant labs replay recorded replies of a scripted stand-in model, and a free hosted model is optional. Run 00_setup_check before Day 1; see labs/README.md.</li></ul>
+<div class="note tip">The labs are notebooks. Open each one in Google Colab from the table above, or clone the repository and run them locally.</div>
+<h2>Sources</h2>
+<h3>National references</h3>
+<ul><li><a href="https://sdaia.gov.sa/en/SDAIA/about/Documents/DataManagementPersonalDataProtectionStandards.pdf">NDMO Data Management and Personal Data Protection Standards (Business Intelligence and Analytics domain)</a></li><li><a href="https://sdaia.gov.sa/en/SDAIA/about/Documents/DataClassificationPolicy.pdf">NDMO Data Classification Policy</a></li><li><a href="https://sdaia.gov.sa/en/SDAIA/about/Documents/PersonalDataProtectionLaw.pdf">Personal Data Protection Law</a></li><li><a href="https://sdaia.gov.sa/en/SDAIA/about/Documents/ImplementingRegulationPersonalDataProtectionLaw.pdf">Implementing Regulation of the Personal Data Protection Law</a></li><li><a href="https://sdaia.gov.sa/en/SDAIA/about/Files/GenAIGuidelinesForGovernmentENCompressed.pdf">SDAIA Generative AI Guidelines for Government</a></li><li><a href="https://sdaia.gov.sa/en/MediaCenter/KnowledgeCenter/ResearchLibrary/ExecutiveSummaryEn.pdf">National AI Risk Management Framework, English executive summary (SDAIA, April 2026)</a></li></ul>
+<h3>Semantic layers and metrics as code</h3>
+<ul><li><a href="https://ossie.apache.org/updates/ossie-enters-apache-incubator/">Apache Ossie (Incubating): the new name for Open Semantic Interchange</a></li><li><a href="https://github.com/apache/ossie/blob/main/core-spec/spec.md">Apache Ossie core metadata specification (draft 0.3.0.dev0)</a></li><li><a href="https://github.com/apache/ossie-converters">Apache Ossie converters</a></li><li><a href="https://github.com/dbt-labs/metricflow">MetricFlow</a></li><li><a href="https://docs.getdbt.com/docs/build/about-metricflow">dbt documentation: about MetricFlow</a></li><li><a href="https://cube.dev/docs/product/data-modeling/concepts">Cube documentation: data modeling concepts</a></li><li><a href="https://github.com/cube-js/cube">Cube Core</a></li><li><a href="https://sqlmesh.readthedocs.io/en/stable/">SQLMesh documentation</a></li><li><a href="https://github.com/dbt-labs/dbt-core">dbt Core</a></li></ul>
+<h3>Engines and libraries</h3>
+<ul><li><a href="https://duckdb.org/docs/stable/">DuckDB documentation</a></li><li><a href="https://pypi.org/project/duckdb/">DuckDB on PyPI</a></li><li><a href="https://www.sqlite.org/lang_datefunc.html">SQLite: date and time functions</a></li><li><a href="https://pypi.org/project/hijridate/">hijridate: Hijri and Gregorian dates on the Umm al-Qura calendar</a></li><li><a href="https://docs.astral.sh/uv/guides/scripts/">uv: running scripts with inline dependencies</a></li></ul>
+<h3>Serving to tools and agents</h3>
+<ul><li><a href="https://modelcontextprotocol.io/specification/2025-11-25">Model Context Protocol specification, revision 2025-11-25</a></li><li><a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools">Model Context Protocol specification: tools</a></li><li><a href="https://github.com/modelcontextprotocol/python-sdk">Model Context Protocol Python SDK</a></li></ul>
+<h3>Evaluating conversational analytics</h3>
+<ul><li><a href="https://arxiv.org/abs/2411.07763">Lei et al., Spider 2.0: Evaluating Language Models on Real-World Enterprise Text-to-SQL Workflows (ICLR 2025)</a></li><li><a href="https://bird-bench.github.io/">BIRD: a big bench for large-scale database grounded text-to-SQL evaluation</a></li><li><a href="https://www.promptfoo.dev/docs/intro/">promptfoo documentation</a></li><li><a href="https://inspect.aisi.org.uk/">Inspect, an evaluation framework from the UK AI Security Institute</a></li><li><a href="https://openrouter.ai/models?max_price=0">OpenRouter: free models</a></li><li><a href="https://openrouter.ai/docs/api/reference/limits">OpenRouter API: limits</a></li></ul>
+<h2>Files and links</h2>
+<div class="files">
+<a href="practice.html"><b>practice.html</b><span>Practice questions with feedback</span></a>
+<a href="index.md"><b>index.md</b><span>This page as Markdown, for an AI assistant</span></a>
+<a href="llms.txt"><b>llms.txt</b><span>The course for AI assistants (llms.txt)</span></a>
+<a href="https://github.com/SDAIAAcademy/ds-408"><b>SDAIAAcademy/ds-408</b><span>The course repository</span></a>
+</div>
+</main>
+<footer><div class="wrap">SDAIA Academy · Data Science Track · Analytics Products: Semantic Layers and Conversational Analytics<br><span class="muted">Course version 2027.1.0 · engine 1.0.0 · built 2026-11-16 · commit 30c3cc0</span></div></footer>
+<script type="application/json" id="academy-data">{"v":1,"engine":"1.0.0","build":{"at":"2026-11-16T01:26:35Z","version":"2027.1.0","commit":"30c3cc0"},"course":{"id":"ds-408","code":"DS-408","title":"Analytics Products: Semantic Layers and Conversational Analytics","track":"data-science","lang":"en","dir":"ltr","url":"https://sdaiaacademy.github.io/ds-408/","repo":"SDAIAAcademy/ds-408","home":"index.html"},"ai":{"context":{"course":"context/course.md","courseJs":"context/course.js","day":null,"llms":"llms.txt"},"tasks":[],"tools":[]},"features":{},"strings":{}}</script>
+<script src="_engine/academy.js"></script>
+</body>
+</html>

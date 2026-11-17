@@ -1,0 +1,74 @@
+[
+ {
+  "report": "Monthly finance pack",
+  "report_owner": "Jood Al-Muhaisen",
+  "metric_ref": "collection %",
+  "metric": "collection_rate_finance",
+  "why": "deprecated",
+  "move_to": "collection_rate"
+ },
+ {
+  "report": "Board pack",
+  "report_owner": "Jood Al-Muhaisen",
+  "metric_ref": "RHI",
+  "metric": "region_health_index",
+  "why": "built on deprecated",
+  "move_to": "review"
+ },
+ {
+  "report": "Collections weekly",
+  "report_owner": "Majdi Bawazir",
+  "metric_ref": "collections rate",
+  "metric": "collection_rate_60d",
+  "why": "deprecated",
+  "move_to": "collection_rate"
+ },
+ {
+  "report": "Collections region scorecard",
+  "report_owner": "Majdi Bawazir",
+  "metric_ref": "collections_score",
+  "metric": "collections_score",
+  "why": "built on deprecated",
+  "move_to": "review"
+ },
+ {
+  "report": "Customer care scorecard",
+  "report_owner": "Ebtihal Al-Ghanim",
+  "metric_ref": "on-time payers %",
+  "metric": "paid_on_time_rate",
+  "why": "deprecated",
+  "move_to": "on_time_payment_share"
+ },
+ {
+  "report": "Regional managers dashboard",
+  "report_owner": "Zeyad Al-Juraisy",
+  "metric_ref": "region_health_index",
+  "metric": "region_health_index",
+  "why": "built on deprecated",
+  "move_to": "review"
+ },
+ {
+  "report": "Retail targets",
+  "report_owner": "Jood Al-Muhaisen",
+  "metric_ref": "customer_value_index",
+  "metric": "customer_value_index",
+  "why": "built on deprecated",
+  "move_to": "review"
+ },
+ {
+  "report": "Data platform health",
+  "report_owner": "Zeyad Al-Juraisy",
+  "metric_ref": "legacy_kpi_pack",
+  "metric": "legacy_kpi_pack",
+  "why": "deprecated",
+  "move_to": "review"
+ },
+ {
+  "report": "Executive daily",
+  "report_owner": "Jood Al-Muhaisen",
+  "metric_ref": "cash collection rate",
+  "metric": "collection_rate_finance",
+  "why": "deprecated",
+  "move_to": "collection_rate"
+ }
+]

@@ -1,0 +1,542 @@
+[
+ {
+  "id": "B01",
+  "lang": "en",
+  "area": "billing",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "B02",
+  "lang": "ar",
+  "area": "billing",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "B03",
+  "lang": "en",
+  "area": "billing",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "B04",
+  "lang": "ar",
+  "area": "billing",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "B05",
+  "lang": "en",
+  "area": "billing",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "B06",
+  "lang": "ar",
+  "area": "billing",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "B07",
+  "lang": "en",
+  "area": "billing",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "B08",
+  "lang": "ar",
+  "area": "billing",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "B09",
+  "lang": "en",
+  "area": "billing",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "B10",
+  "lang": "ar",
+  "area": "billing",
+  "difficulty": 3,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "B11",
+  "lang": "en",
+  "area": "billing",
+  "difficulty": 3,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "B12",
+  "lang": "ar",
+  "area": "billing",
+  "difficulty": 3,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "B13",
+  "lang": "en",
+  "area": "billing",
+  "difficulty": 3,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "B14",
+  "lang": "ar",
+  "area": "billing",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "B15",
+  "lang": "ar",
+  "area": "billing",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "C01",
+  "lang": "en",
+  "area": "collections",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "C02",
+  "lang": "ar",
+  "area": "collections",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "C03",
+  "lang": "en",
+  "area": "collections",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "C04",
+  "lang": "ar",
+  "area": "collections",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "C05",
+  "lang": "en",
+  "area": "collections",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "C06",
+  "lang": "ar",
+  "area": "collections",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "C07",
+  "lang": "en",
+  "area": "collections",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "C08",
+  "lang": "ar",
+  "area": "collections",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "C09",
+  "lang": "en",
+  "area": "collections",
+  "difficulty": 2,
+  "agree": 2,
+  "n_right": 1,
+  "stability": "unstable"
+ },
+ {
+  "id": "C10",
+  "lang": "ar",
+  "area": "collections",
+  "difficulty": 3,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "C11",
+  "lang": "en",
+  "area": "collections",
+  "difficulty": 3,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "C12",
+  "lang": "ar",
+  "area": "collections",
+  "difficulty": 3,
+  "agree": 2,
+  "n_right": 2,
+  "stability": "unstable"
+ },
+ {
+  "id": "C13",
+  "lang": "en",
+  "area": "collections",
+  "difficulty": 3,
+  "agree": 3,
+  "n_right": 0,
+  "stability": "stable_wrong"
+ },
+ {
+  "id": "C14",
+  "lang": "ar",
+  "area": "collections",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "C15",
+  "lang": "ar",
+  "area": "collections",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 0,
+  "stability": "stable_wrong"
+ },
+ {
+  "id": "Q01",
+  "lang": "en",
+  "area": "complaints",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "Q02",
+  "lang": "ar",
+  "area": "complaints",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "Q03",
+  "lang": "en",
+  "area": "complaints",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "Q04",
+  "lang": "ar",
+  "area": "complaints",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "Q05",
+  "lang": "en",
+  "area": "complaints",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "Q06",
+  "lang": "ar",
+  "area": "complaints",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "Q07",
+  "lang": "en",
+  "area": "complaints",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "Q08",
+  "lang": "ar",
+  "area": "complaints",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "Q09",
+  "lang": "en",
+  "area": "complaints",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "Q10",
+  "lang": "ar",
+  "area": "complaints",
+  "difficulty": 3,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "Q11",
+  "lang": "en",
+  "area": "complaints",
+  "difficulty": 3,
+  "agree": 3,
+  "n_right": 0,
+  "stability": "stable_wrong"
+ },
+ {
+  "id": "Q12",
+  "lang": "ar",
+  "area": "complaints",
+  "difficulty": 3,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "Q13",
+  "lang": "en",
+  "area": "complaints",
+  "difficulty": 3,
+  "agree": 2,
+  "n_right": 2,
+  "stability": "unstable"
+ },
+ {
+  "id": "Q14",
+  "lang": "en",
+  "area": "complaints",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "Q15",
+  "lang": "en",
+  "area": "complaints",
+  "difficulty": 2,
+  "agree": 2,
+  "n_right": 2,
+  "stability": "unstable"
+ },
+ {
+  "id": "U01",
+  "lang": "en",
+  "area": "usage",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "U02",
+  "lang": "ar",
+  "area": "usage",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "U03",
+  "lang": "en",
+  "area": "usage",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "U04",
+  "lang": "ar",
+  "area": "usage",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "U05",
+  "lang": "en",
+  "area": "usage",
+  "difficulty": 1,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "U06",
+  "lang": "ar",
+  "area": "usage",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "U07",
+  "lang": "en",
+  "area": "usage",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "U08",
+  "lang": "ar",
+  "area": "usage",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "U09",
+  "lang": "en",
+  "area": "usage",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "U10",
+  "lang": "ar",
+  "area": "usage",
+  "difficulty": 3,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "U11",
+  "lang": "en",
+  "area": "usage",
+  "difficulty": 3,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "U12",
+  "lang": "ar",
+  "area": "usage",
+  "difficulty": 3,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "U13",
+  "lang": "en",
+  "area": "usage",
+  "difficulty": 3,
+  "agree": 2,
+  "n_right": 2,
+  "stability": "unstable"
+ },
+ {
+  "id": "U14",
+  "lang": "ar",
+  "area": "usage",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ },
+ {
+  "id": "U15",
+  "lang": "ar",
+  "area": "usage",
+  "difficulty": 2,
+  "agree": 3,
+  "n_right": 3,
+  "stability": "stable_right"
+ }
+]

@@ -1,0 +1,525 @@
+{
+ "name": "qamar_telecom",
+ "description": "Usage, billing, collections and complaints of Qamar Telecom, with conformed customer, region and time",
+ "datasets": [
+  {
+   "name": "time",
+   "source": "dim_date",
+   "primary_key": [
+    "day"
+   ],
+   "description": "Conformed calendar with Gregorian, fiscal (April to March) and Hijri (Umm al-Qura) labels",
+   "fields": [
+    {
+     "name": "day",
+     "sql": "date_day"
+    },
+    {
+     "name": "month",
+     "sql": "month_start"
+    },
+    {
+     "name": "year",
+     "sql": "year"
+    },
+    {
+     "name": "fiscal_year",
+     "sql": "fiscal_year_label"
+    },
+    {
+     "name": "fiscal_quarter",
+     "sql": "fiscal_year_label || '-Q' || fiscal_quarter"
+    },
+    {
+     "name": "hijri_year",
+     "sql": "hijri_year"
+    },
+    {
+     "name": "hijri_month",
+     "sql": "hijri_year || '-' || lpad(CAST(hijri_month AS VARCHAR), 2, '0')"
+    },
+    {
+     "name": "hijri_month_name_ar",
+     "sql": "hijri_month_name_ar"
+    }
+   ]
+  },
+  {
+   "name": "region",
+   "source": "dim_region",
+   "primary_key": [
+    "region"
+   ],
+   "fields": [
+    {
+     "name": "region",
+     "sql": "region_code"
+    },
+    {
+     "name": "name_en",
+     "sql": "region_name_en"
+    },
+    {
+     "name": "name_ar",
+     "sql": "region_name_ar"
+    }
+   ]
+  },
+  {
+   "name": "customer",
+   "source": "dim_customer",
+   "primary_key": [
+    "customer_id"
+   ],
+   "description": "One row per customer account (subscriber)",
+   "fields": [
+    {
+     "name": "customer_id",
+     "sql": "customer_id"
+    },
+    {
+     "name": "segment",
+     "sql": "segment"
+    },
+    {
+     "name": "region",
+     "sql": "region_code"
+    },
+    {
+     "name": "city",
+     "sql": "city"
+    },
+    {
+     "name": "full_name",
+     "sql": "full_name",
+     "classification": "Restricted"
+    },
+    {
+     "name": "national_id",
+     "sql": "national_id",
+     "classification": "Restricted"
+    },
+    {
+     "name": "msisdn",
+     "sql": "msisdn",
+     "classification": "Restricted"
+    },
+    {
+     "name": "date_of_birth",
+     "sql": "date_of_birth",
+     "classification": "Restricted"
+    },
+    {
+     "name": "contact_name",
+     "sql": "split_part(full_name, ' ', 1)"
+    },
+    {
+     "name": "joined_date",
+     "sql": "joined_date"
+    }
+   ],
+   "joins": [
+    {
+     "to": "region",
+     "keys": [
+      [
+       "region",
+       "region"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "name": "tariff",
+   "source": "dim_tariff",
+   "primary_key": [
+    "tariff_key"
+   ],
+   "description": "Tariff history, type 2; one row per tariff and validity period",
+   "fields": [
+    {
+     "name": "tariff_key",
+     "sql": "tariff_key"
+    },
+    {
+     "name": "tariff_code",
+     "sql": "tariff_code"
+    },
+    {
+     "name": "plan_name",
+     "sql": "plan_name"
+    },
+    {
+     "name": "product",
+     "sql": "product"
+    },
+    {
+     "name": "monthly_fee",
+     "sql": "monthly_fee"
+    },
+    {
+     "name": "valid_from",
+     "sql": "valid_from"
+    },
+    {
+     "name": "valid_to",
+     "sql": "valid_to"
+    }
+   ]
+  },
+  {
+   "name": "line",
+   "source": "dim_line",
+   "primary_key": [
+    "line_id"
+   ],
+   "fields": [
+    {
+     "name": "line_id",
+     "sql": "line_id"
+    },
+    {
+     "name": "customer_id",
+     "sql": "customer_id"
+    },
+    {
+     "name": "product",
+     "sql": "product"
+    },
+    {
+     "name": "tariff_code",
+     "sql": "tariff_code"
+    },
+    {
+     "name": "activation_date",
+     "sql": "activation_date"
+    }
+   ],
+   "joins": [
+    {
+     "to": "customer",
+     "keys": [
+      [
+       "customer_id",
+       "customer_id"
+      ]
+     ]
+    },
+    {
+     "to": "tariff",
+     "keys": [
+      [
+       "tariff_code",
+       "tariff_code"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "name": "usage",
+   "source": "fct_usage_monthly",
+   "primary_key": [
+    "line_id",
+    "month"
+   ],
+   "time": "month",
+   "description": "Usage per line and month",
+   "fields": [
+    {
+     "name": "line_id",
+     "sql": "line_id"
+    },
+    {
+     "name": "month",
+     "sql": "usage_month"
+    },
+    {
+     "name": "data_gb",
+     "sql": "data_gb"
+    },
+    {
+     "name": "voice_min",
+     "sql": "voice_min"
+    },
+    {
+     "name": "sms",
+     "sql": "sms"
+    },
+    {
+     "name": "roaming_mb",
+     "sql": "roaming_mb"
+    }
+   ],
+   "joins": [
+    {
+     "to": "line",
+     "keys": [
+      [
+       "line_id",
+       "line_id"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "name": "bill",
+   "source": "fct_bill",
+   "primary_key": [
+    "bill_id"
+   ],
+   "time": "month",
+   "description": "One bill per postpaid or fibre customer and service month",
+   "fields": [
+    {
+     "name": "bill_id",
+     "sql": "bill_id"
+    },
+    {
+     "name": "customer_id",
+     "sql": "customer_id"
+    },
+    {
+     "name": "month",
+     "sql": "bill_month"
+    },
+    {
+     "name": "issue_date",
+     "sql": "issue_date"
+    },
+    {
+     "name": "due_date",
+     "sql": "due_date"
+    },
+    {
+     "name": "service_month",
+     "sql": "strftime(bill_month, '%Y-%m')"
+    },
+    {
+     "name": "amount_due",
+     "sql": "amount_due"
+    },
+    {
+     "name": "disputed_amount",
+     "sql": "disputed_amount"
+    }
+   ],
+   "joins": [
+    {
+     "to": "customer",
+     "keys": [
+      [
+       "customer_id",
+       "customer_id"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "name": "collection",
+   "description": "One row per bill with what was paid by the due date and within 30 and 60 days after it (payments deduplicated)",
+   "source": "SELECT b.*, b.amount_due - b.disputed_amount AS net_due,\n       coalesce(sum(p.amount) FILTER (WHERE p.paid_date <= b.due_date), 0) AS paid_by_due,\n       coalesce(sum(p.amount) FILTER (WHERE p.paid_date <= b.due_date + 30), 0) AS paid_30,\n       coalesce(sum(p.amount) FILTER (WHERE p.paid_date <= b.due_date + 60), 0) AS paid_60,\n       b.due_date + 30 <= DATE '2026-06-30' AS matured_30\nFROM fct_bill b LEFT JOIN (SELECT * FROM fct_payment\n           QUALIFY row_number() OVER (PARTITION BY bill_id, paid_date, amount, batch_id ORDER BY load_no) = 1) p\n  ON p.bill_id = b.bill_id\nGROUP BY ALL",
+   "primary_key": [
+    "bill_id"
+   ],
+   "time": "month",
+   "fields": [
+    {
+     "name": "bill_id",
+     "sql": "bill_id"
+    },
+    {
+     "name": "customer_id",
+     "sql": "customer_id"
+    },
+    {
+     "name": "month",
+     "sql": "bill_month"
+    },
+    {
+     "name": "net_due",
+     "sql": "net_due"
+    },
+    {
+     "name": "paid_by_due",
+     "sql": "paid_by_due"
+    },
+    {
+     "name": "paid_30",
+     "sql": "paid_30"
+    },
+    {
+     "name": "paid_60",
+     "sql": "paid_60"
+    },
+    {
+     "name": "matured_30",
+     "sql": "matured_30"
+    },
+    {
+     "name": "paid_on_time",
+     "sql": "paid_by_due >= net_due - 0.01"
+    }
+   ],
+   "joins": [
+    {
+     "to": "customer",
+     "keys": [
+      [
+       "customer_id",
+       "customer_id"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "name": "payment",
+   "description": "Payments received, deduplicated on bill, day, amount and batch",
+   "source": "SELECT * FROM fct_payment QUALIFY row_number() OVER (PARTITION BY bill_id, paid_date, amount, batch_id ORDER BY load_no) = 1",
+   "primary_key": [
+    "payment_id"
+   ],
+   "time": "paid_date",
+   "fields": [
+    {
+     "name": "payment_id",
+     "sql": "payment_id"
+    },
+    {
+     "name": "bill_id",
+     "sql": "bill_id"
+    },
+    {
+     "name": "customer_id",
+     "sql": "customer_id"
+    },
+    {
+     "name": "paid_date",
+     "sql": "paid_date"
+    },
+    {
+     "name": "amount",
+     "sql": "amount"
+    }
+   ],
+   "joins": [
+    {
+     "to": "customer",
+     "keys": [
+      [
+       "customer_id",
+       "customer_id"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "name": "complaint",
+   "source": "fct_complaint",
+   "primary_key": [
+    "complaint_id"
+   ],
+   "time": "opened_date",
+   "fields": [
+    {
+     "name": "complaint_id",
+     "sql": "complaint_id"
+    },
+    {
+     "name": "customer_id",
+     "sql": "customer_id"
+    },
+    {
+     "name": "line_id",
+     "sql": "line_id"
+    },
+    {
+     "name": "opened_date",
+     "sql": "opened_date"
+    },
+    {
+     "name": "category",
+     "sql": "category"
+    },
+    {
+     "name": "channel",
+     "sql": "channel"
+    },
+    {
+     "name": "region",
+     "sql": "region_code"
+    },
+    {
+     "name": "severity",
+     "sql": "severity"
+    },
+    {
+     "name": "resolution_days",
+     "sql": "date_diff('day', opened_date, closed_date)"
+    }
+   ],
+   "joins": [
+    {
+     "to": "customer",
+     "keys": [
+      [
+       "customer_id",
+       "customer_id"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "name": "usage_event",
+   "source": "fct_usage_event",
+   "primary_key": [
+    "line_id",
+    "event_date",
+    "kind",
+    "mb",
+    "seconds"
+   ],
+   "time": "event_date",
+   "description": "One row per data or voice session (about 2.1 million rows; built in memory by qamar.usage_events)",
+   "fields": [
+    {
+     "name": "line_id",
+     "sql": "line_id"
+    },
+    {
+     "name": "event_date",
+     "sql": "event_date"
+    },
+    {
+     "name": "kind",
+     "sql": "kind"
+    },
+    {
+     "name": "mb",
+     "sql": "mb"
+    },
+    {
+     "name": "seconds",
+     "sql": "seconds"
+    }
+   ],
+   "joins": [
+    {
+     "to": "line",
+     "keys": [
+      [
+       "line_id",
+       "line_id"
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}

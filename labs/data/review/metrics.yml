@@ -1,0 +1,433 @@
+# Team B's metrics: billing, collections, usage and complaints (peer package; synthetic).
+- name: billed_amount
+  label: Billed amount
+  type: simple
+  dataset: bill
+  agg: sum
+  expr: amount_due
+  unit: SAR
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  description: Total amount on bills for the service month, VAT included, before disputes
+  ai:
+    synonyms:
+      en:
+      - billed amount
+      - billing
+      - invoiced amount
+      - total billed
+      ar:
+      - المبلغ المفوتر
+      - إجمالي الفواتير
+      - الفوترة
+    examples:
+    - q: How much did we bill in the Eastern region in January 2026?
+      query:
+        metrics:
+        - billed_amount
+        by: []
+        where:
+        - customer.region = 'EAS'
+        - time.month = DATE '2026-01-01'
+  tests:
+  - reconcile: SELECT SUM(amount_due) FROM fct_bill
+- name: bills_issued
+  label: Bills issued
+  type: simple
+  dataset: bill
+  agg: count
+  expr: bill_id
+  unit: bills
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  description: Number of bills issued for the service month
+  ai:
+    synonyms:
+      en:
+      - number of bills
+      - bills issued
+      - invoices
+      ar:
+      - عدد الفواتير
+      - الفواتير الصادرة
+  tests:
+  - reconcile: SELECT COUNT(*) FROM fct_bill
+- name: billed_customers
+  label: Billed customers
+  type: simple
+  dataset: bill
+  agg: count_distinct
+  expr: customer_id
+  unit: customers
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  description: Distinct customers with a bill in the period. Not additive across months.
+  ai:
+    synonyms:
+      en:
+      - billed customers
+      - paying accounts
+      - postpaid customers
+      ar:
+      - العملاء المفوترون
+      - عدد الحسابات المفوترة
+  tests:
+  - reconcile: SELECT COUNT(DISTINCT customer_id) FROM fct_bill
+- name: arpa
+  label: Average billed amount per account
+  type: derived
+  inputs:
+  - billed_amount
+  - billed_customers
+  expr: billed_amount / billed_customers
+  unit: SAR per account
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  description: Billed amount divided by distinct billed customers in the same period (ARPA). Over several months
+    it is not a monthly figure.
+  ai:
+    synonyms:
+      en:
+      - ARPA
+      - average revenue per account
+      - average bill
+      ar:
+      - متوسط الفاتورة
+      - متوسط الإيراد لكل حساب
+      - متوسط الفوترة للحساب
+    examples:
+    - q: What was the average bill per account in each month of Q3 of the fiscal year 2025-26?
+      query:
+        metrics:
+        - arpa
+        by:
+        - time.month
+        where:
+        - time.fiscal_quarter = 'FY2025-26-Q3'
+- name: disputed_amount
+  label: Disputed amount
+  type: simple
+  dataset: bill
+  agg: sum
+  expr: disputed_amount
+  unit: SAR
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  description: Amount under dispute on bills for the service month
+  ai:
+    synonyms:
+      en:
+      - disputed amount
+      - disputes
+      ar:
+      - المبالغ المعترض عليها
+      - الاعتراضات على الفواتير
+  tests:
+  - reconcile: SELECT SUM(disputed_amount) FROM fct_bill
+- name: net_due_30
+  label: Net amount due, matured cohorts
+  type: simple
+  dataset: collection
+  agg: sum
+  expr: net_due
+  filter: matured_30
+  unit: SAR
+  owner: Majdi Bawazir
+  version: 1.0.0
+  status: certified
+  description: Amount due minus open disputed amounts, for bills issued in the period whose due date plus 30 days
+    is on or before the data cut-off
+  tests:
+  - reconcile: SELECT SUM(amount_due - disputed_amount) FROM fct_bill WHERE due_date + 30 <= DATE '2026-06-30'
+- name: collected_30
+  label: Collected within 30 days of due date
+  type: simple
+  dataset: collection
+  agg: sum
+  expr: paid_30
+  filter: matured_30
+  unit: SAR
+  owner: Majdi Bawazir
+  version: 1.0.0
+  status: certified
+  description: Payments received up to 30 days after the due date against bills issued in the period, duplicates
+    removed, matured cohorts only
+  tests:
+  - reconcile: SELECT SUM(p.amount) FROM (SELECT DISTINCT bill_id, paid_date, amount, batch_id FROM fct_payment)
+      p JOIN fct_bill b USING (bill_id) WHERE p.paid_date <= b.due_date + 30 AND b.due_date + 30 <= DATE '2026-06-30'
+- name: cash_collected
+  label: Cash collected
+  type: simple
+  dataset: payment
+  agg: sum
+  expr: amount
+  unit: SAR
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  description: Payments received in the period, whatever bill they settle, duplicates removed (cash basis)
+  ai:
+    synonyms:
+      en:
+      - cash collected
+      - cash received
+      - receipts
+      ar:
+      - النقد المحصل
+      - المبالغ المستلمة
+      - المتحصلات
+  tests:
+  - reconcile: SELECT SUM(amount) FROM (SELECT DISTINCT bill_id, paid_date, amount, batch_id FROM fct_payment)
+- name: cash_collected_fytd
+  label: Cash collected, fiscal year to date
+  type: cumulative
+  base: cash_collected
+  unit: SAR
+  owner: Jood Al-Muhaisen
+  version: 1.0.0
+  status: certified
+  description: Cash collected from the first month of the fiscal year (April) to the month shown
+  ai:
+    synonyms:
+      en:
+      - fiscal year to date collections
+      - FYTD cash
+      - year to date cash
+      ar:
+      - المتحصلات منذ بداية السنة المالية
+      - النقد المحصل حتى تاريخه
+    examples:
+    - q: How much cash had been collected in the fiscal year by the end of December 2025?
+      query:
+        metrics:
+        - cash_collected_fytd
+        by:
+        - time.month
+        where:
+        - time.month = DATE '2025-12-01'
+- name: data_gb
+  label: Mobile and fibre data
+  type: simple
+  dataset: usage
+  agg: sum
+  expr: data_gb
+  unit: GB
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  description: Data used by all lines in the period, in gigabytes
+  ai:
+    synonyms:
+      en:
+      - data usage
+      - data consumption
+      - traffic
+      - gigabytes
+      ar:
+      - استهلاك البيانات
+      - البيانات
+      - الإنترنت
+      - حجم البيانات
+  tests:
+  - reconcile: SELECT SUM(data_gb) FROM fct_usage_monthly
+- name: voice_minutes
+  label: Voice minutes
+  type: simple
+  dataset: usage
+  agg: sum
+  expr: voice_min
+  unit: minutes
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  description: Outgoing voice minutes in the period
+  ai:
+    synonyms:
+      en:
+      - voice minutes
+      - call minutes
+      - calls
+      ar:
+      - دقائق المكالمات
+      - المكالمات الصوتية
+      - دقائق الاتصال
+  tests:
+  - reconcile: SELECT SUM(voice_min) FROM fct_usage_monthly
+- name: active_lines
+  label: Active lines
+  type: simple
+  dataset: usage
+  agg: count_distinct
+  expr: line_id
+  unit: lines
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  description: Distinct lines with a usage record in the period. Not additive across months.
+  ai:
+    synonyms:
+      en:
+      - active lines
+      - active subscriptions
+      - lines in use
+      ar:
+      - الخطوط النشطة
+      - الاشتراكات النشطة
+      - عدد الخطوط
+  tests:
+  - reconcile: SELECT COUNT(DISTINCT line_id) FROM fct_usage_monthly
+- name: data_per_line
+  label: Data per active line
+  type: derived
+  inputs:
+  - data_gb
+  - active_lines
+  expr: data_gb / active_lines
+  unit: GB per line
+  owner: Zeyad Al-Juraisy
+  version: 1.0.0
+  status: certified
+  description: Data used divided by active lines in the same period
+  ai:
+    synonyms:
+      en:
+      - data per line
+      - average data usage
+      - usage per subscriber
+      ar:
+      - متوسط استهلاك البيانات للخط
+      - البيانات لكل خط
+    examples:
+    - q: Which plan had the highest data per line in June 2026?
+      query:
+        metrics:
+        - data_per_line
+        by:
+        - tariff.plan_name
+        where:
+        - time.month = DATE '2026-06-01'
+- name: complaints
+  label: Complaints opened
+  type: simple
+  dataset: complaint
+  agg: count
+  expr: complaint_id
+  unit: complaints
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  description: Complaints opened in the period, by the region where the complaint was raised when grouped by complaint.region
+  ai:
+    synonyms:
+      en:
+      - complaints
+      - complaints opened
+      - tickets
+      ar:
+      - الشكاوى
+      - عدد الشكاوى
+      - البلاغات
+  tests:
+  - reconcile: SELECT COUNT(*) FROM fct_complaint
+- name: billing_complaints
+  label: Billing complaints
+  type: simple
+  dataset: complaint
+  agg: count
+  expr: complaint_id
+  filter: category = 'billing'
+  unit: complaints
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  description: Complaints opened in the period whose category is billing
+  ai:
+    synonyms:
+      en:
+      - billing complaints
+      - bill complaints
+      - invoice complaints
+      ar:
+      - شكاوى الفواتير
+      - شكاوى الفوترة
+  tests:
+  - reconcile: SELECT COUNT(*) FROM fct_complaint WHERE category = 'billing'
+- name: median_resolution_days
+  label: Median days to resolve
+  type: simple
+  dataset: complaint
+  agg: median
+  expr: resolution_days
+  unit: days
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  description: Median days from opening to closing, over complaints closed by the data cut-off
+  ai:
+    synonyms:
+      en:
+      - resolution time
+      - time to resolve
+      - days to close
+      ar:
+      - مدة حل الشكوى
+      - زمن المعالجة
+      - أيام الحل
+  tests:
+  - reconcile: SELECT MEDIAN(date_diff('day', opened_date, closed_date)) FROM fct_complaint
+- name: complaints_per_1k_lines
+  label: Complaints per 1,000 active lines
+  type: derived
+  inputs:
+  - complaints
+  - active_lines
+  expr: complaints * 1000.0 / active_lines
+  unit: per 1,000 lines
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  description: Complaints opened divided by active lines in the same period, times 1,000
+  ai:
+    synonyms:
+      en:
+      - complaint rate
+      - complaints per thousand lines
+      ar:
+      - معدل الشكاوى
+      - الشكاوى لكل ألف خط
+    examples:
+    - q: كم كان معدل الشكاوى لكل ألف خط في المنطقة الشرقية في يناير 2026؟
+      query:
+        metrics:
+        - complaints_per_1k_lines
+        by: []
+        where:
+        - customer.region = 'EAS'
+        - time.month = DATE '2026-01-01'
+- name: collection_rate
+  label: Collection rate
+  type: derived
+  inputs:
+  - cash_collected
+  - billed_amount
+  expr: cash_collected / billed_amount
+  unit: ratio
+  owner: Team B
+  version: 1.0.0
+  status: certified
+  description: 'Collection rate: cash collected over amount billed.'
+  ai:
+    synonyms:
+      en:
+      - collection rate
+      - collections rate
+      ar:
+      - نسبة التحصيل
+  tests:
+  - reconcile: SELECT (SELECT SUM(amount) FROM (SELECT DISTINCT bill_id, paid_date, amount, batch_id FROM fct_payment))
+      / (SELECT SUM(amount_due) FROM fct_bill)

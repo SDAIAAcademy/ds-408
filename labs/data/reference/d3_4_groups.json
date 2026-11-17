@@ -1,0 +1,47 @@
+[
+ {
+  "group": "area=billing",
+  "unstable": 0.0,
+  "stable_wrong": 0.0
+ },
+ {
+  "group": "area=collections",
+  "unstable": 0.133,
+  "stable_wrong": 0.133
+ },
+ {
+  "group": "area=complaints",
+  "unstable": 0.133,
+  "stable_wrong": 0.067
+ },
+ {
+  "group": "area=usage",
+  "unstable": 0.067,
+  "stable_wrong": 0.0
+ },
+ {
+  "group": "difficulty=1",
+  "unstable": 0.0,
+  "stable_wrong": 0.0
+ },
+ {
+  "group": "difficulty=2",
+  "unstable": 0.083,
+  "stable_wrong": 0.042
+ },
+ {
+  "group": "difficulty=3",
+  "unstable": 0.188,
+  "stable_wrong": 0.125
+ },
+ {
+  "group": "lang=ar",
+  "unstable": 0.033,
+  "stable_wrong": 0.033
+ },
+ {
+  "group": "lang=en",
+  "unstable": 0.133,
+  "stable_wrong": 0.067
+ }
+]

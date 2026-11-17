@@ -1,0 +1,35 @@
+# Governed access policy of the Qamar semantic layer: Lab 2.3's fixed policy (complaint row rule added).
+# Used with deny_by_default and lineage by the protocol server of Lab 4.1. Synthetic.
+classification_levels:
+- Top Secret
+- Secret
+- Restricted
+- Public
+classification:
+  dim_customer.full_name: Restricted
+  dim_customer.national_id: Restricted
+  dim_customer.msisdn: Restricted
+  dim_customer.date_of_birth: Restricted
+roles:
+  executive:
+    description: Executive committee; all regions; no access to Restricted customer fields
+    regions: all
+    restricted: false
+  regional_manager_eas:
+    description: Regional manager, Eastern region; Eastern data only; no Restricted fields
+    regions:
+    - EAS
+    restricted: false
+  collections_officer:
+    description: Collections officer; all regions; sees Restricted contact fields to contact customers who owe
+    regions: all
+    restricted: true
+row_rules:
+  customer: customer.region
+  line: customer.region
+  usage: customer.region
+  usage_event: customer.region
+  bill: customer.region
+  collection: customer.region
+  payment: customer.region
+  complaint: complaint.region

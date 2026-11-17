@@ -1,0 +1,23 @@
+[
+ {
+  "id": "C13",
+  "outcome": "wrong_plausible",
+  "question": "What was the collection rate for business customers in Riyad",
+  "used": "['collection_rate'] [\"customer.segment = 'business'\", \"customer.region = 'CEN'\", \"time.month = DATE '2026-03-01'\"]",
+  "certified": "['collection_rate'] [\"customer.segment = 'business'\", \"customer.city = 'Riyadh'\", \"time.month = DATE '2026-03-01'\"]"
+ },
+ {
+  "id": "C15",
+  "outcome": "missed_refusal",
+  "question": "ما نسبة الفواتير المسددة في موعدها لشهر مارس 2026؟",
+  "used": "['on_time_payment_share'] [\"time.month = DATE '2026-03-01'\"]",
+  "certified": "uncertified "
+ },
+ {
+  "id": "Q11",
+  "outcome": "wrong_plausible",
+  "question": "Which month of the fiscal year 2025-26 had the most billing ",
+  "used": "['complaints'] [\"time.fiscal_year = 'FY2025-26'\"]",
+  "certified": "['billing_complaints'] [\"time.fiscal_year = 'FY2025-26'\"]"
+ }
+]

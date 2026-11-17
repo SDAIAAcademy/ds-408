@@ -1,0 +1,73 @@
+# Complaints metrics of Qamar Telecom. Owner: Ebtihal Al-Ghanim (head of customer care).
+- name: complaints
+  label: Complaints opened
+  type: simple
+  dataset: complaint
+  agg: count
+  expr: complaint_id
+  unit: complaints
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  description: Complaints opened in the period, by the region where the complaint was raised when grouped by complaint.region
+  ai:
+    synonyms:
+      en: [complaints, complaints opened, tickets]
+      ar: [الشكاوى, عدد الشكاوى, البلاغات]
+  tests:
+    - reconcile: "SELECT COUNT(*) FROM fct_complaint"
+
+- name: billing_complaints
+  label: Billing complaints
+  type: simple
+  dataset: complaint
+  agg: count
+  expr: complaint_id
+  filter: "category = 'billing'"
+  unit: complaints
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  description: Complaints opened in the period whose category is billing
+  ai:
+    synonyms:
+      en: [billing complaints, bill complaints, invoice complaints]
+      ar: [شكاوى الفواتير, شكاوى الفوترة]
+  tests:
+    - reconcile: "SELECT COUNT(*) FROM fct_complaint WHERE category = 'billing'"
+
+- name: median_resolution_days
+  label: Median days to resolve
+  type: simple
+  dataset: complaint
+  agg: median
+  expr: resolution_days
+  unit: days
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  description: Median days from opening to closing, over complaints closed by the data cut-off
+  ai:
+    synonyms:
+      en: [resolution time, time to resolve, days to close]
+      ar: [مدة حل الشكوى, زمن المعالجة, أيام الحل]
+  tests:
+    - reconcile: "SELECT MEDIAN(date_diff('day', opened_date, closed_date)) FROM fct_complaint"
+
+- name: complaints_per_1k_lines
+  label: Complaints per 1,000 active lines
+  type: derived
+  inputs: [complaints, active_lines]
+  expr: complaints * 1000.0 / active_lines
+  unit: per 1,000 lines
+  owner: Ebtihal Al-Ghanim
+  version: 1.0.0
+  status: certified
+  description: Complaints opened divided by active lines in the same period, times 1,000
+  ai:
+    synonyms:
+      en: [complaint rate, complaints per thousand lines]
+      ar: [معدل الشكاوى, الشكاوى لكل ألف خط]
+    examples:
+      - q: كم كان معدل الشكاوى لكل ألف خط في المنطقة الشرقية في يناير 2026؟
+        query: {metrics: [complaints_per_1k_lines], by: [], where: ["customer.region = 'EAS'", "time.month = DATE '2026-01-01'"]}

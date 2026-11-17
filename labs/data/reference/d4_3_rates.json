@@ -1,0 +1,44 @@
+[
+ {
+  "type": "cumulative",
+  "questions": 2,
+  "answers": 6,
+  "wrong": 1,
+  "rate": 0.167
+ },
+ {
+  "type": "fiscal_period",
+  "questions": 9,
+  "answers": 27,
+  "wrong": 4,
+  "rate": 0.148
+ },
+ {
+  "type": "hijri_period",
+  "questions": 3,
+  "answers": 9,
+  "wrong": 0,
+  "rate": 0.0
+ },
+ {
+  "type": "lookup",
+  "questions": 30,
+  "answers": 90,
+  "wrong": 3,
+  "rate": 0.033
+ },
+ {
+  "type": "must_refuse",
+  "questions": 8,
+  "answers": 24,
+  "wrong": 1,
+  "rate": 0.042
+ },
+ {
+  "type": "ranking",
+  "questions": 8,
+  "answers": 24,
+  "wrong": 3,
+  "rate": 0.125
+ }
+]

@@ -1,0 +1,24 @@
+[
+ {
+  "attempt": "role argument",
+  "is_error": true,
+  "regions": [],
+  "text": "unexpected arguments ['role']; the role comes from the credential only"
+ },
+ {
+  "attempt": "other regions",
+  "is_error": false,
+  "regions": [
+   "EAS"
+  ],
+  "text": "{\"role\": \"regional_manager_eas\", \"rows\": [{\"customer.region\": \"EAS\", \"billed_amo"
+ },
+ {
+  "attempt": "or 1=1",
+  "is_error": false,
+  "regions": [
+   "EAS"
+  ],
+  "text": "{\"role\": \"regional_manager_eas\", \"rows\": [{\"customer.region\": \"EAS\", \"billed_amo"
+ }
+]

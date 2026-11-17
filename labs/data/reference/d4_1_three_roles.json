@@ -1,0 +1,39 @@
+[
+ {
+  "role": "executive",
+  "server_says": "executive",
+  "regions": [
+   "CEN",
+   "EAS",
+   "NOR",
+   "SOU",
+   "WES"
+  ],
+  "complaints_only": [],
+  "names_masked": true
+ },
+ {
+  "role": "regional_manager_eas",
+  "server_says": "regional_manager_eas",
+  "regions": [
+   "EAS"
+  ],
+  "complaints_only": [
+   "WES"
+  ],
+  "names_masked": true
+ },
+ {
+  "role": "collections_officer",
+  "server_says": "collections_officer",
+  "regions": [
+   "CEN",
+   "EAS",
+   "NOR",
+   "SOU",
+   "WES"
+  ],
+  "complaints_only": [],
+  "names_masked": false
+ }
+]

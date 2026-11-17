@@ -1,0 +1,6 @@
+{
+ "X06": "Share of bills paid on time (customer care) is a draft owned by Ebtihal Al-Ghanim and has no certified definition yet. The nearest certified metric is collection_rate.",
+ "X07": "That needs customers' personal data, which this assistant does not show. The collections team can contact customers through their own tools.",
+ "X01": "Which period? For example: 'Collection rate (certified) for March 2026' or 'for the fiscal year 2025-26'.",
+ "C14 answered": "Bills of that month have not reached 30 days past their due date by 2026-06-30, so their collection rate is not final yet. The latest final month is April 2026."
+}

@@ -1,0 +1,434 @@
+[
+ {
+  "name": "billed_amount",
+  "expression": {
+   "sql": "SUM(bill.amount_due)"
+  },
+  "description": "Total amount on bills for the service month, VAT included, before disputes",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Jood Al-Muhaisen",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "SAR"
+    }
+   }
+  ]
+ },
+ {
+  "name": "bills_issued",
+  "expression": {
+   "sql": "COUNT(bill.bill_id)"
+  },
+  "description": "Number of bills issued for the service month",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Jood Al-Muhaisen",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "bills"
+    }
+   }
+  ]
+ },
+ {
+  "name": "billed_customers",
+  "expression": {
+   "sql": "COUNT(DISTINCT bill.customer_id)"
+  },
+  "description": "Distinct customers with a bill in the period. Not additive across months.",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Jood Al-Muhaisen",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "customers"
+    }
+   }
+  ]
+ },
+ {
+  "name": "arpa",
+  "expression": {
+   "sql": "(SUM(bill.amount_due)) / (COUNT(DISTINCT bill.customer_id))"
+  },
+  "description": "Billed amount divided by distinct billed customers in the same period (ARPA). Over several months it is not a monthly figure.",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Jood Al-Muhaisen",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "SAR per account"
+    }
+   }
+  ]
+ },
+ {
+  "name": "disputed_amount",
+  "expression": {
+   "sql": "SUM(bill.disputed_amount)"
+  },
+  "description": "Amount under dispute on bills for the service month",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Jood Al-Muhaisen",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "SAR"
+    }
+   }
+  ]
+ },
+ {
+  "name": "net_due_30",
+  "expression": {
+   "sql": "SUM(CASE WHEN collection.matured_30 THEN collection.net_due END)"
+  },
+  "description": "Amount due minus open disputed amounts, for bills issued in the period whose due date plus 30 days is on or before the data cut-off",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Majdi Bawazir",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "SAR"
+    }
+   }
+  ]
+ },
+ {
+  "name": "collected_30",
+  "expression": {
+   "sql": "SUM(CASE WHEN collection.matured_30 THEN collection.paid_30 END)"
+  },
+  "description": "Payments received up to 30 days after the due date against bills issued in the period, duplicates removed, matured cohorts only",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Majdi Bawazir",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "SAR"
+    }
+   }
+  ]
+ },
+ {
+  "name": "collection_rate",
+  "expression": {
+   "sql": "(SUM(CASE WHEN collection.matured_30 THEN collection.paid_30 END)) * 1.0 / (SUM(CASE WHEN collection.matured_30 THEN collection.net_due END))"
+  },
+  "description": "Certified collection rate. Share of the net amount due on bills issued in the period that was paid within 30 days of the due date. Value basis, bill-month cohort, open disputes excluded, payments deduplicated, only cohorts whose 30-day window has closed.",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Majdi Bawazir",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "ratio"
+    }
+   }
+  ]
+ },
+ {
+  "name": "bills_paid_on_time",
+  "expression": {
+   "sql": "COUNT(CASE WHEN collection.paid_on_time THEN collection.bill_id END)"
+  },
+  "description": "Number of bills whose net amount was paid in full by the due date",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Ebtihal Al-Ghanim",
+     "version": "0.9.0",
+     "status": "draft",
+     "unit": "bills"
+    }
+   }
+  ]
+ },
+ {
+  "name": "on_time_payment_share",
+  "expression": {
+   "sql": "(COUNT(CASE WHEN collection.paid_on_time THEN collection.bill_id END)) * 1.0 / (COUNT(bill.bill_id))"
+  },
+  "description": "Customer care's view. Share of bills, by count, paid in full by the due date. Not the collection rate.",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Ebtihal Al-Ghanim",
+     "version": "0.9.0",
+     "status": "draft",
+     "unit": "ratio"
+    }
+   }
+  ]
+ },
+ {
+  "name": "cash_collected",
+  "expression": {
+   "sql": "SUM(payment.amount)"
+  },
+  "description": "Payments received in the period, whatever bill they settle, duplicates removed (cash basis)",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Jood Al-Muhaisen",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "SAR"
+    }
+   }
+  ]
+ },
+ {
+  "name": "cash_collection_ratio",
+  "expression": {
+   "sql": "(SUM(payment.amount)) / (SUM(bill.amount_due))"
+  },
+  "description": "Finance's month-end view. Cash received in the month divided by the amount billed for the month. Mixes cohorts; not the collection rate.",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Jood Al-Muhaisen",
+     "version": "0.9.0",
+     "status": "draft",
+     "unit": "ratio"
+    }
+   }
+  ]
+ },
+ {
+  "name": "complaints",
+  "expression": {
+   "sql": "COUNT(complaint.complaint_id)"
+  },
+  "description": "Complaints opened in the period, by the region where the complaint was raised when grouped by complaint.region",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Ebtihal Al-Ghanim",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "complaints"
+    }
+   }
+  ]
+ },
+ {
+  "name": "billing_complaints",
+  "expression": {
+   "sql": "COUNT(CASE WHEN complaint.category = 'billing' THEN complaint.complaint_id END)"
+  },
+  "description": "Complaints opened in the period whose category is billing",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Ebtihal Al-Ghanim",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "complaints"
+    }
+   }
+  ]
+ },
+ {
+  "name": "median_resolution_days",
+  "expression": {
+   "sql": "MEDIAN(complaint.resolution_days)"
+  },
+  "description": "Median days from opening to closing, over complaints closed by the data cut-off",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Ebtihal Al-Ghanim",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "days"
+    }
+   }
+  ]
+ },
+ {
+  "name": "complaints_per_1k_lines",
+  "expression": {
+   "sql": "(COUNT(complaint.complaint_id)) * 1000.0 / (COUNT(DISTINCT usage.line_id))"
+  },
+  "description": "Complaints opened divided by active lines in the same period, times 1,000",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Ebtihal Al-Ghanim",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "per 1,000 lines"
+    }
+   }
+  ]
+ },
+ {
+  "name": "data_gb",
+  "expression": {
+   "sql": "SUM(usage.data_gb)"
+  },
+  "description": "Data used by all lines in the period, in gigabytes",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Zeyad Al-Juraisy",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "GB"
+    }
+   }
+  ]
+ },
+ {
+  "name": "voice_minutes",
+  "expression": {
+   "sql": "SUM(usage.voice_min)"
+  },
+  "description": "Outgoing voice minutes in the period",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Zeyad Al-Juraisy",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "minutes"
+    }
+   }
+  ]
+ },
+ {
+  "name": "active_lines",
+  "expression": {
+   "sql": "COUNT(DISTINCT usage.line_id)"
+  },
+  "description": "Distinct lines with a usage record in the period. Not additive across months.",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Zeyad Al-Juraisy",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "lines"
+    }
+   }
+  ]
+ },
+ {
+  "name": "data_per_line",
+  "expression": {
+   "sql": "(SUM(usage.data_gb)) / (COUNT(DISTINCT usage.line_id))"
+  },
+  "description": "Data used divided by active lines in the same period",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Zeyad Al-Juraisy",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "GB per line"
+    }
+   }
+  ]
+ },
+ {
+  "name": "session_data_gb",
+  "expression": {
+   "sql": "SUM(usage_event.mb / 1024)"
+  },
+  "description": "Data used in data sessions in the period, in gigabytes, from the session table",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Zeyad Al-Juraisy",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "GB"
+    }
+   }
+  ]
+ },
+ {
+  "name": "sessions",
+  "expression": {
+   "sql": "COUNT(usage_event.line_id)"
+  },
+  "description": "Data and voice sessions in the period",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Zeyad Al-Juraisy",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "sessions"
+    }
+   }
+  ]
+ },
+ {
+  "name": "call_minutes",
+  "expression": {
+   "sql": "SUM(usage_event.seconds / 60)"
+  },
+  "description": "Voice minutes in the period, from the session table",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Zeyad Al-Juraisy",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "minutes"
+    }
+   }
+  ]
+ },
+ {
+  "name": "lines_with_sessions",
+  "expression": {
+   "sql": "COUNT(DISTINCT usage_event.line_id)"
+  },
+  "description": "Distinct lines with at least one session in the period. Not additive.",
+  "nonportable_extensions": [
+   {
+    "vendor_name": "QAMAR_QSEM",
+    "data": {
+     "owner": "Zeyad Al-Juraisy",
+     "version": "1.0.0",
+     "status": "certified",
+     "unit": "lines"
+    }
+   }
+  ]
+ }
+]

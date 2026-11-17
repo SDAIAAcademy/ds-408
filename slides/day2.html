@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-ax="deck" data-track="data-science">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 2 · Design the semantic layer · Analytics Products: Semantic Layers and Conversational Analytics</title>
+<meta name="generator" content="SDAIA Academy engine 1.0.0">
+<link rel="icon" href="../_engine/icon.svg">
+<link rel="alternate" type="text/markdown" href="day2.md">
+<link rel="describedby" href="../llms.txt">
+<link rel="stylesheet" href="../_engine/academy.css">
+</head>
+<body>
+<div class="deck" data-course="Analytics Products: Semantic Layers and Conversational Analytics" data-track="data-science" data-day="Day 2">
+<section class="slide title" id="title" data-auto="title" data-label="Welcome" data-n="1">
+  <div class="kicker">SDAIA Academy · Analytics Products: Semantic Layers and Conversational Analytics</div>
+  <h1>Design the semantic layer</h1>
+  <p class="lead mt">Day 2: Conformed, fast, governed and portable</p>
+  <div class="meta"><span class="track">Data Science Track</span><span>4 teaching days + capstone day</span><span>4 sessions · 4 labs</span><span>DS-408</span></div>
+  <aside class="notes"><p>Yesterday: one certified collection rate, metrics as tested files, change control and deprecation. Today the metrics get a home: one semantic layer across four areas that is correct, fast enough, governed and portable. Collect the cross-area questions participants brought; use two of them in session 1.</p></aside>
+</section>
+
+<section class="slide" id="agenda" data-auto="agenda" data-label="Agenda" data-n="2">
+  <div class="kicker">Today</div>
+  <h2>Design the semantic layer</h2>
+  <div class="agenda"><div class="item"><div><b>Session 1 · Conformed dimensions across areas</b><small>One customer, one region and one calendar shared by four business areas, joined without multiplying a figure</small></div></div><div class="item"><div><b>Session 2 · Performance and cost</b><small>Pre-aggregations for the questions people actually ask, measured before and after</small></div></div><div class="item"><div><b>Session 3 · Access rules</b><small>Row rules by region and masking by classification, written in the layer and tested for each role</small></div></div><div class="item"><div><b>Session 4 · Portability</b><small>What an open interchange format carries between tools, and what stays behind</small></div></div></div>
+</section>
+
+<section class="slide" id="review-day1" data-lo="LO2" data-n="3">
+  <div class="kicker">Review of Day 1</div>
+  <h2>A change that looks harmless</h2>
+  <div class="quiz" data-type="single" data-lo="LO2" data-id="review-day1-q1">
+    <p class="lead">A steward fixes a typo in the description of <code>collection_rate</code> and also changes its window from 30 to 31 days "to be safe". Version 1.0.0 becomes 1.0.1. What does review find?</p>
+    <div class="opts">
+      <div class="opt" data-ok data-k="A">A meaning change hidden in a patch: it needs a major version and the owner's approval</div>
+      <div class="opt" data-why="Sees only the words that changed and misses the window" data-k="B">Nothing: a typo fix is a patch</div>
+      <div class="opt" data-why="Thinks a small numeric change is a minor change" data-k="C">A minor version is enough for one more day</div>
+      <div class="opt" data-why="Treats a definition change as a data correction" data-k="D">The duplicate batch rule applies: fix it in the data</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> The window is part of the metric's meaning; every reader's number moves. Rule R3 asks for a major bump, R5 for the owner's approval.</div>
+  </div>
+  <aside class="notes"><p>Answer: A. The review rules of Lab 1.3 would flag it automatically, because the filter changed on a certified metric. Use this to restate: words are patches, meaning is major.</p></aside>
+</section>
+
+<!-- ======================= SESSION 1 ======================= -->
+<section class="slide section" id="s1" data-auto="section" data-session="1" data-n="4">
+  <div class="kicker">Session 1</div>
+  <h1>Conformed dimensions across areas</h1>
+  <ul class="bullets outcomes"><li>Model several business areas on conformed customer and time dimensions</li><li>Detect and remove a cross-area fan-out by drilling across</li><li>Join a type 2 tariff history as of the fact's date</li></ul>
+  <div class="sess-no">01</div>
+</section>
+
+<section class="slide" id="cross-area-question" data-label="Across areas" data-lo="LO1" data-n="5" data-session="1">
+  <div class="kicker">The question that crosses areas</div>
+  <h2>"Billing and complaints by region and month, in one table"</h2>
+  <div class="cols cols-2">
+    <ul class="bullets small">
+      <li>Two facts at different grains: one bill per account and month; one row per complaint</li>
+      <li>Two calendars to agree on: service month for bills, opening day for complaints</li>
+      <li>Two regions to choose between: the customer's, or where the complaint was raised</li>
+    </ul>
+    <div class="card c-navy tint"><h4>What the layer must guarantee</h4><p class="small mb0">Each figure is the same as it would be alone, whatever it is shown beside.</p></div>
+  </div>
+  <aside class="notes"><p>Use one of the participants' own cross-area questions here. Ask which grain each fact has. The last bullet is a real design decision that comes back in session 3: the regional manager's complaints are those raised in the region.</p></aside>
+</section>
+
+<section class="slide" id="wide-join" data-label="Wide join" data-lo="LO1" data-n="6" data-session="1">
+  <div class="kicker">Lab 2.1, step 2</div>
+  <h2>One wide join multiplies both figures</h2>
+  <div class="cols cols-2">
+    <pre class="code s" data-file="the wide query"><code class="language-sql"><span class="hljs-keyword">SELECT</span> c.region_code,
+       <span class="hljs-built_in">SUM</span>(b.amount_due)     <span class="hljs-keyword">AS</span> billed,
+       <span class="hljs-built_in">COUNT</span>(q.complaint_id) <span class="hljs-keyword">AS</span> complaints
+<span class="hljs-keyword">FROM</span> dim_customer c
+<span class="hljs-keyword">JOIN</span> fct_bill b <span class="hljs-keyword">USING</span> (customer_id)
+<span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> fct_complaint q <span class="hljs-keyword">USING</span> (customer_id)
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>;</code></pre>
+    <div class="stack">
+      <div class="stat center"><div class="big">1.48×</div><div class="lbl">billed amount, against the source</div></div>
+      <div class="stat center"><div class="big">13.3×</div><div class="lbl">complaints, against the source</div></div>
+    </div>
+  </div>
+  <aside class="notes"><p>From Lab 2.1 on the course data. Each bill row repeats once per complaint of its customer; each complaint once per bill. Complaints suffer more because a customer has many bills (up to 18 months). DISTINCT does not rescue a SUM of amounts: two equal bills are different money. DS-307 showed fan-out inside one area; across areas it is the default, not the exception.</p></aside>
+</section>
+
+<section class="slide" id="drill-across" data-label="Drill across" data-lo="LO1" data-n="7" data-session="1">
+  <div class="kicker">The fix the layer applies for you</div>
+  <h2>Drill across: aggregate each fact alone, then join on the shared keys</h2>
+  <div class="flow">
+    <div class="step c-teal"><b>1 · Bills</b>billed amount by region and month</div>
+    <div class="arrow">→</div>
+    <div class="step c-cyan"><b>2 · Complaints</b>complaints by region and month</div>
+    <div class="arrow">→</div>
+    <div class="step c-coral"><b>3 · Join</b>one row per region and month on each side</div>
+  </div>
+  <p class="small mt">The join meets one row per key on each side, so nothing repeats. It needs every area to reach the same customer and calendar: conformed dimensions.</p>
+  <aside class="notes"><p>Show the generated SQL in the lab: two CTEs, then a FULL JOIN USING the keys. MetricFlow and Cube do the same for metrics from different models. In the starter model, complaints have no join to the customer and no calendar, so the layer refuses: "no many-to-one path from complaint to customer". A refusal is better than a wrong number.</p></aside>
+</section>
+
+<section class="slide" id="conformed" data-label="Conformed" data-lo="LO1" data-n="8" data-session="1">
+  <div class="kicker">One customer, one region, one calendar</div>
+  <h2>A dimension is conformed when every area reaches the same rows with the same keys</h2>
+  <table class="t small">
+    <tr><th>Area</th><th>Reaches customer through</th><th>Reaches the calendar on</th></tr>
+    <tr><td>Usage</td><td>line, then customer</td><td>usage month</td></tr>
+    <tr><td>Billing and collections</td><td>customer</td><td>service month</td></tr>
+    <tr><td>Payments</td><td>customer</td><td>paid date</td></tr>
+    <tr class="hl"><td>Complaints</td><td>customer (added in Lab 2.1)</td><td>opening day (added in Lab 2.1)</td></tr>
+  </table>
+  <aside class="notes"><p>The calendar carries the Gregorian month, the fiscal year and quarter (April start) and the Hijri month from the Umm al-Qura calendar (hijridate library). One calendar means "January 2026" or "FY2025-26 Q4" means the same rows in every area. Source for Hijri dates: the hijridate package documentation.</p></aside>
+</section>
+
+<section class="slide" id="eastern-january" data-label="Eastern January" data-lo="LO1" data-n="9" data-session="1">
+  <div class="kicker">What the conformed model shows</div>
+  <h2>In January 2026 the Eastern region's complaints rate more than doubled</h2>
+  <div class="bars">
+    <div class="row"><span>Nov 2025</span><div class="bar c-cyan" style="--w:31%"></div><span class="val">30.6</span></div>
+    <div class="row"><span>Dec 2025</span><div class="bar c-cyan" style="--w:43%"></div><span class="val">42.3</span></div>
+    <div class="row"><span>Jan 2026</span><div class="bar c-coral" style="--w:98%"></div><span class="val">98.1</span></div>
+    <div class="row"><span>Feb 2026</span><div class="bar c-cyan" style="--w:40%"></div><span class="val">39.9</span></div>
+  </div>
+  <p class="small mt">Complaints per 1,000 active lines, Eastern region, customer's region. The billed amount kept its steady growth of about 5% a month.</p>
+  <aside class="notes"><p>From Lab 2.1: 63 complaints in January against 18 to 27 around it. The planted cause is a network incident: grouping by complaint.category shows it. This is the cross-area question the layer makes safe: a complaint rate is a ratio of two facts, complaints over active lines, from two areas.</p></aside>
+</section>
+
+<section class="slide" id="tariff-history" data-label="Tariff history" data-lo="LO1" data-n="10" data-session="1">
+  <div class="kicker">Lab 2.1, step 4</div>
+  <h2>A price change makes two tariff rows; the join must pick the one valid that month</h2>
+  <div class="cols cols-2">
+    <table class="t small">
+      <tr><th>Plan</th><th class="num">Fee (SAR)</th><th>Valid</th></tr>
+      <tr><td>Qamar Fibre 100</td><td class="num">299</td><td>to 30 Sep 2025</td></tr>
+      <tr><td>Qamar Fibre 100</td><td class="num">279</td><td>from 1 Oct 2025</td></tr>
+      <tr><td>Qamar Postpaid M</td><td class="num">149</td><td>to 30 Sep 2025</td></tr>
+      <tr><td>Qamar Postpaid M</td><td class="num">165</td><td>from 1 Oct 2025</td></tr>
+    </table>
+    <div class="stack">
+      <div class="callout warn small"><b>Join on the code only:</b> data by plan sums to 4,769,001 GB.</div>
+      <div class="callout tip small"><b>Join as of the usage month:</b> 3,043,658 GB, the source total.</div>
+    </div>
+  </div>
+  <aside class="notes"><p>A type 2 history (DS-307 Day 2) joined from another area: the fact's date chooses the row. In the model, the join of line to tariff carries asof: [valid_from, valid_to] and the layer adds "usage month between valid_from and valid_to". Ask what happens to a question with no date, such as "current plan of each line": the layer then takes the current row.</p></aside>
+</section>
+
+<section class="slide" id="reconcile-model" data-label="Reconcile" data-lo="LO1" data-n="11" data-session="1">
+  <div class="kicker">The evidence for the first outcome</div>
+  <h2>A model is done when its parts add up to the source, area by area</h2>
+  <ul class="bullets small">
+    <li>One reconciliation test per area: usage, billing, collections, complaints</li>
+    <li>Regions add up to the total for the billed amount; plans add up to the total for data</li>
+    <li>Run in CI with the metric tests, so a model change that breaks a total cannot merge</li>
+  </ul>
+  <div class="callout tip small mt"><b>Totals are the minimum.</b> A split that does not add up (by plan before the as-of join) is a test worth keeping.</div>
+  <aside class="notes"><p>The capstone's rubric gives 30 points to the semantic model and metrics; "model files whose reconciliation tests pass against source totals" is the evidence the entry names. Encourage tests by the dimension that has a history or a fan-out risk.</p></aside>
+</section>
+
+<section class="slide" id="checkpoint-1" data-lo="LO1" data-n="12" data-session="1">
+  <div class="kicker">Checkpoint</div>
+  <h2>A dashboard that adds up wrongly</h2>
+  <div class="quiz" data-type="single" data-lo="LO1" data-id="checkpoint-1-q1">
+    <p class="lead">A dashboard shows data used by plan. The plan rows add up to 1.6 times the company total. Two plans changed price last October. What is the most likely cause?</p>
+    <div class="opts">
+      <div class="opt" data-why="Blames the data volume, which a total would show too" data-k="A">Duplicate usage records in the source</div>
+      <div class="opt" data-why="Confuses a calendar mismatch with a row multiplication" data-k="B">The fiscal year starts in April</div>
+      <div class="opt" data-why="A distinct count would not inflate a sum of gigabytes" data-k="C">Active lines are counted as distinct lines</div>
+      <div class="opt" data-ok data-k="D">The tariff is joined on its code, so lines of those plans match two price rows</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> A history table has one row per validity period; joining on the code alone repeats each line once per period. The as-of join picks the row valid on the fact's date.</div>
+  </div>
+  <aside class="notes"><p>Answer: D. The company total is right because it does not join the tariff; only the split is wrong. That is why splits need their own tests.</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-2-1" data-auto="lab" data-lab="2.1" data-label="Lab 2.1" data-n="13" data-session="1">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 2.1 · 25 min</div><h2>Four areas, one customer, one calendar</h2><p class="lead small">Model subscribers, lines, bills and complaints with conformed customer and time dimensions, fix a cross-area fan-out and a tariff join without validity dates, and prove the model with reconciliation tests against source totals.</p><a class="nb" href="../labs/D2_1_conformed_model.ipynb">D2_1_conformed_model.ipynb</a></div><ul class="checklist"><li>Read the starter model <span class="min">4 min</span></li><li>The wide query and its fan-out <span class="min">6 min</span></li><li>Drill across instead <span class="min">6 min</span></li><li>Tariff history as of the month <span class="min">5 min</span></li><li>Reconcile four areas to the source <span class="min">4 min</span></li><li class="stretch">✱ Stretch: The same figure by Hijri month and by fiscal quarter</li></ul></div>
+  <aside class="notes"><p>Usual problems: adding the complaint join under "keys" in the wrong shape (a list of pairs); forgetting time: opened_date, so time.month still fails; adding the as-of on the usage dataset rather than on the line-to-tariff join. Reference: 1.48 and 13.33 times; 3,043,658 GB by plan after the fix.</p></aside>
+</section>
+
+<!-- ======================= SESSION 2 ======================= -->
+<section class="slide section" id="s2" data-auto="section" data-session="2" data-n="14">
+  <div class="kicker">Session 2</div>
+  <h1>Performance and cost</h1>
+  <ul class="bullets outcomes"><li>Choose pre-aggregations from a query log</li><li>Measure latency and rows scanned before and after</li><li>Explain which metrics cannot roll up from a pre-aggregation</li></ul>
+  <div class="sess-no">02</div>
+</section>
+
+<section class="slide" id="what-is-asked" data-label="Query log" data-lo="LO1" data-n="15" data-session="2">
+  <div class="kicker">Lab 2.2, step 1</div>
+  <h2>Ten question shapes are 91% of a month's queries</h2>
+  <table class="t small">
+    <tr><th>Metrics</th><th>Grouped by</th><th class="num">Queries</th></tr>
+    <tr><td>data from sessions</td><td>region, month</td><td class="num">64</td></tr>
+    <tr><td>sessions</td><td>month</td><td class="num">58</td></tr>
+    <tr><td>data from sessions</td><td>segment, fiscal year</td><td class="num">37</td></tr>
+    <tr><td>data, lines with a session</td><td>plan</td><td class="num">37</td></tr>
+    <tr><td>sessions</td><td>region, segment</td><td class="num">33</td></tr>
+  </table>
+  <p class="small mt">The first five of ten, from 400 logged queries. Filters change; shapes repeat.</p>
+  <aside class="notes"><p>The query log (data/semantic/query_log.csv) is synthetic. Most questions read the session table, about 2.8 million rows. Design for what is asked, measured from the log, not for every possible question.</p></aside>
+</section>
+
+<section class="slide" id="preagg-idea" data-label="Pre-aggregation" data-lo="LO1" data-n="16" data-session="2">
+  <div class="kicker">What a pre-aggregation is</div>
+  <h2>A pre-aggregation stores additive measures at a coarser grain, and the layer routes to it</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>Additive only</h4><p class="small mb0">Sums and counts. A ratio uses its stored numerator and denominator.</p></div>
+    <div class="card c-cyan"><h4>Covers the query</h4><p class="small mb0">Every group-by and filter field of the query is among its fields.</p></div>
+    <div class="card c-coral"><h4>Same answer</h4><p class="small mb0">Routing changes the cost, never the number. Test that.</p></div>
+  </div>
+  <aside class="notes"><p>Cube calls them pre-aggregations; other tools call them aggregate tables, rollups or materialized views. The routing rule in the course layer is in qsem.py (_preagg_for): same dataset, measure stored, query fields a subset, additive aggregate.</p></aside>
+</section>
+
+<section class="slide" id="preagg-results" data-label="Before and after" data-lo="LO1" data-n="17" data-session="2">
+  <div class="kicker">Lab 2.2, steps 3 and 4</div>
+  <h2>Four pre-aggregations cut rows scanned by 92% and latency by 84%</h2>
+  <div class="cols cols-2">
+    <div class="stack">
+      <div class="stat center"><div class="big">36.5M → 2.8M</div><div class="lbl">rows scanned by the ten shapes</div></div>
+      <div class="stat center"><div class="big">1,426 → 225 ms</div><div class="lbl">total latency, one laptop, full size</div></div>
+    </div>
+    <ul class="bullets small">
+      <li>Region and month, plan and quarter, day, city: 540, 48, 504 and 17 rows</li>
+      <li>Every answer equal to the answer before</li>
+      <li>One shape still reads the session table</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>Measured on the course's run at full size; your laptop gives other milliseconds, the same rows. That is why the lab reports rows scanned: it does not depend on the machine and predicts cost on a warehouse that bills by data scanned. The shape still on the session table is data with lines with a session by plan: its distinct count cannot roll up.</p></aside>
+</section>
+
+<section class="slide" id="cannot-roll-up" data-label="Distinct counts" data-lo="LO1" data-n="18" data-session="2">
+  <div class="kicker">Lab 2.2, step 5</div>
+  <h2>A distinct count cannot be summed from a coarser table</h2>
+  <div class="cols cols-2">
+    <div class="stat center"><div class="big">3,253</div><div class="lbl">lines with a session in FY2025-26</div></div>
+    <div class="stat center"><div class="big">31,226</div><div class="lbl">the twelve monthly counts, added</div></div>
+  </div>
+  <p class="small mt">A line active all year is counted twelve times. The layer refuses to pre-aggregate it; some tools store a sketch instead and accept an approximate answer.</p>
+  <aside class="notes"><p>The same trap as the average of ratios on Day 1: a number that is right at its grain and wrong when combined. HyperLogLog-style sketches are the usual approximation; mention them, do not teach them.</p></aside>
+</section>
+
+<section class="slide" id="freshness" data-label="Freshness" data-lo="LO1" data-n="19" data-session="2">
+  <div class="kicker">The cost on the other side</div>
+  <h2>Every copy goes stale: rebuild by the dataset that changed</h2>
+  <div class="cols cols-2">
+    <ul class="bullets small">
+      <li>Late payments touch <code>payment</code> and <code>collection</code>, not usage</li>
+      <li>A rebuild rule per dataset, not one nightly rebuild of everything</li>
+      <li>Show the refresh time beside each figure the copy serves</li>
+    </ul>
+    <div class="callout warn small"><b>Stale and fast is still wrong.</b> A collection rate served from yesterday's copy after a late batch arrives is a wrong but plausible figure.</div>
+  </div>
+  <aside class="notes"><p>The stretch of Lab 2.2 writes the rule. Day 4 returns to this: the answer card shows the metric, filters, grain and version; a production card would add the data's refresh time.</p></aside>
+</section>
+
+<section class="slide" id="checkpoint-2" data-lo="LO1" data-n="20" data-session="2">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which question can the pre-aggregation serve?</h2>
+  <div class="quiz" data-type="single" data-lo="LO1" data-id="checkpoint-2-q1">
+    <p class="lead">A pre-aggregation stores data and sessions by region, segment, session kind, month and fiscal year. Which question does the layer route to it?</p>
+    <div class="opts">
+      <div class="opt" data-why="City is not one of its fields, so the layer must read the session table" data-k="A">Data by city for March 2026</div>
+      <div class="opt" data-ok data-k="B">Sessions by region for the fiscal year 2025-26</div>
+      <div class="opt" data-why="A distinct count cannot be summed from coarser rows" data-k="C">Lines with a session by month</div>
+      <div class="opt" data-why="Day is finer than month: the stored rows cannot be split" data-k="D">Data by day in January 2026</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Region and fiscal year are both stored, and sessions is a count: the layer sums the stored rows and gets the same answer.</div>
+  </div>
+  <aside class="notes"><p>Answer: B. Each wrong option names a different reason a pre-aggregation cannot serve: a missing field, a non-additive measure, a finer grain.</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-2-2" data-auto="lab" data-lab="2.2" data-label="Lab 2.2" data-n="21" data-session="2">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 2.2 · 25 min</div><h2>Pre-aggregations for the most-asked queries</h2><p class="lead small">Add pre-aggregations for the ten most-asked metric patterns of the query log, measure query latency and rows scanned before and after, and check that every answer stayed the same.</p><a class="nb" href="../labs/D2_2_pre_aggregations.ipynb">D2_2_pre_aggregations.ipynb</a></div><ul class="checklist"><li>The ten most-asked patterns <span class="min">5 min</span></li><li>Baseline latency and rows scanned <span class="min">5 min</span></li><li>Define the pre-aggregations <span class="min">7 min</span></li><li>Measure again, compare the answers <span class="min">5 min</span></li><li>The metric that cannot roll up <span class="min">3 min</span></li><li class="stretch">✱ Stretch: Which pre-aggregations to rebuild when late payments arrive</li></ul></div>
+  <aside class="notes"><p>Quick mode keeps one line in eight (about 347,000 sessions): the ratios between before and after hold, the milliseconds are smaller. Usual problems: a pre-aggregation that lists the measure but not a group-by field the pattern needs; comparing answers with == on floats. Reference full size: 36,539,620 rows to 2,815,154; 1,426 ms to 225 ms on the course's laptop.</p></aside>
+</section>
+
+<!-- ======================= SESSION 3 ======================= -->
+<section class="slide section" id="s3" data-auto="section" data-session="3" data-n="22">
+  <div class="kicker">Session 3</div>
+  <h1>Access rules</h1>
+  <ul class="bullets outcomes"><li>Map the national classification levels to fields of the model</li><li>Write row rules and masking in the semantic layer</li><li>Test access for each role and catch a seeded leak</li></ul>
+  <div class="sess-no">03</div>
+</section>
+
+<section class="slide" id="classification-levels" data-label="Classification" data-lo="LO3" data-n="23" data-session="3">
+  <div class="kicker">NDMO Data Classification Policy</div>
+  <h2>Four national levels; Qamar's register marks its customer identifiers Restricted</h2>
+  <div class="cols cols-4 gap-s">
+    <div class="card c-navy"><h4>Top Secret</h4><p class="small mb0">Exceptionally serious, irreparable harm.</p></div>
+    <div class="card c-coral"><h4>Secret</h4><p class="small mb0">Serious harm.</p></div>
+    <div class="card c-amber"><h4>Restricted</h4><p class="small mb0">Limited harm; sub-levels A, B and C by scale of impact.</p></div>
+    <div class="card c-teal"><h4>Public</h4><p class="small mb0">No harm from disclosure.</p></div>
+  </div>
+  <p class="small mt">In the case: full name, national identifier, mobile number and date of birth are Restricted (a fictional register).</p>
+  <aside class="notes"><p>Read from the policy's table of classification levels and its paragraph on Restricted categories A, B and C (impact on a sector, on several entities or a group of individuals, or on one entity or person). The register is Qamar's own and fictional; a real register is decided by the entity's data owners. Sources: NDMO Data Classification Policy.</p></aside>
+</section>
+
+<section class="slide" id="three-roles-access" data-label="Three roles" data-lo="LO3" data-n="24" data-session="3">
+  <div class="kicker">The access policy</div>
+  <h2>Three roles: what rows and which fields each one sees</h2>
+  <table class="t small">
+    <tr><th>Role</th><th>Rows</th><th>Restricted fields</th></tr>
+    <tr><td>Executive</td><td>all regions</td><td>masked</td></tr>
+    <tr><td>Regional manager, Eastern</td><td>Eastern region only</td><td>masked</td></tr>
+    <tr><td>Collections officer</td><td>all regions</td><td>visible, to contact customers who owe</td></tr>
+  </table>
+  <div class="callout note small mt"><b>Rules in the layer, not in the dashboard.</b> Every consumer, the assistant included, passes through the same rules.</div>
+  <aside class="notes"><p>The policy is data/access/policy.yaml: roles, a row rule per dataset (how each dataset reaches a region) and the classification register. The collections officer's access needs a purpose and a retention the Personal Data Protection Law asks the controller to be able to state; that is the stretch question of the lab.</p></aside>
+</section>
+
+<section class="slide" id="access-tests" data-label="Access tests" data-lo="LO3" data-n="25" data-session="3">
+  <div class="kicker">Lab 2.3, step 2</div>
+  <h2>Test every role against every area, by asking as that role</h2>
+  <pre class="code s" data-file="Lab 2.3"><code class="language-python"><span class="hljs-keyword">for</span> role, r <span class="hljs-keyword">in</span> policy[<span class="hljs-string">&quot;roles&quot;</span>].items():
+    m = model.as_role(role, policy=policy)
+    <span class="hljs-keyword">for</span> area, (metric, region) <span class="hljs-keyword">in</span> AREAS.items():
+        seen = <span class="hljs-built_in">set</span>(m.query([metric], by=[region])[region])
+        passed = r[<span class="hljs-string">&quot;regions&quot;</span>] == <span class="hljs-string">&quot;all&quot;</span> <span class="hljs-keyword">or</span> seen &lt;= <span class="hljs-built_in">set</span>(r[<span class="hljs-string">&quot;regions&quot;</span>])
+    <span class="hljs-keyword">for</span> field <span class="hljs-keyword">in</span> (<span class="hljs-string">&quot;customer.full_name&quot;</span>, <span class="hljs-string">&quot;customer.contact_name&quot;</span>):
+        masked = <span class="hljs-built_in">set</span>(m.query([<span class="hljs-string">&quot;billed_amount&quot;</span>], by=[field])[field]) == {<span class="hljs-string">&quot;***&quot;</span>}
+        passed = masked != r[<span class="hljs-string">&quot;restricted&quot;</span>]</code></pre>
+  <aside class="notes"><p>21 tests: 3 roles times (5 areas plus 2 fields). A test asks the layer the way a dashboard or the assistant would, and checks what came back. Point at the last line: a role with clearance must see the values, so the test also catches over-masking.</p></aside>
+</section>
+
+<section class="slide" id="two-leaks" data-label="Two leaks" data-lo="LO3" data-n="26" data-session="3">
+  <div class="kicker">Lab 2.3, step 3</div>
+  <h2>Three of 21 tests fail, and they point at two leaks</h2>
+  <div class="cols cols-2">
+    <div class="card c-coral"><h4>A dataset without a rule</h4><p class="small mb0">The Eastern manager sees complaints of all five regions: 612 in the Central region alone. The policy has no rule for <code>complaint</code>, and the layer allowed by default.</p></div>
+    <div class="card c-coral"><h4>A copy without its label</h4><p class="small mb0"><code>contact_name</code> takes the first word of <code>full_name</code>. Nobody tagged it, so the executive and the manager read first names.</p></div>
+  </div>
+  <aside class="notes"><p>From Lab 2.3. Both leaks are common in practice: a new area added after the policy was written, and a derived field created for a friendly greeting. Ask the room which one an audit of the policy file would have found (the first) and which only a test finds (the second).</p></aside>
+</section>
+
+<section class="slide" id="fix-the-cause" data-label="The fix" data-lo="LO3" data-n="27" data-session="3">
+  <div class="kicker">Lab 2.3, step 4</div>
+  <h2>Fix the cause: a rule per dataset, deny by default, classify by lineage</h2>
+  <div class="flow">
+    <div class="step c-teal"><b>1 · Rule</b>complaints by the region where raised</div>
+    <div class="arrow">→</div>
+    <div class="step c-cyan"><b>2 · Deny by default</b>no rule means an error for a limited role</div>
+    <div class="arrow">→</div>
+    <div class="step c-purple"><b>3 · Lineage</b>a field reading a Restricted column is Restricted</div>
+  </div>
+  <p class="small mt">After the fix, 21 of 21 tests pass. The tests stay, and run in CI with the metric tests.</p>
+  <aside class="notes"><p>Fixing only the symptom (adding the complaint rule) leaves the next new dataset open. Deny by default turns a forgotten rule into a loud error for one role instead of a silent leak to all. Lineage classification follows the data, not the field's name.</p></aside>
+</section>
+
+<section class="slide" id="checkpoint-3" data-lo="LO3" data-n="28" data-session="3">
+  <div class="kicker">Checkpoint</div>
+  <h2>A new area arrives</h2>
+  <div class="quiz" data-type="single" data-lo="LO3" data-id="checkpoint-3-q1">
+    <p class="lead">Next quarter Qamar adds a <code>roaming</code> dataset to the layer and forgets its row rule. With the fixed layer, what does the Eastern regional manager get when asking for roaming by region?</p>
+    <div class="opts">
+      <div class="opt" data-why="Describes the starter layer, which allowed by default" data-k="A">Every region's roaming, without a warning</div>
+      <div class="opt" data-why="Assumes the layer guesses a rule it was never given" data-k="B">Only Eastern roaming, inferred from the customer join</div>
+      <div class="opt" data-ok data-k="C">An error saying the role has no row rule for the dataset</div>
+      <div class="opt" data-why="Confuses masking of fields with filtering of rows" data-k="D">Every region's roaming with the figures masked</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Deny by default refuses a limited role on a dataset without a rule; the error tells the data team exactly what is missing.</div>
+  </div>
+  <aside class="notes"><p>Answer: C. The executive, who sees all regions, is not affected: the rule only matters for limited roles. Ask what test would catch the gap before the manager does (an access test per dataset, generated from the model's list of datasets).</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-2-3" data-auto="lab" data-lab="2.3" data-label="Lab 2.3" data-n="29" data-session="3">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 2.3 · 25 min</div><h2>Three roles and a seeded leak</h2><p class="lead small">Add row-level rules by region, mask Restricted fields and test with three roles; the tests find a dataset without a rule and a field that copies a Restricted column without its label.</p><a class="nb" href="../labs/D2_3_access_rules.ipynb">D2_3_access_rules.ipynb</a></div><ul class="checklist"><li>The roles and the classification register <span class="min">4 min</span></li><li>Access tests for each role <span class="min">7 min</span></li><li>Find the two leaks <span class="min">5 min</span></li><li>Fix the policy and the layer <span class="min">6 min</span></li><li>Run the tests again <span class="min">3 min</span></li><li class="stretch">✱ Stretch: An audit line for every query</li></ul></div>
+  <aside class="notes"><p>Usual problems: testing the manager's complaints by customer.region only (the leak shows either way, but the policy says complaint.region); building the fixed model without passing the policy. Reference: 3 of 21 tests fail first, 0 after. Leaks: complaint, customer.contact_name.</p></aside>
+</section>
+
+<!-- ======================= SESSION 4 ======================= -->
+<section class="slide section" id="s4" data-auto="section" data-session="4" data-n="30">
+  <div class="kicker">Session 4</div>
+  <h1>Portability</h1>
+  <ul class="bullets outcomes"><li>Export a semantic model to an open interchange format</li><li>Run the exported model on a second engine and compare</li><li>Name what does not port: access rules, cumulative metrics, dialects</li></ul>
+  <div class="sess-no">04</div>
+</section>
+
+<section class="slide" id="why-portable" data-label="Why portable" data-lo="LO1" data-n="31" data-session="4">
+  <div class="kicker">Open interchange</div>
+  <h2>Definitions written once should outlive the tool that serves them</h2>
+  <div class="cols cols-2">
+    <ul class="bullets small">
+      <li><b>Apache Ossie</b> (incubating), formerly Open Semantic Interchange: one YAML or JSON document per model</li>
+      <li>Datasets, fields, relationships and model-scoped metrics; AI context such as synonyms</li>
+      <li>The core specification is a draft, 0.3.0.dev0: expect changes</li>
+    </ul>
+    <div class="card c-navy tint"><h4>From DS-307</h4><p class="small mb0">You wrote a first model in this format. Today you export a whole layer and run it somewhere else.</p></div>
+  </div>
+  <aside class="notes"><p>Sources: the Apache Ossie announcement of its entry into the Apache Incubator, and the core specification on GitHub (spec.md), read for this course. The project publishes converters for dbt, Cube and others; check their status before relying on one. The status of the specification is in the entry's refresh list: re-check it before each cohort.</p></aside>
+</section>
+
+<section class="slide" id="ossie-shape" data-label="The document" data-lo="LO1" data-n="32" data-session="4">
+  <div class="kicker">Lab 2.4, step 1</div>
+  <h2>An Ossie metric is one SQL aggregate over dataset fields</h2>
+  <pre class="code s" data-file="qamar_telecom.ossie.yaml"><code class="language-yaml"><span class="hljs-attr">version:</span> <span class="hljs-number">0.3</span><span class="hljs-number">.0</span><span class="hljs-string">.dev0</span>
+<span class="hljs-attr">name:</span> <span class="hljs-string">qamar_telecom</span>
+<span class="hljs-attr">datasets:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">bill</span>
+    <span class="hljs-attr">source:</span> <span class="hljs-string">fct_bill</span>
+    <span class="hljs-attr">fields:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">service_month</span>
+        <span class="hljs-attr">expression:</span> {<span class="hljs-attr">sql:</span> <span class="hljs-string">&quot;strftime(bill_month, &#x27;%Y-%m&#x27;)&quot;</span>}
+<span class="hljs-attr">metrics:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">collection_rate</span>
+    <span class="hljs-attr">expression:</span>
+      <span class="hljs-attr">sql:</span> <span class="hljs-string">(SUM(CASE</span> <span class="hljs-string">WHEN</span> <span class="hljs-string">collection.matured_30</span> <span class="hljs-string">THEN</span> <span class="hljs-string">collection.paid_30</span> <span class="hljs-string">END))</span> <span class="hljs-string">*</span> <span class="hljs-number">1.0</span>
+         <span class="hljs-string">/</span> <span class="hljs-string">(SUM(CASE</span> <span class="hljs-string">WHEN</span> <span class="hljs-string">collection.matured_30</span> <span class="hljs-string">THEN</span> <span class="hljs-string">collection.net_due</span> <span class="hljs-string">END))</span></code></pre>
+  <aside class="notes"><p>There are no metric types in the core: a ratio is written out as SQL, which is why exporting needs a translation step. 24 metrics exported; the cumulative one (cash collected to date) stays behind because the core has no window over time. The service_month expression is the planted portability problem.</p></aside>
+</section>
+
+<section class="slide" id="second-engine" data-label="Second engine" data-lo="LO1" data-n="33" data-session="4">
+  <div class="kicker">Lab 2.4, steps 3 and 4</div>
+  <h2>On a second engine, two queries fail loudly and one is quietly wrong</h2>
+  <table class="t small">
+    <tr><th>Metric, grouped by</th><th>On SQLite</th><th>Fix</th></tr>
+    <tr class="hl"><td>billed amount, service month</td><td>one row, month empty, all SAR 9,366,506</td><td><code>strftime('%Y-%m', bill_month)</code></td></tr>
+    <tr><td>collection rate, segment</td><td>error: no function <code>split_part</code></td><td>a SQLite expression for <code>contact_name</code></td></tr>
+    <tr><td>complaints, region</td><td>error: no function <code>date_diff</code></td><td>a SQLite expression with <code>julianday</code></td></tr>
+  </table>
+  <p class="small mt">With a <code>dialects</code> entry for each field, DuckDB and SQLite agree on all three.</p>
+  <aside class="notes"><p>From Lab 2.4. strftime takes its arguments in the opposite order in DuckDB and SQLite: on SQLite the expression runs and returns NULL. That is the one a manager would see. A reconciliation test by month, not only in total, would catch it. Source: SQLite date and time functions documentation.</p></aside>
+</section>
+
+<section class="slide" id="not-travelled" data-label="Left behind" data-lo="LO1 LO3" data-n="34" data-session="4">
+  <div class="kicker">Lab 2.4, step 5</div>
+  <h2>Definitions travel; governance and some logic stay behind</h2>
+  <div class="cols cols-2">
+    <ul class="bullets small">
+      <li>Access rules and roles: not in the core at all</li>
+      <li>Classification of fields, the as-of tariff join: vendor extensions only</li>
+      <li>The cumulative metric, and <code>MEDIAN</code>, which SQLite lacks</li>
+      <li>Two datasets defined as DuckDB queries: materialized as tables first</li>
+    </ul>
+    <div class="callout warn small"><b>Moving tools moves the risk.</b> The access tests of Lab 2.3 must be carried and re-run on the new tool by hand.</div>
+  </div>
+  <aside class="notes"><p>Logic every engine must share belongs in the transformation framework (SQLMesh, dbt), built once as tables; the semantic layer then only names and combines. This is the portability lens of the design review on Day 4.</p></aside>
+</section>
+
+<section class="slide" id="checkpoint-4" data-lo="LO1" data-n="35" data-session="4">
+  <div class="kicker">Checkpoint</div>
+  <h2>The test that would have caught it</h2>
+  <div class="quiz" data-type="single" data-lo="LO1" data-id="checkpoint-4-q1">
+    <p class="lead">After a move to a new engine, the billed amount by service month shows one row with an empty month and the amount of all months together. Which test, run on the new engine, catches this before a manager sees it?</p>
+    <div class="opts">
+      <div class="opt" data-ok data-k="A">Reconcile the billed amount by month with the source, not only in total</div>
+      <div class="opt" data-why="The total is right, so a total-only test passes" data-k="B">Reconcile the billed amount in total with the source</div>
+      <div class="opt" data-why="The document is structurally valid; the fault is in a dialect" data-k="C">Validate the exported document against the specification</div>
+      <div class="opt" data-why="Access tests check rows and masks, not values" data-k="D">Re-run the access tests for the three roles</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> The fault moves money between months without changing the total; only a test at the month grain sees it.</div>
+  </div>
+  <aside class="notes"><p>Answer: A. Tie it to the capstone: reproducibility (10 points) includes tests that would catch a change of engine.</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-2-4" data-auto="lab" data-lab="2.4" data-label="Lab 2.4" data-n="36" data-session="4">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 2.4 · 25 min</div><h2>Export to Ossie, query from SQLite</h2><p class="lead small">Export the model to an Apache Ossie document, compile three metrics from it for a second engine (SQLite), compare the results with DuckDB and fix the expression that did not port.</p><a class="nb" href="../labs/D2_4_portability.ipynb">D2_4_portability.ipynb</a></div><ul class="checklist"><li>Export the model <span class="min">6 min</span></li><li>Check the document <span class="min">4 min</span></li><li>Compile three metrics for SQLite <span class="min">6 min</span></li><li>Compare and fix the expression that did not port <span class="min">6 min</span></li><li>What did not travel <span class="min">3 min</span></li><li class="stretch">✱ Stretch: Round-trip: read the Ossie document back into the layer</li></ul></div>
+  <aside class="notes"><p>Usual problems: qualifying SQL function names as fields (qossie.qualify skips names followed by a parenthesis); comparing a DuckDB date with SQLite text (the lab casts the key to text). Reference: 24 metrics exported, cash_collected_fytd left behind; after the three dialect entries the differences are below a millionth.</p></aside>
+</section>
+
+<section class="slide" id="wrap-up" data-label="Wrap-up" data-lo="LO1 LO3" data-n="37" data-session="4">
+  <div class="kicker">Day 2 · Wrap-up</div>
+  <h2>Three things to keep</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>Conform, then drill across</h4><p class="small mb0">Shared customer and calendar; each fact aggregated alone; history joined as of the date.</p></div>
+    <div class="card c-cyan"><h4>Govern in the layer</h4><p class="small mb0">Rows by rule, fields by lineage, deny by default, tested for every role.</p></div>
+    <div class="card c-coral"><h4>Measure, then copy</h4><p class="small mb0">Pre-aggregate what the log shows; port what the core holds; test both at the grain.</p></div>
+  </div>
+  <aside class="notes"><p>Ask: which of today's planted faults would exist in your own organisation's BI today? Collect one answer per table.</p></aside>
+</section>
+
+<section class="slide dark" id="next" data-label="Next" data-n="38" data-session="4">
+  <div class="kicker">Next</div>
+  <h2>Day 3: test the assistant</h2>
+  <ul class="bullets">
+    <li>Sixty certified questions in Arabic and English</li>
+    <li>Bring three questions your managers would ask an assistant, one of them in Arabic</li>
+    <li>Optional: a free OpenRouter key, for the live stretch of Lab 3.2</li>
+  </ul>
+  <aside class="notes"><p>The Day 3 labs replay recorded replies of a scripted stand-in model, so nobody needs a key. The live stretch uses a free hosted model; free models change often, so check the default in labs/README.md the day before.</p></aside>
+</section>
+</div>
+<script type="application/json" id="academy-data">{"v":1,"engine":"1.0.0","build":{"at":"2026-11-16T01:26:35Z","version":"2027.1.0","commit":"30c3cc0"},"course":{"id":"ds-408","code":"DS-408","title":"Analytics Products: Semantic Layers and Conversational Analytics","track":"data-science","lang":"en","dir":"ltr","url":"https://sdaiaacademy.github.io/ds-408/","repo":"SDAIAAcademy/ds-408","home":"../index.html"},"deck":{"id":"day2","kind":"day","day":2,"label":"Day 2","title":"Design the semantic layer","prev":"day1.html","next":"day3.html","md":"day2.md","alt":{}},"sessions":[{"n":1,"label":"Session 1","title":"Conformed dimensions across areas","slide":"s1","outcomes":["Model several business areas on conformed customer and time dimensions","Detect and remove a cross-area fan-out by drilling across","Join a type 2 tariff history as of the fact's date"],"minutes":50,"lab":{"id":"2.1","title":"Four areas, one customer, one calendar","minutes":25,"href":"../labs/D2_1_conformed_model.ipynb"}},{"n":2,"label":"Session 2","title":"Performance and cost","slide":"s2","outcomes":["Choose pre-aggregations from a query log","Measure latency and rows scanned before and after","Explain which metrics cannot roll up from a pre-aggregation"],"minutes":50,"lab":{"id":"2.2","title":"Pre-aggregations for the most-asked queries","minutes":25,"href":"../labs/D2_2_pre_aggregations.ipynb"}},{"n":3,"label":"Session 3","title":"Access rules","slide":"s3","outcomes":["Map the national classification levels to fields of the model","Write row rules and masking in the semantic layer","Test access for each role and catch a seeded leak"],"minutes":50,"lab":{"id":"2.3","title":"Three roles and a seeded leak","minutes":25,"href":"../labs/D2_3_access_rules.ipynb"}},{"n":4,"label":"Session 4","title":"Portability","slide":"s4","outcomes":["Export a semantic model to an open interchange format","Run the exported model on a second engine and compare","Name what does not port: access rules, cumulative metrics, dialects"],"minutes":50,"lab":{"id":"2.4","title":"Export to Ossie, query from SQLite","minutes":25,"href":"../labs/D2_4_portability.ipynb"}}],"slides":[{"id":"title","n":1,"title":"Design the semantic layer","kind":"title","session":0,"hash":"bb4cd035","md":"#### [day2#title] Design the semantic layer\n\n*SDAIA Academy · Analytics Products: Semantic Layers and Conversational Analytics*\n\nDay 2: Conformed, fast, governed and portable\n\nData Science Track · 4 teaching days + capstone day · 4 sessions · 4 labs · DS-408","notes":"Yesterday: one certified collection rate, metrics as tested files, change control and deprecation. Today the metrics get a home: one semantic layer across four areas that is correct, fast enough, governed and portable. Collect the cross-area questions participants brought; use two of them in session 1.","minutes":null,"lo":[]},{"id":"agenda","n":2,"title":"Design the semantic layer","kind":"content","session":0,"hash":"0646d0de","md":"#### [day2#agenda] Design the semantic layer\n\n*Today*\n\n- **Session 1 · Conformed dimensions across areas**: One customer, one region and one calendar shared by four business areas, joined without multiplying a figure\n- **Session 2 · Performance and cost**: Pre-aggregations for the questions people actually ask, measured before and after\n- **Session 3 · Access rules**: Row rules by region and masking by classification, written in the layer and tested for each role\n- **Session 4 · Portability**: What an open interchange format carries between tools, and what stays behind","notes":"","minutes":null,"lo":[]},{"id":"review-day1","n":3,"title":"A change that looks harmless","kind":"quiz","session":0,"hash":"d4a772b0","md":"#### [day2#review-day1] A change that looks harmless\n\n*Review of Day 1*\n\n**Question:** A steward fixes a typo in the description of `collection_rate` and also changes its window from 30 to 31 days \"to be safe\". Version 1.0.0 becomes 1.0.1. What does review find?\n\n- A. A meaning change hidden in a patch: it needs a major version and the owner's approval\n- B. Nothing: a typo fix is a patch\n- C. A minor version is enough for one more day\n- D. The duplicate batch rule applies: fix it in the data","notes":"Answer: A. The review rules of Lab 1.3 would flag it automatically, because the filter changed on a certified metric. Use this to restate: words are patches, meaning is major.","minutes":null,"lo":["LO2"]},{"id":"s1","n":4,"title":"Conformed dimensions across areas","kind":"section","session":1,"hash":"550c19e1","md":"#### [day2#s1] Conformed dimensions across areas\n\n*Session 1*\n\n- Model several business areas on conformed customer and time dimensions\n- Detect and remove a cross-area fan-out by drilling across\n- Join a type 2 tariff history as of the fact's date","notes":"","minutes":null,"lo":["LO1"]},{"id":"cross-area-question","n":5,"title":"\"Billing and complaints by region and month, in one table\"","kind":"content","session":1,"hash":"bc0ea72c","md":"#### [day2#cross-area-question] \"Billing and complaints by region and month, in one table\"\n\n*The question that crosses areas*\n\n- Two facts at different grains: one bill per account and month; one row per complaint\n- Two calendars to agree on: service month for bills, opening day for complaints\n- Two regions to choose between: the customer's, or where the complaint was raised\n\n- **What the layer must guarantee.** Each figure is the same as it would be alone, whatever it is shown beside.","notes":"Use one of the participants' own cross-area questions here. Ask which grain each fact has. The last bullet is a real design decision that comes back in session 3: the regional manager's complaints are those raised in the region.","minutes":null,"lo":["LO1"]},{"id":"wide-join","n":6,"title":"One wide join multiplies both figures","kind":"content","session":1,"hash":"dcc0f580","md":"#### [day2#wide-join] One wide join multiplies both figures\n\n*Lab 2.1, step 2*\n\n```sql\n-- file: the wide query\nSELECT c.region_code,\n       SUM(b.amount_due)     AS billed,\n       COUNT(q.complaint_id) AS complaints\nFROM dim_customer c\nJOIN fct_bill b USING (customer_id)\nLEFT JOIN fct_complaint q USING (customer_id)\nGROUP BY 1;\n```\n\n- **1.48×** billed amount, against the source\n- **13.3×** complaints, against the source","notes":"From Lab 2.1 on the course data. Each bill row repeats once per complaint of its customer; each complaint once per bill. Complaints suffer more because a customer has many bills (up to 18 months). DISTINCT does not rescue a SUM of amounts: two equal bills are different money. DS-307 showed fan-out inside one area; across areas it is the default, not the exception.","minutes":null,"lo":["LO1"]},{"id":"drill-across","n":7,"title":"Drill across: aggregate each fact alone, then join on the shared keys","kind":"content","session":1,"hash":"57f78d63","md":"#### [day2#drill-across] Drill across: aggregate each fact alone, then join on the shared keys\n\n*The fix the layer applies for you*\n\n1. **1 · Bills** billed amount by region and month\n2. **2 · Complaints** complaints by region and month\n3. **3 · Join** one row per region and month on each side\n\nThe join meets one row per key on each side, so nothing repeats. It needs every area to reach the same customer and calendar: conformed dimensions.","notes":"Show the generated SQL in the lab: two CTEs, then a FULL JOIN USING the keys. MetricFlow and Cube do the same for metrics from different models. In the starter model, complaints have no join to the customer and no calendar, so the layer refuses: \"no many-to-one path from complaint to customer\". A refusal is better than a wrong number.","minutes":null,"lo":["LO1"]},{"id":"conformed","n":8,"title":"A dimension is conformed when every area reaches the same rows with the same keys","kind":"content","session":1,"hash":"81e002cf","md":"#### [day2#conformed] A dimension is conformed when every area reaches the same rows with the same keys\n\n*One customer, one region, one calendar*\n\n| Area | Reaches customer through | Reaches the calendar on |\n| --- | --- | --- |\n| Usage | line, then customer | usage month |\n| Billing and collections | customer | service month |\n| Payments | customer | paid date |\n| Complaints | customer (added in Lab 2.1) | opening day (added in Lab 2.1) |","notes":"The calendar carries the Gregorian month, the fiscal year and quarter (April start) and the Hijri month from the Umm al-Qura calendar (hijridate library). One calendar means \"January 2026\" or \"FY2025-26 Q4\" means the same rows in every area. Source for Hijri dates: the hijridate package documentation.","minutes":null,"lo":["LO1"]},{"id":"eastern-january","n":9,"title":"In January 2026 the Eastern region's complaints rate more than doubled","kind":"content","session":1,"hash":"8272f2bd","md":"#### [day2#eastern-january] In January 2026 the Eastern region's complaints rate more than doubled\n\n*What the conformed model shows*\n\n| Item | Value |\n| --- | --- |\n| Nov 2025 | 30.6 |\n| Dec 2025 | 42.3 |\n| Jan 2026 | 98.1 |\n| Feb 2026 | 39.9 |\n\nComplaints per 1,000 active lines, Eastern region, customer's region. The billed amount kept its steady growth of about 5% a month.","notes":"From Lab 2.1: 63 complaints in January against 18 to 27 around it. The planted cause is a network incident: grouping by complaint.category shows it. This is the cross-area question the layer makes safe: a complaint rate is a ratio of two facts, complaints over active lines, from two areas.","minutes":null,"lo":["LO1"]},{"id":"tariff-history","n":10,"title":"A price change makes two tariff rows; the join must pick the one valid that month","kind":"content","session":1,"hash":"059fb444","md":"#### [day2#tariff-history] A price change makes two tariff rows; the join must pick the one valid that month\n\n*Lab 2.1, step 4*\n\n| Plan | Fee (SAR) | Valid |\n| --- | --- | --- |\n| Qamar Fibre 100 | 299 | to 30 Sep 2025 |\n| Qamar Fibre 100 | 279 | from 1 Oct 2025 |\n| Qamar Postpaid M | 149 | to 30 Sep 2025 |\n| Qamar Postpaid M | 165 | from 1 Oct 2025 |\n\n> **Join on the code only:** data by plan sums to 4,769,001 GB.\n\n> **Join as of the usage month:** 3,043,658 GB, the source total.","notes":"A type 2 history (DS-307 Day 2) joined from another area: the fact's date chooses the row. In the model, the join of line to tariff carries asof: [valid_from, valid_to] and the layer adds \"usage month between valid_from and valid_to\". Ask what happens to a question with no date, such as \"current plan of each line\": the layer then takes the current row.","minutes":null,"lo":["LO1"]},{"id":"reconcile-model","n":11,"title":"A model is done when its parts add up to the source, area by area","kind":"content","session":1,"hash":"3b9afc2c","md":"#### [day2#reconcile-model] A model is done when its parts add up to the source, area by area\n\n*The evidence for the first outcome*\n\n- One reconciliation test per area: usage, billing, collections, complaints\n- Regions add up to the total for the billed amount; plans add up to the total for data\n- Run in CI with the metric tests, so a model change that breaks a total cannot merge\n\n> **Totals are the minimum.** A split that does not add up (by plan before the as-of join) is a test worth keeping.","notes":"The capstone's rubric gives 30 points to the semantic model and metrics; \"model files whose reconciliation tests pass against source totals\" is the evidence the entry names. Encourage tests by the dimension that has a history or a fan-out risk.","minutes":null,"lo":["LO1"]},{"id":"checkpoint-1","n":12,"title":"A dashboard that adds up wrongly","kind":"quiz","session":1,"hash":"cc4752fb","md":"#### [day2#checkpoint-1] A dashboard that adds up wrongly\n\n*Checkpoint*\n\n**Question:** A dashboard shows data used by plan. The plan rows add up to 1.6 times the company total. Two plans changed price last October. What is the most likely cause?\n\n- A. Duplicate usage records in the source\n- B. The fiscal year starts in April\n- C. Active lines are counted as distinct lines\n- D. The tariff is joined on its code, so lines of those plans match two price rows","notes":"Answer: D. The company total is right because it does not join the tariff; only the split is wrong. That is why splits need their own tests.","minutes":null,"lo":["LO1"]},{"id":"lab-2-1","n":13,"title":"Four areas, one customer, one calendar","kind":"lab","session":1,"hash":"3bfd4654","md":"#### [day2#lab-2-1] Four areas, one customer, one calendar\n\nLab 2.1 · 25 min\n\nModel subscribers, lines, bills and complaints with conformed customer and time dimensions, fix a cross-area fan-out and a tariff join without validity dates, and prove the model with reconciliation tests against source totals.\n\n[D2_1_conformed_model.ipynb](https://sdaiaacademy.github.io/ds-408/labs/D2_1_conformed_model.ipynb)\n\n- [ ] Read the starter model (4 min)\n- [ ] The wide query and its fan-out (6 min)\n- [ ] Drill across instead (6 min)\n- [ ] Tariff history as of the month (5 min)\n- [ ] Reconcile four areas to the source (4 min)\n- [ ] ✱ Stretch: The same figure by Hijri month and by fiscal quarter","notes":"Usual problems: adding the complaint join under \"keys\" in the wrong shape (a list of pairs); forgetting time: opened_date, so time.month still fails; adding the as-of on the usage dataset rather than on the line-to-tariff join. Reference: 1.48 and 13.33 times; 3,043,658 GB by plan after the fix.","minutes":null,"lo":[]},{"id":"s2","n":14,"title":"Performance and cost","kind":"section","session":2,"hash":"8459a2ef","md":"#### [day2#s2] Performance and cost\n\n*Session 2*\n\n- Choose pre-aggregations from a query log\n- Measure latency and rows scanned before and after\n- Explain which metrics cannot roll up from a pre-aggregation","notes":"","minutes":null,"lo":["LO1"]},{"id":"what-is-asked","n":15,"title":"Ten question shapes are 91% of a month's queries","kind":"content","session":2,"hash":"7152d2c8","md":"#### [day2#what-is-asked] Ten question shapes are 91% of a month's queries\n\n*Lab 2.2, step 1*\n\n| Metrics | Grouped by | Queries |\n| --- | --- | --- |\n| data from sessions | region, month | 64 |\n| sessions | month | 58 |\n| data from sessions | segment, fiscal year | 37 |\n| data, lines with a session | plan | 37 |\n| sessions | region, segment | 33 |\n\nThe first five of ten, from 400 logged queries. Filters change; shapes repeat.","notes":"The query log (data/semantic/query_log.csv) is synthetic. Most questions read the session table, about 2.8 million rows. Design for what is asked, measured from the log, not for every possible question.","minutes":null,"lo":["LO1"]},{"id":"preagg-idea","n":16,"title":"A pre-aggregation stores additive measures at a coarser grain, and the layer routes to it","kind":"content","session":2,"hash":"b3409f94","md":"#### [day2#preagg-idea] A pre-aggregation stores additive measures at a coarser grain, and the layer routes to it\n\n*What a pre-aggregation is*\n\n- **Additive only.** Sums and counts. A ratio uses its stored numerator and denominator.\n- **Covers the query.** Every group-by and filter field of the query is among its fields.\n- **Same answer.** Routing changes the cost, never the number. Test that.","notes":"Cube calls them pre-aggregations; other tools call them aggregate tables, rollups or materialized views. The routing rule in the course layer is in qsem.py (_preagg_for): same dataset, measure stored, query fields a subset, additive aggregate.","minutes":null,"lo":["LO1"]},{"id":"preagg-results","n":17,"title":"Four pre-aggregations cut rows scanned by 92% and latency by 84%","kind":"content","session":2,"hash":"da906110","md":"#### [day2#preagg-results] Four pre-aggregations cut rows scanned by 92% and latency by 84%\n\n*Lab 2.2, steps 3 and 4*\n\n- **36.5M → 2.8M** rows scanned by the ten shapes\n- **1,426 → 225 ms** total latency, one laptop, full size\n\n- Region and month, plan and quarter, day, city: 540, 48, 504 and 17 rows\n- Every answer equal to the answer before\n- One shape still reads the session table","notes":"Measured on the course's run at full size; your laptop gives other milliseconds, the same rows. That is why the lab reports rows scanned: it does not depend on the machine and predicts cost on a warehouse that bills by data scanned. The shape still on the session table is data with lines with a session by plan: its distinct count cannot roll up.","minutes":null,"lo":["LO1"]},{"id":"cannot-roll-up","n":18,"title":"A distinct count cannot be summed from a coarser table","kind":"content","session":2,"hash":"6e9cde6c","md":"#### [day2#cannot-roll-up] A distinct count cannot be summed from a coarser table\n\n*Lab 2.2, step 5*\n\n- **3,253** lines with a session in FY2025-26\n- **31,226** the twelve monthly counts, added\n\nA line active all year is counted twelve times. The layer refuses to pre-aggregate it; some tools store a sketch instead and accept an approximate answer.","notes":"The same trap as the average of ratios on Day 1: a number that is right at its grain and wrong when combined. HyperLogLog-style sketches are the usual approximation; mention them, do not teach them.","minutes":null,"lo":["LO1"]},{"id":"freshness","n":19,"title":"Every copy goes stale: rebuild by the dataset that changed","kind":"content","session":2,"hash":"d467d0a6","md":"#### [day2#freshness] Every copy goes stale: rebuild by the dataset that changed\n\n*The cost on the other side*\n\n- Late payments touch `payment` and `collection`, not usage\n- A rebuild rule per dataset, not one nightly rebuild of everything\n- Show the refresh time beside each figure the copy serves\n\n> **Stale and fast is still wrong.** A collection rate served from yesterday's copy after a late batch arrives is a wrong but plausible figure.","notes":"The stretch of Lab 2.2 writes the rule. Day 4 returns to this: the answer card shows the metric, filters, grain and version; a production card would add the data's refresh time.","minutes":null,"lo":["LO1"]},{"id":"checkpoint-2","n":20,"title":"Which question can the pre-aggregation serve?","kind":"quiz","session":2,"hash":"7fedcce0","md":"#### [day2#checkpoint-2] Which question can the pre-aggregation serve?\n\n*Checkpoint*\n\n**Question:** A pre-aggregation stores data and sessions by region, segment, session kind, month and fiscal year. Which question does the layer route to it?\n\n- A. Data by city for March 2026\n- B. Sessions by region for the fiscal year 2025-26\n- C. Lines with a session by month\n- D. Data by day in January 2026","notes":"Answer: B. Each wrong option names a different reason a pre-aggregation cannot serve: a missing field, a non-additive measure, a finer grain.","minutes":null,"lo":["LO1"]},{"id":"lab-2-2","n":21,"title":"Pre-aggregations for the most-asked queries","kind":"lab","session":2,"hash":"d84b5b90","md":"#### [day2#lab-2-2] Pre-aggregations for the most-asked queries\n\nLab 2.2 · 25 min\n\nAdd pre-aggregations for the ten most-asked metric patterns of the query log, measure query latency and rows scanned before and after, and check that every answer stayed the same.\n\n[D2_2_pre_aggregations.ipynb](https://sdaiaacademy.github.io/ds-408/labs/D2_2_pre_aggregations.ipynb)\n\n- [ ] The ten most-asked patterns (5 min)\n- [ ] Baseline latency and rows scanned (5 min)\n- [ ] Define the pre-aggregations (7 min)\n- [ ] Measure again, compare the answers (5 min)\n- [ ] The metric that cannot roll up (3 min)\n- [ ] ✱ Stretch: Which pre-aggregations to rebuild when late payments arrive","notes":"Quick mode keeps one line in eight (about 347,000 sessions): the ratios between before and after hold, the milliseconds are smaller. Usual problems: a pre-aggregation that lists the measure but not a group-by field the pattern needs; comparing answers with == on floats. Reference full size: 36,539,620 rows to 2,815,154; 1,426 ms to 225 ms on the course's laptop.","minutes":null,"lo":[]},{"id":"s3","n":22,"title":"Access rules","kind":"section","session":3,"hash":"daf20389","md":"#### [day2#s3] Access rules\n\n*Session 3*\n\n- Map the national classification levels to fields of the model\n- Write row rules and masking in the semantic layer\n- Test access for each role and catch a seeded leak","notes":"","minutes":null,"lo":["LO3"]},{"id":"classification-levels","n":23,"title":"Four national levels; Qamar's register marks its customer identifiers Restricted","kind":"content","session":3,"hash":"8aacb8f8","md":"#### [day2#classification-levels] Four national levels; Qamar's register marks its customer identifiers Restricted\n\n*NDMO Data Classification Policy*\n\n- **Top Secret.** Exceptionally serious, irreparable harm.\n- **Secret.** Serious harm.\n- **Restricted.** Limited harm; sub-levels A, B and C by scale of impact.\n- **Public.** No harm from disclosure.\n\nIn the case: full name, national identifier, mobile number and date of birth are Restricted (a fictional register).","notes":"Read from the policy's table of classification levels and its paragraph on Restricted categories A, B and C (impact on a sector, on several entities or a group of individuals, or on one entity or person). The register is Qamar's own and fictional; a real register is decided by the entity's data owners. Sources: NDMO Data Classification Policy.","minutes":null,"lo":["LO3"]},{"id":"three-roles-access","n":24,"title":"Three roles: what rows and which fields each one sees","kind":"content","session":3,"hash":"d11dc226","md":"#### [day2#three-roles-access] Three roles: what rows and which fields each one sees\n\n*The access policy*\n\n| Role | Rows | Restricted fields |\n| --- | --- | --- |\n| Executive | all regions | masked |\n| Regional manager, Eastern | Eastern region only | masked |\n| Collections officer | all regions | visible, to contact customers who owe |\n\n> **Rules in the layer, not in the dashboard.** Every consumer, the assistant included, passes through the same rules.","notes":"The policy is data/access/policy.yaml: roles, a row rule per dataset (how each dataset reaches a region) and the classification register. The collections officer's access needs a purpose and a retention the Personal Data Protection Law asks the controller to be able to state; that is the stretch question of the lab.","minutes":null,"lo":["LO3"]},{"id":"access-tests","n":25,"title":"Test every role against every area, by asking as that role","kind":"content","session":3,"hash":"53ae72df","md":"#### [day2#access-tests] Test every role against every area, by asking as that role\n\n*Lab 2.3, step 2*\n\n```python\n# file: Lab 2.3\nfor role, r in policy[\"roles\"].items():\n    m = model.as_role(role, policy=policy)\n    for area, (metric, region) in AREAS.items():\n        seen = set(m.query([metric], by=[region])[region])\n        passed = r[\"regions\"] == \"all\" or seen \u003c= set(r[\"regions\"])\n    for field in (\"customer.full_name\", \"customer.contact_name\"):\n        masked = set(m.query([\"billed_amount\"], by=[field])[field]) == {\"***\"}\n        passed = masked != r[\"restricted\"]\n```","notes":"21 tests: 3 roles times (5 areas plus 2 fields). A test asks the layer the way a dashboard or the assistant would, and checks what came back. Point at the last line: a role with clearance must see the values, so the test also catches over-masking.","minutes":null,"lo":["LO3"]},{"id":"two-leaks","n":26,"title":"Three of 21 tests fail, and they point at two leaks","kind":"content","session":3,"hash":"d8854893","md":"#### [day2#two-leaks] Three of 21 tests fail, and they point at two leaks\n\n*Lab 2.3, step 3*\n\n- **A dataset without a rule.** The Eastern manager sees complaints of all five regions: 612 in the Central region alone. The policy has no rule for `complaint`, and the layer allowed by default.\n- **A copy without its label.** `contact_name` takes the first word of `full_name`. Nobody tagged it, so the executive and the manager read first names.","notes":"From Lab 2.3. Both leaks are common in practice: a new area added after the policy was written, and a derived field created for a friendly greeting. Ask the room which one an audit of the policy file would have found (the first) and which only a test finds (the second).","minutes":null,"lo":["LO3"]},{"id":"fix-the-cause","n":27,"title":"Fix the cause: a rule per dataset, deny by default, classify by lineage","kind":"content","session":3,"hash":"ba4e17f0","md":"#### [day2#fix-the-cause] Fix the cause: a rule per dataset, deny by default, classify by lineage\n\n*Lab 2.3, step 4*\n\n1. **1 · Rule** complaints by the region where raised\n2. **2 · Deny by default** no rule means an error for a limited role\n3. **3 · Lineage** a field reading a Restricted column is Restricted\n\nAfter the fix, 21 of 21 tests pass. The tests stay, and run in CI with the metric tests.","notes":"Fixing only the symptom (adding the complaint rule) leaves the next new dataset open. Deny by default turns a forgotten rule into a loud error for one role instead of a silent leak to all. Lineage classification follows the data, not the field's name.","minutes":null,"lo":["LO3"]},{"id":"checkpoint-3","n":28,"title":"A new area arrives","kind":"quiz","session":3,"hash":"93cb9d87","md":"#### [day2#checkpoint-3] A new area arrives\n\n*Checkpoint*\n\n**Question:** Next quarter Qamar adds a `roaming` dataset to the layer and forgets its row rule. With the fixed layer, what does the Eastern regional manager get when asking for roaming by region?\n\n- A. Every region's roaming, without a warning\n- B. Only Eastern roaming, inferred from the customer join\n- C. An error saying the role has no row rule for the dataset\n- D. Every region's roaming with the figures masked","notes":"Answer: C. The executive, who sees all regions, is not affected: the rule only matters for limited roles. Ask what test would catch the gap before the manager does (an access test per dataset, generated from the model's list of datasets).","minutes":null,"lo":["LO3"]},{"id":"lab-2-3","n":29,"title":"Three roles and a seeded leak","kind":"lab","session":3,"hash":"b499ca41","md":"#### [day2#lab-2-3] Three roles and a seeded leak\n\nLab 2.3 · 25 min\n\nAdd row-level rules by region, mask Restricted fields and test with three roles; the tests find a dataset without a rule and a field that copies a Restricted column without its label.\n\n[D2_3_access_rules.ipynb](https://sdaiaacademy.github.io/ds-408/labs/D2_3_access_rules.ipynb)\n\n- [ ] The roles and the classification register (4 min)\n- [ ] Access tests for each role (7 min)\n- [ ] Find the two leaks (5 min)\n- [ ] Fix the policy and the layer (6 min)\n- [ ] Run the tests again (3 min)\n- [ ] ✱ Stretch: An audit line for every query","notes":"Usual problems: testing the manager's complaints by customer.region only (the leak shows either way, but the policy says complaint.region); building the fixed model without passing the policy. Reference: 3 of 21 tests fail first, 0 after. Leaks: complaint, customer.contact_name.","minutes":null,"lo":[]},{"id":"s4","n":30,"title":"Portability","kind":"section","session":4,"hash":"5eed4e11","md":"#### [day2#s4] Portability\n\n*Session 4*\n\n- Export a semantic model to an open interchange format\n- Run the exported model on a second engine and compare\n- Name what does not port: access rules, cumulative metrics, dialects","notes":"","minutes":null,"lo":["LO1"]},{"id":"why-portable","n":31,"title":"Definitions written once should outlive the tool that serves them","kind":"content","session":4,"hash":"95662f18","md":"#### [day2#why-portable] Definitions written once should outlive the tool that serves them\n\n*Open interchange*\n\n- **Apache Ossie** (incubating), formerly Open Semantic Interchange: one YAML or JSON document per model\n- Datasets, fields, relationships and model-scoped metrics; AI context such as synonyms\n- The core specification is a draft, 0.3.0.dev0: expect changes\n\n- **From DS-307.** You wrote a first model in this format. Today you export a whole layer and run it somewhere else.","notes":"Sources: the Apache Ossie announcement of its entry into the Apache Incubator, and the core specification on GitHub (spec.md), read for this course. The project publishes converters for dbt, Cube and others; check their status before relying on one. The status of the specification is in the entry's refresh list: re-check it before each cohort.","minutes":null,"lo":["LO1"]},{"id":"ossie-shape","n":32,"title":"An Ossie metric is one SQL aggregate over dataset fields","kind":"content","session":4,"hash":"53acd315","md":"#### [day2#ossie-shape] An Ossie metric is one SQL aggregate over dataset fields\n\n*Lab 2.4, step 1*\n\n```yaml\n# file: qamar_telecom.ossie.yaml\nversion: 0.3.0.dev0\nname: qamar_telecom\ndatasets:\n  - name: bill\n    source: fct_bill\n    fields:\n      - name: service_month\n        expression: {sql: \"strftime(bill_month, '%Y-%m')\"}\nmetrics:\n  - name: collection_rate\n    expression:\n      sql: (SUM(CASE WHEN collection.matured_30 THEN collection.paid_30 END)) * 1.0\n         / (SUM(CASE WHEN collection.matured_30 THEN collection.net_due END))\n```","notes":"There are no metric types in the core: a ratio is written out as SQL, which is why exporting needs a translation step. 24 metrics exported; the cumulative one (cash collected to date) stays behind because the core has no window over time. The service_month expression is the planted portability problem.","minutes":null,"lo":["LO1"]},{"id":"second-engine","n":33,"title":"On a second engine, two queries fail loudly and one is quietly wrong","kind":"content","session":4,"hash":"4ea58feb","md":"#### [day2#second-engine] On a second engine, two queries fail loudly and one is quietly wrong\n\n*Lab 2.4, steps 3 and 4*\n\n| Metric, grouped by | On SQLite | Fix |\n| --- | --- | --- |\n| billed amount, service month | one row, month empty, all SAR 9,366,506 | `strftime('%Y-%m', bill_month)` |\n| collection rate, segment | error: no function `split_part` | a SQLite expression for `contact_name` |\n| complaints, region | error: no function `date_diff` | a SQLite expression with `julianday` |\n\nWith a `dialects` entry for each field, DuckDB and SQLite agree on all three.","notes":"From Lab 2.4. strftime takes its arguments in the opposite order in DuckDB and SQLite: on SQLite the expression runs and returns NULL. That is the one a manager would see. A reconciliation test by month, not only in total, would catch it. Source: SQLite date and time functions documentation.","minutes":null,"lo":["LO1"]},{"id":"not-travelled","n":34,"title":"Definitions travel; governance and some logic stay behind","kind":"content","session":4,"hash":"c92fc337","md":"#### [day2#not-travelled] Definitions travel; governance and some logic stay behind\n\n*Lab 2.4, step 5*\n\n- Access rules and roles: not in the core at all\n- Classification of fields, the as-of tariff join: vendor extensions only\n- The cumulative metric, and `MEDIAN`, which SQLite lacks\n- Two datasets defined as DuckDB queries: materialized as tables first\n\n> **Moving tools moves the risk.** The access tests of Lab 2.3 must be carried and re-run on the new tool by hand.","notes":"Logic every engine must share belongs in the transformation framework (SQLMesh, dbt), built once as tables; the semantic layer then only names and combines. This is the portability lens of the design review on Day 4.","minutes":null,"lo":["LO1","LO3"]},{"id":"checkpoint-4","n":35,"title":"The test that would have caught it","kind":"quiz","session":4,"hash":"021a77f9","md":"#### [day2#checkpoint-4] The test that would have caught it\n\n*Checkpoint*\n\n**Question:** After a move to a new engine, the billed amount by service month shows one row with an empty month and the amount of all months together. Which test, run on the new engine, catches this before a manager sees it?\n\n- A. Reconcile the billed amount by month with the source, not only in total\n- B. Reconcile the billed amount in total with the source\n- C. Validate the exported document against the specification\n- D. Re-run the access tests for the three roles","notes":"Answer: A. Tie it to the capstone: reproducibility (10 points) includes tests that would catch a change of engine.","minutes":null,"lo":["LO1"]},{"id":"lab-2-4","n":36,"title":"Export to Ossie, query from SQLite","kind":"lab","session":4,"hash":"039e219d","md":"#### [day2#lab-2-4] Export to Ossie, query from SQLite\n\nLab 2.4 · 25 min\n\nExport the model to an Apache Ossie document, compile three metrics from it for a second engine (SQLite), compare the results with DuckDB and fix the expression that did not port.\n\n[D2_4_portability.ipynb](https://sdaiaacademy.github.io/ds-408/labs/D2_4_portability.ipynb)\n\n- [ ] Export the model (6 min)\n- [ ] Check the document (4 min)\n- [ ] Compile three metrics for SQLite (6 min)\n- [ ] Compare and fix the expression that did not port (6 min)\n- [ ] What did not travel (3 min)\n- [ ] ✱ Stretch: Round-trip: read the Ossie document back into the layer","notes":"Usual problems: qualifying SQL function names as fields (qossie.qualify skips names followed by a parenthesis); comparing a DuckDB date with SQLite text (the lab casts the key to text). Reference: 24 metrics exported, cash_collected_fytd left behind; after the three dialect entries the differences are below a millionth.","minutes":null,"lo":[]},{"id":"wrap-up","n":37,"title":"Three things to keep","kind":"content","session":4,"hash":"eeed45c9","md":"#### [day2#wrap-up] Three things to keep\n\n*Day 2 · Wrap-up*\n\n- **Conform, then drill across.** Shared customer and calendar; each fact aggregated alone; history joined as of the date.\n- **Govern in the layer.** Rows by rule, fields by lineage, deny by default, tested for every role.\n- **Measure, then copy.** Pre-aggregate what the log shows; port what the core holds; test both at the grain.","notes":"Ask: which of today's planted faults would exist in your own organisation's BI today? Collect one answer per table.","minutes":null,"lo":["LO1","LO3"]},{"id":"next","n":38,"title":"Day 3: test the assistant","kind":"content","session":4,"hash":"bbf3beb9","md":"#### [day2#next] Day 3: test the assistant\n\n*Next*\n\n- Sixty certified questions in Arabic and English\n- Bring three questions your managers would ask an assistant, one of them in Arabic\n- Optional: a free OpenRouter key, for the live stretch of Lab 3.2","notes":"The Day 3 labs replay recorded replies of a scripted stand-in model, so nobody needs a key. The live stretch uses a free hosted model; free models change often, so check the default in labs/README.md the day before.","minutes":null,"lo":[]}],"activities":[{"id":"review-day1-q1","slide":"review-day1","type":"single","prompt":"A steward fixes a typo in the description of collection_rate and also changes its window from 30 to 31 days \"to be safe\". Version 1.0.0 becomes 1.0.1. What does review find?","options":[{"key":"A","text":"A meaning change hidden in a patch: it needs a major version and the owner's approval"},{"key":"B","text":"Nothing: a typo fix is a patch"},{"key":"C","text":"A minor version is enough for one more day"},{"key":"D","text":"The duplicate batch rule applies: fix it in the data"}],"correct":[0],"explanation":"The window is part of the metric's meaning; every reader's number moves. Rule R3 asks for a major bump, R5 for the owner's approval.","misconceptions":["","Sees only the words that changed and misses the window","Thinks a small numeric change is a minor change","Treats a definition change as a data correction"],"lo":["LO2"]},{"id":"checkpoint-1-q1","slide":"checkpoint-1","type":"single","prompt":"A dashboard shows data used by plan. The plan rows add up to 1.6 times the company total. Two plans changed price last October. What is the most likely cause?","options":[{"key":"A","text":"Duplicate usage records in the source"},{"key":"B","text":"The fiscal year starts in April"},{"key":"C","text":"Active lines are counted as distinct lines"},{"key":"D","text":"The tariff is joined on its code, so lines of those plans match two price rows"}],"correct":[3],"explanation":"A history table has one row per validity period; joining on the code alone repeats each line once per period. The as-of join picks the row valid on the fact's date.","misconceptions":["Blames the data volume, which a total would show too","Confuses a calendar mismatch with a row multiplication","A distinct count would not inflate a sum of gigabytes",""],"lo":["LO1"]},{"id":"checkpoint-2-q1","slide":"checkpoint-2","type":"single","prompt":"A pre-aggregation stores data and sessions by region, segment, session kind, month and fiscal year. Which question does the layer route to it?","options":[{"key":"A","text":"Data by city for March 2026"},{"key":"B","text":"Sessions by region for the fiscal year 2025-26"},{"key":"C","text":"Lines with a session by month"},{"key":"D","text":"Data by day in January 2026"}],"correct":[1],"explanation":"Region and fiscal year are both stored, and sessions is a count: the layer sums the stored rows and gets the same answer.","misconceptions":["City is not one of its fields, so the layer must read the session table","","A distinct count cannot be summed from coarser rows","Day is finer than month: the stored rows cannot be split"],"lo":["LO1"]},{"id":"checkpoint-3-q1","slide":"checkpoint-3","type":"single","prompt":"Next quarter Qamar adds a roaming dataset to the layer and forgets its row rule. With the fixed layer, what does the Eastern regional manager get when asking for roaming by region?","options":[{"key":"A","text":"Every region's roaming, without a warning"},{"key":"B","text":"Only Eastern roaming, inferred from the customer join"},{"key":"C","text":"An error saying the role has no row rule for the dataset"},{"key":"D","text":"Every region's roaming with the figures masked"}],"correct":[2],"explanation":"Deny by default refuses a limited role on a dataset without a rule; the error tells the data team exactly what is missing.","misconceptions":["Describes the starter layer, which allowed by default","Assumes the layer guesses a rule it was never given","","Confuses masking of fields with filtering of rows"],"lo":["LO3"]},{"id":"checkpoint-4-q1","slide":"checkpoint-4","type":"single","prompt":"After a move to a new engine, the billed amount by service month shows one row with an empty month and the amount of all months together. Which test, run on the new engine, catches this before a manager sees it?","options":[{"key":"A","text":"Reconcile the billed amount by month with the source, not only in total"},{"key":"B","text":"Reconcile the billed amount in total with the source"},{"key":"C","text":"Validate the exported document against the specification"},{"key":"D","text":"Re-run the access tests for the three roles"}],"correct":[0],"explanation":"The fault moves money between months without changing the total; only a test at the month grain sees it.","misconceptions":["","The total is right, so a total-only test passes","The document is structurally valid; the fault is in a dialect","Access tests check rows and masks, not values"],"lo":["LO1"]}],"ai":{"context":{"course":"../context/course.md","courseJs":"../context/course.js","day":"day2.md","llms":"../llms.txt"},"tasks":[],"tools":[]},"bridge":{"allowedOrigins":[]},"features":{},"strings":{}}</script>
+<script src="../_engine/academy.js"></script>
+</body>
+</html>
